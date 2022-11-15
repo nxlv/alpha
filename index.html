@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard</title>
+
+        <link rel="stylesheet" type="text/css" href="assets/css/theme.css" media="all">
+    </head>
+    <body>
+        <main id="alpha" class="alpha">
+            <input type="checkbox" id="alpha__prologue-collapse" class="alpha__prologue-collapse" value="1">
+            <label class="alpha__prologue-collapse-control" for="alpha__prologue-collapse">Collapse</label>
+
+            <header class="alpha__prologue">
+                <section class="alpha__prologue-primary">
+                    <a href="#/" class="alpha__prologue-primary-logo"><span class="title">Alpha</span> by Annuity Association</a>
+
+                    <nav>
+                        <ol>
+                            <li>
+                                <a href="#/income-solver">Income Solver</a>
+
+                                <ol>
+                                    <li><a href="#">Option 1</a></li>
+                                    <li><a href="#">Option 2</a></li>
+                                    <li><a href="#">Option 3</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="#/performance">Performance</a>
+
+                                <ol>
+                                    <li><a href="#">Option 1</a></li>
+                                    <li><a href="#">Option 2</a></li>
+                                    <li><a href="#">Option 3</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="#/research">Research</a>
+
+                                <ol>
+                                    <li><a href="#">Option 1</a></li>
+                                    <li><a href="#">Option 2</a></li>
+                                    <li><a href="#">Option 3</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="#/reporting">Reporting</a>
+
+                                <ol>
+                                    <li><a href="#">Option 1</a></li>
+                                    <li><a href="#">Option 2</a></li>
+                                    <li><a href="#">Option 3</a></li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </nav>
+                </section>
+
+                <section class="alpha__prologue-secondary">
+                    <aside class="alpha__prologue-secondary-client">
+                        <h3>Test User <span class="money">$100,000</span></h3>
+                        <menu class="stats">
+                            <li data-type="location">Florida</li>
+                            <li data-type="age">65</li>
+                            <li data-type="marital">Single</li>
+                        </menu>
+                        <menu class="controls">
+                            <li data-type="change"><a href="#/change" title="Change Client">Change Client</a></li>
+                            <li data-type="edit"><a href="#/edit" title="Edit Client">Edit Client</a></li>
+                            <li data-type="add"><a href="#/add" title="Add Client">Add Client</a></li>
+                        </menu>
+                    </aside>
+
+                    <aside class="alpha__prologue-secondary-search">
+                        <details>
+                            <summary>Search</summary>
+                            <div class="alpha__prologue-secondary-search-ui">
+                                <div class="alpha__prologue-secondary-search-ui-inner">
+                                    <label for="alpha__prologue-secondary-search-input">Search</label>
+                                    <input type="text" id="alpha__prologue-secondary-search-input" class="alpha__prologue-secondary-search-input" name="query" placeholder="Search">
+                                </div>
+                            </div>
+                        </details>
+                    </aside>
+
+                    <aside class="alpha__prologue-secondary-user">
+                        <h3>Welcome, User! <i class="fal fa-hand-wave" aria-hidden="true"></i> </h3>
+                        <ol>
+                            <li><a href="#/profile">Profile</a></li>
+                            <li><a href="#/logout">Logout</a></li>
+                        </ol>
+                    </aside>
+                </section>
+            </header>
+            <article>
+                <header>
+                    <h1>User Interface Test Page</h1>
+                </header>
+
+                <section>
+                    <h1>Test Inline Title</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra, neque eu auctor bibendum, nulla urna efficitur mi, vulputate condimentum felis orci ac magna. Aliquam erat volutpat. Aliquam sit amet sollicitudin neque. Vivamus sit amet ipsum quis augue molestie posuere. Aliquam ultrices, orci ut aliquam tincidunt, tortor odio mollis mauris.</p>
+
+                    <hr />
+
+                    <h3>Buttons (Default)</h3>
+                    <button class="bx--btn bx--btn--primary" type="button">Primary button</button>
+                    <button class="bx--btn bx--btn--primary" type="button" disabled>Primary button</button>
+                    <button class="bx--btn bx--btn--primary" type="button">
+                        Primary with icon
+                        <svg class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            +    <path d="M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" fill-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <hr />
+
+                    <h3>Buttons (Error or Danger)</h3>
+                    <button class="bx--btn bx--btn--danger" aria-label="danger"  type="button">Button</button>
+                    <button class="bx--btn bx--btn--danger" aria-label="danger"  type="button"
+                            disabled>Button</button>
+                    <button class="bx--btn bx--btn--danger" aria-label="danger"  type="button">
+                        With icon
+                        <svg class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            +    <path d="M7 7H4v2h3v3h2V9h3V7H9V4H7v3zm1 9A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" fill-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <hr />
+
+                    <h3>Breadcrumb Trail Menu</h3>
+                    <nav class="bx--breadcrumb bx--breadcrumb--no-trailing-slash" aria-label="breadcrumb">
+                        <div class="bx--breadcrumb-item">
+                            <a href="#" class="bx--link">Breadcrumb 1</a>
+                        </div>
+                        <div class="bx--breadcrumb-item">
+                            <a href="#" class="bx--link">Breadcrumb 2</a>
+                        </div>
+                        <div class="bx--breadcrumb-item">
+                            <a href="#" class="bx--link">Breadcrumb 3</a>
+                        </div>
+                        <div class="bx--breadcrumb-item">
+                        </div>
+                    </nav>
+
+                    <hr />
+
+                    <h3>Accordion/Collapsed Content</h3>
+                    <ul data-accordion class="bx--accordion">
+                        <li data-accordion-item class="bx--accordion__item">
+                            <button class="bx--accordion__heading" aria-expanded="false" aria-controls="pane1">
+                                <svg class="bx--accordion__arrow" width="7" height="12" viewBox="0 0 7 12">
+                                    <path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
+                                </svg>
+                                <p class="bx--accordion__title">Label</p>
+                            </button>
+                            <div id="pane1" class="bx--accordion__content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </li>
+                        <li data-accordion-item class="bx--accordion__item">
+                            <button class="bx--accordion__heading" aria-expanded="false" aria-controls="pane2">
+                                <svg class="bx--accordion__arrow" width="7" height="12" viewBox="0 0 7 12">
+                                    <path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
+                                </svg>
+                                <p class="bx--accordion__title">Label with multiple words</p>
+                            </button>
+                            <div id="pane2" class="bx--accordion__content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </li>
+                        <li data-accordion-item class="bx--accordion__item">
+                            <button class="bx--accordion__heading" aria-expanded="false" aria-controls="pane3">
+                                <svg class="bx--accordion__arrow" width="7" height="12" viewBox="0 0 7 12">
+                                    <path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
+                                </svg>
+                                <p class="bx--accordion__title">Label</p>
+                            </button>
+                            <div id="pane3" class="bx--accordion__content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </li>
+                        <li data-accordion-item class="bx--accordion__item">
+                            <button class="bx--accordion__heading" aria-expanded="false" aria-controls="pane4">
+                                <svg class="bx--accordion__arrow" width="7" height="12" viewBox="0 0 7 12">
+                                    <path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z" />
+                                </svg>
+                                <p class="bx--accordion__title">Label</p>
+                            </button>
+                            <div id="pane4" class="bx--accordion__content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <hr />
+
+                    <h3>Tooltip</h3>
+                    <div class="bx--tooltip__label" aria-describedby="unique-tooltip">
+                        Tooltip Label
+                        <div tabindex="0" data-tooltip-trigger data-tooltip-target="#unique-tooltip" role="tooltip" class="bx--tooltip__trigger">
+                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                <g fill-rule="evenodd">
+                                    <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" fill-rule="nonzero" />
+                                    <path d="M8.5 7.007v3.991h2v1h-2V12h-1v-.002h-2v-1h2V7.007h-.995v-1h2v1H8.5z" fill-rule="nonzero" />
+                                    <circle cx="8" cy="4" r="1" />
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="unique-tooltip" data-floating-menu-direction="bottom" class="bx--tooltip">
+                        <span class="bx--tooltip__caret"></span>
+                        <p>This is some tooltip text. This box shows the maximum amount of text that should appear inside. If more room is needed
+                            please use a modal instead.</p>
+                    </div>
+
+                    <hr />
+
+                    <h3>Structured List</h3>
+                    <section class="bx--structured-list bx--structured-list--border bx--structured-list--selection" data-structured-list>
+                        <div class="bx--structured-list-thead">
+                            <div class="bx--structured-list-row bx--structured-list-row--header-row">
+                                <div class="bx--structured-list-th"></div>
+                                <div class="bx--structured-list-th">Service</div>
+                                <div class="bx--structured-list-th">Type</div>
+                                <div class="bx--structured-list-th">Description</div>
+                            </div>
+                        </div>
+                        <div class="bx--structured-list-tbody">
+                            <label for="apache-id" aria-label="apache spark" class="bx--structured-list-row bx--structured-list-row--selected" tabindex="0">
+                                <input tabindex="-1" id="apache-id" class="bx--structured-list-input" value="apache spark" type="radio" name="services" title="apache spark"
+                                       checked />
+                                <div class="bx--structured-list-td">
+                                    <svg class="bx--structured-list-svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
+                                              fill-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="bx--structured-list-td bx--structured-list-content--nowrap">Apache Spark</div>
+                                <div class="bx--structured-list-td">IBM</div>
+                                <div class="bx--structured-list-td">
+                                    Apache Spark is an open source cluster computing framework optimized for extremely fast and large scale data processing, which you can access via the newly integrated notebook interface IBM Analytics for Apache Spark.
+                                </div>
+                            </label>
+                            <label for="cloudant-id" aria-label="Cloudant" class="bx--structured-list-row" tabindex="0">
+                                <input tabindex="-1" id="cloudant-id" class="bx--structured-list-input" value="Cloudant" type="radio" name="services" title="Cloudant"
+                                />
+                                <div class="bx--structured-list-td">
+                                    <svg class="bx--structured-list-svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
+                                              fill-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="bx--structured-list-td bx--structured-list-content--nowrap">Cloudant</div>
+                                <div class="bx--structured-list-td">IBM</div>
+                                <div class="bx--structured-list-td">Cloudant NoSQL DB is a fully managed data layer designed for modern web and mobile applications that leverages a flexible JSON schema.</div>
+                            </label>
+                            <label for="block-storate-id" aria-label="Cloudant" class="bx--structured-list-row" tabindex="0">
+                                <input tabindex="-1" id="block-storate-id" class="bx--structured-list-input" value="block-storage" type="radio" name="services"
+                                       title="block-storage" />
+                                <div class="bx--structured-list-td">
+                                    <svg class="bx--structured-list-svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
+                                              fill-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="bx--structured-list-td bx--structured-list-content--nowrap">Block Storage</div>
+                                <div class="bx--structured-list-td">IBM</div>
+                                <div class="bx--structured-list-td">Get local disk performance with SAN persistence and durability. Increase storage capacity available to your Bluemix Virtual and Bare Metal Servers with a maximum of 48k IOPs.*</div>
+                            </label>
+                            <label for="open-whisk-id" aria-label="Cloudant" class="bx--structured-list-row" tabindex="0">
+                                <input tabindex="-1" id="open-whisk-id" class="bx--structured-list-input" value="open-whisk" type="radio" name="services" title="open-whisk" />
+                                <div class="bx--structured-list-td">
+                                    <svg class="bx--structured-list-svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
+                                              fill-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="bx--structured-list-td bx--structured-list-content--nowrap">Open Whisk</div>
+                                <div class="bx--structured-list-td">IBM</div>
+                                <div class="bx--structured-list-td">OpenWhisk is an open-source server less compute platform. It executes your functions (actions) in response to events from triggers. It costs nothing when not in use.</div>
+                            </label>
+                        </div>
+                    </section>
+
+                    <hr />
+
+                    <h3>Selectable Tile/Card</h3>
+
+                    <label for="tile-id" aria-label="tile" class="bx--tile bx--tile--selectable" data-tile="selectable" tabindex="0" style="display: inline-flex; max-width: 300px; margin-right: 1rem;">
+                        <input tabindex="-1" data-tile-input id="tile-id" class="bx--tile-input" value="tile" type="checkbox" name="tiles" title="tile" />
+                        <div class="bx--tile__checkmark">
+                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
+                                      fill-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="bx--tile-content">
+                            <!-- Tile content here --><i class="fal fa-chart-line-up fa-3x" aria-hidden="true"></i>
+                        </div>
+                    </label>
+
+                    <label for="tile-id-2" aria-label="tile" class="bx--tile bx--tile--selectable" data-tile="selectable" tabindex="0" style="display: inline-flex; max-width: 300px; margin-right: 1rem;">
+                        <input tabindex="-1" data-tile-input id="tile-id-2" class="bx--tile-input" value="tile" type="checkbox" name="tiles" title="tile" />
+                        <div class="bx--tile__checkmark">
+                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.646-10.854L6.75 10.043 4.354 7.646l-.708.708 3.104 3.103 5.604-5.603-.708-.708z"
+                                      fill-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="bx--tile-content">
+                            <!-- Tile content here --><i class="fal fa-chart-line-down fa-3x" aria-hidden="true"></i>
+                        </div>
+                    </label>
+
+                    <hr />
+
+                    <h3>Pagination</h3>
+                    <div class="bx--pagination" data-pagination>
+                        <div class="bx--pagination__left">
+                            <div class="bx--select">
+                                <label for="select-id-pagination" class="bx--visually-hidden">Number of items per page</label>
+                                <select id="select-id-pagination" class="bx--select-input" data-items-per-page>
+                                    <option class="bx--select-option" value="10" selected>10</option>
+                                    <option class="bx--select-option" value="20">20</option>
+                                    <option class="bx--select-option" value="30">30</option>
+                                    <option class="bx--select-option" value="40">40</option>
+                                    <option class="bx--select-option" value="50">50</option>
+                                </select>
+                                <svg class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
+                                    <path d="M0 0l5 4.998L10 0z" fill-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <span class="bx--pagination__text">Items per page&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                            <span class="bx--pagination__text">
+      <span data-displayed-item-range>1-10</span> of
+      <span data-total-items>40</span> items</span>
+                        </div>
+                        <div class="bx--pagination__right">
+    <span class="bx--pagination__text">
+      <span data-displayed-page-number>1</span> of
+      <span data-total-pages>4</span> pages</span>
+                            <button class="bx--pagination__button bx--pagination__button--backward" data-page-backward aria-label="Backward button">
+                                <svg class="bx--pagination__button-icon" width="7" height="12" viewBox="0 0 7 12">
+                                    <path fill-rule="nonzero" d="M1.45 6.002L7 11.27l-.685.726L0 6.003 6.315 0 7 .726z"/>
+                                </svg>
+                            </button>
+                            <label for="page-number-input" class="bx--visually-hidden">Page number input</label>
+                            <input id="page-number-input" type="text" class="bx--text-input" placeholder="0" value="1" data-page-number-input>
+                            <button class="bx--pagination__button bx--pagination__button--forward" data-page-forward aria-label="Forward button">
+                                <svg class="bx--pagination__button-icon" width="7" height="12" viewBox="0 0 7 12">
+                                    <path fill-rule="nonzero" d="M5.569 5.994L0 .726.687 0l6.336 5.994-6.335 6.002L0 11.27z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <h3>Steps</h3>
+                    <ul data-progress data-progress-current class="bx--progress">
+                        <li class="bx--progress-step bx--progress-step--complete">
+                            <svg width="16" height="16" viewBox="0 0 16 16">
+                                <g fill-rule="nonzero">
+                                    <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                                    <path d="M11.646 5.146l.708.708-5.604 5.603-3.104-3.103.708-.708 2.396 2.397z"/>
+                                </g>
+                            </svg>
+                            <p class="bx--progress-label">First step</p>
+                            <span class="bx--progress-line"></span>
+                        </li>
+                        <li class="bx--progress-step bx--progress-step--current">
+                            <svg>
+                                <circle cx="12" cy="12" r="12"></circle>
+                                <circle cx="12" cy="12" r="6"></circle>
+                            </svg>
+                            <p class="bx--progress-label">Second step</p>
+                            <span class="bx--progress-line"></span>
+                        </li>
+                        <li class="bx--progress-step bx--progress-step--incomplete">
+                            <svg>
+                                <circle cx="12" cy="12" r="12"></circle>
+                            </svg>
+                            <p class="bx--progress-label">Third step</p>
+                            <span class="bx--progress-line"></span>
+                        </li>
+                        <li class="bx--progress-step bx--progress-step--incomplete">
+                            <svg>
+                                <circle cx="12" cy="12" r="12"></circle>
+                            </svg>
+                            <p class="bx--progress-label">Fourth step</p>
+                            <span class="bx--progress-line"></span>
+                        </li>
+                    </ul>
+
+                    <hr />
+
+                    <h3>Notifications</h3>
+                    <div data-notification class="bx--inline-notification bx--inline-notification--error" role="alert">
+                        <div class="bx--inline-notification__details">
+                            <svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z" fill-rule="evenodd" />
+                            </svg>
+                            <div class="bx--inline-notification__text-wrapper">
+                                <p class="bx--inline-notification__title">Notification title</p>
+                                <p class="bx--inline-notification__subtitle">Subtitle text goes here.</p>
+                            </div>
+                        </div>
+                        <button data-notification-btn class="bx--inline-notification__close-button" type="button">
+                            <svg class="bx--inline-notification__close-icon" aria-label="close" width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div data-notification class="bx--inline-notification bx--inline-notification--info" aria-live="polite">
+                        <div class="bx--inline-notification__details">
+                            <svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm1-3V7H7v6h2zM8 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" fill-rule="evenodd" />
+                            </svg>
+                            <div class="bx--inline-notification__text-wrapper">
+                                <p class="bx--inline-notification__title">Notification title</p>
+                                <p class="bx--inline-notification__subtitle">Subtitle text goes here.</p>
+                            </div>
+                        </div>
+                        <button data-notification-btn class="bx--inline-notification__close-button" type="button">
+                            <svg class="bx--inline-notification__close-icon" aria-label="close" width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div data-notification class="bx--inline-notification bx--inline-notification--success" aria-live="polite">
+                        <div class="bx--inline-notification__details">
+                            <svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm3.293-11.332L6.75 9.21 4.707 7.168 3.293 8.582 6.75 12.04l5.957-5.957-1.414-1.414z"
+                                      fill-rule="evenodd" />
+                            </svg>
+                            <div class="bx--inline-notification__text-wrapper">
+                                <p class="bx--inline-notification__title">Notification title</p>
+                                <p class="bx--inline-notification__subtitle">Subtitle text goes here.</p>
+                            </div>
+                        </div>
+                        <button data-notification-btn class="bx--inline-notification__close-button" type="button">
+                            <svg class="bx--inline-notification__close-icon" aria-label="close" width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div data-notification class="bx--inline-notification bx--inline-notification--warning" role="alert">
+                        <div class="bx--inline-notification__details">
+                            <svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M.75 16a.75.75 0 0 1-.67-1.085L7.33.415a.75.75 0 0 1 1.34 0l7.25 14.5A.75.75 0 0 1 15.25 16H.75zm6.5-10v5h1.5V6h-1.5zM8 13.5A.75.75 0 1 0 8 12a.75.75 0 0 0 0 1.5z"
+                                      fill-rule="nonzero" />
+                            </svg>
+                            <div class="bx--inline-notification__text-wrapper">
+                                <p class="bx--inline-notification__title">Notification title</p>
+                                <p class="bx--inline-notification__subtitle">Subtitle text goes here.</p>
+                            </div>
+                        </div>
+                        <button data-notification-btn class="bx--inline-notification__close-button" type="button">
+                            <svg class="bx--inline-notification__close-icon" aria-label="close" width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <hr />
+
+                    <h3>Pop-up Dialog Box (Modal)</h3>
+                    <button class="bx--btn bx--btn--primary" type="button" data-modal-target="#modal">Click to Open</button>
+
+                    <div data-modal id="modal" class="bx--modal" tabindex="-1">
+                        <div class="bx--modal-container">
+                            <div class="bx--modal-header">
+                                <p class="bx--modal-header__label bx--type-delta">Label (Optional)</p>
+                                <p class="bx--modal-header__heading bx--type-beta">Modal Title</p>
+                                <button class="bx--modal-close" type="button" data-modal-close aria-label="close modal">
+                                    <svg class="bx--modal-close__icon" width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                                        <title>Close Modal</title>
+                                        <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="bx--modal-content">
+                                <p>Modal text description</p>
+                            </div>
+
+                            <div class="bx--modal-footer">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-modal-close>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="button" data-modal-primary-focus>Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <h3>Forms (Simple)</h3>
+
+                    <div class="bx--form-item">
+                        <input id="text-input-3" type="text" class="bx--text-input" placeholder="Optional placeholder text">
+                        <label for="text-input-3" class="bx--label">Text Input label</label>
+                    </div>
+                    <div class="bx--form-item">
+                        <textarea id="text-area-2" class="bx--text-area" rows="4" cols="50" placeholder="Placeholder text."></textarea>
+                        <label for="text-area-2" class="bx--label">Text Area label</label>
+                    </div>
+                    <div class="bx--form-item">
+                        <div class="bx--select">
+                            <select id="select-id" class="bx--select-input">
+                                <option class="bx--select-option" disabled selected hidden>Choose an option</option>
+                                <option class="bx--select-option" value="solong">A much longer option that is worth having around to check how text flows</option>
+                                <optgroup class="bx--select-optgroup" label="Category 1">
+                                    <option class="bx--select-option" value="option1">Option 1</option>
+                                    <option class="bx--select-option" value="option2">Option 2</option>
+                                </optgroup>
+                                <optgroup class="bx--select-optgroup" label="Category 2">
+                                    <option class="bx--select-option" value="option1">Option 1</option>
+                                    <option class="bx--select-option" value="option2">Option 2</option>
+                                </optgroup>
+                            </select>
+                            <svg class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
+                                <path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
+                            </svg>
+                            <label for="select-id" class="bx--label">Select label</label>
+                        </div>
+                    </div>
+                    <div class="bx--form-item">
+                        <input class="bx--toggle" id="toggle2" type="checkbox">
+                        <label class="bx--toggle__label" for="toggle2">
+                            <span class="bx--toggle__text--left">Off</span>
+                            <span class="bx--toggle__appearance"></span>
+                            <span class="bx--toggle__text--right">On</span>
+                        </label>
+                        <legend class="bx--label">Toggle label</legend>
+                    </div>
+                    <br />
+                    <div class="bx--form-item">
+                        <div class="bx--radio-button-group">
+                            <input id="radio-button-1" class="bx--radio-button" type="radio" value="red" name="radio-button" tabindex="0" checked>
+                            <label for="radio-button-1" class="bx--radio-button__label">
+                                <span class="bx--radio-button__appearance"></span>
+                                Red
+                            </label>
+                            <input id="radio-button-2" class="bx--radio-button" type="radio" value="green" name="radio-button" tabindex="0">
+                            <label for="radio-button-2" class="bx--radio-button__label">
+                                <span class="bx--radio-button__appearance"></span>
+                                Green
+                            </label>
+                            <input id="radio-button-3" class="bx--radio-button" type="radio" value="blue" name="radio-button" tabindex="0" disabled>
+                            <label for="radio-button-3" class="bx--radio-button__label">
+                                <span class="bx--radio-button__appearance"></span>
+                                Blue
+                            </label>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="bx--form-item">
+                        <button class="bx--btn bx--btn--primary" type="button">Submit</button>
+                    </div>
+                </section>
+
+                <hr />
+
+                <h3>Date Selection</h3>
+                <div class="bx--form-item">
+                    <div data-date-picker data-date-picker-type="range" class="bx--date-picker bx--date-picker--range">
+                        <div class="bx--date-picker-container">
+                            <label for="date-picker-1" class="bx--label">Label</label>
+                            <input type="text" id="date-picker-1" class="bx--date-picker__input" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="mm/dd/yyyy"
+                                   data-date-picker-input-from />
+                            <div class="bx--form-requirement">
+                                Invalid date format.
+                            </div>
+                        </div>
+                        <div class="bx--date-picker-container">
+                            <label for="date-picker-2" class="bx--label">Label</label>
+                            <input type="text" id="date-picker-2" class="bx--date-picker__input" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="mm/dd/yyyy"
+                                   data-date-picker-input-to />
+                            <div class="bx--form-requirement">
+                                Invalid date format.
+                            </div>
+                        </div>
+                        <svg data-date-picker-icon class="bx--date-picker__icon" width="14" height="16" viewBox="0 0 14 16">
+                            <path d="M0 5h14v1H0V5zm3-5h1v4H3V0zm7 0h1v4h-1V0zM0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 0 14.5v-12zm1 0v12a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5z"
+                                  fill-rule="nonzero" />
+                        </svg>
+                    </div>
+                </div>
+
+                <hr />
+
+                <h3>Tabbed Content</h3>
+                <nav data-tabs class="bx--tabs" role="navigation">
+                    <div class="bx--tabs-trigger" tabindex="0">
+                        <a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1"></a>
+                        <svg width="10" height="5" viewBox="0 0 10 5" fill-rule="evenodd">
+                            <path d="M10 0L5 5 0 0z"></path>
+                        </svg>
+                    </div>
+                    <ul class="bx--tabs__nav bx--tabs__nav--hidden" role="tablist">
+                        <li class="bx--tabs__nav-item bx--tabs__nav-item--selected" data-target=".tab-1" role="presentation">
+                            <a id="tab-link-1" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab" aria-controls="tab-panel-1" aria-selected="true">Tab Label 1</a>
+                        </li>
+                        <li class="bx--tabs__nav-item" data-target=".tab-2" role="presentation">
+                            <a id="tab-link-2" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab" aria-controls="tab-panel-2" aria-selected="false">Tab Label 2</a>
+                        </li>
+                        <li class="bx--tabs__nav-item" data-target=".tab-3" role="presentation">
+                            <a id="tab-link-3" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab" aria-controls="tab-panel-3" aria-selected="false">Tab Label 3</a>
+                        </li>
+                        <li class="bx--tabs__nav-item" data-target=".tab-4" role="presentation">
+                            <a id="tab-link-4" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab" aria-controls="tab-panel-4" aria-selected="false">Tab Label 4</a>
+                        </li>
+                        <li class="bx--tabs__nav-item" data-target=".tab-5" role="presentation">
+                            <a id="tab-link-5" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab" aria-controls="tab-panel-5" aria-selected="false">Tab Label 5</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- The markup below is for demonstration purposes only -->
+                <div style="padding: 1rem;">
+                    <div id="tab-panel-1" class="tab-1" role="tabpanel" aria-labelledby="tab-link-1" aria-hidden="false">
+                        <p>Tab Content #1</p>
+                    </div>
+                    <div id="tab-panel-2" class="tab-2" role="tabpanel" aria-labelledby="tab-link-2" aria-hidden="true" hidden>
+                        <p>Tab Content #2</p>
+                    </div>
+                    <div id="tab-panel-3" class="tab-3" role="tabpanel" aria-labelledby="tab-link-3" aria-hidden="true" hidden>
+                        <p>Tab Content #3</p>
+                    </div>
+                    <div id="tab-panel-4" class="tab-4" role="tabpanel" aria-labelledby="tab-link-4" aria-hidden="true" hidden>
+                        <p>Tab Content #4</p>
+                    </div>
+                    <div id="tab-panel-5" class="tab-5" role="tabpanel" aria-labelledby="tab-link-5" aria-hidden="true" hidden>
+                        <p>Tab Content #5</p>
+                    </div>
+                </div>
+
+            </article>
+        </main>
+
+        <script src="https://unpkg.com/carbon-components@latest/scripts/carbon-components.js"></script>
+    </body>
+</html>

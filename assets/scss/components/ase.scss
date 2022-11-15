@@ -1,0 +1,394 @@
+.alpha__wizard {
+    padding: 2rem 2rem 0 calc(2rem + 120px);
+    border: 1px $color-grey-mid solid;
+    background: #fff;
+    margin: 0;
+    position: relative;
+
+    &:before {
+        content: '';
+        width: 120px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $brand-quinary;
+        border-right: 1px $color-grey-mid solid;
+    }
+
+    &-intro {
+        h3 {
+            font-size: 2.5rem;
+            line-height: 2.5rem;
+            letter-spacing: -1px;
+            margin: 0 0 0.75rem 0;
+            padding: 0;
+            border-bottom: 2px $color-grey-mid dotted;
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+    }
+
+    &-steps {
+        margin: 1.5rem 0 0 0;
+
+        &-title {
+            position: relative;
+            margin-left: -2rem;
+            background-color: $brand-primary;
+            color: #fff;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 1.375rem 150px 1rem 2rem;
+            overflow: hidden;
+
+            h4 {
+                margin: 0;
+                padding: 0;
+                font-size: 2rem;
+                line-height: 2rem;
+                font-weight: 500;
+                letter-spacing: -1px;
+                width: 100%;
+            }
+        }
+
+        &-indicator {
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+            display: flex;
+            align-items: center;
+
+            & > div {
+                width: auto;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+                &:before {
+                    background-color: darken($brand-primary, 20%);
+                    display: block;
+                    top: -50%;
+                    left: 0;
+                    width: 200%;
+                    height: 200%;
+                    position: absolute;
+                    content: '';
+                    z-index: 0;
+                    transform: rotate(10deg);
+                    transform-origin: top center;
+                }
+
+                &:first-child {
+                    width: 100%;
+                    padding: 0 0.25rem 0 0.5rem;
+
+                    &:before {
+                        background-color: darken($brand-primary, 10%);
+                    }
+                }
+
+                &:last-child {
+                    span {
+                        padding-right: 1rem;
+                    }
+                }
+
+                span {
+                    position: relative;
+                    z-index: 1;
+                    font-size: 2rem;
+                    line-height: 2rem;
+                    font-weight: bold;
+                    display: flex;
+                    width: 100%;
+                    padding: 2rem 1.5rem 0 0;
+                    text-align: left;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+                    flex-wrap: nowrap;
+
+                    small {
+                        display: flex;
+                        font-size: 1.25rem;
+                        line-height: 1.25rem;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        letter-spacing: normal;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        margin: 0;
+                        padding: 0 1.5rem 0 0;
+                        height: 2rem;
+                        align-items: center;
+                        width: auto;
+                        justify-content: flex-end;
+                    }
+
+                    em {
+                        display: inline-block;
+                        font-size: 1.125rem;
+                        line-height: 1.125rem;
+                        font-weight: 300;
+                        margin-left: 0.75rem;
+                        padding-bottom: 0.25rem;
+                        color: $color-grey-bright;
+                    }
+                }
+            }
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: row;
+        }
+
+        &-questions {
+            margin: 1.5rem 0;
+            width: 100%;
+        }
+
+        &-question {
+            text-decoration: none;
+            color: inherit;
+            margin: 0 0 1.5rem 0;
+            border: 1px $color-grey-mid solid;
+            display: block;
+            padding: 1.5rem calc(110px + 1.5rem) 1.5rem calc(110px + 3rem);
+            position: relative;
+            min-height: calc(110px + 3rem);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &:before {
+                width: 110px;
+                height: 110px;
+                position: absolute;
+                left: 1.5rem;
+                top: 1.5rem;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 100% auto;
+                background-color: $brand-tertiary;
+                background-image: linear-gradient(0deg, #{$brand-tertiary} 10%, #{$brand-quaternary} 90%);
+                border: none;
+                content: '';
+                mask-size: 90% auto;
+                -webkit-mask-size: 90% auto;
+                mask-position: top;
+                -webkit-mask-position: top;
+                mask-repeat: no-repeat;
+                -webkit-mask-repeat: no-repeat;
+            }
+
+            &:after {
+                top: 1.5rem;
+                right: 1.5rem;
+                width: 110px;
+                height: 110px;
+                font-family: 'Font Awesome 6 Pro', sans-serif;
+                content: '\f324';
+                position: absolute;
+                display: block;
+                color: #000;
+                font-size: 3rem;
+                line-height: 3rem;
+                text-align: right;
+            }
+
+            &[data-question="s1o1"] {
+                &:before {
+                    mask-image: url(../images/icons/icons8-total-sales-96.png);
+                    -webkit-mask-image: url(../images/icons/icons8-total-sales-96.png);
+                }
+            }
+
+            &[data-question="s1o2"] {
+                &:before {
+                    mask-image: url(../images/icons/icons8-receive-dollar-96.png);
+                    -webkit-mask-image: url(../images/icons/icons8-receive-dollar-96.png);
+                }
+            }
+
+            p {
+                font-size: 1.375rem;
+                line-height: 1.375rem;
+                font-weight: 500;
+                letter-spacing: -1px;
+
+                strong {
+                    font-size: 2rem;
+                    line-height: 2rem;
+                    letter-spacing: -1px;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                small {
+                    font-weight: 300;
+                    font-size: 1rem;
+                    line-height: 1.375rem;
+                    letter-spacing: normal;
+                    color: $color-grey-mid;
+                    display: inline-block;
+                    padding: 0.5rem 0 0 0;
+                    max-width: 50%;
+                }
+            }
+        }
+
+        &-video {
+            width: 350px;
+            min-width: 350px;
+            margin: 1.5rem 0 1.5rem 1.5rem;
+
+            &-content {
+                background-color: $brand-secondary;
+                padding: 1.5rem;
+                color: #fff;
+                margin-bottom: 1.5rem;
+
+                &-intro {
+                    text-align: center;
+
+                    h5 {
+                        font-size: 1.5rem;
+                        line-height: 1.5rem;
+                        margin: 0 0 1rem 0;
+                        padding: 0;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        line-height: 1.375rem;
+                    }
+                }
+
+                &-button {
+                    display: block;
+                    text-align: center;
+                    text-decoration: none;
+                    color: $brand-tertiary;
+                    font-weight: bold;
+                    font-size: 0.875rem;
+                    line-height: 0.875rem;
+                    text-transform: uppercase;
+
+                    &:before {
+                        /* TODO: Replace this gradient effect with a mixin, since we have repeated it multiple times now */
+                        content: '';
+                        width: 96px;
+                        height: 96px;
+                        display: block;
+                        margin: 1rem auto 0 auto;
+                        left: 0;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                        background-size: 100% auto;
+                        background-color: $brand-tertiary;
+                        background-image: linear-gradient(0deg, #{$brand-tertiary} 10%, #{$brand-quaternary} 90%);
+                        border: none;
+                        mask-size: 90% auto;
+                        -webkit-mask-size: 90% auto;
+                        mask-position: top;
+                        -webkit-mask-position: top;
+                        mask-repeat: no-repeat;
+                        -webkit-mask-repeat: no-repeat;
+                        mask-image: url(../images/icons/icons8-video-96.png);
+                        -webkit-mask-image: url(../images/icons/icons8-video-96.png);
+                    }
+                }
+            }
+
+            &-contact {
+                text-align: right;
+            }
+        }
+    }
+
+    &-buttons {
+        background-color: $brand-quinary;
+        height: 90px;
+        margin-left: -2rem;
+        margin-right: -2rem;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        border-top: 1px $color-grey-mid solid;
+    }
+
+    &-button {
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bold;
+        color: inherit;
+
+        &.alpha__wizard-button {
+            &--forward {
+                background-color: $brand-quaternary;
+                padding: 1rem 1.5rem;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+                color: #fff;
+                order: 2;
+                margin: auto 0 1rem auto;
+
+                i {
+                    margin-left: 0.5rem;
+                    font-size: 1.75rem;
+                    line-height: 1.5rem;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+
+            &--back {
+                margin: 0 0 1rem 0;
+                background-color: $brand-quinary;
+                border-top: 2px $color-grey-mid solid;
+                border-right: 2px $color-grey-mid solid;
+                border-bottom: 2px $color-grey-mid solid;
+                padding: 0.5rem 1rem;
+                color: $color-grey-mid;
+                font-size: 1.125rem;
+                line-height: 1.125rem;
+
+                i {
+                    font-size: 1.25rem;
+                    line-height: 1.125rem;
+                    position: relative;
+                    top: 1px;
+                    margin-right: 0.25rem;
+                }
+            }
+        }
+    }
+}
+
+
+.alpha__wizard-steps-video-intro {
+}
+.alpha__wizard-steps-video-intro p {
+}
+.alpha__wizard-steps-video {
+}
+.alpha__wizard-steps-video-intro h5 {
+}
+.alpha__wizard-steps-video-button {
+}
+.alpha__wizard-steps-video-button:before {
+}
