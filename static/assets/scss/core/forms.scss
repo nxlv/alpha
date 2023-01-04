@@ -1,0 +1,121 @@
+main {
+    & article {
+        form {
+            .alpha__fields {
+                margin: 0;
+                padding: 0;
+
+                &-field {
+                    display: block;
+                    margin: 1.5rem 0;
+                    padding: 0;
+                    position: relative;
+
+                    label {
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        font-size: 0.75rem;
+                        line-height: 0.875rem;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        transform: translateY(-50%);
+
+                        strong {
+                            font-weight: 400;
+                        }
+                    }
+
+                    input[type="text"],
+                    input[type="email"],
+                    input[type="password"],
+                    input[type="number"],
+                    input[type="date"],
+                    select,
+                    textarea {
+                        border: none;
+                        width: 100%;
+                        font-size: 1rem;
+                        line-height: 1rem;
+                        padding: 0.875rem 0 0.5rem 0;
+                        border-bottom: 2px #000 solid;
+                        font-family: 'Ofelia Display', 'ofelia-display', sans-serif;
+                        outline: none;
+                    }
+
+                    &--buttons {
+                        margin: 2rem -2rem 1rem 0;
+                        position: relative;
+                        text-align: right;
+                        padding: 0;
+                    }
+
+                    &--boxes {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: nowrap;
+                        align-items: center;
+
+                        label {
+                            letter-spacing: normal;
+                            text-transform: none;
+                            font-size: 0.875rem;
+                            line-height: 0.875rem;
+                            position: static;
+                            padding: 0 0 0 0.5rem;
+                            transform: none;
+                        }
+
+                        input[type="checkbox"],
+                        input[type="radio"] {
+                            margin: 0;
+                        }
+                    }
+
+                    .validation {
+                        background-color: #000;
+                        position: relative;
+                        padding: 0.5rem 0.5rem 0.625rem 2rem;
+                        display: block;
+                        color: #fff;
+                        font-size: 0.875rem;
+                        line-height: 0.875rem;
+
+                        &:before {
+                            width: 2rem;
+                            height: 100%;
+                            content: '\f071';
+                            font-family: 'Font Awesome 6 Pro', sans-serif;
+                            display: flex;
+                            align-items: center;
+                            position: absolute;
+                            left: 1px;
+                            top: -1px;
+                            justify-content: center;
+                            font-size: 1rem;
+                            line-height: 1rem;
+                            font-weight: bold;
+                            color: $brand-quaternary;
+                        }
+
+                        strong {
+                            font-weight: 400;
+                            letter-spacing: normal;
+                        }
+                    }
+                }
+            }
+
+            & > footer {
+                position: relative;
+                margin: 0 -2rem -2rem -2rem;
+                padding: 1.125rem calc(2rem - 0.5rem) 1.25rem;
+                background-color: $brand-secondary;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+            }
+        }
+    }
+}

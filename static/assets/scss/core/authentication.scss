@@ -1,0 +1,70 @@
+main#auth {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $brand-quinary;
+
+    & > header {
+        a {
+            font-size: 3rem;
+            line-height: 3rem;
+            font-family: 'pirulen', sans-serif;
+            text-transform: uppercase;
+            color: #000;
+            display: block;
+            text-decoration: none;
+
+            &:first-letter {
+                color: $brand-quaternary;
+            }
+        }
+    }
+
+    & > article {
+        border: 1px $color-grey-mid solid;
+        padding: 2rem;
+        margin: 2rem 0 0 0;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.375), 0 0 20px rgba(0, 0, 0, 0.15);
+        min-width: 450px;
+        max-width: 550px;
+
+        & > header {
+            margin-left: -2rem;
+            margin-right: -2rem;
+
+            h1, h2, h3, h4, h5, h6 {
+                margin: 0 0 2rem 0;
+                padding: 0.75rem 2rem 1rem 2rem;
+                background-color: $brand-quaternary;
+                color: #fff;
+                font-size: 2.25rem;
+                line-height: 2.25rem;
+                letter-spacing: -1px;
+            }
+        }
+
+        & > section {
+            form {
+                footer {
+                    .btn.btn-link {
+                        color: #fff;
+                        text-decoration: none;
+                        font-size: 0.8125rem;
+                        line-height: 0.8125rem;
+
+                        &:hover {
+                            color: $brand-primary;
+                        }
+
+                        &:first-child {
+                            margin-right: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

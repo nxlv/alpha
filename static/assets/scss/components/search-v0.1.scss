@@ -1,0 +1,444 @@
+.message {
+    background-color: $brand-primary;
+    color: #fff;
+    padding: 1rem;
+    margin: 0 0 1rem 0;
+
+    &.message--warning {
+        background-color: $brand-quaternary;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.75rem;
+        padding: 0.25rem 0;
+        font-weight: 300;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+
+        strong {
+            font-size: 1.25rem;
+            line-height: 1.5rem;
+        }
+    }
+
+    dl {
+        margin: 0.5rem 0;
+        list-style: none;
+        padding: 0.5rem 0.75rem 0.375rem 0.75rem;
+        display: flex;
+        flex-direction: row;
+        background-color: $brand-secondary;
+
+        dt {
+            font-size: 1.25rem;
+            line-height: 1.25rem;
+        }
+
+        dd {
+            line-height: 1.5rem;
+            padding: 0 1rem 0 0.55rem;
+            font-weight: 400;
+        }
+    }
+
+    &.message--small {
+        p {
+            small {
+                font-size: 0.875rem;
+                line-height: 0.875rem;
+            }
+
+            strong {
+                font-size: 1rem;
+                line-height: 1rem;
+            }
+        }
+    }
+}
+
+form.parameters {
+    margin: 0 0 1rem 0;
+    padding: 0 0 1rem 0;
+    border-bottom: 1px $color-grey-mid dotted;
+
+    input#mode {
+        display: none;
+
+        &:checked {
+            + .fields {
+                .fields {
+                    &__field {
+                        &[data-type="income"] {
+                            display: flex !important;
+                        }
+
+                        &[data-type="premium"] {
+                            display: none !important;
+                        }
+
+                        &--radio {
+                            li {
+                                &[data-type="income"] {
+                                    label {
+                                        background-color: $brand-secondary;
+                                        color: #fff;
+                                    }
+                                }
+
+                                &[data-type="premium"] {
+                                    label {
+                                        background-color: transparent;
+                                        color: #000;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fieldset {
+        border: none;
+        margin: 2rem 0 0 0;
+        padding: 0;
+
+        legend {
+            position: static;
+            font-size: 2.25rem;
+            line-height: 2.25rem;
+            font-weight: bold;
+            letter-spacing: -2px;
+            border-bottom: 2px $color-grey-mid dotted;
+            width: 100%;
+            display: block;
+            margin: 0 0 1rem 0;
+        }
+    }
+
+    .fields {
+        &__inner {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        &__field {
+            margin: 0 2rem 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-wrap: wrap;
+
+            &[data-type="premium"] {
+                display: flex !important;
+            }
+
+            &[data-type="income"] {
+                display: none !important;
+            }
+
+            label {
+                display: block;
+                font-size: 1rem;
+                line-height: 1rem;
+                letter-spacing: -0.5px;
+                font-weight: 500;
+                margin: 0 0 0.5rem 0;
+                border-bottom: 1px $color-grey-mid dotted;
+                padding: 0 0 0.125rem 0;
+            }
+
+            &--radio {
+                display: flex;
+                flex-wrap: nowrap;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                color: #fff;
+
+                li {
+                    display: block;
+                    width: 50%;
+                    max-width: 200px;
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+
+                    &[data-type="premium"] {
+                        label {
+                            background-color: $brand-secondary;
+                            color: #fff;
+                        }
+                    }
+
+                    &[data-type="income"] {
+                        label {
+                            background-color: transparent;
+                            color: #000;
+                        }
+                    }
+
+                    label {
+                        display: block;
+                        height: 100%;
+                        margin: 0;
+                        padding: 1rem;
+                        font-weight: normal;
+                        font-size: 0.9375rem;
+                        line-height: 1.25rem;
+                        letter-spacing: normal;
+                        color: #000;
+                        background-color: transparent;
+                        border: 1px $color-grey-mid solid;
+                        cursor: pointer;
+
+                        strong {
+                            display: block;
+                            margin: 0 0 0.25rem 0;
+                            font-size: 1.125rem;
+                            line-height: 1.125rem;
+                            letter-spacing: -1px;
+                        }
+                    }
+                }
+            }
+
+            select, input, textarea {
+                border: none;
+                font-size: 1rem;
+                line-height: 1rem;
+                padding: 0.875rem 1rem 0.5rem 1rem;
+                border-bottom: 2px #000 solid;
+                font-family: 'Ofelia Display', 'ofelia-display', sans-serif;
+            }
+
+            input[type="range"] {
+                padding: 0;
+                margin: 0;
+                border: none;
+                display: block;
+                width: 100%;
+                background-color: transparent;
+                min-width: 400px;
+                height: 46px;
+
+                &::-moz-range-track,
+                &::-webkit-slider-runnable-track {
+                    height: 8px;
+                    background-color: $brand-quaternary;
+                    border-radius: 5px;
+                }
+
+                &::-moz-range-thumb,
+                &::-webkit-slider-thumb {
+                    width: 32px;
+                    height: 32px;
+                    display: block;
+                    background-color: $brand-primary;
+                    border-radius: 50%;
+                    border: 6px $brand-quinary solid;
+                    cursor: pointer;
+                }
+            }
+
+            button {
+                display: flex;
+                min-width: 200px;
+                height: auto;
+                background-color: $brand-secondary;
+                color: #fff;
+                border: 2px $brand-secondary solid;
+                font-size: 1.125rem;
+                line-height: 1.125rem;
+                font-weight: 700;
+                padding: 1rem 1rem 0.75rem 1rem;
+                margin: 0;
+                letter-spacing: -1px;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                cursor: pointer;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: #fff;
+                    color: $brand-secondary;
+                }
+            }
+        }
+
+        &__group {
+            display: flex;
+            align-items: flex-start;
+
+            .fields {
+                &__field {
+                    margin: 0 2rem 0 0;
+                    display: flex;
+                    align-items: flex-start;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+.results {
+    h3 {
+        position: static;
+        font-size: 2.25rem;
+        line-height: 2.25rem;
+        font-weight: bold;
+        letter-spacing: -2px;
+        border-bottom: 2px $color-grey-mid dotted;
+        width: 100%;
+        display: block;
+        margin: 0 0 1rem 0;
+        padding: 0;
+    }
+
+    .result {
+        padding: 1rem 0;
+
+        & > h4 {
+            background-color: $brand-primary;
+            display: inline-block;
+            color: #fff;
+            padding: 1.5rem 2rem 1rem 2rem;
+            margin: 0 0 1rem -2rem;
+            font-size: 2rem;
+            line-height: 2rem;
+            font-weight: normal;
+            min-width: 40%;
+
+            strong {
+                font-weight: bold;
+                display: block;
+                font-size: 2.5rem;
+                line-height: 2.5rem;
+                letter-spacing: -1px;
+            }
+        }
+
+        &__grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            &-illustration {
+                min-width: 80%;
+                width: 80%;
+
+                &-inner {
+                    width: 100%;
+                    height: 100%;
+                    border: 1px $color-grey-mid solid;
+                    background-color: #fff;
+                    position: relative;
+
+                    &:before {
+                        content: 'Illustration pending CANNEX data access';
+                        font-weight: bold;
+                        font-size: 2rem;
+                        line-height: 2rem;
+                        letter-spacing: -1px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+
+            &-cta {
+                width: 20%;
+                min-width: 20%;
+                margin-right: 1rem;
+
+                &-financials {
+                    background-color: $brand-secondary;
+                    color: #fff;
+                    font-size: 1rem;
+                    line-height: 1rem;
+                    padding: 1rem;
+                    margin: 0 0 1rem 0;
+
+                    span {
+                        font-size: 0.9375rem;
+                        line-height: 0.9375rem;
+                        color: $brand-quinary;
+
+                        &.money {
+                            display: block;
+                            font-size: 2rem;
+                            line-height: 2rem;
+                            font-weight: bold;
+                            padding-bottom: 0.25rem;
+                            letter-spacing: -1px;
+                            color: #fff;
+                        }
+                    }
+                }
+
+                &-info {
+                    background-color: #fff;
+                    border: 1px $color-grey-mid solid;
+                    padding: 1rem;
+
+                    h5 {
+                        font-size: 1.5rem;
+                        line-height: 1.5rem;
+                        letter-spacing: -0.5px;
+                        margin: 0 0 1rem 0;
+                        padding: 0;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        line-height: 1.25rem;
+                        margin: 0;
+                        padding: 0 0 1rem 0;
+                    }
+
+                    dl {
+                        display: block;
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+
+                        dt {
+                            display: block;
+                            color: #000;
+                            font-weight: bold;
+                            font-size: 1rem;
+                            line-height: 1rem;
+                            padding: 0 0 0.25rem 0;
+                        }
+
+                        dd {
+                            color: $color-grey-mid;
+                            font-size: 0.875rem;
+                            line-height: 0.875rem;
+                            padding: 0 0 0.75rem 0;
+
+                            &:empty {
+                                content: '\2012\2012';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
