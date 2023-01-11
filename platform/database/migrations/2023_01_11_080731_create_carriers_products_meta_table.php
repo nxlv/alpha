@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRulesDeathBenefitProfilesTable extends Migration
+class CreateCarriersProductsMetaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,12 @@ class CreateRulesDeathBenefitProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rules_death_benefit_profiles', function (Blueprint $table) {
+        Schema::create('carriers_products_meta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('rule_id');
-            $table->string('instance_id');
+            $table->bigInteger('carrier_id');
+            $table->bigInteger('carrier_product_id');
+            $table->string('key');
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateRulesDeathBenefitProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rules_death_benefit_profiles');
+        Schema::dropIfExists('carriers_products_meta');
     }
 }

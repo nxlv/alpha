@@ -51,6 +51,7 @@ return [
                             ],
                             'fields' => [
                                 'carrier_id' => [ 'type' => 'variable', 'variable' => '@id:carriers', 'data_type' => 'bigInteger' ],
+                                'carrier_product_id' => [ 'type' => 'variable', 'variable' => '@id:carriers_products', 'data_type' => 'bigInteger' ],
                                 'key' => [ 'type' => 'attribute', 'target' => '_self', 'key' => 'key' ],
                                 'value' => [ 'type' => 'node', 'target' => '_self' ]
                             ]

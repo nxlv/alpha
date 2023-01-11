@@ -16,6 +16,7 @@ class CreateProductsInstancesStrategiesTable extends Migration
             $table->bigIncrements('id');
             $table->string('product_instance_id');
             $table->string('instance_id');
+            $table->string('index_id');
             $table->string('strategy_type');
             $table->string('strategy_configuration');
             $table->string('guarantee_status');

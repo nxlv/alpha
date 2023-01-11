@@ -20,4 +20,36 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 Route::get( '/products/all', [ App\Http\Controllers\API\V1\Products::class, 'get_all' ] );
+Route::get( '/products/instances/all', [ App\Http\Controllers\API\V1\Products::class, 'get_all_instances' ] );
+/**
+ * TODO:
+ *
+ * /products/all/compact
+ * /products/single/<ID>
+ * /products/single/<ID>/instances
+ * /products/single/<ID>/instances/<ID>
+ * /products/single/<ID>/strategies
+ * /products/single/<ID>/strategies/<ID>
+ *
+ */
 Route::get( '/carriers/all', [ App\Http\Controllers\API\V1\Carriers::class, 'get_all' ] );
+/**
+ * TODO:
+ *
+ * /carriers/all/compact
+ * /carriers/single/<ID>
+ * /carriers/single/<ID>/compact
+ * /carriers/single/<ID>/products
+ *
+ */
+
+Route::get( '/indexes/all', [ App\Http\Controllers\API\V1\Indexes::class, 'get_all' ] );
+
+/**
+ * TODO:
+ *
+ * Income Benefits endpoint
+ * Death Benefits endpoint
+ * Rules endpoint
+ */
+Route::get( '/quoting/get', [ App\Http\Controllers\API\V1\Quoting::class, 'query' ] );

@@ -116,6 +116,7 @@ return [
                 'fields' => [
                     'product_instance_id' => [ 'type' => 'attribute', 'target' => '_root', 'key' => 'product_instance_id' ],
                     'instance_id' => [ 'type' => 'attribute', 'target' => '_self', 'key' => 'instance_id' ],
+                    'index_id' => [ 'type' => 'node', 'key' => 'index_id' ],
                     'strategy_type' => [ 'type' => 'attribute', 'node' => 'strategy_type', 'key' => 'cd' ],
                     'strategy_configuration' => [ 'type' => 'attribute', 'node' => 'strategy_type', 'key' => 'cd' ],
                     'guarantee_status' => [ 'type' => 'attribute', 'node' => 'guarantee_status', 'key' => 'cd' ],
