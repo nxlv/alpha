@@ -6,6 +6,8 @@
             RouterLink
         },
         data() {
+            return {
+            };
         }
     };
 </script>

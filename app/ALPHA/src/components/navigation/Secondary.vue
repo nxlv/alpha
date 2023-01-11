@@ -11,6 +11,8 @@
             ClientControls, SearchBar, ProfileControls
         },
         data() {
+            return {
+            };
         }
     };
 </script>
