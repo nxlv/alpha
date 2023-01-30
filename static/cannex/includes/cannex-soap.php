@@ -10,7 +10,7 @@
 
     require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'ws-soap-client.php';
 
-    class CANNEX_SOAP_Test {
+    class CANNEX_SOAP {
         const CANNEX_USERNAME = 'AAUAT02';
         const CANNEX_PASSWORD = '1N0FGV0K4N048QE4Y0V3RY2MJB7XPJBS';
         const CANNEX_DIGEST_TYPE = 'PasswordDigest';
@@ -100,7 +100,7 @@
 
             if ( ( isset( $parameters[ 'deferral' ] ) ) && ( intval( $parameters[ 'deferral' ] ) ) ) {
                 $arguments[ 'canx_antu_operation' ][ 'guarantee_year' ] = intval( $parameters[ 'deferral' ] );
-                $arguments[ 'canx_antu_operation' ][ 'first_payment_date' ] = gmdate( 'Y-m-d', gmmktime() + ( 86400 * 30 ) );
+                $arguments[ 'canx_antu_operation' ][ 'first_payment_date' ] = gmdate( 'Y-m-d', gmmktime( 86400 * 30 ) );
             }
 
             if ( isset( $parameters[ 'mode' ] ) ) {

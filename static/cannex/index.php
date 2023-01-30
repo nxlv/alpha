@@ -7,7 +7,7 @@
     // $wsdl = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'wsdl' . DIRECTORY_SEPARATOR . 'canx_anty_anly-1.0.wsdl';
     // $endpoint = 'https://wwwdev.cannex.com/devext/CANX/AntyAnlyService';
 
-    $client = new CANNEX_SOAP_Test( $wsdl, $endpoint );
+    $client = new CANNEX_SOAP( $wsdl, $endpoint );
 
     if ( ( !empty( $_POST ) ) && ( isset( $_POST[ 'app' ] ) ) ) :
         $client->query( $_POST, 'canx_antu_operation' );
@@ -193,11 +193,11 @@
                                     <div class="result__grid-cta">
                                         <div class="result__grid-cta-financials">
                                             <?php if ( isset( $_POST[ 'mode' ] ) ) : ?>
-                                            <span class="money">$<?php echo money_format( $client->result->quote->income, 2 ); ?></span>
+                                            <span class="money">$<?php echo number_format( $client->result->quote->income, 2 ); ?></span>
                                             <span><strong>per month</strong></span>
                                             <?php else : ?>
-                                            <span class="money">$<?php echo money_format( $client->result->quote->premium, 2 ); ?></span>
-                                                <span><strong>required premium</strong> to return $<?php echo money_format( $client->result->quote->income, 2 ); ?> <strong>per month</strong></span>
+                                            <span class="money">$<?php echo number_format( $client->result->quote->premium, 2 ); ?></span>
+                                                <span><strong>required premium</strong> to return $<?php echo number_format( $client->result->quote->income, 2 ); ?> <strong>per month</strong></span>
                                             <?php endif; ?>
                                         </div>
 
@@ -220,13 +220,13 @@
                                                 <dd><?php echo $client->request[ 'canx_antu_operation' ][ 'guarantee_year' ]; ?> years</dd>
 
                                                 <dt>Premium</dt>
-                                                <dd>$<?php echo money_format( $client->result->quote->premium, 2 ); ?></dd>
+                                                <dd>$<?php echo number_format( $client->result->quote->premium, 2 ); ?></dd>
 
                                                 <dt>Monthly Income</dt>
-                                                <dd>$<?php echo money_format( $client->result->quote->income, 2 ); ?></dd>
+                                                <dd>$<?php echo number_format( $client->result->quote->income, 2 ); ?></dd>
 
                                                 <dt>Tax Amount</dt>
-                                                <dd>$<?php echo money_format( $client->result->quote->tax_amount, 2 ); ?></dd>
+                                                <dd>$<?php echo number_format( $client->result->quote->tax_amount, 2 ); ?></dd>
 
                                                 <dt>Return of Premium</dt>
                                                 <dd><?php echo $client->result->quote->return_of_premium; ?></dd>

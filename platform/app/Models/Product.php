@@ -19,4 +19,8 @@ class Product extends Model {
     public function instances() {
         return $this->hasMany( ProductsInstance::class, 'product_instance_id', 'product_instance_id' );
     }
+
+    public function carrier_product() {
+        return $this->belongsTo( CarriersProduct::class, 'product_id', 'product_id' );
+    }
 }

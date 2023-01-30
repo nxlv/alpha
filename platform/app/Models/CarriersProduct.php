@@ -9,7 +9,7 @@ class CarriersProduct extends Model {
     use HasFactory;
 
     public function carrier() {
-        return $this->hasOne( Carrier::class, 'id', 'carrier_id' );
+        return $this->belongsTo( Carrier::class, 'carrier_id', 'id' );
     }
 
     public function meta() {

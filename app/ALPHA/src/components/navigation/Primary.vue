@@ -18,12 +18,11 @@
         <nav>
             <ol>
                 <li>
-                    <router-link :to="{ name: 'income__guaranteed-rider' }">Income Solver</router-link>
+                    <router-link :to="{ name: 'income__fixed' }">Income Solver</router-link>
 
                     <ol>
-                        <li><router-link :to="{ name: 'income__guaranteed-rider' }">Guaranteed Rider Calculator</router-link></li>
-                        <li><a href="#">Advanced Rider</a></li>
-                        <li><a href="#">SPIA/DIA</a></li>
+                        <li><router-link :to="{ name: 'income__fixed' }">FIA with Income Rider</router-link></li>
+                        <li><router-link :to="{ name: 'income__immediate' }">SPIA / DIA Solver</router-link></li>
                         <li><a href="#">Illustrations</a></li>
                     </ol>
                 </li>

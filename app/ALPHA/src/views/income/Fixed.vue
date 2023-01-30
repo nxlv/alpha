@@ -3,7 +3,7 @@
 </script>
 <template>
     <header>
-        <h1>Guaranteed Rider Calculator</h1>
+        <h1>FIA with Income Rider Quoting</h1>
     </header>
 
     <section>

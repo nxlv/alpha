@@ -52,4 +52,6 @@ Route::get( '/indexes/all', [ App\Http\Controllers\API\V1\Indexes::class, 'get_a
  * Death Benefits endpoint
  * Rules endpoint
  */
-Route::get( '/quoting/get', [ App\Http\Controllers\API\V1\Quoting::class, 'query' ] );
+Route::post( '/quoting/get/immediate', [ App\Http\Controllers\API\V1\Quoting::class, 'query_spia_dia' ] );
+Route::post( '/quoting/get/fixed', [ App\Http\Controllers\API\V1\Quoting::class, 'query_fixed' ] );
+Route::get( '/quoting/get/illustration/{illustration_id}', [ App\Http\Controllers\API\V1\Quoting::class, 'query_illustration' ] );

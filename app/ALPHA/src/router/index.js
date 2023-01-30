@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import View_Dashboard from '../views/Dashboard.vue';
-import View_Income_GuaranteedRider from '../views/income/GuaranteedRider.vue';
+import View_Income_Fixed from '../views/income/Fixed.vue';
+import View_Income_Immediate from '../views/income/Immediate.vue';
 import View_Products_All from '../views/products/AllProducts.vue';
 
 const router = createRouter( {
@@ -12,9 +13,14 @@ const router = createRouter( {
                                          component: View_Dashboard
                                      },
                                      {
-                                         path: '/income/solver',
-                                         name: 'income__guaranteed-rider',
-                                         component: View_Income_GuaranteedRider
+                                         path: '/income/solver/fixed',
+                                         name: 'income__fixed',
+                                         component: View_Income_Fixed
+                                     },
+                                     {
+                                         path: '/income/solver/immediate',
+                                         name: 'income__immediate',
+                                         component: View_Income_Immediate
                                      },
                                      {
                                          path: '/products/all',
