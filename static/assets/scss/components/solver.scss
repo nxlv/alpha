@@ -1,0 +1,67 @@
+.income-solver {
+    .form__row {
+        padding-bottom: 1.25rem;
+
+        .form__column {
+            width: 100%;
+
+            & > label {
+                font-size: 0.9375rem;
+                line-height: 0.9375rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="number"],
+            input[type="date"],
+            select,
+            textarea {
+                max-width: 100%;
+                width: 100%;
+                padding: 0.75rem 0.5rem 0.5rem 0.5rem;
+                border: 1px $color-grey-mid solid;
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    &__parameters {
+        width: 25%;
+        max-width: 25%;
+    }
+
+    &__results {
+        width: 75%;
+        min-width: 75%;
+        padding: 0 2rem;
+
+        &-controls {
+            .form__row {
+                .form__column {
+                    & > label[for="deferral"] {
+                        font-size: 1.5rem;
+                        line-height: 1.5rem;
+                        border-bottom: none;
+                        margin: 0;
+
+                        strong {
+                            background-color: orange;
+                            color: #fff;
+                            padding: 0.5rem 0.5rem 0.5rem 0.375rem;
+                        }
+                    }
+
+                    input[type="range"] {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

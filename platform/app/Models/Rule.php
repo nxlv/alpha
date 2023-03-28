@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rule extends Model {
     use HasFactory;
+
+    public function states() {
+        return $this->hasMany( RulesState::class, 'rule_id', 'rule_id' );
+    }
 }

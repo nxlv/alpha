@@ -1,0 +1,26 @@
+{
+    "name": "lajosbencz/tensorflow",
+    "description": "This is an experimental binding to TensorFlow library using the FFI extension",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Dmitry Stogov",
+            "email": "dmitry@zend.com"
+        },
+        {
+            "name": "Lajos Bencz",
+            "email": "lazos@lazos.me"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4",
+        "ext-ffi": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "TensorFlow\\": "src/TensorFlow"
+        }
+    }
+}

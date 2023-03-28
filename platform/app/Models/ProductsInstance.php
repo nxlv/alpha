@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class ProductsInstance extends Model {
     use HasFactory;
 
+    public function product() {
+        return $this->belongsTo( CarriersProduct::class, 'product_id', 'product_id' );
+    }
+
     public function meta() {
         return $this->hasMany( ProductsInstancesMetum::class, 'product_instance_id', 'product_instance_id' );
     }

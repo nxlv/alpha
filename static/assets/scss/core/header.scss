@@ -168,6 +168,11 @@ main#alpha {
                                 color: inherit;
                                 position: relative;
                                 transition: color 0.125s cubic-bezier(.95,.05,.8,.04);
+
+                                &[href="#"] {
+                                    opacity: 0.5;
+                                    cursor: no-drop;
+                                }
                             }
                         }
                     }

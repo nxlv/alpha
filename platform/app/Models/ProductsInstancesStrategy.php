@@ -19,4 +19,8 @@ class ProductsInstancesStrategy extends Model {
     public function rates() {
         return $this->hasMany( ProductsInstancesStrategiesRate::class, 'product_strategy_instance_id', 'instance_id' );
     }
+
+    public function instances() {
+        return $this->hasMany( ProductsInstance::class, 'product_instance_id', 'product_instance_id' );
+    }
 }

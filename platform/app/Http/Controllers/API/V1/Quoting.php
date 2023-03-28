@@ -2,18 +2,97 @@
 
 namespace App\Http\Controllers\API\V1;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\Http\Helpers\WSSoapClient;
+use App\Http\Helpers\ProductHelper;
+use App\Http\Helpers\HeuristicHelper;
+
+use App\Models\AnalysisCache;
+use App\Models\Product;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class Quoting extends Controller {
+    const YEARS_DEFERRAL_MIN = 5;
+    const YEARS_DEFERRAL_MAX = 35;
+
     /**
      * FIA/FRA Quoting
      * for fixed annuities
      */
     public function query_fixed( Request $request ) {
+        $messages = [];
+        $response = [];
+
+        $endpoint_url = env( 'CANNEX_WS_ENDPOINT_FIXED' );
+        $username = env( 'CANNEX_WS_USERNAME' );
+        $password = env( 'CANNEX_WS_PASSWORD' );
+        $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
+
+        /*
+         * Identify products
+         */
+        $products = ProductHelper::identify_products(
+            $request->get( 'index' ),
+            $request->get( 'strategy_type' ),
+            $request->get( 'strategy_configuration' ),
+            $request->get( 'calculation_frequency' ),
+            $request->get( 'crediting_frequency' ),
+            $request->get( 'guarantee_period_years' ),
+            $request->get( 'guarantee_period_months' ),
+            $request->get( 'participation_rate' ),
+            $request->get( 'premium' )
+        );
+
+        if ( count( $products ) ) {
+            $analysis_id_list = [];
+
+            foreach ( $products as $product ) {
+                foreach ( $product[ 'targets' ] as $target ) {
+                    $analysis_id_list[] = $target[ 'product_analysis_data_id' ];
+                }
+            }
+
+            foreach ( $products as $product_id => $product ) {
+                //echo $product[ 'product' ][ 'name' ] . ' [' . $product[ 'product' ][ 'id' ] . ']' . PHP_EOL;
+
+                for ( $counter = 0; $counter < count( $product[ 'targets' ] ); $counter++ ) {
+                    //echo '* ' . $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] . ': $' . $product[ 'targets' ][ $counter ][ 'premium_range_min' ] . '-$' . $product[ 'targets' ][ $counter ][ 'premium_range_max' ] . PHP_EOL;
+
+                    // create deferrals
+                    $deferrals = range( self::YEARS_DEFERRAL_MIN, self::YEARS_DEFERRAL_MAX );
+                    $cache = AnalysisCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
+
+                    if ( $cache->count() ) {
+                        $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $request->get( 'premium' ), $deferrals );
+                    }
+                }
+            }
+        }
+
+        /*
+         * Get additional strategies for each product
+         */
+
+        /*
+         * Estimate products
+         */
+
+        /*
+         * Return products
+         */
+
+        return response()->json( [ 'products' => $products, 'messages' => $messages ] );
+    }
+
+    /**
+     * FIA/FRA Quoting
+     * for fixed annuities
+     */
+    public function _query_fixed( Request $request ) {
         $messages = [];
 
         $endpoint_url = env( 'CANNEX_WS_ENDPOINT_FIXED' );

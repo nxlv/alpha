@@ -1,0 +1,109 @@
+{
+    "packages": [
+        {
+            "name": "lajosbencz/tensorflow",
+            "version": "v0.1.0",
+            "version_normalized": "0.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lajosbencz/php-tensorflow.git",
+                "reference": "d7760abbf19d293556fa925fc33626f36098cea0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lajosbencz/php-tensorflow/zipball/d7760abbf19d293556fa925fc33626f36098cea0",
+                "reference": "d7760abbf19d293556fa925fc33626f36098cea0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ffi": "*",
+                "php": ">=7.4"
+            },
+            "time": "2020-02-05T14:31:21+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "TensorFlow\\": "src/TensorFlow"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Stogov",
+                    "email": "dmitry@zend.com"
+                },
+                {
+                    "name": "Lajos Bencz",
+                    "email": "lazos@lazos.me"
+                }
+            ],
+            "description": "This is an experimental binding to TensorFlow library using the FFI extension",
+            "support": {
+                "source": "https://github.com/lajosbencz/php-tensorflow/tree/v0.1.0"
+            },
+            "install-path": "../lajosbencz/tensorflow"
+        },
+        {
+            "name": "php-ai/php-ml",
+            "version": "0.10.0",
+            "version_normalized": "0.10.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@gitlab.com:php-ai/php-ml.git",
+                "reference": "543f11158c57bf64ef8ddecd5bab51d396d39f50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/php-ai%2Fphp-ml/repository/archive.zip?sha=543f11158c57bf64ef8ddecd5bab51d396d39f50",
+                "reference": "543f11158c57bf64ef8ddecd5bab51d396d39f50",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpbench/phpbench": "^1.2",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/phpunit": "^8.0"
+            },
+            "time": "2022-11-09T09:25:29+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Phpml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arkadiusz Kondas",
+                    "email": "arkadiusz.kondas@gmail.com"
+                }
+            ],
+            "description": "PHP-ML - Machine Learning library for PHP",
+            "homepage": "https://gitlab.com/php-ai/php-ml",
+            "keywords": [
+                "Neural network",
+                "artificial intelligence",
+                "computational learning theory",
+                "data science",
+                "feature extraction",
+                "machine learning",
+                "pattern recognition"
+            ],
+            "install-path": "../php-ai/php-ml"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}
