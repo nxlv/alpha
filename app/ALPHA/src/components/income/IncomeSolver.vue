@@ -18,45 +18,11 @@
                 this.quotes = null;
                 this.loading = false;
 
+                this.parameters.searched = true;
+
                 if ( ( request ) && ( request.data ) ) {
                     this.quotes = request.data.products;
                 }
-            },
-
-            get_product_part( product_id, part ) {
-                let response = '';
-                let product;
-
-                const sets = useSetsStore();
-
-                for ( let counter = 0; counter < sets.sets.products.length; counter++ ) {
-                    if ( sets.sets.products[ counter ].product_id === product_id ) {
-                        product = sets.sets.products[ counter ];
-                        break;
-                    }
-                }
-
-                if ( ( product ) && ( product.basic ) ) {
-                    switch ( part.toLowerCase() ) {
-                        case 'carrier' :
-                            if ( product.basic.carrier ) {
-                                response = product.basic.carrier.name;
-                            }
-                            break;
-
-                        case 'name' :
-                            response = product.basic.name;
-                            break;
-
-                        default :
-                            if ( product[ part ] ) {
-                                response = product[ part ];
-                            }
-                            break;
-                    }
-                }
-
-                return response;
             },
 
             get_deferred_income( strategy ) {
@@ -76,7 +42,25 @@
                 return parseFloat( income ).toFixed( 2 );
             },
 
+            set_deferral_period() {
+                clearTimeout( this.timers.refresh );
+
+                this.timers.refresh = setTimeout( () => { this.parameters.deferral = this.parameters.deferral_selected; }, 175 );
+            },
+
             // TODO: Replace with shared generalized method
+            format_currency( value, currency ) {
+                let engine = new Intl.NumberFormat(
+                    'en-US',
+                    {
+                        style: 'currency',
+                        currency: currency
+                    }
+                );
+
+                return engine.format( value );
+            },
+
             get_indexes() {
                 const sets = useSetsStore();
 
@@ -85,6 +69,51 @@
                 }
 
                 return [];
+            },
+
+            // TODO: integrate these datasets into the initial loading process
+            format( type, value ) {
+                let dataset = {};
+
+                switch ( type ) {
+                    case 'states' :
+                        if ( value.length ) {
+                            let states = value.split( ',' );
+
+                            if ( states.length > 10 ) {
+                                return states.slice( 0, 9 ).join( ', ' ) + ' and ' + ( states.length - 10 ) + ' more';
+                            }
+                        }
+                        break;
+
+                    case 'index' :
+                        const sets = useSetsStore();
+
+                        for ( let counter = 0; counter < sets.sets.indexes.length; counter++ ) {
+                            if ( sets.sets.indexes[ counter ].index_id === value ) {
+                                return sets.sets.indexes[ counter ].index_name;
+                            }
+                        }
+                        break;
+
+                    case 'strategy_type' :
+                        dataset = { 'AL': 'Allocated', 'AV': 'Average', 'FX': 'Fixed', 'IT': 'Inverse Performance Triggered', 'LA': 'Layered', 'PP': 'Point-to-Point', 'PT': 'Performance Triggered', 'SU': 'Sum' };
+                        break;
+
+                    case 'strategy_configuration' :
+                        dataset = { '01': 'Fixed', '02': 'Declared + Participation', '03': 'Cap + Participation', '04': 'Spread + Participation', '05': 'Participation Only', '08': 'Replacement + Participation', '99': 'Parent or Sub-strategy Only' };
+                        break;
+
+                    case 'frequency' :
+                        dataset = { 'A': 'Annually', 'M': 'Monthly', 'D': 'Daily', '2Y': '2-year', '3Y': '3-year', '5Y': '5-year', '7Y': '7-year', '10': '10-year' };
+                        break;
+
+                    case 'yesno' :
+                        dataset = { 'Y': 'Yes', 'N': 'No' };
+                        break;
+                }
+
+                return dataset[ value ] || value;
             }
         },
         data() {
@@ -92,10 +121,15 @@
                 errors: null,
                 quotes: null,
                 loading: false,
+                timers: {
+                    refresh: null
+                },
                 parameters: {
+                    searched: false,
                     premium: '100000',
                     income: '',
                     deferral: 10,
+                    deferral_selected: 10,
                     method: 'premium',
                     state: 'FL',
                     index: 'A000001X',
@@ -316,8 +350,8 @@
                 <div class="income-solver__results-controls" v-if="quotes">
                     <div class="form__row">
                         <div class="form__column form__column--full">
-                            <label for="deferral">Defer Income for <strong>{{ parameters.deferral }} years</strong></label>
-                            <input type="range" name="deferral" step="1" min="5" max="35" v-model="parameters.deferral">
+                            <label for="deferral">Defer Income for <strong>{{ parameters.deferral_selected }} years</strong></label>
+                            <input type="range" name="deferral" step="1" min="5" max="35" v-on:change="set_deferral_period" v-model="parameters.deferral_selected">
                         </div>
                     </div>
                 </div>
@@ -346,34 +380,51 @@
                     </template>
                 </div>
 
-                <div class="alert alert-info" v-if="!loading && !quotes">
+                <div class="alert alert-info" v-if="parameters.searched && !loading && !quotes">
                     <h3>No products found!</h3>
                     <p>Try adjusting your search criteria, and try again.</p>
+                </div>
+
+                <div class="alert alert-info" v-if="!parameters.searched && !loading && !quotes">
+                    <h3>Begin your search</h3>
+                    <p>Adjust any search parameters you like, and click <strong>Fetch Quotes</strong> to get started.</p>
                 </div>
 
                 <div class="results">
                     <div class="results__inner">
                         <!-- template v-for -->
                         <template v-if="quotes" v-for="( quote, quote_index ) in quotes" v-bind:key="quote_index">
-                            <template v-if="quote.targets.length" v-for="( strategy, strategy_index ) in quote.targets" v-bind:key="strategy_index">
-                                <div class="result result__fixed">
-                                    <h4>
+                            <template v-if="quote.targets.length">
+                                <div class="result result__card" v-bind:class="{ 'transient': parameters.deferral != parameters.deferral_selected }">
+                                    <h4 class="result__card-title" v-bind:data-product-id="quote.product.id">
                                         <strong>{{ quote.product.name }}</strong>
                                         {{ quote.carrier.name }}
                                     </h4>
-
-                                    <div class="result__grid">
-                                        <div class="result__grid-cta">
-                                            <div class="result__grid-cta-financials">
-                                                <span class="money">{{ get_deferred_income( strategy ) }}</span>
-                                                <span><strong>income per year</strong></span>
-
-                                                <!--
-                                                <span class="money">{{ quote.analysis_request.premium }}</span>
-                                                <span><strong>required premium</strong> to return $[INCOME] <strong>per month</strong></span>
-                                                -->
+                                    <div class="result__card-strategies">
+                                        <template v-if="quote.targets.length" v-for="( target, target_index ) in quote.targets" v-bind:key="target_index">
+                                            <div class="result__card-strategy">
+                                                <div class="result__card-strategy-income">
+                                                    <div class="result__card-strategy-income-money" data-period="annually">{{ format_currency( get_deferred_income( target ), 'USD' ) }}</div>
+                                                    <div class="result__card-strategy-income-money" data-period="monthly">{{ format_currency( ( get_deferred_income( target ) / 12 ), 'USD' ) }}</div>
+                                                </div>
+                                                <div class="result__card-strategy-details">
+                                                    <div class="result__card-strategy-details-points">
+                                                        <span class="result__card-strategy-details-point" data-type="index" data-type-title="Index">{{ format( 'index', target.strategy.index_id ) }}</span>
+                                                        <span class="result__card-strategy-details-point" data-type="setting" data-type-title="Type">{{ format( 'strategy_type', target.strategy.strategy_type ) }}</span>
+                                                        <span class="result__card-strategy-details-point" data-type="setting" data-type-title="Configuration">{{ format( 'strategy_configuration', target.strategy.strategy_configuration ) }}</span>
+                                                        <span class="result__card-strategy-details-point" data-type="rate-percent" data-type-title="Current Participation Rate">{{ target.current_participation_rate }}%</span>
+                                                        <span class="result__card-strategy-details-point" data-type="frequency" data-type-title="Calculation Frequency">{{ format( 'frequency', target.strategy.calculation_frequency ) }}</span>
+                                                        <span class="result__card-strategy-details-point" data-type="frequency" data-type-title="Crediting Frequency">{{ format( 'frequency', target.strategy.crediting_frequency ) }}</span>
+                                                        <span class="result__card-strategy-details-point" data-type="boolean" data-type-title="Guarantee Status">{{ format( 'yesno', target.strategy.guarantee_status ) }}</span>
+                                                        <span class="result__card-strategy-details-point" data-type="time" data-type-title="Guarantee Period">{{ target.strategy.guarantee_period_years }} <small>years</small> {{ target.strategy.guarantee_period_months }} <small>months</small></span>
+                                                    </div>
+                                                    <div class="result__card-strategy-details-rules">
+                                                        <span class="result__card-strategy-details-rule" data-type="location" data-type-title="State(s)">{{ ( ( target.rules.valid_states.length ) ? format( 'states', target.rules.valid_states ) : 'Any/All' ) }}</span>
+                                                        <span class="result__card-strategy-details-rule" data-type="minmax" data-type-title="Premium Limits">{{ format_currency( target.premium_range_min, 'USD' ) }}&mdash;{{ format_currency( target.premium_range_max, 'USD' ) }}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </template>
                                     </div>
                                 </div>
                             </template>

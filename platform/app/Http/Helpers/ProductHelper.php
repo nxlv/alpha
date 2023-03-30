@@ -81,7 +81,8 @@
                         ];
                     }
 
-                    $analytics = Product::where( 'product_instance_id', $product->product_instance_id )
+                    $analytics = Product::with( 'strategy' )
+                        ->where( 'product_instance_id', $product->product_instance_id )
                         ->where( 'strategy_details_instance_id', $product->product_strategy_instance_id )
                         ->where( 'strategy_rate_instance_id', $product->instance_id )
                         ->where( 'analysis_cd', $type )
@@ -116,6 +117,9 @@
                                 'announced_protection_buffer_rate' => $product->announced_protection_buffer_rate,
                                 'announced_protection_floor_rate' => $product->announced_protection_floor_rate,
                                 'announced_protection_downside_participation_rate' => $product->announced_protection_downside_participation_rate,
+
+                                'strategy' => $analysis->strategy,
+
                                 'rules' => [
                                     'id' => $analysis->rule_id,
                                     'valid_states' => implode( ',', RulesState::where( 'rule_id', $analysis->rule_id )->get()->pluck( 'state_cd' )->toArray() )

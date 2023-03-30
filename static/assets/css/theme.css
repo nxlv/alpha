@@ -14342,7 +14342,8 @@ readers do not read off random characters that represent icons */
     display: inline-block;
     color: #fff;
     font-size: 2rem;
-    line-height: 2rem; }
+    line-height: 2rem;
+    letter-spacing: -1px; }
   .alert p {
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -15729,6 +15730,143 @@ h6 {
         top: 1px;
         margin-right: 0.25rem; }
 
+.result__card {
+  padding: 1.5rem;
+  border: 1px #000 solid;
+  background-color: #fff;
+  margin: 0 0 1rem 0; }
+  .result__card.transient {
+    filter: grayscale(1);
+    animation: transient 1s infinite; }
+  .result__card-title {
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    padding: 0 0 0 5rem;
+    position: relative; }
+    .result__card-title:before {
+      position: absolute;
+      left: 0;
+      top: -2px;
+      width: 4rem;
+      height: 100%;
+      border: 1px #000 solid;
+      content: 'LOGO';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8175rem;
+      line-height: 0.8175rem;
+      letter-spacing: 1px; }
+    .result__card-title strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 2rem;
+      letter-spacing: -1px; }
+  .result__card-strategies {
+    display: block;
+    border: 1px #aaa solid;
+    padding: 1.5rem 0;
+    background-color: #E8E5DA;
+    position: relative;
+    margin-top: 1.75rem; }
+    .result__card-strategies:before {
+      content: 'Strategies Available';
+      position: absolute;
+      top: 0;
+      left: 1rem;
+      transform: translateY(-50%);
+      padding: 0.375rem 0.5rem 0.25rem 0.5rem;
+      background-color: #01A7C2;
+      color: #fff;
+      font-size: 0.8175rem;
+      line-height: 0.8175rem; }
+  .result__card-strategy {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-height: 4rem;
+    margin: 0;
+    padding: 1rem;
+    border-top: 1px #aaa solid; }
+    .result__card-strategy:hover {
+      background-color: #fff; }
+    .result__card-strategy-income {
+      width: 20%;
+      min-width: 20%;
+      display: flex;
+      flex-direction: column; }
+      .result__card-strategy-income-money {
+        border: 1px #000 solid;
+        width: 100%;
+        margin-top: 0.5rem;
+        position: relative;
+        padding: 0.675rem 0.5rem;
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        font-weight: bold;
+        background-color: #01A7C2;
+        color: #fff; }
+        .result__card-strategy-income-money:first-child {
+          margin-top: 0; }
+        .result__card-strategy-income-money:after {
+          content: attr(data-period);
+          display: block;
+          font-weight: 300;
+          font-size: 0.75rem;
+          line-height: 0.75rem;
+          padding: 0.125rem 0 0 0;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #fff; }
+        .result__card-strategy-income-money[data-period="monthly"] {
+          background-color: #152935; }
+    .result__card-strategy-details {
+      width: 100%;
+      display: block;
+      padding: 0 1rem; }
+      .result__card-strategy-details-points, .result__card-strategy-details-rules {
+        width: 100%;
+        display: block; }
+      .result__card-strategy-details-rules {
+        border-top: 1px #000 solid;
+        padding-top: 0.5rem;
+        margin-top: 0.25rem; }
+      .result__card-strategy-details-point, .result__card-strategy-details-rule {
+        display: inline-flex;
+        padding: 0.375rem 0.5rem 0.375rem 0.5rem;
+        margin: 0 0.125rem 0.25rem 0.125rem;
+        background-color: #152935;
+        color: #fff;
+        font-size: 0.875rem;
+        line-height: 0.875rem;
+        letter-spacing: 0;
+        font-weight: bold; }
+        .result__card-strategy-details-point:before, .result__card-strategy-details-rule:before {
+          content: attr(data-type-title);
+          padding: 0 0.25rem 0 0;
+          font-weight: 300;
+          color: #12ddfe; }
+        .result__card-strategy-details-point small, .result__card-strategy-details-rule small {
+          padding: 0 0.25rem 0 0.25rem;
+          font-weight: normal;
+          font-size: 0.75rem;
+          line-height: 1rem; }
+      .result__card-strategy-details-rule {
+        background-color: #F4562A;
+        color: #fff; }
+        .result__card-strategy-details-rule:before {
+          color: white; }
+
+@keyframes transient {
+  0% {
+    opacity: 0.75; }
+  50% {
+    opacity: 0.5; }
+  100% {
+    opacity: 0.75; } }
+
 .result__immediate {
   display: flex;
   flex-direction: row;
@@ -16071,14 +16209,25 @@ h6 {
   width: 75%;
   min-width: 75%;
   padding: 0 2rem; }
-  .income-solver__results-controls .form__row .form__column > label[for="deferral"] {
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-    border-bottom: none;
-    margin: 0; }
-    .income-solver__results-controls .form__row .form__column > label[for="deferral"] strong {
-      background-color: orange;
-      color: #fff;
-      padding: 0.5rem 0.5rem 0.5rem 0.375rem; }
-  .income-solver__results-controls .form__row .form__column input[type="range"] {
-    margin: 0; }
+  .income-solver__results-controls {
+    position: sticky;
+    width: 100%;
+    left: 0;
+    top: 175px;
+    z-index: 10;
+    background-color: #E8E5DA;
+    padding: 1.5rem 0 1rem 0;
+    border-top: 1px #000 solid;
+    border-bottom: 1px #000 solid;
+    margin-bottom: 2rem; }
+    .income-solver__results-controls .form__row .form__column > label[for="deferral"] {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      border-bottom: none;
+      margin: 0; }
+      .income-solver__results-controls .form__row .form__column > label[for="deferral"] strong {
+        background-color: orange;
+        color: #fff;
+        padding: 0.5rem 0.5rem 0.5rem 0.375rem; }
+    .income-solver__results-controls .form__row .form__column input[type="range"] {
+      margin: 0; }

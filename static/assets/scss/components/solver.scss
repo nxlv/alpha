@@ -42,6 +42,17 @@
         padding: 0 2rem;
 
         &-controls {
+            position: sticky;
+            width: 100%;
+            left: 0;
+            top: 175px;
+            z-index: 10;
+            background-color: $brand-quinary;
+            padding: 1.5rem 0 1rem 0;
+            border-top: 1px #000 solid;
+            border-bottom: 1px #000 solid;
+            margin-bottom: 2rem;
+
             .form__row {
                 .form__column {
                     & > label[for="deferral"] {

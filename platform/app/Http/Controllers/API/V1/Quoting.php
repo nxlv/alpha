@@ -32,6 +32,13 @@ class Quoting extends Controller {
         $password = env( 'CANNEX_WS_PASSWORD' );
         $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
 
+        $premium = preg_replace( '/[^0-9.]/', '', $request->get( 'premium' ) );
+
+        // TODO: decide how we want to handle minimum premiums
+        if ( $premium < 50000 ) {
+            $premium = 50000;
+        }
+
         /*
          * Identify products
          */
@@ -44,7 +51,7 @@ class Quoting extends Controller {
             $request->get( 'guarantee_period_years' ),
             $request->get( 'guarantee_period_months' ),
             $request->get( 'participation_rate' ),
-            $request->get( 'premium' )
+            $premium
         );
 
         if ( count( $products ) ) {
@@ -67,32 +74,20 @@ class Quoting extends Controller {
                     $cache = AnalysisCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
 
                     if ( $cache->count() ) {
-                        $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $request->get( 'premium' ), $deferrals );
+                        $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $premium, $deferrals );
                     }
                 }
             }
         }
 
-        /*
-         * Get additional strategies for each product
-         */
-
-        /*
-         * Estimate products
-         */
-
-        /*
-         * Return products
-         */
-
         return response()->json( [ 'products' => $products, 'messages' => $messages ] );
     }
 
     /**
-     * FIA/FRA Quoting
+     * FIA/FRA Illustration Provider
      * for fixed annuities
      */
-    public function _query_fixed( Request $request ) {
+    public function query_fixed_illustration( Request $request ) {
         $messages = [];
 
         $endpoint_url = env( 'CANNEX_WS_ENDPOINT_FIXED' );
@@ -100,159 +95,18 @@ class Quoting extends Controller {
         $password = env( 'CANNEX_WS_PASSWORD' );
         $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
 
-        $offset = $request->get( 'offset', 0 );
-
-        $codes = [
-            'initial'    => [],
-            'additional' => []
-        ];
-
-        $matches = Product::with( 'carrier_product', 'carrier_product.carrier' )->where( 'analysis_cd', 'B' )->orderBy( 'product_id', 'asc' )->get();
-
-        if ( $matches->count() ) {
-            foreach ( $matches as $match ) {
-                if ( !isset( $codes[ 'initial' ][ $match->product_id ] ) ) {
-                    $codes[ 'initial' ][ $match->product_id ] = [
-                        'analysis_data_id' => $match->analysis_data_id,
-                        'num_strategies' => 1,
-                        'product' => $match->carrier_product->first(),
-                        'carrier' => $match->carrier_product->first()->carrier->first()
-                    ];
-                } else {
-                    if ( !isset( $codes[ 'additional' ][ $match->product_id ] ) ) {
-                        $codes[ 'additional' ][ $match->product_id ] = [];
-                    }
-
-                    $codes[ 'initial' ][ $match->product_id ][ 'num_strategies' ]++;
-
-                    array_push( $codes[ 'additional' ][ $match->product_id ], $match->analysis_data_id );
-                }
-            }
-        }
-
-        if ( !empty( $codes[ 'initial' ] ) ) {
-            try {
-                $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_anly-1.0.wsdl' ), [
-                    'trace'     => 0,
-                    'exception' => 0
-                ] );
-                $client->__setLocation( $endpoint_url );
-                $client->__setUsernameToken( $username, $password, $token_type );
-            } catch ( \SoapFault $exception ) {
-                return response()->json( [ 'error' => true, 'messages' => print_r( $exception, true ) ] );
-            }
-
-            $function_name = 'canx_anty_anly_operation';
-
-            $parameters = [
-                'method' => $request->get( 'method', 'premium' ),
-                'deferral' => $request->get( 'deferral', 0 ),
-                'premium' => $request->get( 'premium', '0.00' ),
-                'income' => $request->get( 'income', '0.00' ),
-                'frequency' => $request->get( 'frequency', 'M' ),
-                'owner' => [
-                    'name' => $request->get( 'owner_name', '' ),
-                    'dob' => $request->get( 'owner_dob', '1949-08-07' ),
-                    'gender' => $request->get( 'owner_gender', 'M' ),
-                    'region' => $request->get( 'region', 'FL' ),
-                    'is_primary' => $request->get( 'owner_primary', 'Y' ),
-                ],
-                'joint' => [
-                    'name' => $request->get( 'joint_name', null ),
-                    'dob' => $request->get( 'joint_dob', null ),
-                    'gender' => $request->get( 'joint_gender', null ),
-                    'is_spouse' => $request->get( 'joint_spouse', null )
-                ]
-            ];
-
-            $arguments = array(
-                $function_name => array(
-                    'logon_id'         => $username,
-                    'user_id'          => null,
-                    'transaction_id'   => null,
-                    'analysis_request' => array()
-                )
-            );
-
-            if ( ( $offset + 10 ) > count( $codes[ 'initial' ] ) ) {
-                $offset = count( $codes[ 'initial' ] );
-            }
-
-            $slice = array_slice( $codes[ 'initial' ], $offset, min( $offset + 10, count( $codes[ 'initial' ] ) ) );
-
-            switch ( $parameters[ 'method' ] ) {
-                case 'premium' :
-                    $premium = preg_replace( '/[^\d.]|(?<!\d)\./', '', $parameters[ 'premium' ] );
-                    break;
-
-                case 'income' :
-                    $premium = ( preg_replace( '/[^\d.]|(?<!\d)\./', '', $parameters[ 'income' ] ) * 10 );
-                    break;
-            }
-
-            foreach ( $slice as $node_product_id => $node_analysis_data ) {
-                array_push(
-                    $arguments[ $function_name ][ 'analysis_request' ],
-                    array(
-                        'contract_cd'                 => 'S',
-                        'premium'                     => $premium,
-                        'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
-                        'gender_cd_primary'           => $parameters[ 'owner' ][ 'gender' ],
-                        'gender_cd_joint'             => $parameters[ 'joint' ][ 'gender' ],
-                        'purchase_age_primary'        => 55,
-                        'purchase_age_joint'          => null,
-                        'income_start_age_primary'    => 55 + intval( $parameters[ 'deferral' ] ),
-                        'income_start_age_joint'      => null,
-                        'index_time_range'            => null,
-                        'anty_ds_version_id'          => 'BY13MD',
-                        'analysis_cd'                 => 'B',
-                        'analysis_data_id'            => $node_analysis_data[ 'analysis_data_id' ],
-                        'analysis_time_horizon_years' => ( 99 - ( 55 + intval( $parameters[ 'deferral' ] ) ) ),
-                        'is_test'                     => 'N'
-                    )
-                );
-            }
-        }
-
-        $result = null;
-
         try {
-            $response = $client->__call( $function_name, $arguments );
-
-            $result = [];
-
-            if ( property_exists( $response, 'analysis_response' ) ) {
-                if ( !is_array( $response->analysis_response ) ) {
-                    array_push( $result, $response->analysis_response );
-                } else {
-                    $result = $response->analysis_response;
-                }
-
-                for ( $counter = 0; $counter < count( $result ); $counter++ ) {
-                    foreach ( $codes[ 'initial' ] as $code_product_id => $code_data ) {
-                        if ( $code_data[ 'analysis_data_id' ] === $result[ $counter ]->analysis_request->analysis_data_id ) {
-                            $result[ $counter ]->analysis_request->product_id = $code_product_id;
-                            $result[ $counter ]->analysis_request->num_strategies = $code_data[ 'num_strategies' ];
-                            break;
-                        }
-                    }
-
-                    if ( property_exists( $result[ $counter ], 'analysis_data' ) ) {
-                        foreach ( $result[ $counter ]->analysis_data as $analysis_row ) {
-                            if ( floatval( $analysis_row->income ) ) {
-                                $result[ $counter ]->analysis_request->income = $analysis_row->income;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
+            $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_anly-1.0.wsdl' ), [
+                'trace'     => 0,
+                'exception' => 0
+            ] );
+            $client->__setLocation( $endpoint_url );
+            $client->__setUsernameToken( $username, $password, $token_type );
         } catch ( \SoapFault $exception ) {
-            // error
-            array_push( $messages, 'An error occurred while querying CANNEX.  The message was: ' . print_r( $exception, true ) );
+            return response()->json( [ 'error' => true, 'messages' => print_r( $exception, true ) ] );
         }
 
-        return response()->json( [ 'profiles' => $codes[ 'initial' ], 'result' => $result, 'messages' => $messages ] );
+        return response()->json( [] );
     }
 
     /**

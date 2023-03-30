@@ -24,6 +24,10 @@ class Product extends Model {
         return $this->belongsTo( CarriersProduct::class, 'product_id', 'product_id' );
     }
 
+    public function strategy() {
+        return $this->hasOne( ProductsInstancesStrategy::class, 'instance_id', 'strategy_details_instance_id' );
+    }
+
     public function rules() {
         return $this->hasOne( Rule::class, 'rule_id', 'rule_id' );
     }
