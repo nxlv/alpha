@@ -9,6 +9,8 @@
     use \App\Models\Rule;
     use \App\Models\RulesState;
 
+    use Illuminate\Support\Facades\DB;
+
     class ProductHelper {
         public static $indexes = [];
 
@@ -74,8 +76,8 @@
                                 'name' => $instance->product->name,
                             ],
                             'carrier' => [
-                                'id' => $instance->product->carrier->id,
-                                'name' => $instance->product->carrier->name
+                                'id' => 'ABC', //$instance->product->carrier->id,
+                                'name' => 'Test'//$instance->product->carrier->name
                             ],
                             'targets' => []
                         ];
@@ -122,7 +124,7 @@
 
                                 'rules' => [
                                     'id' => $analysis->rule_id,
-                                    'valid_states' => implode( ',', RulesState::where( 'rule_id', $analysis->rule_id )->get()->pluck( 'state_cd' )->toArray() )
+                                    'valid_states' => '', //implode( ',', $rules->where( 'rule_id', $analysis->rule_id )->get()->pluck( 'state_cd' )->toArray() )
                                 ]
                             ];
 

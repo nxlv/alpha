@@ -7,7 +7,7 @@
         <title>Dashboard</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/theme.css' ) }}" media="all">
-        <script type="module" crossorigin src="/app/assets/index.2cfb30d9.js"></script>
+        <script type="module" crossorigin src="/app/assets/index.36118227.js"></script>
     </head>
     <body>
         @yield( 'content' )

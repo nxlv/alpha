@@ -55,6 +55,9 @@ class Quoting extends Controller {
         );
 
         if ( count( $products ) ) {
+            /*
+             * TODO: Review -- why was this written?
+             *
             $analysis_id_list = [];
 
             foreach ( $products as $product ) {
@@ -62,13 +65,10 @@ class Quoting extends Controller {
                     $analysis_id_list[] = $target[ 'product_analysis_data_id' ];
                 }
             }
+            */
 
             foreach ( $products as $product_id => $product ) {
-                //echo $product[ 'product' ][ 'name' ] . ' [' . $product[ 'product' ][ 'id' ] . ']' . PHP_EOL;
-
                 for ( $counter = 0; $counter < count( $product[ 'targets' ] ); $counter++ ) {
-                    //echo '* ' . $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] . ': $' . $product[ 'targets' ][ $counter ][ 'premium_range_min' ] . '-$' . $product[ 'targets' ][ $counter ][ 'premium_range_max' ] . PHP_EOL;
-
                     // create deferrals
                     $deferrals = range( self::YEARS_DEFERRAL_MIN, self::YEARS_DEFERRAL_MAX );
                     $cache = AnalysisCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
