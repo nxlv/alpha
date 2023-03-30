@@ -38,7 +38,7 @@
             for ( let counter = 0; counter < preload.length; counter++ ) {
                 console.log( '[    START ]', 'Loading of dataset', preload[ counter ].identifier, 'starting...' );
 
-                request = await axios.get( process.env.ALPHA_API_BASE_URL + preload[ counter ].endpoint );
+                request = await axios.get( import.meta.env.VITE_API_BASE_URL + preload[ counter ].endpoint );
 
                 if ( ( request ) && ( request.data ) ) {
                     console.log( '[      END ]', 'Loading of dataset', preload[ counter ].identifier, 'complete!' );

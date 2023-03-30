@@ -12,7 +12,7 @@
                 this.loading = true;
 
                 let endpoint = '/api/quoting/get/fixed';
-                let request = await axios.post( process.env.ALPHA_API_BASE_URL + endpoint, this.parameters );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, this.parameters );
 
                 this.errors = null;
                 this.quotes = null;
