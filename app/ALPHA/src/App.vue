@@ -38,10 +38,11 @@
             for ( let counter = 0; counter < preload.length; counter++ ) {
                 console.log( '[    START ]', 'Loading of dataset', preload[ counter ].identifier, 'starting...' );
 
-                request = await axios.get( 'http://platform.alpha.universe.local' + preload[ counter ].endpoint );
+                request = await axios.get( process.env.ALPHA_API_BASE_URL + preload[ counter ].endpoint );
 
                 if ( ( request ) && ( request.data ) ) {
                     console.log( '[      END ]', 'Loading of dataset', preload[ counter ].identifier, 'complete!' );
+
                     sets.commit( preload[ counter ].identifier, request.data );
 
                     switch ( preload[ counter ].identifier ) {
