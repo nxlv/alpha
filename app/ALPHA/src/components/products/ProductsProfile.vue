@@ -3,8 +3,6 @@
     </div>
 </template>
 <script>
-    import Utils_Products from '@/utilities/Products.vue';
-
     export default {
         props: {
             product: null
@@ -12,9 +10,8 @@
         created() {
             console.log( this.product );
 
-            this.profiles = Utils_Products.find_product_by_profile_id( this.product );
-
-            console.log( 'profile', JSON.parse( JSON.stringify( this.profiles ) ) );
+            //this.profiles = Utils_Products.find_product_by_profile_id( this.product );
+            //console.log( 'profile', JSON.parse( JSON.stringify( this.profiles ) ) );
         },
         data() {
             return {

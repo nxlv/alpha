@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class IncomeBenefitsInterestCrediting extends Model
 {
     use HasFactory;
+
+    protected $table = 'income_benefits_interest_crediting';
 }

@@ -40,7 +40,7 @@
 
                     <ol>
                         <li><a href="#">Index Tracker & History</a></li>
-                        <li><router-link :to="{ name: 'products__all' }">Annuity Products Data</router-link></li>
+                        <li><a href="#">Annuity Products Data</a></li>
                     </ol>
                 </li>
                 <li>

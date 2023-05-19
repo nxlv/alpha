@@ -5,7 +5,8 @@
     use App\Http\Helpers\WSSoapClient;
 
     class CANNEXHelper {
-        const ANTY_ANLY_VERSION_ID = 'BY13MD';
+        //const ANTY_ANLY_VERSION_ID = 'BY13MD';
+        const ANTY_ANLY_VERSION_ID = 'C12M4A';
 
         public static function analyze_fixed( $products ) {
             $result = [];
@@ -54,7 +55,7 @@
             return $result;
         }
 
-        public static function build_analysis_request( $product, $arguments ) {
+        public static function build_analysis_request( $product_analysis_id, $arguments ) {
             $parameters = array_merge(
                 [
                     'method' => 'premium',
@@ -63,6 +64,7 @@
                     'income' => 0.00,
                     'frequency' => 'A',
                     'analysis_cd' => 'B',
+                    'horizon' => 1,
 
                     'owner_name' => 'ALPHA',
                     'owner_dob' => gmdate( 'Y-m-d', gmmktime( 0, 0, 0, 1, 1, gmdate( 'Y' ) - 55 ) ),
@@ -74,9 +76,23 @@
                     'joint_dob' => null,
                     'joint_gender' => null,
                     'joint_is_spouse' => null
+
+                    //'index_range' => [],
+                    //'set_index_range' => true
                 ],
                 $arguments
             );
+
+            /*
+            if ( $parameters[ 'set_index_range' ] ) {
+                $parameters[ 'index_range' ] = [
+                    'start_month' => gmdate( 'n' ),
+                    'start_year' => ( gmdate( 'Y' ) - ( 2 + intval( $parameters[ 'deferral' ] ) ) ),
+                    'end_month' => 12,
+                    'end_year' => ( gmdate( 'Y' ) - 2 )
+                ];
+            }
+            */
 
             $response = [
                 'contract_cd'                 => 'S',
@@ -86,15 +102,9 @@
                 'gender_cd_joint'             => $parameters[ 'joint_gender' ],
                 'purchase_age_primary'        => ( gmdate( 'Y' ) - gmdate( 'Y', strtotime( $parameters[ 'owner_dob' ] ) ) ),
                 'purchase_age_joint'          => null,
-                'income_start_age_primary'    => ( ( gmdate( 'Y' ) - gmdate( 'Y', strtotime( $parameters[ 'owner_dob' ] ) ) ) + intval( $parameters[ 'deferral' ] ) ),
+                'income_start_age_primary'    => ( intval( ( gmdate( 'Y' ) - gmdate( 'Y', strtotime( $parameters[ 'owner_dob' ] ) ) ) ) + intval( $parameters[ 'deferral' ] ) ),
                 'income_start_age_joint'      => null,
                 'index_time_range'            => [
-                    /*
-                    'start_month' => gmdate( 'n' ),
-                    'start_year' => ( gmdate( 'Y' ) - intval( $parameters[ 'deferral' ] ) ),
-                    'end_month' => gmdate( 'n' ),
-                    'end_year' => gmdate( 'Y' ) - 1
-                    */
                     'start_month' => gmdate( 'n' ),
                     'start_year' => ( gmdate( 'Y' ) - ( 2 + intval( $parameters[ 'deferral' ] ) ) ),
                     'end_month' => 12,
@@ -102,8 +112,8 @@
                 ],
                 'anty_ds_version_id'          => self::ANTY_ANLY_VERSION_ID,
                 'analysis_cd'                 => $parameters[ 'analysis_cd' ],
-                'analysis_data_id'            => $product[ 'product_analysis_data_id' ],
-                'analysis_time_horizon_years' => ( intval( $parameters[ 'deferral' ] ) + 1 ),
+                'analysis_data_id'            => $product_analysis_id,
+                'analysis_time_horizon_years' => ( intval( $parameters[ 'deferral' ] ) + intval( $parameters[ 'horizon' ] ) ),
                 'is_test'                     => 'N'
             ];
 

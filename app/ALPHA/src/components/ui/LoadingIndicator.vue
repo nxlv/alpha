@@ -1,10 +1,6 @@
 <script>
-import { RouterLink } from 'vue-router';
-import { useSetsStore } from '@/stores/sets';
-
 export default {
     components: {
-        RouterLink
     },
     data() {
         return {

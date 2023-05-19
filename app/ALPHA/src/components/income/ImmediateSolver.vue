@@ -11,7 +11,7 @@
                 this.loading = true;
 
                 let endpoint = '/api/quoting/get/immediate';
-                let request = await axios.post( '' + endpoint, this.parameters );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, this.parameters );
 
                 this.errors = null;
                 this.quotes = null;
@@ -190,13 +190,13 @@
                     <div class="result__immediate-details-wrapper" v-if="quote.quote">
                         <div class="result__immediate-details-financials" v-if="quote.quote.illustration_id" v-bind:data-method="parameters.method">
                             <div class="result__immediate-details-financials-item" data-type="premium">
-                                ${{ quote.quote.premium }}
+                                {{ this.$financeUtils.format_currency( quote.quote.premium, 'USD' ) }}
                             </div>
                             <div class="result__immediate-details-financials-item" data-type="income" v-bind:data-frequency="parameters.frequency">
-                                ${{ quote.quote.income }}
+                                {{ this.$financeUtils.format_currency( quote.quote.income, 'USD' ) }}
                             </div>
                             <div class="result__immediate-details-financials-item" data-type="tax">
-                                ${{ quote.quote.tax_amount }}
+                                {{ this.$financeUtils.format_currency( quote.quote.tax_amount, 'USD' ) }}
                             </div>
                         </div>
 

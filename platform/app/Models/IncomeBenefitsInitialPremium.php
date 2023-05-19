@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class IncomeBenefitsInitialPremium extends Model
 {
     use HasFactory;
+
+    protected $table = 'income_benefits_initial_premiums';
 }

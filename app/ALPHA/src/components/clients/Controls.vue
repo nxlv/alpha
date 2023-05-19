@@ -1,9 +1,17 @@
 <script>
     import { RouterLink } from 'vue-router';
+    import { useCommonStore } from '@/stores/common';
 
     export default {
         components: {
             RouterLink
+        },
+        methods: {
+            show_manager() {
+                const common = useCommonStore();
+
+                common.commit( 'modal', 'client_manager' );
+            }
         },
         data() {
             return {
@@ -20,9 +28,9 @@
             <li data-type="marital">Single</li>
         </menu>
         <menu class="controls">
-            <li data-type="change"><a href="#/change" title="Change Client">Change Client</a></li>
-            <li data-type="edit"><a href="#/edit" title="Edit Client">Edit Client</a></li>
-            <li data-type="add"><a href="#/add" title="Add Client">Add Client</a></li>
+            <li data-type="change"><a href="javascript:;" title="Change Client" v-on:click="show_manager()">Change Client</a></li>
+            <li data-type="edit"><a href="javascript:;" title="Edit Client" v-on:click="show_manager()">Edit Client</a></li>
+            <li data-type="add"><a href="javascript:;" title="Add Client" v-on:click="show_manager()">Add Client</a></li>
         </menu>
     </aside>
 </template>

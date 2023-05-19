@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Helpers\WSSoapClient;
 use App\Http\Helpers\ProductHelper;
+use App\Http\Helpers\CANNEXHelper;
 use App\Http\Helpers\HeuristicHelper;
 
 use App\Models\AnalysisCache;
@@ -13,7 +14,6 @@ use App\Models\Product;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 
 class Quoting extends Controller {
     const YEARS_DEFERRAL_MIN = 5;
@@ -55,25 +55,13 @@ class Quoting extends Controller {
         );
 
         if ( count( $products ) ) {
-            /*
-             * TODO: Review -- why was this written?
-             *
-            $analysis_id_list = [];
-
-            foreach ( $products as $product ) {
-                foreach ( $product[ 'targets' ] as $target ) {
-                    $analysis_id_list[] = $target[ 'product_analysis_data_id' ];
-                }
-            }
-            */
-
             foreach ( $products as $product_id => $product ) {
                 for ( $counter = 0; $counter < count( $product[ 'targets' ] ); $counter++ ) {
                     // create deferrals
                     $deferrals = range( self::YEARS_DEFERRAL_MIN, self::YEARS_DEFERRAL_MAX );
                     $cache = AnalysisCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
 
-                    if ( $cache->count() ) {
+                    if ( $cache->count() > 10 ) {
                         $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $premium, $deferrals );
                     }
                 }
@@ -84,29 +72,35 @@ class Quoting extends Controller {
     }
 
     /**
-     * FIA/FRA Illustration Provider
+     * FIA/FRA Strategy Detail Provider
      * for fixed annuities
      */
     public function query_fixed_illustration( Request $request ) {
         $messages = [];
+        $response = [];
 
-        $endpoint_url = env( 'CANNEX_WS_ENDPOINT_FIXED' );
-        $username = env( 'CANNEX_WS_USERNAME' );
-        $password = env( 'CANNEX_WS_PASSWORD' );
-        $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
+        $premium = $request->get( 'premium', 0 );
+        $deferral = $request->get( 'deferral', 0 );
+        $horizon = $request->get( 'horizon', 10 );
+        $owner_state = $request->get( 'owner_state', '' );
+        $analysis_id = $request->get( 'product_analysis_id', null );
 
-        try {
-            $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_anly-1.0.wsdl' ), [
-                'trace'     => 0,
-                'exception' => 0
-            ] );
-            $client->__setLocation( $endpoint_url );
-            $client->__setUsernameToken( $username, $password, $token_type );
-        } catch ( \SoapFault $exception ) {
-            return response()->json( [ 'error' => true, 'messages' => print_r( $exception, true ) ] );
+        if ( ( !empty( $analysis_id ) ) && ( !empty( $owner_state ) ) && ( $premium ) && ( $deferral ) ) {
+            $queue = CANNEXHelper::build_analysis_request(
+                $analysis_id,
+                [
+                    'premium' => $premium,
+                    'deferral' => $deferral,
+                    'horizon' => ( intval( $deferral ) + intval( $horizon ) ),
+                    'owner_state' => $owner_state,
+                    'analysis_cd' => 'B'
+                ]
+            );
+
+            $response = CANNEXHelper::analyze_fixed( $queue );
         }
 
-        return response()->json( [] );
+        return response()->json( [ 'error' => false, 'messages' => $messages, 'result' => $response ] );
     }
 
     /**
@@ -249,41 +243,6 @@ class Quoting extends Controller {
             // error
             array_push( $messages, 'An error occurred while querying CANNEX.  The message was: ' . print_r( $exception, true ) );
         }
-
-        return response()->json( [ 'result' => $result, 'messages' => $messages ] );
-    }
-
-    public function query_illustration( $illustration_id ) {
-        $messages = [];
-
-        $endpoint_url = env( 'CANNEX_WS_ENDPOINT_ILLUSTRATION' );
-        $username = env( 'CANNEX_WS_USERNAME' );
-        $password = env( 'CANNEX_WS_PASSWORD' );
-        $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
-
-        try {
-            $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_iid_antu_illustration-1.0.wsdl' ), [ 'trace' => 0, 'exception' => 0 ] );
-            $client->__setLocation( $endpoint_url );
-            $client->__setUsernameToken( $username, $password, $token_type );
-        } catch ( \SoapFault $exception ) {
-            return response()->json( [ 'error' => true, 'messages' => print_r( $exception, true ) ] );
-        }
-
-        $result = null;
-
-        $arguments = array(
-            'canx_iid_antu_illustration_operation' => array(
-                'action' => 'GET_ANTU_ILLUSTRATION_PDF',
-                'logon_id' => $username,
-                'app' => 'CANX',
-                'illustration_id' => $illustration_id,
-                'transaction_id' => uuid_create(),
-                'is_test' => 'Y',
-                'version' => '1.0'
-            )
-        );
-
-        $result = $client->__call( 'canx_iid_antu_illustration_operation', $arguments );
 
         return response()->json( [ 'result' => $result, 'messages' => $messages ] );
     }

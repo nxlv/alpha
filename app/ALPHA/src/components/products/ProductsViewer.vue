@@ -2,7 +2,7 @@
     <section class="product-viewer" v-if="sets">
         <aside class="product-viewer__carriers">
             <menu class="product-viewer__carriers-list">
-                <li v-for="( carrier, carrier_index ) in sets.sets.carriers" v-bind:data-carrier-id="carrier.id" v-bind:key="carrier_index" v-bind:data-carrier-slug="utils.url.sanitize_title( carrier.name )" v-on:click="handler( 'carrier', carrier.id )">
+                <li v-for="( carrier, carrier_index ) in sets.sets.carriers" v-bind:data-carrier-id="carrier.id" v-bind:key="carrier_index" v-bind:data-carrier-slug="this.$globalUtils.sanitize_title( carrier.name )" v-on:click="handler( 'carrier', carrier.id )">
                     <strong>{{ carrier.name }}</strong>
                     <span data-type="product-count">{{ carrier.products.length }} product(s)</span>
                 </li>
@@ -27,10 +27,6 @@
     import { RouterLink } from 'vue-router';
     import { useSetsStore } from '@/stores/sets';
 
-    import Utils_URL from '@/utilities/URL.vue';
-    import Utils_Products from '@/utilities/Products.vue';
-    import Utils_Meta from '@/utilities/Meta.vue';
-
     export default {
         components: {
             RouterLink,
@@ -53,11 +49,6 @@
             return {
                 selection: {
                     carrier_id: null
-                },
-                utils: {
-                    url: Utils_URL,
-                    products: Utils_Products,
-                    meta: Utils_Meta
                 }
             };
         }

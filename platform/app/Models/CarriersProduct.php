@@ -12,6 +12,10 @@ class CarriersProduct extends Model {
         return $this->belongsTo( Carrier::class, 'carrier_id', 'id' );
     }
 
+    public function ratings() {
+        return $this->hasMany( CarriersRating::class, 'carrier_id', 'carrier_id' );
+    }
+
     public function meta() {
         return $this->hasMany( CarriersProductsMetum::class, 'carrier_product_id', 'id' );
     }

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DeathBenefitsInterestMultiplierCrediting extends Model
 {
     use HasFactory;
+
+    protected $table = 'death_benefits_interest_multiplier_crediting';
 }

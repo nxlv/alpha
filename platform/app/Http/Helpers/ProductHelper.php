@@ -14,45 +14,49 @@
     class ProductHelper {
         public static $indexes = [];
 
-        public static function identify_products( $index, $strategy_type = 'PP', $strategy_configuration = '03', $calculation_frequency = 'A', $crediting_frequency = 'A', $guarantee_years = 1, $guarantee_months = 0, $participation_rate = 100, $premium = null ) {
+        public static function identify_products( $index = false, $strategy_type = null, $strategy_configuration = null, $calculation_frequency = null, $crediting_frequency = null, $guarantee_years = null, $guarantee_months = null, $participation_rate = null, $premium = null ) {
             $matches = [];
-
-            /**
-             * Default FIA profile
-             * - index_id = (lookup: S&P 500)
-             * - strategy_type = 'PP' (Point-to-Point)
-             * - strategy_configuration = '03' (Cap + Participation) (lookup: Participation 100%)
-             * - calculation_frequency = 'A' (Annual)
-             * - crediting_frequency = 'A' (Annual)
-             * - guarantee_period_years = 1
-             * - guarantee_period_months = 0
-             */
 
             if ( empty( self::$indexes ) ) {
                 self::$indexes = Index::all();
             }
 
-            if ( self::$indexes->where( 'index_id', $index )->count() ) {
-                $strategies = ProductsInstancesStrategy::where( 'index_id', $index )
-                                                       ->where( 'strategy_type', $strategy_type )
-                                                       ->where( 'strategy_configuration', $strategy_configuration )
-                                                       ->where( 'calculation_frequency', $calculation_frequency )
-                                                       ->where( 'crediting_frequency', $crediting_frequency )
-                                                       ->where( 'guarantee_period_years', $guarantee_years )
-                                                       ->where( 'guarantee_period_months', $guarantee_months )
-                                                       ->get();
+            $parameters_strategy = [
+                [ 'index_id', '!=', '' ]
+            ];
 
-                if ( $strategies->count() ) {
-                    $matches = ProductsInstancesStrategiesRate::with( 'strategy', 'strategy.instances', 'strategy.instances.product', 'strategy.instances.product.carrier' )
-                                                              ->where( 'current_participation_rate', $participation_rate )
-                                                              ->whereIn( 'product_strategy_instance_id', $strategies->pluck( 'instance_id' ) );
+            $parameters_rate = [];
 
-                    if ( $premium ) {
-                        $matches = $matches->where( 'premium_range_min', '<=', floatval( $premium ) )->where( 'premium_range_max', '>=', floatval( $premium ) );
-                    }
+            // strategy parameters
+            if ( !empty( $strategy_type ) ) $parameters_strategy[ 'strategy_type' ] = $strategy_type;
+            if ( !empty( $strategy_configuration ) ) $parameters_strategy[ 'strategy_configuration' ] = $strategy_configuration;
+            if ( !empty( $calculation_frequency ) ) $parameters_strategy[ 'calculation_frequency' ] = $calculation_frequency;
+            if ( !empty( $crediting_frequency ) ) $parameters_strategy[ 'crediting_frequency' ] = $crediting_frequency;
+            if ( !empty( $guarantee_years ) ) $parameters_strategy[ 'guarantee_period_years' ] = $guarantee_years;
+            if ( !empty( $guarantee_months ) ) $parameters_strategy[ 'guarantee_period_months' ] = $guarantee_months;
 
-                    $matches = $matches->get();
+            // rate parameters
+            if ( !empty( $participation_rate ) ) $parameters_rate[ 'current_participation_rate' ] = $participation_rate;
+
+            // index
+            if ( !empty( $index ) ) {
+                if ( self::$indexes->where( 'index_id', $index )->count() ) {
+                    $parameters_strategy[ 'index_id' ] = $index;
                 }
+            }
+
+            $strategies = ProductsInstancesStrategy::where( $parameters_strategy )->get();
+
+            if ( $strategies->count() ) {
+                $matches = ProductsInstancesStrategiesRate::with( 'strategy', 'strategy.instances', 'strategy.instances.product', 'strategy.instances.product.carrier', 'strategy.instances.product.carrier.ratings' )
+                    ->whereIn( 'product_strategy_instance_id', $strategies->pluck( 'instance_id' ) )
+                    ->where( $parameters_rate );
+
+                if ( !empty( $premium ) ) {
+                    $matches = $matches->where( 'premium_range_min', '<=', floatval( $premium ) )->where( 'premium_range_max', '>=', floatval( $premium ) );
+                }
+
+                $matches = $matches->get();
             }
 
             if ( !empty( $matches ) ) {
@@ -76,8 +80,9 @@
                                 'name' => $instance->product->name,
                             ],
                             'carrier' => [
-                                'id' => 'ABC', //$instance->product->carrier->id,
-                                'name' => 'Test'//$instance->product->carrier->name
+                                'id' => $instance->product->carrier->id,
+                                'name' => $instance->product->carrier->name,
+                                'ratings' => $instance->product->carrier->ratings
                             ],
                             'targets' => []
                         ];

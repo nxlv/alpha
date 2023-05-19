@@ -1,36 +1,215 @@
+/* TODO: Audit this code, some old v2 and v4 income solver styles are in there I think. */
+.results {
+    &.results--inactive {
+        pointer-events: none;
+        filter: blur(1.5px) grayscale(1);
+        mix-blend-mode: multiply;
+        opacity: 0.65;
+    }
+}
+
 .result {
+    &.result--faded {
+        filter: grayscale(1);
+        animation: transient 1s infinite;
+    }
+
     &__card {
         padding: 1.5rem;
         border: 1px #000 solid;
         background-color: #fff;
         margin: 0 0 1rem 0;
 
-        &.transient {
-            filter: grayscale(1);
-            animation: transient 1s infinite;
-        }
-
         &-title {
-            font-weight: 300;
-            font-size: 1.125rem;
-            line-height: 1.125rem;
-            padding: 0 0 0 5rem;
+            padding: 0 0 0 9rem;
             position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            &-text {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                font-weight: 300;
+                font-size: 1.125rem;
+                line-height: 1.125rem;
+                justify-content: center;
+            }
+
+            &-ratings {
+                width: auto;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: nowrap;
+
+                &-rating {
+                    border: 1px $brand-primary solid;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    font-size: 2rem;
+                    line-height: 2rem;
+                    font-weight: bold;
+                    min-width: 5rem;
+                    margin: 0 0 0 0.5rem;
+                    padding: 1.75rem 0 0 0;
+                    position: relative;
+
+                    &[data-rating-company="AMB"] {
+                        &:before {
+                            content: 'A.M. Best';
+                        }
+                    }
+                    &[data-rating-company="MOOD"] {
+                        &:before {
+                            content: 'Moody\'s';
+                        }
+                    }
+                    &[data-rating-company="SP"] {
+                        &:before {
+                            content: 'S&P';
+                        }
+                    }
+                    &[data-rating-company="FTCH"] {
+                        &:before {
+                            content: 'Fitch';
+                        }
+                    }
+
+                    &[data-rating-value*="A"] {
+                        color: #24C201;
+                    }
+
+                    &:before {
+                        content: attr(data-rating-company);
+                        position: absolute;
+                        background-color: $brand-primary;
+                        width: 100%;
+                        color: #fff;
+                        font-size: 0.75rem;
+                        line-height: 0.75rem;
+                        padding: 0.25rem 0;
+                        text-align: center;
+                        top: 0;
+                        left: 0;
+                        letter-spacing: normal;
+                        font-weight: normal;
+                    }
+                }
+            }
 
             &:before {
                 position: absolute;
                 left: 0;
                 top: -2px;
-                width: 4rem;
+                width: 8rem;
                 height: 100%;
-                border: 1px #000 solid;
-                content: 'LOGO';
+                border: 1px $color-grey-mid solid;
+                content: '';
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 0.8175rem;
                 line-height: 0.8175rem;
                 letter-spacing: 1px;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: contain;
+            }
+
+            &[data-carrier-slug="aig"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/aig.png);
+                }
+            }
+
+            &[data-carrier-slug*="allianz"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/allianz.png);
+                }
+            }
+
+            &[data-carrier-slug*="american-equity"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/american-equity.png);
+                }
+            }
+
+            &[data-carrier-slug*="american-national"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/american-national.png);
+                }
+            }
+
+            &[data-carrier-slug*="athene"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/athene.png);
+                }
+            }
+
+            &[data-carrier-slug*="delaware-life"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/delaware-life.png);
+                }
+            }
+
+            &[data-carrier-slug="fidelity-and-guaranty"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/f-and-g.png);
+                }
+            }
+
+            &[data-carrier-slug*="global-atlantic"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/global-atlantic.png);
+                }
+            }
+
+            &[data-carrier-slug*="massmutual-ascend"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/massmutual-ascend.png);
+                }
+            }
+
+            &[data-carrier-slug*="midland-national"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/midland-national.png);
+                }
+            }
+
+            &[data-carrier-slug*="north-american"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/north-american.png);
+                }
+            }
+
+            &[data-carrier-slug*="protective"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/protective.png);
+                }
+            }
+
+            &[data-carrier-slug*="reliance-standard"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/reliance-standard.png);
+                }
+            }
+
+            &[data-carrier-slug*="securian"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/securian.png);
+                }
+            }
+
+            &[data-carrier-slug="the-standard"] {
+                &:before {
+                    background-image: url(../images/logos/carriers/the-standard.png);
+                }
             }
 
             strong {
@@ -44,10 +223,11 @@
         &-strategies {
             display: block;
             border: 1px $color-grey-mid solid;
-            padding: 1.5rem 0;
             background-color: $color-grey-bright;
             position: relative;
             margin-top: 1.75rem;
+            /*
+            padding: 1.5rem 0;
 
             &:before {
                 content: 'Strategies Available';
@@ -61,6 +241,7 @@
                 font-size: 0.8175rem;
                 line-height: 0.8175rem;
             }
+            */
         }
 
         &-strategy {
@@ -72,6 +253,7 @@
             margin: 0;
             padding: 1rem;
             border-top: 1px $color-grey-mid solid;
+            cursor: pointer;
 
             &:hover {
                 background-color: #fff;
@@ -117,6 +299,45 @@
                 }
             }
 
+            &-data {
+                border-left: 1px $color-grey-mid solid;
+                margin: 0 0 0 1rem;
+                padding: 0 0 0 1rem;
+                width: 100%;
+
+                &--extra {
+                    width: auto;
+                    white-space: nowrap;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &-points {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+
+                &-point {
+                    width: 50%;
+                    font-size: 1.125rem;
+                    line-height: 1.125rem;
+                    margin-bottom: 0.5rem;
+                    font-weight: bold;
+                    letter-spacing: -1px;
+
+                    &:before {
+                        content: attr(data-type-title);
+                        display: block;
+                        font-weight: 300;
+                        font-size: 0.9375rem;
+                        line-height: 0.9375rem;
+                        margin: 0 0 0.25rem 0;
+                        letter-spacing: normal;
+                    }
+                }
+            }
+
             &-details {
                 width: 100%;
                 display: block;
@@ -124,8 +345,25 @@
 
                 &-points,
                 &-rules {
-                    width: 100%;
-                    display: block;
+                    &--vertical {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        margin: 0;
+
+                        .result__card-strategy-details {
+                            &-point,
+                            &-rule {
+                                flex-direction: column;
+
+                                &:before {
+                                    display: block;
+                                    margin-bottom: 0.25rem;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 &-rules {

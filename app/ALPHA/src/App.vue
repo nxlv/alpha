@@ -1,15 +1,19 @@
 <script setup>
     import axios from 'axios';
     import { useSetsStore } from '@/stores/sets';
+    import { useCommonStore } from "@/stores/common";
     import { RouterView } from 'vue-router';
 
     import NavigationPrimary from '@/components/navigation/Primary.vue';
     import NavigationSecondary from '@/components/navigation/Secondary.vue';
-    import LoadingIndicator from '@/components/ui/LoadingIndicator.vue';
+    import Initialization from '@/components/ui/Initialization.vue';
+    import Modals from '@/components/ui/Modals.vue';
 </script>
 
 <template>
     <main id="alpha" class="alpha">
+        <Initialization />
+
         <input type="checkbox" id="alpha__prologue-collapse" class="alpha__prologue-collapse" value="1">
         <label class="alpha__prologue-collapse-control" for="alpha__prologue-collapse">Collapse</label>
 
@@ -17,9 +21,14 @@
             <NavigationPrimary />
             <NavigationSecondary />
         </header>
-        <article>
+
+        <article class="alpha__content">
             <RouterView />
+            <Modals />
         </article>
+
+        <footer class="alpha__epilogue">
+        </footer>
     </main>
 </template>
 
@@ -29,14 +38,18 @@
             let request;
 
             const sets = useSetsStore();
+            const common = useCommonStore();
+
             const preload = [
-                { 'identifier': 'carriers', 'endpoint': '/api/carriers/all' },
-                { 'identifier': 'products', 'endpoint': '/api/products/all' },
-                { 'identifier': 'indexes', 'endpoint': '/api/indexes/all' }
+                { 'identifier': 'carriers', 'endpoint': '/api/carriers/all', 'text': 'Loading carrier information' },
+                { 'identifier': 'products', 'endpoint': '/api/products/all', 'text': 'Loading annuity product data' },
+                { 'identifier': 'indexes', 'endpoint': '/api/indexes/all', 'text': 'Loading financial index data' }
             ];
 
             for ( let counter = 0; counter < preload.length; counter++ ) {
                 console.log( '[    START ]', 'Loading of dataset', preload[ counter ].identifier, 'starting...' );
+
+                this.$emitter.emit( 'alpha__init-status', { stage: { current: ( counter + 1 ), total: preload.length, data: preload[ counter ] } } );
 
                 request = await axios.get( import.meta.env.VITE_API_BASE_URL + preload[ counter ].endpoint );
 
@@ -52,6 +65,8 @@
                     }
                 }
             }
+
+            this.$emitter.emit( 'alpha__init-status', { stage: { current: preload.length, total: preload.length, data: { identifier: 'complete', text: 'Done!' } } } );
         }
     }
 </script>
