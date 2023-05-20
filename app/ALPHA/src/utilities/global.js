@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import {useSetsStore} from '@/stores/sets';
 import {useCommonStore} from '@/stores/common';
 
@@ -154,6 +156,13 @@ const globalUtils = {
                     'N': 'No'
                 };
                 break;
+
+            case 'single_joint' :
+                dataset = {
+                    'S': 'Single',
+                    'J': 'Joint'
+                }
+                break;
         }
 
         return dataset;
@@ -204,25 +213,31 @@ const globalUtils = {
         return slug;
     },
 
+    ensure_type( value, type ) {
+        let response = value;
+
+        switch ( type ) {
+            case 'int' :
+            case 'float' :
+                response = value.toString().replace( /[^0-9.]/g, '' );
+
+                if ( type === 'int' ) {
+                    response = parseInt( response );
+                } else {
+                    response = parseFloat( response );
+                }
+                break;
+        }
+
+        return response;
+    },
+
     // TODO: integrate these datasets into the initial loading process
     format(type, value) {
         let dataset = {};
         let placeholder = '—';
 
         switch (type) {
-            case 'strategy_type' :
-            case 'strategy_configuration' :
-            case 'death_benefit_type' :
-            case 'age_rule_basis' :
-            case 'premium_inheritance' :
-            case 'issue_age_inheritance' :
-            case 'rating_company' :
-            case 'frequency' :
-            case 'states_usa' :
-            case 'states_can' :
-                dataset = this.get_dataset( type );
-                break;
-
             case 'yesno' :
                 placeholder = 'No';
 
@@ -254,6 +269,19 @@ const globalUtils = {
                     return value + '%';
                 }
                 break;
+
+            case 'age' :
+                // TODO: ensure type
+                value = moment( value );
+
+                if ( moment.isMoment( value ) ) {
+                    value = moment().diff( value, 'years' );
+                }
+                break;
+
+            default :
+                dataset = this.get_dataset( type );
+                break;
         }
 
         return dataset[value] || ((value) ? value : placeholder);
@@ -262,6 +290,7 @@ const globalUtils = {
     modal_close() {
         const common = useCommonStore();
 
+        common.commit( 'view', null );
         common.commit( 'modal', null );
     }
 };

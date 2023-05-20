@@ -1,6 +1,8 @@
 <script>
     import { RouterLink } from 'vue-router';
+
     import { useSetsStore } from '@/stores/sets';
+    import { useClientStore } from '@/stores/client';
 
     import Infobox_IncomeBenefits from '@/components/products/infoboxes/IncomeBenefit.vue';
     import Infobox_DeathBenefits from '@/components/products/infoboxes/DeathBenefit.vue';
@@ -152,6 +154,19 @@
                 this.selections.illustration = null;
             }
         },
+        created() {
+            const client = useClientStore();
+
+            if ( client.settings.investment ) {
+                console.log( 'Client Override -- setting premium ', client.settings.investment );
+                this.parameters.premium = client.settings.investment;
+            }
+
+            if ( client.settings.owner_state ) {
+                console.log( 'Client Override -- setting owner state to ', client.settings.owner_state );
+                this.parameters.state = client.settings.owner_state;
+            }
+        },
         data() {
             return {
                 errors: null,
@@ -178,7 +193,7 @@
                     deferral_selected: 10,
                     method: 'premium',
                     state: 'FL',
-                    index: 'A000001X',
+                    index: null,
                     strategy_type: 'PP',
                     strategy_configuration: '03',
                     calculation_frequency: 'A',
@@ -233,6 +248,7 @@
                         </div>
                     </div>
 
+                    <!--
                     <div class="form__row">
                         <div class="form__column">
                             <label for="parameters__state">Owner State</label>
@@ -340,6 +356,7 @@
                             <button type="submit" class="form__action" v-on:click="fetch_quote">Fetch Quotes</button>
                         </div>
                     </div>
+                    -->
                 </fieldset>
             </aside>
 

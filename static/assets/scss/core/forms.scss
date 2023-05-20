@@ -124,6 +124,7 @@ main {
         /**
          * General form classes to use within the system UI.
          */
+        .alpha__modal .form,
         .form {
             & > fieldset {
                 border: 1px #000 dotted;
@@ -162,6 +163,32 @@ main {
                 display: flex;
                 flex-direction: column;
                 padding-right: 2rem;
+
+                &.form__column--large {
+                    width: 100% !important;
+
+                    & > label {
+                        text-align: center;
+                        font-size: 1.25rem;
+                        line-height: 1.25rem;
+                        border-bottom-width: 2px;
+                    }
+
+                    input[type="text"],
+                    input[type="email"],
+                    input[type="password"],
+                    input[type="number"],
+                    input[type="date"],
+                    select,
+                    textarea {
+                        font-weight: bold;
+                        text-align: center;
+                        font-size: 1.75rem;
+                        line-height: 1.75rem;
+                        letter-spacing: -1px;
+                        padding: 0.75rem 1rem 0.25rem 1rem;
+                    }
+                }
 
                 & > label {
                     font-weight: bold;
