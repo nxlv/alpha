@@ -6,7 +6,8 @@
 
     class CANNEXHelper {
         //const ANTY_ANLY_VERSION_ID = 'BY13MD';
-        const ANTY_ANLY_VERSION_ID = 'C12M4A';
+        const ANTY_ANLY_VERSION_ID = 'C4FB2W';
+        const MAX_POLL_RETRIES = 25;
 
         public static function analyze_fixed( $products ) {
             $result = [];
@@ -118,5 +119,114 @@
             ];
 
             return $response;
+        }
+
+        public static function create_annuitant_profile( $transaction_id, $parameters, $dataset ) {
+            $request_id = null;
+
+            $endpoint_url = env( 'CANNEX_WS_ENDPOINT_INCOME' );
+            $username = env( 'CANNEX_WS_USERNAME' );
+            $password = env( 'CANNEX_WS_PASSWORD' );
+            $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
+            $function_name = 'canx_anty_inc1_operation';
+
+            try {
+                $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
+                    'trace'     => 0,
+                    'exception' => 0
+                ] );
+                $client->__setLocation( $endpoint_url );
+                $client->__setUsernameToken( $username, $password, $token_type );
+
+                $arguments = array(
+                    'canx_anty_inc1_operation' => array(
+                        'income_request1_set' => array(
+                            'logon_id' => $username,
+                            'user_id' => '',
+                            'transaction_id' => $transaction_id,
+                            'anty_ds_version_id' => self::ANTY_ANLY_VERSION_ID,
+                            'analysis_data_id' => $dataset,
+                            'cnx_sequence_id' => [ 0, 1 ],
+                            'income_request_data' => $parameters,
+                            'is_test' => 'N'
+                        )
+                    )
+                );
+
+                try {
+                    $result = $client->__call( $function_name, $arguments );
+
+                    if ( ( isset( $result->income_response1 ) ) && ( $result->income_response1->income_request_id ) ) {
+                        $request_id = $result->income_response1->income_request_id;
+                    }
+                } catch ( SoapFault $exception ) {
+                }
+            } catch ( \SoapFault $exception ) {
+                return false;
+            }
+
+            return $request_id;
+        }
+
+        public static function get_guaranteed_rates( $profile_id, $transaction_id ) {
+            $result = [];
+
+            $endpoint_url = env( 'CANNEX_WS_ENDPOINT_INCOME' );
+            $username = env( 'CANNEX_WS_USERNAME' );
+            $password = env( 'CANNEX_WS_PASSWORD' );
+            $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
+            $function_name = 'canx_anty_inc1_operation';
+
+            try {
+                $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
+                    'trace'     => 0,
+                    'exception' => 0
+                ] );
+                $client->__setLocation( $endpoint_url );
+                $client->__setUsernameToken( $username, $password, $token_type );
+
+                $arguments = array(
+                    'canx_anty_inc1_operation' => array(
+                        'income_request1' => array(
+                            'logon_id' => $username,
+                            'user_id' => '',
+                            'transaction_id' => $transaction_id,
+                            'income_request_id' => $profile_id,
+                            'is_test' => 'N'
+                        )
+                    )
+                );
+
+                $retry_count = 0;
+
+                while ( true ) {
+                    try {
+                        $analysis = $client->__call( $function_name, $arguments );
+
+                        echo sprintf( '[+] Request status: %s', $analysis->income_response1_set->status_cd ) . PHP_EOL;
+
+                        if ( $analysis->income_response1_set->status_cd === 'P' ) {
+                            echo '[+] Request pending, polling in 3 seconds...' . PHP_EOL;
+
+                            sleep(3);
+                        } else {
+                            $result = $analysis->income_response1_set;
+                            break;
+                        }
+                    } catch ( SoapFault $exception ) {
+                        print_r( $exception );
+                    }
+
+                    $retry_count++;
+
+                    if ( $retry_count >= self::MAX_POLL_RETRIES ) {
+                        break;
+                    }
+                }
+            } catch ( SoapFault $exception ) {
+                print_r( $exception );
+            }
+
+            return $result;
         }
     }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_ds_base_types-1.1.xsd" />
+
+	<xsd:complexType name="anty_ds_crr_prds_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />			
+			<xsd:element type="cnx:cd_name_type" name="product_type" />
+			<xsd:element type="cnx:crr_prds_type" name="carrier_products"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.1" />
+	</xsd:complexType>
+
+	<xsd:complexType name="crr_prds_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="version_id" />
+			<xsd:element type="xsd:string" name="carrier_name" />
+			<xsd:element type="cnx:state_cd_crr_name_type" name="state_cd_carrier_name" 
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:crr_rating_type" name="carrier_rating" 
+				minOccurs="0" maxOccurs="unbounded" />	
+			<xsd:element type="cnx:prd_type" name="product"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="crr_rating_type">
+	    <xsd:sequence>
+	     	<xsd:element type="cnx:cd_name_type" name="rating_company" />
+	     	<xsd:element type="cnx:cd_name_type" name="rating" />
+	     	<xsd:element type="xsd:string" name="modifier_cd" 
+				minOccurs="0" />
+		 	<xsd:element type="xsd:date" name="effective_date" 
+				minOccurs="0" />	     
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="prd_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />	
+			<xsd:element type="xsd:string" name="product_name" />
+			<xsd:element type="xsd:date" name="open_date" 
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="closed_date" 
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="product_id" use="required" />
+		<xsd:attribute type="xsd:string" name="text_id" use="optional" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="state_cd_crr_name_type">
+	     <xsd:simpleContent>
+	        <xsd:extension base="xsd:string">
+	           <xsd:attribute type="cnx:state_cd_type" name="state_cd" use="required" />
+	        </xsd:extension>
+	     </xsd:simpleContent>
+	</xsd:complexType>
+
+</xsd:schema>

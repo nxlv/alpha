@@ -4,7 +4,6 @@
  * License - https://fontawesome.com/license (Commercial License)
  * Copyright 2022 Fonticons, Inc.
  */
-@import url("https://unpkg.com/carbon-components@latest/css/carbon-components.css");
 .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Pro");
   font-weight: var(--fa-style, 900); }
@@ -14438,7 +14437,8 @@ main#alpha {
   line-height: 1rem;
   color: #fff;
   cursor: pointer;
-  text-decoration: none; }
+  text-decoration: none;
+  font-family: 'Ofelia Display', 'ofelia-display', sans-serif; }
 
 .btn.btn-link {
   margin: 0 0.5rem; }
@@ -14632,35 +14632,37 @@ main article {
     display: flex;
     flex-direction: column;
     padding-right: 2rem; }
-    main article .alpha__modal .form__column.form__column--large,
+    main article .alpha__modal .form__column.form__column--full, main article .alpha__modal .form__column.form__column--large,
+    main article .form__column.form__column--full,
     main article .form__column.form__column--large {
       width: 100% !important; }
-      main article .alpha__modal .form__column.form__column--large > label,
-      main article .form__column.form__column--large > label {
-        text-align: center;
-        font-size: 1.25rem;
-        line-height: 1.25rem;
-        border-bottom-width: 2px; }
-      main article .alpha__modal .form__column.form__column--large input[type="text"],
-      main article .alpha__modal .form__column.form__column--large input[type="email"],
-      main article .alpha__modal .form__column.form__column--large input[type="password"],
-      main article .alpha__modal .form__column.form__column--large input[type="number"],
-      main article .alpha__modal .form__column.form__column--large input[type="date"],
-      main article .alpha__modal .form__column.form__column--large select,
-      main article .alpha__modal .form__column.form__column--large textarea,
-      main article .form__column.form__column--large input[type="text"],
-      main article .form__column.form__column--large input[type="email"],
-      main article .form__column.form__column--large input[type="password"],
-      main article .form__column.form__column--large input[type="number"],
-      main article .form__column.form__column--large input[type="date"],
-      main article .form__column.form__column--large select,
-      main article .form__column.form__column--large textarea {
-        font-weight: bold;
-        text-align: center;
-        font-size: 1.75rem;
-        line-height: 1.75rem;
-        letter-spacing: -1px;
-        padding: 0.75rem 1rem 0.25rem 1rem; }
+    main article .alpha__modal .form__column.form__column--large > label,
+    main article .form__column.form__column--large > label {
+      text-align: center;
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+      border-bottom-width: 2px; }
+    main article .alpha__modal .form__column.form__column--large input[type="text"],
+    main article .alpha__modal .form__column.form__column--large input[type="email"],
+    main article .alpha__modal .form__column.form__column--large input[type="password"],
+    main article .alpha__modal .form__column.form__column--large input[type="number"],
+    main article .alpha__modal .form__column.form__column--large input[type="date"],
+    main article .alpha__modal .form__column.form__column--large select,
+    main article .alpha__modal .form__column.form__column--large textarea,
+    main article .form__column.form__column--large input[type="text"],
+    main article .form__column.form__column--large input[type="email"],
+    main article .form__column.form__column--large input[type="password"],
+    main article .form__column.form__column--large input[type="number"],
+    main article .form__column.form__column--large input[type="date"],
+    main article .form__column.form__column--large select,
+    main article .form__column.form__column--large textarea {
+      font-weight: bold;
+      font-family: 'Ofelia Display', sans-serif inherit;
+      text-align: center;
+      font-size: 1.75rem;
+      line-height: 1.75rem;
+      letter-spacing: -1px;
+      padding: 0.75rem 1rem 0.25rem 1rem; }
     main article .alpha__modal .form__column > label,
     main article .form__column > label {
       font-weight: bold;
@@ -14703,6 +14705,24 @@ main article {
       background-color: #fff;
       font-size: 0.9375rem;
       line-height: 0.9375rem; }
+    main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-tags-search,
+    main article .form__column .multiselect .multiselect-wrapper .multiselect-tags-search {
+      border: none;
+      margin: 0;
+      padding: 0; }
+    main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-tags,
+    main article .form__column .multiselect .multiselect-wrapper .multiselect-tags {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      padding-right: 1rem; }
+    main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-tag,
+    main article .form__column .multiselect .multiselect-wrapper .multiselect-tag {
+      white-space: normal;
+      font-weight: 400;
+      font-size: 0.9375rem;
+      line-height: 1.25rem;
+      padding: 0.5rem 0 0.25rem 0.5rem;
+      background-color: #152935; }
   main article .alpha__modal .form__buttons,
   main article .form__buttons {
     display: flex;
@@ -14756,6 +14776,7 @@ main article {
     background-color: #152935;
     color: #fff;
     border: 2px #152935 solid;
+    font-family: 'Ofelia Display', 'ofelia-display', sans-serif;
     font-size: 1.125rem;
     line-height: 1.125rem;
     font-weight: 700;
@@ -16432,7 +16453,9 @@ h6 {
   .alpha__modal-body {
     padding: 1rem;
     border-left: 1px #aaa solid;
-    margin-left: 1.25rem; }
+    margin-left: 1.25rem;
+    max-height: calc(100vh - (100px + 2rem + 2rem + 52px + 73px));
+    overflow-y: auto; }
     .alpha__modal-body fieldset {
       border: 1px #aaa solid;
       padding: 1rem;
@@ -16479,7 +16502,8 @@ h6 {
       font-size: 1.125rem;
       line-height: 1.125rem;
       letter-spacing: -0.5px;
-      cursor: pointer; }
+      cursor: pointer;
+      font-family: 'Ofelia Display', 'ofelia-display', sans-serif; }
       .alpha__modal-footer button:hover, .alpha__modal-footer button:active, .alpha__modal-footer button:focus {
         background-color: #01A7C2; }
       .alpha__modal-footer button[class*="btn-small"] {
@@ -16937,7 +16961,8 @@ h6 {
     width: 100%; }
     .income-solver .form__row .form__column > label {
       font-size: 0.9375rem;
-      line-height: 0.9375rem; }
+      line-height: 0.9375rem;
+      letter-spacing: -0.5px; }
     .income-solver .form__row .form__column input[type="text"],
     .income-solver .form__row .form__column input[type="email"],
     .income-solver .form__row .form__column input[type="password"],
@@ -16947,22 +16972,60 @@ h6 {
     .income-solver .form__row .form__column textarea {
       max-width: 100%;
       width: 100%;
-      padding: 0.75rem 0.5rem 0.5rem 0.5rem;
+      padding: 0.75rem 0.5rem 0.25rem 0.5rem;
       border: 1px #aaa solid; }
+      .income-solver .form__row .form__column input[type="text"].money,
+      .income-solver .form__row .form__column input[type="email"].money,
+      .income-solver .form__row .form__column input[type="password"].money,
+      .income-solver .form__row .form__column input[type="number"].money,
+      .income-solver .form__row .form__column input[type="date"].money,
+      .income-solver .form__row .form__column select.money,
+      .income-solver .form__row .form__column textarea.money {
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        font-family: 'Ofelia Display', 'ofelia-display', sans-serif;
+        font-weight: bold;
+        letter-spacing: -1px; }
 
 .income-solver__content {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap; }
+  flex-wrap: nowrap;
+  position: relative; }
 
 .income-solver__parameters {
-  width: 15%;
-  max-width: 15%; }
+  padding-left: 52px;
+  width: calc(15% + 52px);
+  max-width: calc(15% + 52px); }
+  .income-solver__parameters-toggle {
+    display: none; }
+    .income-solver__parameters-toggle:checked + .income-solver__parameters-toggler + .income-solver__parameters {
+      width: 0;
+      position: relative;
+      overflow: hidden; }
+  .income-solver__parameters-toggler {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    background-color: #F4562A;
+    z-index: 100;
+    margin-top: 1px;
+    font-family: 'Font Awesome 6 Pro', sans-serif;
+    font-size: 2rem;
+    line-height: 1rem;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer; }
 
 .income-solver__results {
-  width: 85%;
-  min-width: 85%;
-  padding: 0 2rem; }
+  width: 100%;
+  min-width: 0;
+  padding: 0 2rem;
+  transition: padding 0.25s ease-out; }
   .income-solver__results-controls {
     position: sticky;
     width: 100%;

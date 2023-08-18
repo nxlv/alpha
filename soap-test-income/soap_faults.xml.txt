@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+	<s:Body>
+		<s:Fault>
+			<faultcode>s:Client</faultcode>
+			<faultstring>Invalid request</faultstring>
+			<detail />
+		</s:Fault>
+	</s:Body>
+</s:Envelope>
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+	<s:Body>
+		<s:Fault>
+			<faultcode>s:Client</faultcode>
+			<faultstring>Invalid IP Address</faultstring>
+			<detail />
+		</s:Fault>
+	</s:Body>
+</s:Envelope>
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+	<s:Body>
+		<s:Fault>
+			<faultcode>s:Client</faultcode>
+			<faultstring>Invalid WS-Security Header</faultstring>
+			<detail />
+		</s:Fault>
+	</s:Body>
+</s:Envelope>
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+	<s:Body>
+		<s:Fault>
+			<faultcode>s:Server</faultcode>
+			<faultstring>Service is currently not available</faultstring>
+			<detail />
+		</s:Fault>
+	</s:Body>
+</s:Envelope>
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+	<s:Body>
+		<s:Fault>
+			<faultcode>s:Server</faultcode>
+			<faultstring>An unexpected error has occurred</faultstring>
+			<detail />
+		</s:Fault>
+	</s:Body>
+</s:Envelope>

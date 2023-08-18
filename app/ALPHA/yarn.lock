@@ -188,6 +188,11 @@
   "resolved" "https://registry.npmjs.org/@vue/shared/-/shared-3.2.45.tgz"
   "version" "3.2.45"
 
+"@vueform/multiselect@^2.6.2":
+  "integrity" "sha512-4BFvXyzyi0Pqi/lsYdGwONsQy+ypiVzuQbmoDUlttTxuoujFtf9AdeHi1ZhfIorXG9BiysK1HcQSfYB6USgwfQ=="
+  "resolved" "https://registry.npmjs.org/@vueform/multiselect/-/multiselect-2.6.2.tgz"
+  "version" "2.6.2"
+
 "acorn-jsx@^5.3.2":
   "integrity" "sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ=="
   "resolved" "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz"
@@ -1070,6 +1075,11 @@
   "integrity" "sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg=="
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-9.0.0.tgz"
   "version" "9.0.0"
+
+"v-money@^0.8.1":
+  "integrity" "sha512-raz87AP5F2YEpv1GAocI3SC/y9af1+TQeZQIhAK5UNovho6dnh6RQBa5UG8ZNC+BPLpUh5VECi7EWTjr4+4s1g=="
+  "resolved" "https://registry.npmjs.org/v-money/-/v-money-0.8.1.tgz"
+  "version" "0.8.1"
 
 "vite@^3.0.0", "vite@^3.1.8":
   "integrity" "sha512-Z2X6SRAffOUYTa+sLy3NQ7nlHFU100xwanq1WDwqaiFiCe+25zdxP1TfCS5ojPV2oDDcXudHIoPnI1Z/66B7Yw=="

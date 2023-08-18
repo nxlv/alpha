@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anty_ds_custom version="1.1"
+  xmlns="http://www.cannex.com/anty_ds"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.cannex.com/anty_ds anty_ds_custom-1.1.xsd ">
+  <canx_info>
+    <info key="DIST-CODE">CX02</info>
+    <info key="DIST-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="REQUEST-NO">BULGSX</info>
+    <info key="RUN-DATE">2022-09-23T12:07:07</info>
+    <info key="PRODUCT-TYPE">FIAX</info>
+    <info key="CUSTOMER">20778</info>
+    <info key="CUSTOMER-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="LOGON-ID"></info>
+  </canx_info>
+  <product_type cd="FIAX">Fixed Indexed Annuities</product_type>
+  <custom_info_instance custom_info_instance_id="05738885" reference_id="0002244615" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05738886" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342840" datatype="percentage" key="RATE-BAILOUT" text_id="">1.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05738935" reference_id="0002244619" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05738960" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342841" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05740317" reference_id="0002244621" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05740324" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342842" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05742821" reference_id="0002244623" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05743105" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">30.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342843" datatype="percentage" key="RATE-BAILOUT" text_id="">30.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05744786" reference_id="0002244625" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05744811" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342844" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05745388" reference_id="0002244627" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05745389" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342845" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05745390" reference_id="0002244629" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05745391" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342846" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05745392" reference_id="0002244631" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05745393" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342847" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05745394" reference_id="0002244617" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05745395" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.5000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342848" datatype="percentage" key="RATE-BAILOUT" text_id="">1.5000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05745404" reference_id="0002244653" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05745405" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342853" datatype="percentage" key="RATE-BAILOUT" text_id="">1.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05747625" reference_id="0002244655" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05747626" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342854" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05747627" reference_id="0002244657" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05747628" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342855" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05747629" reference_id="0002244659" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05747630" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">30.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342856" datatype="percentage" key="RATE-BAILOUT" text_id="">30.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05747631" reference_id="0002244661" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05747632" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342857" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05748413" reference_id="0002244663" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05748438" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342858" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05749135" reference_id="0002244665" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05749142" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342859" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05750724" reference_id="0002244667" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05750732" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342860" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05752967" reference_id="0002244669" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05752980" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.5000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342861" datatype="percentage" key="RATE-BAILOUT" text_id="">1.5000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755187" reference_id="0002244691" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755188" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342866" datatype="percentage" key="RATE-BAILOUT" text_id="">1.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755189" reference_id="0002244693" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755190" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342867" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755191" reference_id="0002244695" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755192" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342868" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755193" reference_id="0002244697" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755194" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">30.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342869" datatype="percentage" key="RATE-BAILOUT" text_id="">30.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755195" reference_id="0002244699" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755196" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342870" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755197" reference_id="0002244701" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755198" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342871" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755199" reference_id="0002244703" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755200" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342872" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755201" reference_id="0002244705" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755202" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342873" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755203" reference_id="0002244707" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755204" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.5000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342874" datatype="percentage" key="RATE-BAILOUT" text_id="">1.5000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755235" reference_id="0002244634" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755236" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342875" datatype="percentage" key="RATE-BAILOUT" text_id="">1.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05755523" reference_id="0002244636" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05755568" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342876" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756123" reference_id="0002244638" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756136" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342877" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756287" reference_id="0002244640" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756288" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">30.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342878" datatype="percentage" key="RATE-BAILOUT" text_id="">30.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756289" reference_id="0002244642" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756290" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342879" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756291" reference_id="0002244644" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756292" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342880" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756293" reference_id="0002244646" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756294" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342881" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756295" reference_id="0002244648" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756296" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342882" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756297" reference_id="0002244650" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756298" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.5000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342883" datatype="percentage" key="RATE-BAILOUT" text_id="">1.5000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05756583" reference_id="0002244672" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05756592" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342888" datatype="percentage" key="RATE-BAILOUT" text_id="">1.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757047" reference_id="0002244674" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757054" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342889" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757535" reference_id="0002244676" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757536" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342890" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757537" reference_id="0002244678" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757538" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">30.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342891" datatype="percentage" key="RATE-BAILOUT" text_id="">30.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757539" reference_id="0002244680" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757540" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342892" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757541" reference_id="0002244682" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757542" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342893" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757543" reference_id="0002244684" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757544" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342894" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757545" reference_id="0002244686" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757546" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342895" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05757547" reference_id="0002244688" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05757548" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.5000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342896" datatype="percentage" key="RATE-BAILOUT" text_id="">1.5000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774580" reference_id="0002244710" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774581" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342901" datatype="percentage" key="RATE-BAILOUT" text_id="">1.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774582" reference_id="0002244712" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774583" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342902" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774584" reference_id="0002244714" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774585" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342903" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774586" reference_id="0002244716" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774587" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">30.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342904" datatype="percentage" key="RATE-BAILOUT" text_id="">30.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774588" reference_id="0002244718" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774589" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342905" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774590" reference_id="0002244720" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774591" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">2.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342906" datatype="percentage" key="RATE-BAILOUT" text_id="">2.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774592" reference_id="0002244722" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774593" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342907" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774594" reference_id="0002244724" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774595" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">9.0000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342908" datatype="percentage" key="RATE-BAILOUT" text_id="">9.0000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+  <custom_info_instance custom_info_instance_id="05774596" reference_id="0002244726" reference_name="strategy_rate_instance_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="05774597" rule_id="" text_id="">
+      <custom_info_data>
+        <canx_info>
+          <info key="PARM-LEVEL">RATES-FIA</info>
+          <info key="PARM-NAME">RATE-BAILOUT</info>
+          <info key="PARM-LABEL"><![CDATA[Bailout Rate]]></info>
+          <info key="PARM-METHOD">01</info>
+          <info key="PARM-TYPE">P</info>
+          <info key="PARM-SIZE-1">3</info>
+          <info key="PARM-SIZE-2">4</info>
+          <info key="AIU-FLAG">Y</info>
+          <info key="PUBLISH-FLAGS-1">Y</info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE">1.5000</info>
+        </canx_info>
+        <custom_data custom_data_id="0002342909" datatype="percentage" key="RATE-BAILOUT" text_id="">1.5000</custom_data>
+        <custom_data_label><![CDATA[Bailout Rate]]></custom_data_label>
+      </custom_info_data>
+    </custom_info_data_set>
+  </custom_info_instance>
+</anty_ds_custom>

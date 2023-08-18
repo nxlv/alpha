@@ -11,6 +11,8 @@
     import Infobox_Carrier from '@/components/products/infoboxes/Carrier.vue';
 
     import axios from 'axios';
+    import { VMoney } from 'v-money';
+    import Multiselect from '@vueform/multiselect';
 
     export default {
         components: {
@@ -20,7 +22,9 @@
             Infobox_DeathBenefits,
             Infobox_Illustration,
             Infobox_Strategy,
-            Infobox_Carrier
+            Infobox_Carrier,
+
+            Multiselect
         },
         methods: {
             async fetch_quote() {
@@ -148,6 +152,16 @@
                 return [];
             },
 
+            get_carriers() {
+                const sets = useSetsStore();
+
+                if ( sets.sets.carriers ) {
+                    return sets.sets.carriers;
+                }
+
+                return [];
+            },
+
             close_details() {
                 this.selections.product_id = null;
                 this.selections.product = null;
@@ -193,27 +207,48 @@
                     deferral_selected: 10,
                     method: 'premium',
                     state: 'FL',
-                    index: null,
-                    strategy_type: 'PP',
-                    strategy_configuration: '03',
-                    calculation_frequency: 'A',
-                    crediting_frequency: 'A',
+                    index: [],
+                    carrier: [],
+                    strategy_type: [],
+                    strategy_configuration: [],
+                    calculation_frequency: [],
+                    crediting_frequency: [],
                     participation_rate: '100',
                     guarantee_period_years: 1,
                     guarantee_period_months: 0
+                },
+                options: {
+                    money: {
+                        decimal: '.',
+                        thousands: ',',
+                        prefix: '$',
+                        suffix: '',
+                        precision: 0,
+                        masked: false
+                    }
                 }
             };
+        },
+        directives: {
+            money: VMoney
         }
     };
 </script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
+
 <template>
     <section class="income-solver">
         <div class="income-solver__content">
-            <aside class="income-solver__parameters form">
-                <fieldset>
-                    <legend>Search Parameters</legend>
+            <input type="checkbox" id="income-solver__parameters-toggle" class="income-solver__parameters-toggle" value="1">
+            <label for="income-solver__parameters-toggle" class="income-solver__parameters-toggler">
+                <i class="fal fa-filter-list" aria-hidden="true"></i>
+            </label>
 
-                    <!--
+            <aside class="income-solver__parameters form">
+                <fieldset data-filter-type="income">
+                    <legend>Income Method</legend>
+
                     <div class="form__row">
                         <div class="form__column">
                             <label>Solve for...</label>
@@ -229,135 +264,118 @@
                             </div>
                         </div>
                     </div>
-                    -->
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <button type="submit" class="form__action" v-on:click="fetch_quote">Fetch Quotes</button>
-                        </div>
-                    </div>
 
                     <div class="form__row">
                         <div class="form__column" v-if="parameters.method === 'premium'">
-                            <label>Premium</label>
-                            <input type="text" id="parameters__premium" name="premium" class="money" placeholder="i.e., $100,000" v-model="parameters.premium">
+                            <label>Desired Premium</label>
+                            <input type="text" id="parameters__premium" name="premium" class="money" placeholder="i.e., $100,000" v-model.lazy="parameters.premium" v-money="options.money">
                         </div>
                         <div class="form__column" v-if="parameters.method === 'income'">
-                            <label>Desired Income</label>
-                            <input type="text" id="parameters__premium" name="income" class="money" placeholder="i.e., $1,000.00" v-model="parameters.income">
+                            <label>Desired Annual Income</label>
+                            <input type="text" id="parameters__premium" name="income" class="money" placeholder="i.e., $1,000.00" v-model.lazy="parameters.income" v-money="options.money">
                         </div>
                     </div>
+                </fieldset>
 
-                    <!--
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="parameters__state">Owner State</label>
-
-                            <select id="parameters__state" name="state" v-model="parameters.state">
-                                <option value="FL">(FL) Florida</option>
-                            </select>
-                        </div>
-                    </div>
+                <fieldset>
+                    <legend>Filtering Options</legend>
 
                     <div class="form__row">
                         <div class="form__column">
-                            <label for="indexes">Index(es)</label>
-                            <select name="indexes" id="indexes" v-model="parameters.index">
-                                <option value="">Any/All</option>
-                                <option v-for="( index, index_counter ) in get_indexes()" v-bind:value="index.index_id">{{ index.index_name }}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="strategy_type">Strategy Type</label>
-                            <select name="strategy_type" id="strategy_type" v-model="parameters.strategy_type">
-                                <option value="AL">Allocated</option>
-                                <option value="AV">Average</option>
-                                <option value="FX">Fixed</option>
-                                <option value="IT">Inverse Performance Triggered</option>
-                                <option value="LA">Layered</option>
-                                <option value="PP">Point-to-Point</option>
-                                <option value="PT">Performance Triggered</option>
-                                <option value="SU">Sum</option>
-                            </select>
+                            <label for="indexes">Index</label>
+                            <multiselect v-model="parameters.index"
+                                         mode="tags"
+                                         label="label"
+                                         track-by="label"
+                                         :options="this.$globalUtils.get_set_as_kvp( 'indexes' )"
+                                         :close-on-select="false"
+                                         :searchable="true"
+                                         :create-option="false">
+                            </multiselect>
                         </div>
                     </div>
 
                     <div class="form__row">
                         <div class="form__column">
-                            <label for="strategy_configuration">Strategy Configuration</label>
-                            <select name="strategy_configuration" id="strategy_configuration" v-model="parameters.strategy_configuration">
-                                <option value="01">Fixed</option>
-                                <option value="02">Declared + Participation</option>
-                                <option value="03">Cap + Participation</option>
-                                <option value="04">Spread + Participation</option>
-                                <option value="05">Participation Only</option>
-                                <option value="08">Replacement + Participation</option>
-                                <option value="99">Parent or Sub-strategy Only</option>
-                            </select>
+                            <label for="indexes">Carrier</label>
+                            <multiselect v-model="parameters.carrier"
+                                         mode="tags"
+                                         label="label"
+                                         track-by="label"
+                                         :options="this.$globalUtils.get_set_as_kvp( 'carriers' )"
+                                         :close-on-select="false"
+                                         :searchable="true"
+                                         :create-option="false">
+                            </multiselect>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <div class="form__column">
+                            <label for="strategy_configuration">Strategy</label>
+                            <multiselect v-model="parameters.strategy_configuration"
+                                         mode="tags"
+                                         label="label"
+                                         track-by="label"
+                                         :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_configuration' )"
+                                         :close-on-select="false"
+                                         :searchable="true"
+                                         :create-option="false">
+                            </multiselect>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <div class="form__column">
+                            <label for="strategy_type">Type</label>
+                            <multiselect v-model="parameters.strategy_type"
+                                         mode="tags"
+                                         label="label"
+                                         track-by="label"
+                                         :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_type' )"
+                                         :close-on-select="false"
+                                         :searchable="true"
+                                         :create-option="false">
+                            </multiselect>
                         </div>
                     </div>
 
                     <div class="form__row">
                         <div class="form__column">
                             <label for="calculation_frequency">Calculation Frequency</label>
-                            <select name="calculation_frequency" id="calculation_frequency" v-model="parameters.calculation_frequency">
-                                <option value="A">Annually</option>
-                                <option value="M">Monthly</option>
-                                <option value="D">Daily</option>
-                                <option value="2Y">2-year</option>
-                                <option value="3Y">3-year</option>
-                                <option value="5Y">5-year</option>
-                                <option value="7Y">7-year</option>
-                                <option value="10">10-year</option>
-                            </select>
+                            <multiselect v-model="parameters.calculation_frequency"
+                                         mode="tags"
+                                         label="label"
+                                         track-by="label"
+                                         :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
+                                         :close-on-select="false"
+                                         :searchable="true"
+                                         :create-option="false">
+                            </multiselect>
                         </div>
                     </div>
 
                     <div class="form__row">
                         <div class="form__column">
                             <label for="crediting_frequency">Crediting Frequency</label>
-                            <select name="crediting_frequency" id="crediting_frequency" v-model="parameters.crediting_frequency">
-                                <option value="A">Annually</option>
-                                <option value="M">Monthly</option>
-                                <option value="D">Daily</option>
-                                <option value="2Y">2-year</option>
-                                <option value="3Y">3-year</option>
-                                <option value="5Y">5-year</option>
-                                <option value="7Y">7-year</option>
-                                <option value="10">10-year</option>
-                            </select>
+                            <multiselect v-model="parameters.crediting_frequency"
+                                         mode="tags"
+                                         label="label"
+                                         track-by="label"
+                                         :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
+                                         :close-on-select="false"
+                                         :searchable="true"
+                                         :create-option="false">
+                            </multiselect>
                         </div>
                     </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="participation_rate">Participation Rate (%)</label>
-                            <input type="number" name="participation_rate" id="participation_rate" v-model="parameters.participation_rate">
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="guarantee_period_years">Guarantee Years</label>
-                            <input type="number" name="guarantee_period_years" id="guarantee_period_years" v-model="parameters.guarantee_period_years">
-                        </div>
-
-                        <div class="form__column">
-                            <label for="guarantee_period_months">Guarantee Months</label>
-                            <input type="number" name="guarantee_period_months" id="guarantee_period_months" v-model="parameters.guarantee_period_months">
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <button type="submit" class="form__action" v-on:click="fetch_quote">Fetch Quotes</button>
-                        </div>
-                    </div>
-                    -->
                 </fieldset>
+
+                <div class="form__row">
+                    <div class="form__column">
+                        <button type="submit" class="form__action" v-on:click="fetch_quote">Fetch Quotes</button>
+                    </div>
+                </div>
             </aside>
 
             <div class="income-solver__results">
@@ -389,56 +407,6 @@
                     </div>
                 </div>
 
-                <!--
-                <fieldset>
-                    <legend>Filter Parameters</legend>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label>Carrier or Product Name</label>
-                            <input type="text" id="filtering__name" name="name" value="" placeholder="i.e., Allianz">
-                        </div>
-
-                        <div class="form__column">
-                            <label>Rating (A.M. Best)</label>
-                            <select name="filtering__rating">
-                                <option value="A">A</option>
-                                <option value="A+">A+</option>
-                                <option value="A++">A++</option>
-                            </select>
-                        </div>
-
-                        <div class="form__column">
-                            <label>Premium Bonus</label>
-                            <select name="filtering__premium-bonus">
-                                <option value="true">Has Premium Bonus</option>
-                                <option value="false">No Premium Bonus</option>
-                                <option value="5%">&gt;= 5%</option>
-                                <option value="10%">&gt;= 10%</option>
-                            </select>
-                        </div>
-
-                        <div class="form__column">
-                            <label>Income Base Bonus</label>
-                            <select name="filtering__base-bonus">
-                                <option value="true">Has Income Base Bonus</option>
-                                <option value="false">No Income Base Bonus</option>
-                                <option value="5%">&gt;= 5%</option>
-                                <option value="10%">&gt;= 10%</option>
-                            </select>
-                        </div>
-
-                        <div class="form__column">
-                            <label>Additional Premium</label>
-                            <select name="filtering__premium-additional">
-                                <option value="single">Single Premium</option>
-                                <option value="life">Product Life</option>
-                                <option value="first">First Year (or Less)</option>
-                            </select>
-                        </div>
-                    </div>
-                </fieldset>
-                -->
                 <div class="income-solver__results-controls" v-if="results">
                     <div class="form__row">
                         <div class="form__column form__column--full">

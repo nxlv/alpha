@@ -58,6 +58,8 @@
     padding: 1rem;
     border-left: 1px $color-grey-mid solid;
     margin-left: 1.25rem;
+    max-height: calc(100vh - (#{$nav-secondary-height-xl} + 2rem + 2rem + 52px + 73px));
+    overflow-y: auto;
 
     fieldset {
       border: 1px $color-grey-mid solid;
@@ -124,6 +126,7 @@
       line-height: 1.125rem;
       letter-spacing: -0.5px;
       cursor: pointer;
+      font-family: 'Ofelia Display', 'ofelia-display', sans-serif;
 
       &:hover,
       &:active,

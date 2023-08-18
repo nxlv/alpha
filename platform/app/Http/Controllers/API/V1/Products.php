@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductsProfile;
 use App\Models\ProductsInstance;
+use App\Models\IncomeBenefit;
 
 class Products extends Controller {
     public function get_all() {
@@ -47,6 +48,33 @@ class Products extends Controller {
                 'instances.strategies.rates.substrategies.index',
                 'instances.strategies.rates.substrategies.rates'
                 */
+            )->get()
+        );
+    }
+
+    public function get_all_income_benefits() {
+        return response()->json(
+            IncomeBenefit::with(
+                'meta',
+                'rider_fee_current',
+                'rider_fee_minimum',
+                'rider_fee_maximum',
+                'premium_initial',
+                'premium_max',
+                'premium_bonus',
+                'premium_multiplier',
+                'interest_crediting',
+                'interest_bonus_crediting',
+                'interest_multiplier_crediting',
+                'withdrawal_tiers',
+                'withdrawal_tiers_ruin',
+                'withdrawal_deferral_ages',
+                'withdrawal_deferral_ages_ruin',
+                'income_start_age',
+                'persistency_credit',
+                'roll_up',
+                'step_up',
+                'states'
             )->get()
         );
     }

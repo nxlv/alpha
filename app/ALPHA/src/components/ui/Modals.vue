@@ -3,11 +3,13 @@
     import { useCommonStore } from '@/stores/common';
 
     import ClientManager from '@/components/clients/Manager.vue';
+    import InventoryManager from '@/components/inventory/Manager.vue';
 
     export default {
         components: {
             RouterLink,
-            ClientManager
+            ClientManager,
+            InventoryManager
         },
         methods: {
             modal_visible() {
@@ -44,6 +46,6 @@
 <template>
     <section class="modals" v-if="is_any_modal_visible()">
         <ClientManager v-if="is_modal_visible( 'client_manager' )" />
-        <!-- more here -->
+        <InventoryManager v-if="is_modal_visible( 'inventory_manager' )" />
     </section>
 </template>

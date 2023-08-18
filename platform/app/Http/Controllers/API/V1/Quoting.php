@@ -44,6 +44,7 @@ class Quoting extends Controller {
          */
         $products = ProductHelper::identify_products(
             $request->get( 'index' ),
+            $request->get( 'carrier' ),
             $request->get( 'strategy_type' ),
             $request->get( 'strategy_configuration' ),
             $request->get( 'calculation_frequency' ),

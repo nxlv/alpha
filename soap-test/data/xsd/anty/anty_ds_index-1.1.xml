@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anty_ds_indexes version="1.1"
+  xmlns="http://www.cannex.com/anty_ds"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.cannex.com/anty_ds anty_ds_index-1.1.xsd">
+  <canx_info>
+    <info key="DIST-CODE">CX02</info>
+    <info key="DIST-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="REQUEST-NO">BULGSX</info>
+    <info key="RUN-DATE">2022-09-23T12:07:07</info>
+    <info key="PRODUCT-TYPE">FIAX</info>
+    <info key="CUSTOMER">20778</info>
+    <info key="CUSTOMER-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="LOGON-ID"></info>
+  </canx_info>
+  <version_id>0001830273</version_id>
+  <index index_id="A0000009">
+    <index_name><![CDATA[BlackRock Diversa]]></index_name>
+    <universal_ticker>IBLDV7E</universal_ticker>
+    <live_date>2015-10-14</live_date>
+    <oldest_date>2015-10-30</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000000B">
+    <index_name><![CDATA[BlackRock iBLD Claria]]></index_name>
+    <universal_ticker>IBLDCLRA</universal_ticker>
+    <live_date>2018-01-19</live_date>
+    <oldest_date>2018-01-31</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000000C">
+    <index_name><![CDATA[BlackRock iBLD Claria Excess Return]]></index_name>
+    <universal_ticker>IBLDCLRE</universal_ticker>
+    <live_date>2018-09-10</live_date>
+    <oldest_date>2018-09-28</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000000E">
+    <index_name><![CDATA[Bloomberg US Dynamic Balance]]></index_name>
+    <universal_ticker>BXIIUDBI</universal_ticker>
+    <live_date>1989-03-01</live_date>
+    <oldest_date>1989-03-31</oldest_date>
+    <most_recent_date>2021-12-31</most_recent_date>
+  </index>
+  <index index_id="A000000F">
+    <index_name><![CDATA[Bloomberg US Dynamic Balance II]]></index_name>
+    <universal_ticker>BXIIUDB2</universal_ticker>
+    <live_date>2004-05-31</live_date>
+    <oldest_date>2004-06-30</oldest_date>
+    <most_recent_date>2021-12-31</most_recent_date>
+  </index>
+  <index index_id="A000000G">
+    <index_name><![CDATA[Bloomberg US Dynamic Balance II Excess Return]]></index_name>
+    <universal_ticker>BTSIDB2E</universal_ticker>
+    <live_date>2004-05-31</live_date>
+    <oldest_date>2004-06-30</oldest_date>
+    <most_recent_date>2021-12-31</most_recent_date>
+  </index>
+  <index index_id="A000000V">
+    <index_name><![CDATA[Franklin US Index]]></index_name>
+    <universal_ticker>FTUSLX</universal_ticker>
+    <live_date>2017-11-13</live_date>
+    <oldest_date>2001-01-31</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A0000014">
+    <index_name><![CDATA[iShares US Real Estate ETF]]></index_name>
+    <universal_ticker>IYR</universal_ticker>
+    <live_date>2000-06-12</live_date>
+    <oldest_date>2000-06-30</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000001L">
+    <index_name><![CDATA[MSCI EAFE]]></index_name>
+    <universal_ticker>EAFE</universal_ticker>
+    <live_date>1986-03-31</live_date>
+    <oldest_date>1980-01-31</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000001Q">
+    <index_name><![CDATA[PIMCO Balanced Index]]></index_name>
+    <universal_ticker>PIMBAL</universal_ticker>
+    <live_date>2017-11-30</live_date>
+    <oldest_date>2000-12-29</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000001S">
+    <index_name><![CDATA[PIMCO Tactical Balanced Excess Return]]></index_name>
+    <universal_ticker>DBTBIER</universal_ticker>
+    <live_date>2018-08-02</live_date>
+    <oldest_date>2004-04-30</oldest_date>
+    <most_recent_date>2021-12-31</most_recent_date>
+  </index>
+  <index index_id="A000001T">
+    <index_name><![CDATA[PIMCO Tactical Balanced Index]]></index_name>
+    <universal_ticker>DBTBI</universal_ticker>
+    <live_date>2015-12-07</live_date>
+    <oldest_date>2004-04-30</oldest_date>
+    <most_recent_date>2021-12-31</most_recent_date>
+  </index>
+  <index index_id="A000001V">
+    <index_name><![CDATA[Russell 2000]]></index_name>
+    <universal_ticker>RUT</universal_ticker>
+    <live_date>1984-01-01</live_date>
+    <oldest_date>1987-06-30</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000001X">
+    <index_name><![CDATA[S&P 500]]></index_name>
+    <universal_ticker>SPX</universal_ticker>
+    <live_date>1957-03-04</live_date>
+    <oldest_date>1980-01-31</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000001Y">
+    <index_name><![CDATA[S&P 500 Average Daily Risk Control 10% USD Price Return]]></index_name>
+    <universal_ticker>SPXAV10P</universal_ticker>
+    <live_date>2013-04-04</live_date>
+    <oldest_date>1985-12-31</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000002D">
+    <index_name><![CDATA[S&P U.S. Retiree Spending]]></index_name>
+    <universal_ticker>SPRETIRE</universal_ticker>
+    <live_date>2016-09-26</live_date>
+    <oldest_date>1995-07-31</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000002G">
+    <index_name><![CDATA[SPDR Gold Shares]]></index_name>
+    <universal_ticker>GLD</universal_ticker>
+    <live_date>2004-11-18</live_date>
+    <oldest_date>2004-11-30</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000003T">
+    <index_name><![CDATA[S&P 500 Futures Daily Risk Control 5% Index]]></index_name>
+    <universal_ticker>SPXFR5UT</universal_ticker>
+    <oldest_date>2009-09-30</oldest_date>
+    <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+</anty_ds_indexes>

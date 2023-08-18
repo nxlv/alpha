@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com" xmlns:cnx="http://www.cannex.com"
+	elementFormDefault="qualified">
+
+	<xsd:annotation>
+		<xsd:documentation>
+		1. If action="GET_TXLIFE_ANTU_RESPONSE" or "REQUOTE_TXLIFE_ANTU" and a transaction_id value 
+		is provided by the caller then it will be mapped back to the TransRefGUID element in 
+		the TXLIFE response.		
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:simpleType name="action_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="GET_ANTU_RESPONSE" />
+			<xsd:enumeration value="GET_ANTU_ILLUSTRATION_PDF" />
+			<xsd:enumeration value="GET_TXLIFE_ANTU_RESPONSE" />
+			<xsd:enumeration value="REQUOTE_ANTU" />
+			<xsd:enumeration value="REQUOTE_TXLIFE_ANTU" />
+			<xsd:enumeration value="SET_ANTU_BUYNOW" />
+			<xsd:enumeration value="SET_ANTU_SALE_COMPLETE" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="req_iid_antu_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:action_type" name="action" />
+			<xsd:element type="xsd:string" name="logon_id" />
+			<xsd:element type="xsd:string" name="user_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="app" default="CANX" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="illustration_id" />
+			<xsd:element type="xsd:string" name="transaction_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="premium_purchase_date"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="first_payment_date"
+				minOccurs="0" />
+			<xsd:element type="cnx:yn_type" name="is_test" default="N" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.0" />
+	</xsd:complexType>
+
+	<xsd:simpleType name="yn_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[YN]" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

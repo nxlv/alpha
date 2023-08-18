@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_ds_common_types-1.1.xsd" />
+
+	<xsd:complexType name="anty_ds_prd_inst_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />			
+			<xsd:element type="cnx:cd_name_type" name="product_type" />
+			<xsd:element type="cnx:prd_inst_type" name="product_instance"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xsd:element type="cnx:info_list_type" name="custom_info"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.1" />
+	</xsd:complexType>
+
+	<xsd:complexType name="prd_inst_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />
+			<xsd:element type="xsd:int" name="group_no" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_profile_id" 
+				minOccurs="0" />
+			<xsd:element type="cnx:rate_effective_date_type" name="rate_effective_date"  
+				minOccurs="0" />
+			<xsd:element type="cnx:name_instance_list_instance_text_type" name="product_name_instance" 
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="open_date" 
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="closed_date" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="va_fixed_rate_type" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cdsc_list_instance_text_type" name="cdsc_schedule_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:fixed_rate_details_instance_type" name="fixed_rate_details_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:strategy_details_instance_type" name="strategy_details_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:info_list_type" name="custom_info"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="product_instance_id" use="required" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="fixed_rate_details_instance_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:cd_name_type" name="calculation_frequency"  
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="crediting_frequency"  
+				minOccurs="0" />
+			<xsd:element type="cnx:period_type" name="guarantee_period"  
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="guarantee_status"  
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="open_date" 
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="closed_date" 
+				minOccurs="0" />
+			<xsd:element type="cnx:fixed_rate_instance_type" name="fixed_rate_instance"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="instance_id" use="optional" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="fixed_rate_instance_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:double_range_type" name="premium_range" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_fixed_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_fixed_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_instance_text_type" name="minimum_gmir_fixed_rate_instance" 
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="xsd:double" name="current_increase_fixed_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_instance_text_type" name="minimum_increase_fixed_rate_instance" 
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="instance_id" use="optional" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="min_max_rate_instance_text_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:tier_rate_list_type" name="minimum_gmir_fixed_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_type" name="minimum_increase_fixed_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_type" name="minimum_declared_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_cd_name_list_type" name="minimum_cap_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_type" name="maximum_spread_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_type" name="minimum_participation_rate" 
+				minOccurs="0" />
+				<xsd:element type="cnx:tier_rate_list_type" name="maximum_protection_floor_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_type" name="minimum_protection_buffer_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:tier_rate_list_type" name="maximum_protection_downside_participation_rate" 
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="instance_id" use="optional" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+		<xsd:attribute type="xsd:string" name="text_id" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="name_instance_text_type">
+	   <xsd:simpleContent>
+	      <xsd:extension base="xsd:string">
+			<xsd:attribute type="xsd:string" name="instance_id" use="optional" />
+			<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+	      	<xsd:attribute type="xsd:string" name="text_id" use="optional" />
+	      </xsd:extension>
+	   </xsd:simpleContent>
+	</xsd:complexType>
+	  
+	<xsd:complexType name="rate_effective_date_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:dateTime" name="current_rates_from"  
+				minOccurs="0" />
+			<xsd:element type="xsd:dateTime" name="current_rates_to"  
+				minOccurs="0" />
+			<xsd:element type="xsd:dateTime" name="announced_rates_from" 
+				minOccurs="0" />
+			<xsd:element type="xsd:dateTime" name="announced_rates_to" 
+				minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="strategy_details_instance_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:cd_name_type" name="segment_type" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="segment_name" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="strategy_type" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="strategy_configuration" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="index_id" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="guarantee_status" 
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="open_date" 
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="closed_date" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="strategy_name" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="protection_type" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="protection_name" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="calculation_frequency" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="crediting_frequency" 
+				minOccurs="0" />
+			<xsd:element type="cnx:period_type" name="guarantee_period" 
+				minOccurs="0" />
+			<xsd:element type="cnx:fees_instance_text_type" name="current_strategy_fees_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:fees_instance_text_type" name="minimum_strategy_fees_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:fees_instance_text_type" name="maximum_strategy_fees_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:strategy_range_type" name="strategy_range" 
+				minOccurs="0" />
+			<xsd:element type="cnx:strategy_rate_instance_type" name="strategy_rate_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="instance_id" use="optional" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+		<xsd:attribute type="xsd:string" name="text_id" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="strategy_range_type">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element type="cnx:double_range_type" name="percent_range" />
+				<xsd:element type="cnx:period_range_type" name="period_range" />
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="min_indicator" use="optional" />
+		<xsd:attribute type="xsd:string" name="max_indicator" use="optional" />
+	</xsd:complexType>
+				
+	<xsd:complexType name="strategy_rate_instance_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:double_range_type" name="premium_range" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_fixed_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_increase_fixed_rate" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_declared_rate"  
+				minOccurs="0" />
+			<xsd:element type="cnx:rate_cd_name_type" name="current_cap_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_spread_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_participation_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_protection_buffer_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_protection_floor_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="current_protection_downside_participation_rate"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_fixed_rate" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_declared_rate" 
+				minOccurs="0" />
+			<xsd:element type="cnx:rate_cd_name_type" name="announced_cap_rate" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_spread_rate" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_participation_rate" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_protection_buffer_rate" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_protection_floor_rate" 
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="announced_protection_downside_participation_rate"  
+				minOccurs="0" />
+			<xsd:element type="cnx:min_max_rate_instance_text_type" name="min_max_rate_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:strategy_details_instance_type" name="sub_strategy_details_instance"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="instance_id" use="optional" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+	</xsd:complexType>
+	
+</xsd:schema>

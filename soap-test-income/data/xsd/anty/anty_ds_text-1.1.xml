@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anty_ds_text version="1.1"
+  xmlns="http://www.cannex.com/anty_ds"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.cannex.com/anty_ds anty_ds_text-1.1.xsd">
+  <canx_info>
+    <info key="DIST-CODE">CX02</info>
+    <info key="DIST-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="REQUEST-NO">BULGSX</info>
+    <info key="RUN-DATE">2022-09-23T12:07:07</info>
+    <info key="PRODUCT-TYPE">FIAX</info>
+    <info key="CUSTOMER">20778</info>
+    <info key="CUSTOMER-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="LOGON-ID"></info>
+  </canx_info>
+  <text text_id="00327732">
+    <![CDATA[Premium bonus will be credited to the Protected Income Value (PIV) on any premiums in the first 18 months. To receive the PIV, including any premium bonuses and interest bonuses, clients must hold their annuity in deferral for at least 10 contract years and begin receiving lfetime income withdrawals between the ages of 60 and 100. They will not receive the premium bonus or potential interest bonuses if the contract is fully or partially surrendered, traditional annuity payments are taken, or if the PIV rider is terminated.]]>
+  </text>
+  <text text_id="00327733">
+    <![CDATA[An interest bonus of any earned fixed and/or indexed interest will be credited for as long as clients have the contract. To receive the PIV, including any premium bonuses and interest bonuses, clients must hold their annuity in deferral for at least 10 contract years and begin receiving lfetime income withdrawals between the ages of 60 and 100. They will not receive the premium bonus or potential interest bonuses if the contract is fully or partially surrendered, traditional annuity payments are taken, or if the PIV rider is terminated.]]>
+  </text>
+  <text text_id="03187852">
+    <![CDATA[Tier 1 represents the Accelerated PIV interest bonus option rates available before lifetime withdrawals begin. Tier 2 represents the Balanced PIV interest bonus option rates; this is the only option once lifetime withdrawals begin.]]>
+  </text>
+  <text text_id="03187855">
+    <![CDATA[Tier 1 represents the Accelerated PIV interest bonus option rates available before lifetime withdrawals begin. Tier 2 represents the Balanced PIV interest bonus option rates; this is the only option once lifetime withdrawals begin.]]>
+  </text>
+  <text text_id="00333251">
+    <![CDATA[Not available in New Jersey]]>
+  </text>
+  <text text_id="00308950">
+    <![CDATA[Not available in Massachusetts.]]>
+  </text>
+  <text text_id="00308956">
+    <![CDATA[Not available in Massachusetts.]]>
+  </text>
+  <text text_id="00308959">
+    <![CDATA[During the first contract year, 10% of purchase payments may be withdrawn without an early withdrawal charge or market value adjustment. After the first contract year, 10% of the account value as of the most recent contract anniversary may be withdrawn without an early withdrawal charge or market value adjustment.]]>
+  </text>
+  <text text_id="00309732">
+    <![CDATA[Rollup credits cannot increase the benefit base to more than the rollup cap, which is equal to 250% of the purchase payment amount.]]>
+  </text>
+  <text text_id="00309745">
+    <![CDATA[A refund of all rider charges will be given if the death benefit is paid under the base contract because of: The death of the Insured during the first five years; or The death of the Non-Insured joint owner at any time.]]>
+  </text>
+  <text text_id="00309752">
+    <![CDATA[The rider's death benefit is available after the fifth contract anniversary and replaces the annuity contract's death benefit. Beneficiaries may choose one of two death benefits: Lump sum: Beneficiaries may select to receive the basic death benefit amount equal to the account value plus 50% of the difference between account value and benefit base amount. Annuitization: If beneficiaries elect to have the rider death benefit paid for life or a fixed period of at least five years, then the rider death benefit amount will be equal to the account value plus the entire difference between the account value and the benefit base amount.]]>
+  </text>
+  <text text_id="00345213">
+    <![CDATA[Up to 10% of the beginning-of-year contract value may be withdrawn annually.]]>
+  </text>
+  <text text_id="00345224">
+    <![CDATA[30 days. State variations may apply.]]>
+  </text>
+  <text text_id="00345225">
+    <![CDATA[$1000. State variations may apply.]]>
+  </text>
+</anty_ds_text>

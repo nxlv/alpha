@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_ds_common_types-1.1.xsd" />
+
+	<xsd:annotation>
+		<xsd:documentation>
+		In some cases it is more appropriate to define a rule as a rule set.  
+		The attribute rule_no is used to facilitate this concept.  The rule set will
+		share the same rule_id and have a rule_no to indicate its evaluation order.
+		Example:
+		<rule rule_id="ABC123DE" rule_no="1" ><mva cd="Y">MVA</mva></rule>
+		<rule rule_id="ABC123DE" rule_no="2" ><rop cd="Y">ROP</rop></rule>
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:complexType name="anty_ds_rules_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />
+			<xsd:element type="cnx:rule_type" name="rule"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.1" />
+	</xsd:complexType>
+
+	<xsd:complexType name="rule_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:state_cd_name_list_type" name="state_cd_name_list" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_list_type" name="fund_type_list" 
+				minOccurs="0" />
+			<xsd:element type="cnx:period_range_type" name="age_range" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="mva" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="rop" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="contract" 
+				minOccurs="0" />
+			<xsd:element type="cnx:period_range_instance_list_type" name="guarantee_period_list" 
+				minOccurs="0" />
+			<xsd:element type="cnx:double_range_type" name="premium_range" 
+				minOccurs="0" />
+			<xsd:element type="cnx:instance_id_list_type" name="income_benefit_profile_list" 
+				minOccurs="0" />
+			<xsd:element type="cnx:instance_id_list_type" name="death_benefit_profile_list" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="gender" 
+				minOccurs="0" />
+			<xsd:element type="cnx:instance_id_list_type" name="other_rider_benefits_list" 
+				minOccurs="0" />
+			<xsd:element type="cnx:instance_id_list_type" name="cdsc_schedule_list"
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_list_type" name="strategy_type_list" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_type" name="strategy_fees" 
+				minOccurs="0" />
+			<xsd:element type="cnx:cd_name_list_type" name="share_class_list" 
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="rule_id" use="required" />
+		<xsd:attribute type="xsd:int" name="rule_no" use="optional" />
+	</xsd:complexType>
+ 
+</xsd:schema>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header>
+    <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" s:mustUnderstand="1">
+      <wsse:UsernameToken wsu:Id="UsernameToken-1">
+        <wsse:Username>CUST01</wsse:Username>
+        <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordDigest">vBQDqfBBE/WYMizDQUxHUXCQERA=</wsse:Password>
+        <wsse:Nonce EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary">mqg0WHS12B9atxst+AMegw==</wsse:Nonce>
+        <wsu:Created>2013-03-28T20:19:42.865Z</wsu:Created>
+      </wsse:UsernameToken>
+    </wsse:Security>
+  </s:Header>
+  <s:Body>
+    <cws:antu_request version="2.0" xmlns="http://www.cannex.com" xmlns:cws="http://www.cannex.com/ws">
+      <logon_id>CUST01</logon_id>
+      <user_id/>
+      <app>CANX</app>
+      <cost_basis>100000.00</cost_basis>
+      <birth_date>1944-12-30</birth_date>
+      <joint_birth_date>1945-03-12</joint_birth_date>
+      <owner_birth_date>1944-12-30</owner_birth_date>
+      <premium_purchase_date>2013-03-28</premium_purchase_date>
+      <first_payment_date>2013-04-28</first_payment_date>
+      <fund_type_cd>N</fund_type_cd>
+      <return_of_premium_cd>GT</return_of_premium_cd>
+      <guarantee_cd>RG</guarantee_cd>
+      <guarantee_year>10</guarantee_year>
+      <guarantee_month>0</guarantee_month>
+      <indicate_impaired/>
+      <income>0.0</income>
+      <index_rate/>
+      <index_type_cd>N</index_type_cd>
+      <joint_type_cd>N</joint_type_cd>
+      <name>Fred Client</name>
+      <joint_name>Jane Client</joint_name>
+      <owner>Mr. Fred Client</owner>
+      <is_owner_primary>Y</is_owner_primary>
+      <payment_frequency_cd>M</payment_frequency_cd>
+      <percent>100.000</percent>
+      <joint_percent>100.000</joint_percent>
+      <premium>100000.00</premium>
+      <prepared_by>Mr. Agent</prepared_by>
+      <region_cd>CA</region_cd>
+      <region_issued_cd>CA</region_issued_cd>
+      <request_description>Fred Client Quote</request_description>
+      <gender_cd>M</gender_cd>
+      <joint_gender_cd>F</joint_gender_cd>
+      <owner_gender_cd>M</owner_gender_cd>
+      <is_spouse>Y</is_spouse>
+      <survey_type_cd>JL</survey_type_cd>
+      <parameter_set_cd>L</parameter_set_cd>
+      <institution_id/>
+      <filter_customer/>
+      <filter_institution_id/>
+      <trace_level_cd>0</trace_level_cd>
+      <return_of_premium_rate>0.0</return_of_premium_rate>
+      <ratings_company_cd/>
+      <ratings_cd/>
+      <exclude_not_rated>N</exclude_not_rated>
+      <qlac>N</qlac>
+      <is_test>N</is_test>
+    </cws:antu_request>
+  </s:Body>
+</s:Envelope>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <cws:antu_response version="2.0" xmlns="http://www.cannex.com" xmlns:cws="http://www.cannex.com/ws">
+      <run_date>2013-03-28</run_date>
+      <run_time>16:19:31</run_time>
+      <request_no>A0KH1D</request_no>
+      <single_institution_id/>
+      <antu_request version="2.0">
+        <logon_id>CUST01</logon_id>
+        <user_id/>
+        <cost_basis>100000.00</cost_basis>
+        <birth_date>1944-12-30</birth_date>
+        <joint_birth_date>1945-03-12</joint_birth_date>
+        <premium_purchase_date>2013-03-28</premium_purchase_date>
+        <first_payment_date>2013-04-28</first_payment_date>
+        <fund_type_cd>N</fund_type_cd>
+        <return_of_premium_cd>GT</return_of_premium_cd>
+        <guarantee_cd>RG</guarantee_cd>
+        <guarantee_year>10</guarantee_year>
+        <guarantee_month>0</guarantee_month>
+        <indicate_impaired/>
+        <income>0.00</income>
+        <index_rate>0.000</index_rate>
+        <index_type_cd>N</index_type_cd>
+        <joint_type_cd>N</joint_type_cd>
+        <name><![CDATA[Fred Client]]></name>
+        <joint_name><![CDATA[Jane Client]]></joint_name>
+        <owner><![CDATA[Mr. Fred Client]]></owner>
+        <is_owner_primary>Y</is_owner_primary>
+        <payment_frequency_cd>M</payment_frequency_cd>
+        <percent>100.000</percent>
+        <joint_percent>100.000</joint_percent>
+        <premium>100000.00</premium>
+        <prepared_by><![CDATA[Mr. Agent]]></prepared_by>
+        <region_cd>CA</region_cd>
+        <region_issued_cd>CA</region_issued_cd>
+        <request_description><![CDATA[Fred Client Quote]]></request_description>
+        <gender_cd>M</gender_cd>
+        <joint_gender_cd>F</joint_gender_cd>
+        <is_spouse>Y</is_spouse>
+        <survey_type_cd>JL</survey_type_cd>
+        <temporary_year>0</temporary_year>
+        <temporary_month>0</temporary_month>
+        <parameter_set_cd>L</parameter_set_cd>
+        <institution_id/>
+        <custom index="1"/>
+        <filter_customer/>
+        <filter_institution_id/>
+        <trace_level_cd>0</trace_level_cd>
+        <output_option_cd>3</output_option_cd>
+        <return_of_premium_rate>0.000</return_of_premium_rate>
+        <ratings_company_cd/>
+        <ratings_cd/>
+        <exclude_not_rated/>
+        <unique_c/>
+        <is_test/>
+      </antu_request>
+      <survey_notes>
+        <survey_note survey_note_id=""><![CDATA[Income received in excess of the investment in the contract is taxable as ordinary income.]]></survey_note>
+      </survey_notes>
+      <carrier>
+        <institution_id>0233</institution_id>
+        <naic>99999</naic>
+        <institution_name><![CDATA[CANNEX Demo Company]]></institution_name>
+        <quote>
+          <return_of_premium>N</return_of_premium>
+          <set>L</set>
+          <premium>100000.00</premium>
+          <income>493.79</income>
+          <tax_amount>110.61</tax_amount>
+          <return_of_premium_rate>0.00000</return_of_premium_rate>
+          <expiry_cd>G</expiry_cd>
+          <expiry_date>2013-04-11</expiry_date>
+          <expiry_time>23:59:59</expiry_time>
+          <rating/>
+          <set_unique>00000780650000239706</set_unique>
+          <cusip>345678901</cusip>
+          <isin>123456789017</isin>
+          <product_name><![CDATA[Limits]]></product_name>
+          <illustration_id>A0KH1D023300000780650000239706</illustration_id>
+          <request_overrides>
+            <has_changed>N</has_changed>
+          </request_overrides>
+        </quote>
+      </carrier>
+      <carrier>
+        <institution_id>0863</institution_id>
+        <naic>78778</naic>
+        <institution_name><![CDATA[Guardian Insurance & Annuity Company]]></institution_name>
+        <quote>
+          <return_of_premium>N</return_of_premium>
+          <set>L</set>
+          <premium>100000.00</premium>
+          <income>469.89</income>
+          <tax_amount>98.21</tax_amount>
+          <return_of_premium_rate>0.00000</return_of_premium_rate>
+          <expiry_cd>G</expiry_cd>
+          <expiry_date>2013-04-04</expiry_date>
+          <expiry_time>23:59:59</expiry_time>
+          <rating/>
+          <set_unique>00000781710002443882</set_unique>
+          <cusip/>
+          <isin/>
+          <product_name><![CDATA[SPIA & DIA (Default) - except CA/CT/MT]]></product_name>
+          <illustration_id>A0KH1D086300000781710002443882</illustration_id>
+          <request_overrides>
+            <has_changed>N</has_changed>
+          </request_overrides>
+          <notes>
+            <note note_id=""><![CDATA[Product offers liquidity options and return of premium upon death prior to the income start date, subject to limitations and availability.]]></note>
+          </notes>
+        </quote>
+      </carrier>
+      <carrier>
+        <institution_id>0796</institution_id>
+        <naic>65935</naic>
+        <institution_name><![CDATA[Massachusetts Mutual Life Insurance Company]]></institution_name>
+        <quote>
+          <return_of_premium>N</return_of_premium>
+          <set>L</set>
+          <premium>100000.00</premium>
+          <income>468.37</income>
+          <tax_amount>98.83</tax_amount>
+          <return_of_premium_rate>0.00000</return_of_premium_rate>
+          <expiry_cd>G</expiry_cd>
+          <expiry_date>2013-04-04</expiry_date>
+          <expiry_time>23:59:59</expiry_time>
+          <rating/>
+          <set_unique>00000782070002565668</set_unique>
+          <cusip>575769427</cusip>
+          <isin/>
+          <product_name><![CDATA[Retail]]></product_name>
+          <illustration_id>A0KH1D079600000782070002565668</illustration_id>
+          <request_overrides>
+            <has_changed>N</has_changed>
+          </request_overrides>
+          <notes>
+            <note note_id=""><![CDATA[Premium returned if the 2nd death occurs before payments begin.]]></note>
+          </notes>
+        </quote>
+      </carrier>
+      <carrier>
+        <institution_id>0221</institution_id>
+        <naic>61050</naic>
+        <institution_name><![CDATA[MetLife Investors]]></institution_name>
+        <quote>
+          <return_of_premium>N</return_of_premium>
+          <set>L</set>
+          <premium>100000.00</premium>
+          <income>454.62</income>
+          <tax_amount>82.74</tax_amount>
+          <return_of_premium_rate>0.00000</return_of_premium_rate>
+          <expiry_cd>G</expiry_cd>
+          <expiry_date>2013-04-11</expiry_date>
+          <expiry_time>23:59:59</expiry_time>
+          <rating/>
+          <set_unique>00000781320002408655</set_unique>
+          <cusip/>
+          <isin/>
+          <product_name><![CDATA[MLI SPIA]]></product_name>
+          <illustration_id>A0KH1D022100000781320002408655</illustration_id>
+          <request_overrides>
+            <has_changed>N</has_changed>
+          </request_overrides>
+          <notes>
+            <note note_id=""><![CDATA[Includes the Early Access Option liquidity feature, subject to availability.  Please see Illustration Report for more detail. For more information, please contact the Sales Desk at 800-848-3854.]]></note>
+          </notes>
+        </quote>
+      </carrier>
+      <carrier>
+        <institution_id>0433</institution_id>
+        <naic>91596</naic>
+        <institution_name><![CDATA[New York Life Insurance & Annuity Corporation]]></institution_name>
+        <quote>
+          <return_of_premium>N</return_of_premium>
+          <set>L</set>
+          <premium>100000.00</premium>
+          <income>471.35</income>
+          <tax_amount>99.93</tax_amount>
+          <return_of_premium_rate>0.00000</return_of_premium_rate>
+          <expiry_cd>G</expiry_cd>
+          <expiry_date>2013-04-11</expiry_date>
+          <expiry_time>23:59:59</expiry_time>
+          <rating/>
+          <set_unique>00000781890002479294</set_unique>
+          <cusip/>
+          <isin/>
+          <product_name><![CDATA[Limits]]></product_name>
+          <illustration_id>A0KH1D043300000781890002479294</illustration_id>
+          <request_overrides>
+            <has_changed>N</has_changed>
+          </request_overrides>
+          <notes>
+            <note note_id=""><![CDATA[Product offers liquidity options and other features, subject to availability. For more information, please contact the Sales Desk at 1-888-474-7725, option 2.]]></note>
+          </notes>
+        </quote>
+      </carrier>
+      <carrier>
+        <institution_id>0669</institution_id>
+        <naic>61271</naic>
+        <institution_name><![CDATA[Principal Financial Group]]></institution_name>
+        <quote>
+          <return_of_premium>N</return_of_premium>
+          <set>L</set>
+          <premium>100000.00</premium>
+          <income>448.99</income>
+          <tax_amount>77.23</tax_amount>
+          <return_of_premium_rate>0.00000</return_of_premium_rate>
+          <expiry_cd>G</expiry_cd>
+          <expiry_date>2013-04-06</expiry_date>
+          <expiry_time>23:59:59</expiry_time>
+          <rating/>
+          <set_unique>00000781440002322229</set_unique>
+          <cusip/>
+          <isin/>
+          <product_name><![CDATA[SPIA-1]]></product_name>
+          <illustration_id>A0KH1D066900000781440002322229</illustration_id>
+          <request_overrides>
+            <has_changed>N</has_changed>
+          </request_overrides>
+          <notes>
+            <note note_id=""><![CDATA[This product offers an optional Fixed Percentage Periodic Increase Rider, which will increase the annuity income payment periodically throughout the life of the annuity.  A client can select a 2% increase every 2 years, 3% increase every 3 years, 4% increase every 4 years, or 5% increase every 5 years.  For an illustration with this feature please contact our Pre-Sale Support Team at 866-309-1623.  The feature can only be elected at the time of contract issue.]]></note>
+            <note note_id=""><![CDATA[Includes a withdrawal benefit. See quote for details.]]></note>
+          </notes>
+        </quote>
+      </carrier>
+    </cws:antu_response>
+  </s:Body>
+</s:Envelope>

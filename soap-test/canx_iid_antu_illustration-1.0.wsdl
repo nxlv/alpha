@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions xmlns:cnx="http://www.cannex.com"
+				  xmlns:cws="http://www.cannex.com/ws"
+				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				  name="canx_iid_antu_illustration" 
+				  targetNamespace="http://www.cannex.com/ws">
+  
+  <wsdl:documentation>
+  	This file and any supporting xsd schemas are located at "http://localhost:8080/CANX/wsdl"
+  </wsdl:documentation>
+  
+  <wsdl:types>
+	<xsd:schema targetNamespace="http://www.cannex.com/ws">
+	  <xsd:import schemaLocation="req_iid_antu_type-1.0.xsd" namespace="http://www.cannex.com" />
+      <xsd:element type="cnx:req_iid_antu_type" name="antu_iid_request" />
+    </xsd:schema>  
+	<xsd:schema targetNamespace="http://www.cannex.com/ws">
+      <xsd:import schemaLocation="resp_illustration_type-1.0.xsd" namespace="http://www.cannex.com" />
+      <xsd:element type="cnx:resp_illustration_type" name="illustration_response" />
+    </xsd:schema>  
+  </wsdl:types>
+  
+  <wsdl:message name="canx_iid_antu_illustration_request">
+    <wsdl:part element="cws:antu_iid_request" name="parameters" />
+  </wsdl:message>
+  <wsdl:message name="canx_iid_antu_illustration_response">
+    <wsdl:part element="cws:illustration_response" name="parameters" />
+  </wsdl:message>
+  
+  <wsdl:portType name="canx_iid_antu_illustration_porttype">
+    <wsdl:operation name="canx_iid_antu_illustration_operation">
+      <wsdl:input message="cws:canx_iid_antu_illustration_request" />
+      <wsdl:output message="cws:canx_iid_antu_illustration_response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="canx_iid_antu_illustration_binding" type="cws:canx_iid_antu_illustration_porttype">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="canx_iid_antu_illustration_operation">
+      <soap:operation soapAction="http://www.cannex.com/ws/canx_iid_antu_illustration_operation" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="canx_iid_antu_illustration_service">
+    <wsdl:port binding="cws:canx_iid_antu_illustration_binding" name="canx_iid_antu_illustration_binding">
+      <soap:address location="http://localhost:8080/CANX/IidAntuIllustrationService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

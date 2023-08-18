@@ -9,11 +9,13 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vueform/multiselect": "^2.6.2",
     "maska": "^2.1.9",
     "mitt": "^3.0.0",
     "moment": "^2.29.4",
     "pinia": "^2.0.23",
     "uuid": "^9.0.0",
+    "v-money": "^0.8.1",
     "vue": "^3.2.41",
     "vue-currency-input": "^3.0.4",
     "vue-router": "^4.1.5"

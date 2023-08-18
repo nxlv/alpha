@@ -5,9 +5,6 @@ export const useSetsStore = defineStore( 'sets', () => {
     const sets = ref( {} );
 
     function commit( dataset, value ) {
-        console.log( 'committing', dataset );
-        console.log( 'values', value );
-
         sets.value[ dataset ] = value;
     }
 

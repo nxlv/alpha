@@ -62,7 +62,7 @@ class CANNEXCache extends Command {
         if ( $_param_fetchall ) {
             $this->line( PHP_EOL . '  <fg=white;bg=blue> NOTICE </> Request received to cache ALL products.' . PHP_EOL );
 
-            $products = ProductHelper::identify_products( false, false, false, false, false, false, false, false, false );
+            $products = ProductHelper::identify_products( false );
         } else {
             $this->line( PHP_EOL . '  <fg=white;bg=blue> NOTICE </> Caching default profile' . PHP_EOL );
 
@@ -171,8 +171,6 @@ class CANNEXCache extends Command {
                 }
             }
 
-            $found = false;
-
             if ( !empty( $stack ) ) {
                 $queue = [];
 
@@ -201,17 +199,7 @@ class CANNEXCache extends Command {
                             'analysis_cd' => $row[ 'target' ][ 'product_analysis_cd' ]
                         ]
                     );
-
-                    if ( $row[ 'target' ][ 'product_analysis_data_id' ] === '0002375397' ) {
-                        $found = true;
-                    }
-
-                    if ( $found ) {
-                        $this->line( sprintf( ' <bg=red;fg=white> FAILED </> P: %s, D: %d, S: %s, ID: %s', $row[ 'premium' ], $row[ 'deferral' ], $row[ 'owner_state' ], $row[ 'target' ][ 'product_analysis_data_id' ] ) );
-                    }
                 }
-
-                die();
 
                 // build cache
                 $this->line( PHP_EOL . sprintf( '  <bg=yellow;fg=black> %d </> product variations to analyze. <bg=blue;fg=white> %d </> requests will be made.', count( $stack ), ceil( count( $queue ) / self::ANALYSIS_MAX_CHUNK_SIZE ) ) . PHP_EOL );

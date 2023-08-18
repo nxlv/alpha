@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anty_ds_product_profiles version="1.1"
+  xmlns="http://www.cannex.com/anty_ds"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.cannex.com/anty_ds anty_ds_prd_prfl-1.1.xsd">
+  <canx_info>
+    <info key="DIST-CODE">CX02</info>
+    <info key="DIST-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="REQUEST-NO">BULGSX</info>
+    <info key="RUN-DATE">2022-09-23T12:07:07</info>
+    <info key="PRODUCT-TYPE">FIAX</info>
+    <info key="CUSTOMER">20778</info>
+    <info key="CUSTOMER-NAME"><![CDATA[CANNEX Sample XML Distribution]]></info>
+    <info key="LOGON-ID"></info>
+  </canx_info>
+  <product_type cd="FIAX">Fixed Indexed Annuities</product_type>
+  <product_profile product_profile_id="0002253710">
+    <canx_info>
+      <info key="IPNO">0725</info>
+      <info key="CO-CODE">ALI</info>
+      <info key="CO-NAME-L"><![CDATA[Allianz Life Insurance Company of North America]]></info>
+      <info key="SET-NO">0001820281</info>
+      <info key="UPDATE-DATE">2022-08-02T00:00:11</info>
+      <info key="EXTERNAL-CODE">A000BH</info>
+    </canx_info>
+    <product_id>A000BH</product_id>
+    <state_availability list_cd="I">
+      <state_cd_name state_cd="AL">Alabama</state_cd_name>
+      <state_cd_name state_cd="AK">Alaska</state_cd_name>
+      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
+      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
+      <state_cd_name state_cd="CA">California</state_cd_name>
+      <state_cd_name state_cd="CO">Colorado</state_cd_name>
+      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
+      <state_cd_name state_cd="DE">Delaware</state_cd_name>
+      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
+      <state_cd_name state_cd="FL">Florida</state_cd_name>
+      <state_cd_name state_cd="GA">Georgia</state_cd_name>
+      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
+      <state_cd_name state_cd="ID">Idaho</state_cd_name>
+      <state_cd_name state_cd="IL">Illinois</state_cd_name>
+      <state_cd_name state_cd="IN">Indiana</state_cd_name>
+      <state_cd_name state_cd="IA">Iowa</state_cd_name>
+      <state_cd_name state_cd="KS">Kansas</state_cd_name>
+      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
+      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
+      <state_cd_name state_cd="ME">Maine</state_cd_name>
+      <state_cd_name state_cd="MD">Maryland</state_cd_name>
+      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
+      <state_cd_name state_cd="MI">Michigan</state_cd_name>
+      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
+      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
+      <state_cd_name state_cd="MO">Missouri</state_cd_name>
+      <state_cd_name state_cd="MT">Montana</state_cd_name>
+      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
+      <state_cd_name state_cd="NV">Nevada</state_cd_name>
+      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
+      <state_cd_name state_cd="NJ">New Jersey</state_cd_name>
+      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
+      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
+      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
+      <state_cd_name state_cd="OH">Ohio</state_cd_name>
+      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
+      <state_cd_name state_cd="OR">Oregon</state_cd_name>
+      <state_cd_name state_cd="PA">Pennsylvania</state_cd_name>
+      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
+      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
+      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
+      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
+      <state_cd_name state_cd="TX">Texas</state_cd_name>
+      <state_cd_name state_cd="UT">Utah</state_cd_name>
+      <state_cd_name state_cd="VT">Vermont</state_cd_name>
+      <state_cd_name state_cd="VA">Virginia</state_cd_name>
+      <state_cd_name state_cd="WA">Washington</state_cd_name>
+      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
+      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
+      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
+    </state_availability>
+    <ownership_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+      <cd_name cd="T">Trust</cd_name>
+      <cd_name cd="C">Corporation</cd_name>
+    </ownership_type_list>
+    <annuitant_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+    </annuitant_type_list>
+    <fund_type_instance instance_id="00321921" text_id="">
+      <cd_name cd="N" rule_id="">Non-qualified</cd_name>
+      <cd_name cd="Q" rule_id="">Qualified</cd_name>
+    </fund_type_instance>
+    <rop_instance instance_id="00321922" text_id="">
+      <cd_name cd="N" rule_id="">No</cd_name>
+    </rop_instance>
+    <mva_instance instance_id="00321923" text_id="">
+      <cd_name cd="Y" rule_id="">Yes</cd_name>
+    </mva_instance>
+    <surrender_period_basis cd="C">CDSC length</surrender_period_basis>
+    <cdsc_schedule_instance instance_id="00321925" rule_id="" text_id="">
+      <cdsc years="1" rate="10.0000" />
+      <cdsc years="2" rate="10.0000" />
+      <cdsc years="3" rate="10.0000" />
+      <cdsc years="4" rate="8.7500" />
+      <cdsc years="5" rate="7.5000" />
+      <cdsc years="6" rate="6.2500" />
+      <cdsc years="7" rate="5.0000" />
+      <cdsc years="8" rate="3.7500" />
+      <cdsc years="9" rate="2.5000" />
+      <cdsc years="10" rate="1.2500" />
+    </cdsc_schedule_instance>
+    <surrender_charge_waivers_instance instance_id="00321926">
+      <cd_name cd="NH" text_id="">Nursing home waiver</cd_name>
+    </surrender_charge_waivers_instance>
+    <free_withdrawals_instance instance_id="00321928" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="10.0000" />
+    </free_withdrawals_instance>
+    <minimum_withdrawals_rule_applicable cd="N" text_id="">No</minimum_withdrawals_rule_applicable>
+    <systematic_withdrawals_available cd="?" text_id="">Unknown</systematic_withdrawals_available>
+    <bail_out cd="N" text_id="">No</bail_out>
+    <free_look_period cd="Y" text_id="">Yes</free_look_period>
+    <fees_commissions cd="C" text_id="">Commission based</fees_commissions>
+    <contract_continuation cd="S" text_id="">Spousal</contract_continuation>
+    <age_rule_basis cd="O">Owner</age_rule_basis>
+    <issue_age_owner_instance instance_id="00321929">
+      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
+    </issue_age_owner_instance>
+    <issue_age_annuitant_instance instance_id="00321929">
+      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
+    </issue_age_annuitant_instance>
+    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
+    <issue_age_joint_owner_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_owner_rules>
+    <issue_age_joint_annuitant_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_annuitant_rules>
+    <initial_premium_instance instance_id="00321930">
+      <premium rule_id="">20000.00</premium>
+    </initial_premium_instance>
+    <max_premium_instance instance_id="00321932">
+      <premium rule_id="">1000000.00</premium>
+    </max_premium_instance>
+    <max_annuitization_age_instance instance_id="00321933">
+      <age years="95" months="0" rule_id="" />
+    </max_annuitization_age_instance>
+    <standard_gmv_initial_rate_instance instance_id="00321935" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="87.5000" />
+    </standard_gmv_initial_rate_instance>
+    <standard_gmv_increase_rate_instance instance_id="00321937" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="1.3500" />
+      <tier_rate tier_no="2" rate="1.0000" />
+    </standard_gmv_increase_rate_instance>
+    <other_riders_benefits_instance instance_id="00321993" rule_id="" text_id="">
+      <other_riders_benefits_type cd="ADL">Activities of daily living</other_riders_benefits_type>
+      <name><![CDATA[Allianz Income Multiplier Benefit]]></name>
+    </other_riders_benefits_instance>
+  </product_profile>
+  <product_profile product_profile_id="0002254377">
+    <canx_info>
+      <info key="IPNO">0725</info>
+      <info key="CO-CODE">ALI</info>
+      <info key="CO-NAME-L"><![CDATA[Allianz Life Insurance Company of North America]]></info>
+      <info key="SET-NO">0001820281</info>
+      <info key="UPDATE-DATE">2022-08-02T00:00:11</info>
+      <info key="EXTERNAL-CODE">A000CT</info>
+    </canx_info>
+    <product_id>A000CT</product_id>
+    <state_availability list_cd="I">
+      <state_cd_name state_cd="AL">Alabama</state_cd_name>
+      <state_cd_name state_cd="AK">Alaska</state_cd_name>
+      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
+      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
+      <state_cd_name state_cd="CA">California</state_cd_name>
+      <state_cd_name state_cd="CO">Colorado</state_cd_name>
+      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
+      <state_cd_name state_cd="DE">Delaware</state_cd_name>
+      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
+      <state_cd_name state_cd="FL">Florida</state_cd_name>
+      <state_cd_name state_cd="GA">Georgia</state_cd_name>
+      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
+      <state_cd_name state_cd="ID">Idaho</state_cd_name>
+      <state_cd_name state_cd="IL">Illinois</state_cd_name>
+      <state_cd_name state_cd="IN">Indiana</state_cd_name>
+      <state_cd_name state_cd="IA">Iowa</state_cd_name>
+      <state_cd_name state_cd="KS">Kansas</state_cd_name>
+      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
+      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
+      <state_cd_name state_cd="ME">Maine</state_cd_name>
+      <state_cd_name state_cd="MD">Maryland</state_cd_name>
+      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
+      <state_cd_name state_cd="MI">Michigan</state_cd_name>
+      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
+      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
+      <state_cd_name state_cd="MO">Missouri</state_cd_name>
+      <state_cd_name state_cd="MT">Montana</state_cd_name>
+      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
+      <state_cd_name state_cd="NV">Nevada</state_cd_name>
+      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
+      <state_cd_name state_cd="NJ">New Jersey</state_cd_name>
+      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
+      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
+      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
+      <state_cd_name state_cd="OH">Ohio</state_cd_name>
+      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
+      <state_cd_name state_cd="OR">Oregon</state_cd_name>
+      <state_cd_name state_cd="PA">Pennsylvania</state_cd_name>
+      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
+      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
+      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
+      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
+      <state_cd_name state_cd="TX">Texas</state_cd_name>
+      <state_cd_name state_cd="UT">Utah</state_cd_name>
+      <state_cd_name state_cd="VT">Vermont</state_cd_name>
+      <state_cd_name state_cd="VA">Virginia</state_cd_name>
+      <state_cd_name state_cd="WA">Washington</state_cd_name>
+      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
+      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
+      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
+    </state_availability>
+    <ownership_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+      <cd_name cd="T">Trust</cd_name>
+      <cd_name cd="C">Corporation</cd_name>
+    </ownership_type_list>
+    <annuitant_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+    </annuitant_type_list>
+    <fund_type_instance instance_id="00325408" text_id="">
+      <cd_name cd="N" rule_id="">Non-qualified</cd_name>
+      <cd_name cd="Q" rule_id="">Qualified</cd_name>
+    </fund_type_instance>
+    <rop_instance instance_id="00325409" text_id="">
+      <cd_name cd="N" rule_id="">No</cd_name>
+    </rop_instance>
+    <mva_instance instance_id="00325410" text_id="">
+      <cd_name cd="Y" rule_id="">Yes</cd_name>
+    </mva_instance>
+    <surrender_period_basis cd="C">CDSC length</surrender_period_basis>
+    <cdsc_schedule_instance instance_id="00325412" rule_id="" text_id="">
+      <cdsc years="1" rate="9.3000" />
+      <cdsc years="2" rate="9.3000" />
+      <cdsc years="3" rate="8.3000" />
+      <cdsc years="4" rate="7.3000" />
+      <cdsc years="5" rate="6.2500" />
+      <cdsc years="6" rate="5.2500" />
+      <cdsc years="7" rate="4.2000" />
+      <cdsc years="8" rate="3.1500" />
+      <cdsc years="9" rate="2.1000" />
+      <cdsc years="10" rate="1.0500" />
+    </cdsc_schedule_instance>
+    <surrender_charge_waivers_instance instance_id="00325413">
+      <cd_name cd="NH" text_id="">Nursing home waiver</cd_name>
+    </surrender_charge_waivers_instance>
+    <free_withdrawals_instance instance_id="00325415" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="10.0000" />
+    </free_withdrawals_instance>
+    <minimum_withdrawals_rule_applicable cd="N" text_id="">No</minimum_withdrawals_rule_applicable>
+    <systematic_withdrawals_available cd="?" text_id="">Unknown</systematic_withdrawals_available>
+    <bail_out cd="N" text_id="">No</bail_out>
+    <free_look_period cd="Y" text_id="">Yes</free_look_period>
+    <fees_commissions cd="C" text_id="">Commission based</fees_commissions>
+    <contract_continuation cd="S" text_id="">Spousal</contract_continuation>
+    <age_rule_basis cd="O">Owner</age_rule_basis>
+    <issue_age_owner_instance instance_id="00325416">
+      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
+    </issue_age_owner_instance>
+    <issue_age_annuitant_instance instance_id="00325416">
+      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
+    </issue_age_annuitant_instance>
+    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
+    <issue_age_joint_owner_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_owner_rules>
+    <issue_age_joint_annuitant_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_annuitant_rules>
+    <initial_premium_instance instance_id="00325417">
+      <premium rule_id="">20000.00</premium>
+    </initial_premium_instance>
+    <max_premium_instance instance_id="00325418">
+      <premium rule_id="">1000000.00</premium>
+    </max_premium_instance>
+    <max_annuitization_age_instance instance_id="00325419">
+      <age years="95" months="0" rule_id="" />
+    </max_annuitization_age_instance>
+    <standard_gmv_initial_rate_instance instance_id="00325421" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="87.5000" />
+    </standard_gmv_initial_rate_instance>
+    <standard_gmv_increase_rate_instance instance_id="00325423" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="1.0000" />
+    </standard_gmv_increase_rate_instance>
+  </product_profile>
+  <product_profile product_profile_id="0002257224">
+    <canx_info>
+      <info key="IPNO">1098</info>
+      <info key="CO-CODE">RSIC</info>
+      <info key="CO-NAME-L"><![CDATA[Reliance Standard Life Insurance Company]]></info>
+      <info key="SET-NO">0001828025</info>
+      <info key="UPDATE-DATE">2022-09-08T06:50:59</info>
+      <info key="EXTERNAL-CODE">A000FR</info>
+    </canx_info>
+    <product_id>A000FR</product_id>
+    <state_availability list_cd="I">
+      <state_cd_name state_cd="AL">Alabama</state_cd_name>
+      <state_cd_name state_cd="AK">Alaska</state_cd_name>
+      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
+      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
+      <state_cd_name state_cd="CA">California</state_cd_name>
+      <state_cd_name state_cd="CO">Colorado</state_cd_name>
+      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
+      <state_cd_name state_cd="DE">Delaware</state_cd_name>
+      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
+      <state_cd_name state_cd="FL">Florida</state_cd_name>
+      <state_cd_name state_cd="GA">Georgia</state_cd_name>
+      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
+      <state_cd_name state_cd="ID">Idaho</state_cd_name>
+      <state_cd_name state_cd="IL">Illinois</state_cd_name>
+      <state_cd_name state_cd="IN">Indiana</state_cd_name>
+      <state_cd_name state_cd="IA">Iowa</state_cd_name>
+      <state_cd_name state_cd="KS">Kansas</state_cd_name>
+      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
+      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
+      <state_cd_name state_cd="ME">Maine</state_cd_name>
+      <state_cd_name state_cd="MD">Maryland</state_cd_name>
+      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
+      <state_cd_name state_cd="MI">Michigan</state_cd_name>
+      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
+      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
+      <state_cd_name state_cd="MO">Missouri</state_cd_name>
+      <state_cd_name state_cd="MT">Montana</state_cd_name>
+      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
+      <state_cd_name state_cd="NV">Nevada</state_cd_name>
+      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
+      <state_cd_name state_cd="NJ">New Jersey</state_cd_name>
+      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
+      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
+      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
+      <state_cd_name state_cd="OH">Ohio</state_cd_name>
+      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
+      <state_cd_name state_cd="OR">Oregon</state_cd_name>
+      <state_cd_name state_cd="PA">Pennsylvania</state_cd_name>
+      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
+      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
+      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
+      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
+      <state_cd_name state_cd="TX">Texas</state_cd_name>
+      <state_cd_name state_cd="UT">Utah</state_cd_name>
+      <state_cd_name state_cd="VT">Vermont</state_cd_name>
+      <state_cd_name state_cd="VA">Virginia</state_cd_name>
+      <state_cd_name state_cd="WA">Washington</state_cd_name>
+      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
+      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
+      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
+    </state_availability>
+    <ownership_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+      <cd_name cd="T">Trust</cd_name>
+      <cd_name cd="C">Corporation</cd_name>
+    </ownership_type_list>
+    <annuitant_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+    </annuitant_type_list>
+    <fund_type_instance instance_id="00333241" text_id="">
+      <cd_name cd="N" rule_id="">Non-qualified</cd_name>
+      <cd_name cd="Q" rule_id="">Qualified</cd_name>
+    </fund_type_instance>
+    <rop_instance instance_id="00333242" text_id="">
+      <cd_name cd="N" rule_id="">No</cd_name>
+    </rop_instance>
+    <mva_instance instance_id="00333243" text_id="">
+      <cd_name cd="N" rule_id="">No</cd_name>
+    </mva_instance>
+    <surrender_period_basis cd="C">CDSC length</surrender_period_basis>
+    <cdsc_schedule_instance instance_id="00333245" rule_id="" text_id="">
+      <cdsc years="1" rate="9.0000" />
+      <cdsc years="2" rate="8.0000" />
+      <cdsc years="3" rate="7.0000" />
+      <cdsc years="4" rate="6.0000" />
+      <cdsc years="5" rate="5.0000" />
+    </cdsc_schedule_instance>
+    <cdsc_schedule_instance instance_id="00333247" rule_id="" text_id="">
+      <cdsc years="1" rate="9.0000" />
+      <cdsc years="2" rate="8.0000" />
+      <cdsc years="3" rate="7.0000" />
+      <cdsc years="4" rate="6.0000" />
+      <cdsc years="5" rate="5.0000" />
+      <cdsc years="6" rate="4.0000" />
+      <cdsc years="7" rate="3.0000" />
+    </cdsc_schedule_instance>
+    <cdsc_schedule_instance instance_id="00333249" rule_id="" text_id="">
+      <cdsc years="1" rate="9.0000" />
+      <cdsc years="2" rate="9.0000" />
+      <cdsc years="3" rate="8.0000" />
+      <cdsc years="4" rate="7.0000" />
+      <cdsc years="5" rate="6.0000" />
+      <cdsc years="6" rate="5.0000" />
+      <cdsc years="7" rate="4.0000" />
+      <cdsc years="8" rate="3.0000" />
+      <cdsc years="9" rate="2.0000" />
+      <cdsc years="10" rate="1.0000" />
+    </cdsc_schedule_instance>
+    <surrender_charge_waivers_instance instance_id="00333250">
+      <cd_name cd="NH" text_id="">Nursing home waiver</cd_name>
+      <cd_name cd="TI" text_id="00333251">Terminal illness waiver</cd_name>
+    </surrender_charge_waivers_instance>
+    <free_withdrawals_instance instance_id="00333253" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="10.0000" />
+    </free_withdrawals_instance>
+    <minimum_withdrawals_rule_applicable cd="Y" text_id="">Yes</minimum_withdrawals_rule_applicable>
+    <systematic_withdrawals_available cd="Y" text_id="">Yes</systematic_withdrawals_available>
+    <bail_out cd="N" text_id="">No</bail_out>
+    <free_look_period cd="Y" text_id="">Yes</free_look_period>
+    <fees_commissions cd="C" text_id="">Commission based</fees_commissions>
+    <contract_continuation cd="S" text_id="">Spousal</contract_continuation>
+    <age_rule_basis cd="O">Owner</age_rule_basis>
+    <issue_age_owner_instance instance_id="00333254">
+      <age_range min_years="0" min_months="0" max_years="85" max_months="0" rule_id="" />
+    </issue_age_owner_instance>
+    <issue_age_annuitant_instance instance_id="00333254">
+      <age_range min_years="0" min_months="0" max_years="85" max_months="0" rule_id="" />
+    </issue_age_annuitant_instance>
+    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
+    <issue_age_joint_owner_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_owner_rules>
+    <issue_age_joint_annuitant_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_annuitant_rules>
+    <initial_premium_instance instance_id="00333255">
+      <premium rule_id="">10000.00</premium>
+    </initial_premium_instance>
+    <max_premium_instance instance_id="00333256">
+      <premium rule_id="">500000.00</premium>
+    </max_premium_instance>
+    <max_annuitization_age_instance instance_id="00333257">
+      <age years="95" months="0" rule_id="" />
+    </max_annuitization_age_instance>
+    <standard_gmv_initial_rate_instance instance_id="00333259" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="87.5000" />
+    </standard_gmv_initial_rate_instance>
+    <standard_gmv_increase_rate_instance instance_id="00333261" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="1.3500" />
+    </standard_gmv_increase_rate_instance>
+    <enhanced_gmv_initial_rate_instance instance_id="00333263" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="100.0000" />
+    </enhanced_gmv_initial_rate_instance>
+    <enhanced_gmv_increase_rate_instance instance_id="00333265" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="1.0000" />
+    </enhanced_gmv_increase_rate_instance>
+  </product_profile>
+  <product_profile product_profile_id="0002243524">
+    <canx_info>
+      <info key="IPNO">1043</info>
+      <info key="CO-CODE">GAIG</info>
+      <info key="CO-NAME-L"><![CDATA[Great American Life Insurance Company]]></info>
+      <info key="SET-NO">0001830263</info>
+      <info key="UPDATE-DATE">2022-09-19T14:04:42</info>
+      <info key="EXTERNAL-CODE">A0006D</info>
+    </canx_info>
+    <product_id>A0006D</product_id>
+    <state_availability list_cd="I">
+      <state_cd_name state_cd="AL">Alabama</state_cd_name>
+      <state_cd_name state_cd="AK">Alaska</state_cd_name>
+      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
+      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
+      <state_cd_name state_cd="CA">California</state_cd_name>
+      <state_cd_name state_cd="CO">Colorado</state_cd_name>
+      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
+      <state_cd_name state_cd="DE">Delaware</state_cd_name>
+      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
+      <state_cd_name state_cd="FL">Florida</state_cd_name>
+      <state_cd_name state_cd="GA">Georgia</state_cd_name>
+      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
+      <state_cd_name state_cd="ID">Idaho</state_cd_name>
+      <state_cd_name state_cd="IL">Illinois</state_cd_name>
+      <state_cd_name state_cd="IN">Indiana</state_cd_name>
+      <state_cd_name state_cd="IA">Iowa</state_cd_name>
+      <state_cd_name state_cd="KS">Kansas</state_cd_name>
+      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
+      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
+      <state_cd_name state_cd="ME">Maine</state_cd_name>
+      <state_cd_name state_cd="MD">Maryland</state_cd_name>
+      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
+      <state_cd_name state_cd="MI">Michigan</state_cd_name>
+      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
+      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
+      <state_cd_name state_cd="MO">Missouri</state_cd_name>
+      <state_cd_name state_cd="MT">Montana</state_cd_name>
+      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
+      <state_cd_name state_cd="NV">Nevada</state_cd_name>
+      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
+      <state_cd_name state_cd="NJ">New Jersey</state_cd_name>
+      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
+      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
+      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
+      <state_cd_name state_cd="OH">Ohio</state_cd_name>
+      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
+      <state_cd_name state_cd="OR">Oregon</state_cd_name>
+      <state_cd_name state_cd="PA">Pennsylvania</state_cd_name>
+      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
+      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
+      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
+      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
+      <state_cd_name state_cd="TX">Texas</state_cd_name>
+      <state_cd_name state_cd="UT">Utah</state_cd_name>
+      <state_cd_name state_cd="VT">Vermont</state_cd_name>
+      <state_cd_name state_cd="VA">Virginia</state_cd_name>
+      <state_cd_name state_cd="WA">Washington</state_cd_name>
+      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
+      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
+      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
+    </state_availability>
+    <ownership_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+      <cd_name cd="T">Trust</cd_name>
+      <cd_name cd="C">Corporation</cd_name>
+    </ownership_type_list>
+    <annuitant_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+    </annuitant_type_list>
+    <fund_type_instance instance_id="00308941" text_id="">
+      <cd_name cd="N" rule_id="">Non-qualified</cd_name>
+      <cd_name cd="Q" rule_id="">Qualified</cd_name>
+    </fund_type_instance>
+    <rop_instance instance_id="00308942" text_id="">
+      <cd_name cd="N" rule_id="">No</cd_name>
+    </rop_instance>
+    <mva_instance instance_id="00308943" text_id="">
+      <cd_name cd="N" rule_id="00313115">No</cd_name>
+      <cd_name cd="Y" rule_id="00308944">Yes</cd_name>
+    </mva_instance>
+    <surrender_period_basis cd="C">CDSC length</surrender_period_basis>
+    <cdsc_schedule_instance instance_id="00308948" rule_id="" text_id="">
+      <cdsc years="1" rate="9.0000" />
+      <cdsc years="2" rate="8.0000" />
+      <cdsc years="3" rate="7.0000" />
+      <cdsc years="4" rate="6.0000" />
+      <cdsc years="5" rate="5.0000" />
+      <cdsc years="6" rate="4.0000" />
+      <cdsc years="7" rate="3.0000" />
+    </cdsc_schedule_instance>
+    <surrender_charge_waivers_instance instance_id="00308949">
+      <cd_name cd="NH" text_id="00308956">Nursing home waiver</cd_name>
+      <cd_name cd="TI" text_id="00308950">Terminal illness waiver</cd_name>
+    </surrender_charge_waivers_instance>
+    <free_withdrawals_instance instance_id="00308958" rule_id="" text_id="00308959">
+      <tier_rate tier_no="1" rate="10.0000" />
+    </free_withdrawals_instance>
+    <minimum_withdrawals_rule_applicable cd="Y" text_id="">Yes</minimum_withdrawals_rule_applicable>
+    <systematic_withdrawals_available cd="Y" text_id="">Yes</systematic_withdrawals_available>
+    <bail_out cd="N" text_id="">No</bail_out>
+    <free_look_period cd="Y" text_id="">Yes</free_look_period>
+    <fees_commissions cd="C" text_id="">Commission based</fees_commissions>
+    <contract_continuation cd="N" text_id="">No continuation</contract_continuation>
+    <age_rule_basis cd="O">Owner</age_rule_basis>
+    <issue_age_owner_instance instance_id="00308965">
+      <age_range min_years="0" min_months="0" max_years="85" max_months="0" rule_id="" />
+    </issue_age_owner_instance>
+    <issue_age_annuitant_instance instance_id="00308965">
+      <age_range min_years="0" min_months="0" max_years="85" max_months="0" rule_id="" />
+    </issue_age_annuitant_instance>
+    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
+    <issue_age_joint_owner_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_owner_rules>
+    <issue_age_joint_annuitant_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_annuitant_rules>
+    <initial_premium_instance instance_id="00308966">
+      <premium rule_id="">10000.00</premium>
+    </initial_premium_instance>
+    <max_premium_instance instance_id="00308967">
+      <premium rule_id="00308968">1000000.00</premium>
+    </max_premium_instance>
+    <flexible_premium_instance instance_id="00308969">
+      <premium rule_id="">2000.00</premium>
+    </flexible_premium_instance>
+    <max_annuitization_age_instance instance_id="00308970">
+      <age years="95" months="0" rule_id="" />
+    </max_annuitization_age_instance>
+    <annuity_type_instance instance_id="00308971_1" rule_id="">
+      <annuity_type cd="CO">Certain period</annuity_type>
+      <guarantee_type cd="RG">Certain period</guarantee_type>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="00308971_2" rule_id="">
+      <annuity_type cd="SL">Single life</annuity_type>
+      <guarantee_type cd="NG">Life only</guarantee_type>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="00308971_3" rule_id="">
+      <annuity_type cd="SL">Single life</annuity_type>
+      <guarantee_type cd="RG">Certain period</guarantee_type>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="00308971_4" rule_id="">
+      <annuity_type cd="JL">Joint life</annuity_type>
+      <guarantee_type cd="NG">Life only</guarantee_type>
+      <joint_continuation_instance instance_id="00308974">
+        <percentage_range min="50.0000" max="50.0000" />
+      </joint_continuation_instance>
+    </annuity_type_instance>
+    <standard_gmv_initial_rate_instance instance_id="00308976" rule_id="00357262" text_id="">
+      <tier_rate tier_no="1" rate="87.5000" />
+    </standard_gmv_initial_rate_instance>
+    <standard_gmv_initial_rate_instance instance_id="00357264" rule_id="00357265" text_id="">
+      <tier_rate tier_no="1" rate="90.0000" />
+    </standard_gmv_initial_rate_instance>
+    <standard_gmv_increase_rate_instance instance_id="00308978" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="1.0000" />
+    </standard_gmv_increase_rate_instance>
+  </product_profile>
+  <product_profile product_profile_id="0002243820">
+    <canx_info>
+      <info key="IPNO">0914</info>
+      <info key="CO-CODE">FORE</info>
+      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
+      <info key="SET-NO">0001830825</info>
+      <info key="UPDATE-DATE">2022-09-21T16:38:52</info>
+      <info key="EXTERNAL-CODE">A0006U</info>
+    </canx_info>
+    <product_id>A0006U</product_id>
+    <state_availability list_cd="I">
+      <state_cd_name state_cd="AL">Alabama</state_cd_name>
+      <state_cd_name state_cd="AK">Alaska</state_cd_name>
+      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
+      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
+      <state_cd_name state_cd="CA">California</state_cd_name>
+      <state_cd_name state_cd="CO">Colorado</state_cd_name>
+      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
+      <state_cd_name state_cd="DE">Delaware</state_cd_name>
+      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
+      <state_cd_name state_cd="FL">Florida</state_cd_name>
+      <state_cd_name state_cd="GA">Georgia</state_cd_name>
+      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
+      <state_cd_name state_cd="ID">Idaho</state_cd_name>
+      <state_cd_name state_cd="IL">Illinois</state_cd_name>
+      <state_cd_name state_cd="IN">Indiana</state_cd_name>
+      <state_cd_name state_cd="IA">Iowa</state_cd_name>
+      <state_cd_name state_cd="KS">Kansas</state_cd_name>
+      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
+      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
+      <state_cd_name state_cd="ME">Maine</state_cd_name>
+      <state_cd_name state_cd="MD">Maryland</state_cd_name>
+      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
+      <state_cd_name state_cd="MI">Michigan</state_cd_name>
+      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
+      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
+      <state_cd_name state_cd="MO">Missouri</state_cd_name>
+      <state_cd_name state_cd="MT">Montana</state_cd_name>
+      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
+      <state_cd_name state_cd="NV">Nevada</state_cd_name>
+      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
+      <state_cd_name state_cd="NJ">New Jersey</state_cd_name>
+      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
+      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
+      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
+      <state_cd_name state_cd="OH">Ohio</state_cd_name>
+      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
+      <state_cd_name state_cd="OR">Oregon</state_cd_name>
+      <state_cd_name state_cd="PA">Pennsylvania</state_cd_name>
+      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
+      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
+      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
+      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
+      <state_cd_name state_cd="TX">Texas</state_cd_name>
+      <state_cd_name state_cd="UT">Utah</state_cd_name>
+      <state_cd_name state_cd="VT">Vermont</state_cd_name>
+      <state_cd_name state_cd="VA">Virginia</state_cd_name>
+      <state_cd_name state_cd="WA">Washington</state_cd_name>
+      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
+      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
+      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
+    </state_availability>
+    <ownership_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+    </ownership_type_list>
+    <annuitant_type_list text_id="">
+      <cd_name cd="S">Single</cd_name>
+      <cd_name cd="J">Joint</cd_name>
+    </annuitant_type_list>
+    <fund_type_instance instance_id="00309331" text_id="">
+      <cd_name cd="N" rule_id="">Non-qualified</cd_name>
+      <cd_name cd="Q" rule_id="">Qualified</cd_name>
+    </fund_type_instance>
+    <rop_instance instance_id="00309332" text_id="">
+      <cd_name cd="N" rule_id="">No</cd_name>
+    </rop_instance>
+    <mva_instance instance_id="00309333" text_id="">
+      <cd_name cd="Y" rule_id="">Yes</cd_name>
+    </mva_instance>
+    <surrender_period_basis cd="C">CDSC length</surrender_period_basis>
+    <cdsc_schedule_instance instance_id="00309335" rule_id="" text_id="">
+      <cdsc years="1" rate="9.0000" />
+      <cdsc years="2" rate="8.0000" />
+      <cdsc years="3" rate="7.0000" />
+      <cdsc years="4" rate="6.0000" />
+      <cdsc years="5" rate="5.0000" />
+    </cdsc_schedule_instance>
+    <cdsc_schedule_instance instance_id="00309338" rule_id="" text_id="">
+      <cdsc years="1" rate="9.0000" />
+      <cdsc years="2" rate="8.0000" />
+      <cdsc years="3" rate="7.0000" />
+      <cdsc years="4" rate="6.0000" />
+      <cdsc years="5" rate="5.0000" />
+      <cdsc years="6" rate="4.0000" />
+      <cdsc years="7" rate="3.0000" />
+    </cdsc_schedule_instance>
+    <cdsc_schedule_instance instance_id="00309341" rule_id="" text_id="">
+      <cdsc years="1" rate="9.0000" />
+      <cdsc years="2" rate="9.0000" />
+      <cdsc years="3" rate="8.0000" />
+      <cdsc years="4" rate="7.0000" />
+      <cdsc years="5" rate="6.0000" />
+      <cdsc years="6" rate="5.0000" />
+      <cdsc years="7" rate="4.0000" />
+      <cdsc years="8" rate="3.0000" />
+      <cdsc years="9" rate="2.0000" />
+      <cdsc years="10" rate="1.0000" />
+    </cdsc_schedule_instance>
+    <surrender_charge_waivers_instance instance_id="00309345">
+      <cd_name cd="NH" text_id="">Nursing home waiver</cd_name>
+      <cd_name cd="TI" text_id="">Terminal illness waiver</cd_name>
+    </surrender_charge_waivers_instance>
+    <free_withdrawals_instance instance_id="00309347" rule_id="" text_id="00345213">
+      <tier_rate tier_no="1" rate="10.0000" />
+    </free_withdrawals_instance>
+    <minimum_withdrawals_rule_applicable cd="N" text_id="00345225">No</minimum_withdrawals_rule_applicable>
+    <systematic_withdrawals_available cd="Y" text_id="">Yes</systematic_withdrawals_available>
+    <bail_out cd="Y" text_id="">Yes</bail_out>
+    <free_look_period cd="Y" text_id="00345224">Yes</free_look_period>
+    <fees_commissions cd="C" text_id="">Commission based</fees_commissions>
+    <contract_continuation cd="S" text_id="">Spousal</contract_continuation>
+    <age_rule_basis cd="O">Owner</age_rule_basis>
+    <issue_age_owner_instance instance_id="00309349">
+      <age_range min_years="45" min_months="0" max_years="85" max_months="0" rule_id="" />
+    </issue_age_owner_instance>
+    <issue_age_annuitant_instance instance_id="00309349">
+      <age_range min_years="45" min_months="0" max_years="85" max_months="0" rule_id="" />
+    </issue_age_annuitant_instance>
+    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
+    <issue_age_joint_owner_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_owner_rules>
+    <issue_age_joint_annuitant_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_annuitant_rules>
+    <initial_premium_instance instance_id="00309352">
+      <premium rule_id="">25000.00</premium>
+    </initial_premium_instance>
+    <max_premium_instance instance_id="00309353">
+      <premium rule_id="00309356">500000.00</premium>
+      <premium rule_id="00309354">1000000.00</premium>
+    </max_premium_instance>
+    <max_annuitization_age_instance instance_id="00309357">
+      <age years="95" months="0" rule_id="" />
+    </max_annuitization_age_instance>
+    <annuity_type_instance instance_id="05592053_1" rule_id="">
+      <annuity_type cd="CO">Certain period</annuity_type>
+      <guarantee_type cd="RG">Certain period</guarantee_type>
+      <guarantee_period_instance instance_id="05592058">
+        <period_range min_years="10" min_months="0" max_years="30" max_months="0" />
+      </guarantee_period_instance>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="05592053_2" rule_id="">
+      <annuity_type cd="SL">Single life</annuity_type>
+      <guarantee_type cd="NG">Life only</guarantee_type>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="05592053_3" rule_id="">
+      <annuity_type cd="SL">Single life</annuity_type>
+      <guarantee_type cd="RG">Certain period</guarantee_type>
+      <guarantee_period_instance instance_id="05592054">
+        <period_range min_years="10" min_months="0" max_years="10" max_months="0" />
+      </guarantee_period_instance>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="05592053_4" rule_id="">
+      <annuity_type cd="SL">Single life</annuity_type>
+      <guarantee_type cd="CR">Cash refund</guarantee_type>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="05592053_5" rule_id="">
+      <annuity_type cd="JL">Joint life</annuity_type>
+      <guarantee_type cd="NG">Life only</guarantee_type>
+      <joint_continuation_instance instance_id="05592055">
+        <percentage_range min="100.0000" max="100.0000" />
+      </joint_continuation_instance>
+    </annuity_type_instance>
+    <annuity_type_instance instance_id="05592053_6" rule_id="">
+      <annuity_type cd="JL">Joint life</annuity_type>
+      <guarantee_type cd="RG">Certain period</guarantee_type>
+      <guarantee_period_instance instance_id="05592056">
+        <period_range min_years="10" min_months="0" max_years="10" max_months="0" />
+      </guarantee_period_instance>
+      <joint_continuation_instance instance_id="05592057">
+        <percentage_range min="100.0000" max="100.0000" />
+      </joint_continuation_instance>
+    </annuity_type_instance>
+    <standard_gmv_initial_rate_instance instance_id="00309359" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="87.5000" />
+    </standard_gmv_initial_rate_instance>
+    <standard_gmv_increase_rate_instance instance_id="00309361" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="1.0000" />
+    </standard_gmv_increase_rate_instance>
+    <enhanced_gmv_initial_rate_instance instance_id="00352811" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="100.0000" />
+    </enhanced_gmv_initial_rate_instance>
+  </product_profile>
+</anty_ds_product_profiles>

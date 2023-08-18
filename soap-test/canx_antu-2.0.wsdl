@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions xmlns:cnx="http://www.cannex.com"
+				  xmlns:cws="http://www.cannex.com/ws"
+				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				  name="canx_antu" 
+				  targetNamespace="http://www.cannex.com/ws">
+  
+  <wsdl:documentation>
+  	This file and any supporting xsd schemas are located at "http://localhost:8080/CANX/wsdl"
+  </wsdl:documentation>
+  
+  <wsdl:types>
+	<xsd:schema targetNamespace="http://www.cannex.com/ws">
+	  <xsd:import schemaLocation="req_antu_type-2.0.xsd" namespace="http://www.cannex.com" />
+      <xsd:element type="cnx:req_antu_type" name="antu_request" />
+    </xsd:schema>  
+	<xsd:schema targetNamespace="http://www.cannex.com/ws">
+      <xsd:import schemaLocation="resp_antu_type-2.0.xsd" namespace="http://www.cannex.com" />
+      <xsd:element type="cnx:resp_antu_type" name="antu_response" />
+    </xsd:schema>  
+  </wsdl:types>
+  
+  <wsdl:message name="canx_antu_request">
+    <wsdl:part element="cws:antu_request" name="parameters" />
+  </wsdl:message>
+  <wsdl:message name="canx_antu_response">
+    <wsdl:part element="cws:antu_response" name="parameters" />
+  </wsdl:message>
+  
+  <wsdl:portType name="canx_antu_porttype">
+    <wsdl:operation name="canx_antu_operation">
+      <wsdl:input message="cws:canx_antu_request" />
+      <wsdl:output message="cws:canx_antu_response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="canx_antu_binding" type="cws:canx_antu_porttype">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="canx_antu_operation">
+      <soap:operation soapAction="http://www.cannex.com/ws/canx_antu_operation" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="canx_antu_service">
+    <wsdl:port binding="cws:canx_antu_binding" name="canx_antu_binding">
+      <soap:address location="http://localhost:8080/CANX/AntuService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

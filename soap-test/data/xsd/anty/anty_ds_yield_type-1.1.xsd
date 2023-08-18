@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_ds_base_types-1.1.xsd" />
+
+	<xsd:complexType name="anty_ds_yield_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />			
+			<xsd:element type="cnx:cd_name_type" name="product_type" />
+			<xsd:element type="cnx:yield_type" name="yield_instance"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xsd:element type="cnx:info_list_type" name="custom_info"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.1" />
+	</xsd:complexType>
+
+	<xsd:complexType name="yield_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_profile_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="fixed_rate_details_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="fixed_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="cnx:yield_rate_type" name="current_yield_rates"  
+				minOccurs="0" />
+			<xsd:element type="cnx:yield_rate_type" name="announced_yield_rates" 
+				minOccurs="0" />
+			<xsd:element type="cnx:period_type" name="guarantee_period" 
+				minOccurs="0" />
+			<xsd:element type="cnx:period_type" name="surrender_period" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="cdsc_schedule_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="premium_bonus_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="interest_bonus_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="minimum_gmir_fixed_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="minimum_increase_fixed_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_profile_id"  
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_rider_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_step_ups_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_roll_ups_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="cnx:info_list_type" name="custom_info"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="yield_id" use="required" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="yield_rate_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:double" name="first_year"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="guarantee_period"  
+				minOccurs="0" />
+			<xsd:element type="xsd:double" name="surrender_period" 
+				minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

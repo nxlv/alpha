@@ -180,7 +180,7 @@
     };
 </script>
 <template>
-    <div class="alpha__modal">
+    <dialog class="alpha__modal">
         <div class="alpha__modal-bounds">
             <header class="alpha__modal-header">
                 <h3>Add/Edit Client Information <span class="alpha__modal-close" v-on:click="this.$globalUtils.modal_close()"><i class="fal fa-close" aria-hidden="true"></i></span></h3>
@@ -303,5 +303,5 @@
                 </menu>
             </div>
         </div>
-    </div>
+    </dialog>
 </template>

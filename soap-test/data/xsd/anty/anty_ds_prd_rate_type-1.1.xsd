@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_ds_base_types-1.1.xsd" />
+
+	<xsd:complexType name="anty_ds_prd_rate_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />			
+			<xsd:element type="cnx:cd_name_type" name="product_type" />
+			<xsd:element type="cnx:prd_rate_info_type" name="product_rate_info"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:info_list_type" name="custom_info"
+				minOccurs="0" />			
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.1" />
+	</xsd:complexType>
+
+	<xsd:complexType name="prd_rate_info_type">
+		<xsd:sequence>			
+			<xsd:element type="cnx:prd_rate_type" name="product_rate"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	    <xsd:attribute type="xsd:string" name="reference_name" use="required" />
+	    <xsd:attribute type="xsd:string" name="reference_id" use="required" />
+	    <xsd:attribute type="xsd:int" name="product_rate_no" use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="prd_rate_type">
+	   <xsd:simpleContent>
+	      <xsd:extension base="xsd:double">
+	      	<xsd:attribute type="xsd:string" name="rate_cd" use="required" />
+	    	<xsd:attribute type="xsd:string" name="rate_name" use="required" />
+	    	<xsd:attribute type="xsd:string" name="rate_text" use="optional" />
+	    	<xsd:attribute type="xsd:int" name="tier_no" use="optional" />
+	      	<xsd:attribute type="xsd:string" name="cap_cd" use="optional" />
+	    	<xsd:attribute type="xsd:string" name="cap_name" use="optional" />
+	      </xsd:extension>
+	   </xsd:simpleContent>
+	</xsd:complexType>
+</xsd:schema>

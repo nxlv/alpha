@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_ds_base_types-1.1.xsd" />
+
+	<xsd:complexType name="anty_ds_index_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="version_id" />
+			<xsd:element type="cnx:index_type" name="index"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.1" />
+	</xsd:complexType>
+
+	<xsd:complexType name="index_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:string" name="index_name"
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="universal_ticker"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="live_date"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="closed_date"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="oldest_date"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="most_recent_date"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="index_id" use="required" />
+	</xsd:complexType>
+   
+</xsd:schema>

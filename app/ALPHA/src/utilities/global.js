@@ -168,6 +168,59 @@ const globalUtils = {
         return dataset;
     },
 
+    get_dataset_as_kvp(key) {
+        let response = [];
+        let dataset = this.get_dataset( key );
+
+        if ( dataset ) {
+            for ( let element in dataset ) {
+                response.push(
+                    {
+                        value: element,
+                        label: dataset[ element ],
+                        disabled: false
+                    }
+                )
+            }
+        }
+
+        console.log( response );
+
+        return response;
+    },
+
+    get_set_as_kvp(key) {
+        const sets = useSetsStore();
+
+        let response = [];
+        let dataset = null;
+        let label, value = null;
+
+        switch ( key ) {
+            case 'indexes' :
+                dataset = sets.sets.indexes;
+
+                label = 'index_name';
+                value = 'index_id';
+                break;
+
+            case 'carriers' :
+                dataset = sets.sets.carriers;
+
+                label = 'name';
+                value = 'id';
+                break;
+        }
+
+        if ( ( dataset ) && ( label ) && ( value ) ) {
+            for ( let counter = 0; counter < dataset.length; counter++ ) {
+                response.push( { 'value': dataset[ counter ][ value ], 'label': dataset[ counter ][ label ] } );
+            }
+        }
+
+        return response;
+    },
+
     get_value_from_meta_key(meta, key) {
         let value = '';
 
@@ -185,6 +238,10 @@ const globalUtils = {
 
     sanitize_title(title) {
         let slug = '';
+
+        if ( !title ) {
+            return slug;
+        }
 
         // Change to lower case
         let titleLower = title.toLowerCase();
