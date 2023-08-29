@@ -189,9 +189,10 @@
                         <legend>{{ carrier.label }} ( {{ carrier.value }} )</legend>
 
                         <div class="form">
-                            <div class="form__row">
-                                <div class="form__column">
-                                    [ product list ]
+                            <div class="form__row form__row--wrapped">
+                                <div class="form__column form__column--checkbox" v-for="( product, product_index ) in carrier.products" v-bind:key="product_index">
+                                    <input type="checkbox" v-bind:id="product.product_id" v-bind:value="product.product_id">
+                                    <label v-bind:for="product.product_id">{{ product.name }}</label>
                                 </div>
                             </div>
                         </div>

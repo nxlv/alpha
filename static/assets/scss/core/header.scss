@@ -276,15 +276,17 @@ main#alpha {
             flex-wrap: nowrap;
             color: $color-grey-bright;
 
-            &-client {
+            &-client,
+            &-inventory {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                justify-content: center;
                 height: 100%;
                 width: auto;
                 white-space: nowrap;
                 color: $brand-quinary;
+                justify-content: flex-end;
+                padding-bottom: 0.75rem;
 
                 h3 {
                     margin: 0;
@@ -354,24 +356,6 @@ main#alpha {
                             font-size: 1rem;
                             content: '';
                             color: $brand-primary;
-                        }
-
-                        &[data-type="location"] {
-                            &:before {
-                                content: '\f74c';
-                            }
-                        }
-
-                        &[data-type="age"] {
-                            &:before {
-                                content: '\e471';
-                            }
-                        }
-
-                        &[data-type="marital"] {
-                            &:before {
-                                content: '\f81b';
-                            }
                         }
                     }
                 }
@@ -444,6 +428,56 @@ main#alpha {
                                 align-items: center;
                                 justify-content: center;
                                 color: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-client {
+                .stats {
+                    li {
+                        &[data-type="location"] {
+                            &:before {
+                                content: '\f74c';
+                            }
+                        }
+
+                        &[data-type="age"] {
+                            &:before {
+                                content: '\e471';
+                            }
+                        }
+
+                        &[data-type="marital"] {
+                            &:before {
+                                content: '\f81b';
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-inventory {
+                margin-left: 1.5rem;
+                padding-left: 1.5rem;
+                border-left: 1px #fff dotted;
+
+                h3 {
+                    color: #fff;
+                }
+
+                .stats {
+                    li {
+                        &[data-type="title"] {
+                            &:before {
+                                content: '\f02b';
+                            }
+                        }
+
+                        &[data-type="counter"] {
+                            &:before {
+                                content: '\e1d1';
                             }
                         }
                     }

@@ -88,15 +88,20 @@
                         if ( this.quotes[ product ].targets[ counter ].predictions ) {
                             for ( counter_inner = 0; counter_inner < this.quotes[ product ].targets[ counter ].predictions.length; counter_inner++ ) {
                                 if ( parseInt( this.quotes[ product ].targets[ counter ].predictions[ counter_inner ].deferral ) === parseInt( this.parameters.deferral ) ) {
-                                    response.push(
-                                        {
-                                            amount: this.quotes[ product ].targets[ counter ].predictions[ counter_inner ],
-                                            product: this.quotes[ product ].product,
-                                            carrier: this.quotes[ product ].carrier,
-                                            source: this.quotes[ product ].targets[ counter ]
-                                        }
-                                    )
-
+                                    if ( ( this.quotes[ product ].targets[ counter ].predictions ) && ( this.quotes[ product ].targets[ counter ].guaranteed ) ) {
+                                        response.push(
+                                            {
+                                                amount: this.quotes[ product ].targets[ counter ].predictions[ counter_inner ],
+                                                amount_guaranteed: this.quotes[ product ].targets[ counter ].guaranteed[ counter_inner ],
+                                                product: this.quotes[ product ].product,
+                                                carrier: this.quotes[ product ].carrier,
+                                                source: this.quotes[ product ].targets[ counter ]
+                                            }
+                                        )
+                                    } else {
+                                        console.log( 'error' );
+                                        break;
+                                    }
                                     break;
                                 }
                             }
@@ -105,7 +110,8 @@
                 }
 
                 response.sort( ( left, right ) => {
-                    return ( ( left.amount.income > right.amount.income ) ? -1 : ( ( left.amount.income === right.amount.income ) ? 0 : 1 ) );
+                    return ( ( left.amount_guaranteed > right.amount_guaranteed ) ? -1 : ( ( left.amount_guaranteed === right.amount_guaranteed ) ? 0 : 1 ) );
+                    // return ( ( left.amount.income > right.amount.income ) ? -1 : ( ( left.amount.income === right.amount.income ) ? 0 : 1 ) );
                 } );
 
                 this.results = response;
@@ -458,6 +464,7 @@
                                     <div class="result__card-title-text">
                                         <strong>{{ result.product.name }}</strong>
                                         {{ result.carrier.name }}
+                                        <small>{{ result.source.product_analysis_data_id }}</small>
                                     </div>
                                     <template v-if="result.carrier.ratings">
                                         <div class="result__card-title-ratings">
@@ -468,8 +475,8 @@
                                 <div class="result__card-strategies">
                                     <div class="result__card-strategy" v-on:click="set_product( result.source.product_analysis_data_id )">
                                         <div class="result__card-strategy-income">
-                                            <div class="result__card-strategy-income-money" data-period="annually">{{ this.$financeUtils.format_currency( result.amount.income, 'USD' ) }}</div>
-                                            <div class="result__card-strategy-income-money" data-period="monthly">{{ this.$financeUtils.format_currency( ( result.amount.income / 12 ), 'USD' ) }}</div>
+                                            <div class="result__card-strategy-income-money" data-period="annually" data-type="guaranteed">{{ this.$financeUtils.format_currency( result.amount_guaranteed.income, 'USD' ) }}</div>
+                                            <div class="result__card-strategy-income-money" data-period="annually" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.amount.income, 'USD' ) }}</div>
                                         </div>
                                         <div class="result__card-strategy-data">
                                             <div class="result__card-strategy-data-points">

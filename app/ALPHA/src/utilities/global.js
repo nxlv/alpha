@@ -184,8 +184,6 @@ const globalUtils = {
             }
         }
 
-        console.log( response );
-
         return response;
     },
 
@@ -194,7 +192,7 @@ const globalUtils = {
 
         let response = [];
         let dataset = null;
-        let label, value = null;
+        let label, value, extra = null;
 
         switch ( key ) {
             case 'indexes' :
@@ -209,12 +207,30 @@ const globalUtils = {
 
                 label = 'name';
                 value = 'id';
+
+                extra = [ 'products' ];
                 break;
+
+            case 'products' :
+                dataset = sets.sets.products;
+
+                label = 'name';
+                value = 'id';
         }
 
         if ( ( dataset ) && ( label ) && ( value ) ) {
+            let record = null;
+
             for ( let counter = 0; counter < dataset.length; counter++ ) {
-                response.push( { 'value': dataset[ counter ][ value ], 'label': dataset[ counter ][ label ] } );
+                record = { 'value': dataset[ counter ][ value ], 'label': dataset[ counter ][ label ] };
+
+                if ( extra ) {
+                    for ( let counter_extra = 0; counter_extra < extra.length; counter_extra++ ) {
+                        record[ extra[ counter_extra ] ] = dataset[ counter ][ extra[ counter_extra ] ];
+                    }
+                }
+
+                response.push( record );
             }
         }
 
@@ -334,6 +350,10 @@ const globalUtils = {
                 if ( moment.isMoment( value ) ) {
                     value = moment().diff( value, 'years' );
                 }
+                break;
+
+            case 'numeric' :
+                return value.replace( /\D/g, '' );
                 break;
 
             default :

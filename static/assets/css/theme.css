@@ -14623,6 +14623,9 @@ main article {
     main article .alpha__modal .form__row:last-child,
     main article .form__row:last-child {
       padding-bottom: 0; }
+    main article .alpha__modal .form__row.form__row--wrapped,
+    main article .form__row.form__row--wrapped {
+      flex-wrap: wrap; }
     main article .alpha__modal .form__row .form__column:last-child,
     main article .form__row .form__column:last-child {
       padding-right: 0; }
@@ -14663,6 +14666,57 @@ main article {
       line-height: 1.75rem;
       letter-spacing: -1px;
       padding: 0.75rem 1rem 0.25rem 1rem; }
+    main article .alpha__modal .form__column.form__column--checkbox,
+    main article .form__column.form__column--checkbox {
+      width: 25%;
+      max-width: 25%;
+      padding-right: 1rem; }
+      main article .alpha__modal .form__column.form__column--checkbox:last-child,
+      main article .form__column.form__column--checkbox:last-child {
+        padding-right: 1rem; }
+      main article .alpha__modal .form__column.form__column--checkbox input[type="checkbox"],
+      main article .form__column.form__column--checkbox input[type="checkbox"] {
+        display: none; }
+        main article .alpha__modal .form__column.form__column--checkbox input[type="checkbox"]:checked + label:before,
+        main article .form__column.form__column--checkbox input[type="checkbox"]:checked + label:before {
+          background-color: #c9c9c9;
+          border-color: #238c00; }
+        main article .alpha__modal .form__column.form__column--checkbox input[type="checkbox"]:checked + label:after,
+        main article .form__column.form__column--checkbox input[type="checkbox"]:checked + label:after {
+          opacity: 1;
+          visibility: visible; }
+      main article .alpha__modal .form__column.form__column--checkbox label,
+      main article .form__column.form__column--checkbox label {
+        border: 1px #aaa solid;
+        padding: 1rem 1rem 0.75rem 2.75rem;
+        cursor: pointer; }
+        main article .alpha__modal .form__column.form__column--checkbox label:before, main article .alpha__modal .form__column.form__column--checkbox label:after,
+        main article .form__column.form__column--checkbox label:before,
+        main article .form__column.form__column--checkbox label:after {
+          content: '';
+          width: 1.5rem;
+          height: 1.5rem;
+          position: absolute;
+          top: 0.5rem;
+          left: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center; }
+        main article .alpha__modal .form__column.form__column--checkbox label:before,
+        main article .form__column.form__column--checkbox label:before {
+          border: 1px #aaa solid;
+          background-color: #E8E5DA; }
+        main article .alpha__modal .form__column.form__column--checkbox label:after,
+        main article .form__column.form__column--checkbox label:after {
+          content: '\f00c';
+          font-family: 'Font Awesome 6 Pro', sans-serif;
+          color: #238c00;
+          font-weight: bold;
+          font-size: 1.25rem;
+          line-height: 1.25rem;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.25s cubic-bezier(0.19, 1, 0.22, 1); }
     main article .alpha__modal .form__column > label,
     main article .form__column > label {
       font-weight: bold;
@@ -14723,6 +14777,41 @@ main article {
       line-height: 1.25rem;
       padding: 0.5rem 0 0.25rem 0.5rem;
       background-color: #152935; }
+    main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-option,
+    main article .form__column .multiselect .multiselect-wrapper .multiselect-option {
+      border-top: 1px #aaa solid;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      padding-left: 2.25rem;
+      position: relative; }
+      main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-option:before, main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-option:after,
+      main article .form__column .multiselect .multiselect-wrapper .multiselect-option:before,
+      main article .form__column .multiselect .multiselect-wrapper .multiselect-option:after {
+        content: '';
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        width: 1rem;
+        height: 1rem;
+        margin-top: -1px;
+        pointer-events: none; }
+      main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-option:before,
+      main article .form__column .multiselect .multiselect-wrapper .multiselect-option:before {
+        border: 1px #aaa solid;
+        background-color: #E8E5DA; }
+      main article .alpha__modal .form__column .multiselect .multiselect-wrapper .multiselect-option:after,
+      main article .form__column .multiselect .multiselect-wrapper .multiselect-option:after {
+        content: '\f00c';
+        display: flex;
+        justify-content: center;
+        top: 0.5rem;
+        font-family: 'Font Awesome 6 Pro', sans-serif;
+        font-weight: bold;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        text-indent: 1px;
+        color: #238c00;
+        opacity: 0; }
   main article .alpha__modal .form__buttons,
   main article .form__buttons {
     display: flex;
@@ -15084,16 +15173,17 @@ main#alpha .alpha__prologue {
     flex-direction: row;
     flex-wrap: nowrap;
     color: #E8E5DA; }
-    main#alpha .alpha__prologue-secondary-client {
+    main#alpha .alpha__prologue-secondary-client, main#alpha .alpha__prologue-secondary-inventory {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: center;
       height: 100%;
       width: auto;
       white-space: nowrap;
-      color: #E8E5DA; }
-      main#alpha .alpha__prologue-secondary-client h3 {
+      color: #E8E5DA;
+      justify-content: flex-end;
+      padding-bottom: 0.75rem; }
+      main#alpha .alpha__prologue-secondary-client h3, main#alpha .alpha__prologue-secondary-inventory h3 {
         margin: 0;
         padding: 0;
         width: 100%;
@@ -15105,7 +15195,7 @@ main#alpha .alpha__prologue {
         font-weight: 500;
         font-size: 1.125rem;
         line-height: 1.25rem; }
-        main#alpha .alpha__prologue-secondary-client h3 .money {
+        main#alpha .alpha__prologue-secondary-client h3 .money, main#alpha .alpha__prologue-secondary-inventory h3 .money {
           display: block;
           white-space: nowrap;
           font-size: 1.25rem;
@@ -15115,7 +15205,8 @@ main#alpha .alpha__prologue {
           color: #fff;
           padding-left: 1rem; }
       main#alpha .alpha__prologue-secondary-client .stats,
-      main#alpha .alpha__prologue-secondary-client .controls {
+      main#alpha .alpha__prologue-secondary-client .controls, main#alpha .alpha__prologue-secondary-inventory .stats,
+      main#alpha .alpha__prologue-secondary-inventory .controls {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -15124,20 +15215,21 @@ main#alpha .alpha__prologue {
         padding: 0;
         width: 100%; }
         main#alpha .alpha__prologue-secondary-client .stats li,
-        main#alpha .alpha__prologue-secondary-client .controls li {
+        main#alpha .alpha__prologue-secondary-client .controls li, main#alpha .alpha__prologue-secondary-inventory .stats li,
+        main#alpha .alpha__prologue-secondary-inventory .controls li {
           position: relative;
           margin: 0;
           padding: 0; }
-      main#alpha .alpha__prologue-secondary-client .stats {
+      main#alpha .alpha__prologue-secondary-client .stats, main#alpha .alpha__prologue-secondary-inventory .stats {
         margin: 0.25rem 0;
         padding: 0.25rem 0.75rem 0 0;
         font-size: 0.875rem;
         line-height: 0.875rem;
         font-weight: 300; }
-        main#alpha .alpha__prologue-secondary-client .stats li {
+        main#alpha .alpha__prologue-secondary-client .stats li, main#alpha .alpha__prologue-secondary-inventory .stats li {
           margin: 0 0.25rem 0 24px;
           padding: 0 0.75rem 0 0; }
-          main#alpha .alpha__prologue-secondary-client .stats li:before {
+          main#alpha .alpha__prologue-secondary-client .stats li:before, main#alpha .alpha__prologue-secondary-inventory .stats li:before {
             width: 18px;
             height: 100%;
             display: block;
@@ -15152,18 +15244,12 @@ main#alpha .alpha__prologue {
             font-size: 1rem;
             content: '';
             color: #01A7C2; }
-          main#alpha .alpha__prologue-secondary-client .stats li[data-type="location"]:before {
-            content: '\f74c'; }
-          main#alpha .alpha__prologue-secondary-client .stats li[data-type="age"]:before {
-            content: '\e471'; }
-          main#alpha .alpha__prologue-secondary-client .stats li[data-type="marital"]:before {
-            content: '\f81b'; }
-      main#alpha .alpha__prologue-secondary-client .controls {
+      main#alpha .alpha__prologue-secondary-client .controls, main#alpha .alpha__prologue-secondary-inventory .controls {
         border-top: 1px #fff dotted;
         margin: 0.375rem 0 0 0;
         padding: 0.375rem 0 0 0;
         justify-content: flex-end; }
-        main#alpha .alpha__prologue-secondary-client .controls li {
+        main#alpha .alpha__prologue-secondary-client .controls li, main#alpha .alpha__prologue-secondary-inventory .controls li {
           display: block;
           width: 20px;
           height: 20px;
@@ -15172,24 +15258,24 @@ main#alpha .alpha__prologue {
           margin: 0 0 0 0.5rem;
           position: relative;
           color: #aaa; }
-          main#alpha .alpha__prologue-secondary-client .controls li:first-child {
+          main#alpha .alpha__prologue-secondary-client .controls li:first-child, main#alpha .alpha__prologue-secondary-inventory .controls li:first-child {
             margin-left: 0; }
-          main#alpha .alpha__prologue-secondary-client .controls li[data-type="add"] a:before {
+          main#alpha .alpha__prologue-secondary-client .controls li[data-type="add"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="add"] a:before {
             content: '\f234'; }
-          main#alpha .alpha__prologue-secondary-client .controls li[data-type="edit"] a:before {
+          main#alpha .alpha__prologue-secondary-client .controls li[data-type="edit"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="edit"] a:before {
             content: '\f4ff'; }
-          main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"] {
+          main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"], main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="change"] {
             margin-right: auto;
             color: #F4562A; }
-            main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"] a:before {
+            main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="change"] a:before {
               content: '\f079'; }
-          main#alpha .alpha__prologue-secondary-client .controls li a {
+          main#alpha .alpha__prologue-secondary-client .controls li a, main#alpha .alpha__prologue-secondary-inventory .controls li a {
             position: absolute;
             width: 20px;
             height: 20px;
             color: inherit;
             text-decoration: none; }
-            main#alpha .alpha__prologue-secondary-client .controls li a:before {
+            main#alpha .alpha__prologue-secondary-client .controls li a:before, main#alpha .alpha__prologue-secondary-inventory .controls li a:before {
               content: '';
               font-family: 'Font Awesome 6 Pro', sans-serif;
               width: 100%;
@@ -15203,6 +15289,22 @@ main#alpha .alpha__prologue {
               align-items: center;
               justify-content: center;
               color: inherit; }
+    main#alpha .alpha__prologue-secondary-client .stats li[data-type="location"]:before {
+      content: '\f74c'; }
+    main#alpha .alpha__prologue-secondary-client .stats li[data-type="age"]:before {
+      content: '\e471'; }
+    main#alpha .alpha__prologue-secondary-client .stats li[data-type="marital"]:before {
+      content: '\f81b'; }
+    main#alpha .alpha__prologue-secondary-inventory {
+      margin-left: 1.5rem;
+      padding-left: 1.5rem;
+      border-left: 1px #fff dotted; }
+      main#alpha .alpha__prologue-secondary-inventory h3 {
+        color: #fff; }
+      main#alpha .alpha__prologue-secondary-inventory .stats li[data-type="title"]:before {
+        content: '\f02b'; }
+      main#alpha .alpha__prologue-secondary-inventory .stats li[data-type="counter"]:before {
+        content: '\e1d1'; }
     main#alpha .alpha__prologue-secondary-search {
       width: 100%;
       display: flex;
@@ -16077,7 +16179,7 @@ h6 {
         .result__card-strategy-income-money:first-child {
           margin-top: 0; }
         .result__card-strategy-income-money:after {
-          content: attr(data-period);
+          content: attr(data-type) " " attr(data-period);
           display: block;
           font-weight: 300;
           font-size: 0.75rem;
@@ -16088,6 +16190,8 @@ h6 {
           color: #fff; }
         .result__card-strategy-income-money[data-period="monthly"] {
           background-color: #152935; }
+        .result__card-strategy-income-money[data-type="hypothetical"] {
+          background: linear-gradient(130deg, #fdb931 0%, #9f7928 30%, #d1b464 54%, #5d4a1f 89%, #5d4a1f 100%); }
     .result__card-strategy-data {
       border-left: 1px #aaa solid;
       margin: 0 0 0 1rem;

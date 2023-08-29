@@ -5,7 +5,7 @@ namespace App\Http\Helpers;
 use Phpml\Regression\LeastSquares;
 
 class HeuristicHelper {
-    public static function predict( $dataset, $premium, $deferrals ) {
+    public static function predict( $dataset, $premium, $deferrals, $debug = false ) {
         $response = [];
 
         $known_params = [];
@@ -13,7 +13,7 @@ class HeuristicHelper {
 
         foreach ( $dataset as $row ) {
             $known_params[] = [ $row->premium, $row->deferral ];
-            $known_income[] = $row->income;
+            $known_income[] = ( ( isset( $row->income_low ) ) ? $row->income_low : $row->income );
         }
 
         // Use linear regression to fit a model to the data

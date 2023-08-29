@@ -7,7 +7,7 @@ var gulp       = require( 'gulp' ),
 gulp.task( 'sass:watch',
     function () {
         gulp.watch( 'assets/scss/**/*',
-            gulp.series( 'sass' ) );
+        gulp.series( 'sass' ) );
     } );
 
 gulp.task( 'sass',

@@ -20,8 +20,9 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_anly-1.0.wsdl' ), [
-                    'trace'     => 0,
-                    'exception' => 0
+                    'trace'         => 0,
+                    'cache_wsdl'    => WSDL_CACHE_NONE,
+                    'exception'     => 0
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
@@ -132,8 +133,9 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
-                    'trace'     => 0,
-                    'exception' => 0
+                    'trace'         => 0,
+                    'cache_wsdl'    => WSDL_CACHE_NONE,
+                    'exception'     => 0
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
@@ -146,7 +148,7 @@
                             'transaction_id' => $transaction_id,
                             'anty_ds_version_id' => self::ANTY_ANLY_VERSION_ID,
                             'analysis_data_id' => $dataset,
-                            'cnx_sequence_id' => [ 0, 1 ],
+                            'cnx_sequence_id' => [ 0 ], // [ 0, 1 ]
                             'income_request_data' => $parameters,
                             'is_test' => 'N'
                         )
@@ -179,8 +181,9 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
-                    'trace'     => 0,
-                    'exception' => 0
+                    'trace'         => 0,
+                    'cache_wsdl'    => WSDL_CACHE_NONE,
+                    'exception'     => 0
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );

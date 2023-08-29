@@ -10,6 +10,7 @@ use App\Http\Helpers\CANNEXHelper;
 use App\Http\Helpers\HeuristicHelper;
 
 use App\Models\AnalysisCache;
+use App\Models\AnalysisGuaranteedCache;
 use App\Models\Product;
 
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 
 class Quoting extends Controller {
     const YEARS_DEFERRAL_MIN = 5;
-    const YEARS_DEFERRAL_MAX = 35;
+    const YEARS_DEFERRAL_MAX = 20;
 
     /**
      * FIA/FRA Quoting
@@ -60,10 +61,21 @@ class Quoting extends Controller {
                 for ( $counter = 0; $counter < count( $product[ 'targets' ] ); $counter++ ) {
                     // create deferrals
                     $deferrals = range( self::YEARS_DEFERRAL_MIN, self::YEARS_DEFERRAL_MAX );
+
+                    // Hypothetical Income
+                    // TODO: cache
                     $cache = AnalysisCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
 
                     if ( $cache->count() > 10 ) {
                         $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $premium, $deferrals );
+                    }
+
+                    // Guaranteed Income
+                    // TODO: cache
+                    $cache = AnalysisGuaranteedCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->where( 'is_estimated_return', false )->where( 'is_joint', false )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
+
+                    if ( $cache->count() > 1 ) {
+                        $products[ $product_id ][ 'targets' ][ $counter ][ 'guaranteed' ] = HeuristicHelper::predict( $cache, $premium, $deferrals );
                     }
                 }
             }

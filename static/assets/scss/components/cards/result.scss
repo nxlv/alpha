@@ -282,7 +282,7 @@
                     }
 
                     &:after {
-                        content: attr(data-period);
+                        content: attr(data-type) ' ' attr(data-period);
                         display: block;
                         font-weight: 300;
                         font-size: 0.75rem;
@@ -295,6 +295,10 @@
 
                     &[data-period="monthly"] {
                         background-color: $brand-secondary;
+                    }
+
+                    &[data-type="hypothetical"] {
+                        background: linear-gradient(130deg, rgba(253,185,49,1) 0%, rgba(159,121,40,1) 30%, rgba(209,180,100,1) 54%, rgba(93,74,31,1) 89%, rgba(93,74,31,1) 100%);
                     }
                 }
             }
