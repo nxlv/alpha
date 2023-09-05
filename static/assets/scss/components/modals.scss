@@ -61,6 +61,18 @@
     max-height: calc(100vh - (#{$nav-secondary-height-xl} + 2rem + 2rem + 52px + 73px));
     overflow-y: auto;
 
+    &--max-50 {
+      fieldset {
+        max-width: 50vw;
+      }
+    }
+
+    &--max-75 {
+      fieldset {
+        max-width: 75vw;
+      }
+    }
+
     fieldset {
       border: 1px $color-grey-mid solid;
       padding: 1rem;

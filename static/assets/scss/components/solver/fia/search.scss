@@ -41,6 +41,36 @@
         position: relative;
     }
 
+    &__parameters,
+    &__compare {
+        &-toggler {
+            position: absolute;
+            top: 1.5rem;
+            left: 0;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            background-color: $color-grey-mid;
+            z-index: 100;
+            margin-top: 1px;
+            font-family: 'Font Awesome 6 Pro', sans-serif;
+            font-size: 2rem;
+            line-height: 1rem;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+
+    &__compare {
+        &-toggler {
+            background-color: $brand-secondary;
+            transform: translateY(100%);
+            margin-top: 0.5rem;
+        }
+    }
+
     &__parameters {
         padding-left: 52px;
         width: calc(15% + 52px);
@@ -61,22 +91,7 @@
         }
 
         &-toggler {
-            position: absolute;
-            top: 1.5rem;
-            left: 0;
-            width: 52px;
-            height: 52px;
-            display: flex;
-            background-color: #F4562A;
-            z-index: 100;
-            margin-top: 1px;
-            font-family: 'Font Awesome 6 Pro', sans-serif;
-            font-size: 2rem;
-            line-height: 1rem;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            cursor: pointer;
+            background-color: $brand-quaternary;
         }
     }
 

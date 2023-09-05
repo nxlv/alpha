@@ -29,10 +29,11 @@
                 }
 
                 this.save_to_storage();
+
+                this.$globalUtils.modal_close();
             },
 
             save_to_storage() {
-                /*
                 let found = false;
                 let storage = this.storage_control( 'get', false );
 
@@ -57,15 +58,13 @@
 
                 this.storage_control( 'set', storage );
 
-                this.clients = JSON.parse( JSON.stringify( storage ) );
-                */
+                this.presets = JSON.parse( JSON.stringify( storage ) );
             },
 
             load_from_storage( id, should_close ) {
                 let storage = this.storage_control( 'get', false );
 
                 if ( storage ) {
-                    /*
                     for ( let counter = 0; counter < storage.length; counter++ ) {
                         if ( storage[ counter ].id === id ) {
                             this.inputs = storage[ counter ];
@@ -77,26 +76,23 @@
                             break;
                         }
                     }
-                    */
                 }
             },
 
             remove_from_storage( id ) {
-                /*
                 let response = [];
 
-                if ( this.clients ) {
-                    for ( let counter = 0; counter < this.clients.length; counter++ ) {
-                        if ( this.clients[ counter ].id !== id ) {
-                            response.push( this.clients[ counter ] );
+                if ( this.presets ) {
+                    for ( let counter = 0; counter < this.presets.length; counter++ ) {
+                        if ( this.presets[ counter ].id !== id ) {
+                            response.push( this.presets[ counter ] );
                         }
                     }
                 }
 
                 this.storage_control( 'set', response );
 
-                this.clients = this.storage_control( 'get', false );
-                */
+                this.presets = this.storage_control( 'get', false );
             },
 
             storage_control( method, data ) {
@@ -138,7 +134,7 @@
                 this.inputs[ key ] = inventory.settings[ key ];
             }
 
-            this.inventory = this.storage_control( 'get', false );
+            this.presets = this.storage_control( 'get', false );
 
             console.log( 'view', common.state.view );
 
@@ -170,7 +166,7 @@
             <header class="alpha__modal-header">
                 <h3>Add/Edit Inventory Presets <span class="alpha__modal-close" v-on:click="this.$globalUtils.modal_close()"><i class="fal fa-close" aria-hidden="true"></i></span></h3>
             </header>
-            <section class="alpha__modal-body">
+            <section class="alpha__modal-body alpha__modal-body--max-75">
                 <fieldset>
                     <legend>Preset Details</legend>
 
@@ -186,12 +182,12 @@
                     <hr />
 
                     <fieldset v-for="( carrier, carrier_index ) in this.$globalUtils.get_set_as_kvp( 'carriers' )" v-bind:key="carrier.id" v-bind:data-carrier-key="this.$globalUtils.sanitize_title( carrier.label )">
-                        <legend>{{ carrier.label }} ( {{ carrier.value }} )</legend>
+                        <legend>{{ carrier.label }}</legend>
 
                         <div class="form">
                             <div class="form__row form__row--wrapped">
                                 <div class="form__column form__column--checkbox" v-for="( product, product_index ) in carrier.products" v-bind:key="product_index">
-                                    <input type="checkbox" v-bind:id="product.product_id" v-bind:value="product.product_id">
+                                    <input type="checkbox" v-bind:id="product.product_id" v-bind:value="product.product_id" v-model="inputs.inventory">
                                     <label v-bind:for="product.product_id">{{ product.name }}</label>
                                 </div>
                             </div>
@@ -216,7 +212,7 @@
                         <div class="alpha__presets-record">
                             <div class="alpha__presets-record-details">
                                 <h3>{{ preset.title }}</h3>
-                                <span>{{ preset.id }}</span>
+                                <span>{{ preset.inventory.length }} products</span>
                             </div>
                             <div class="alpha__clients-record-controls">
                                 <button type="button" v-on:click="load_from_storage( preset.id, true )" data-button-label="Use"><i class="fal fa-user-check" aria-hidden="true"></i></button>

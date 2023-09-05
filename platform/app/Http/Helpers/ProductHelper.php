@@ -16,7 +16,7 @@
     class ProductHelper {
         public static $indexes = [];
 
-        public static function identify_products( $index = false, $carrier = null, $strategy_type = null, $strategy_configuration = null, $calculation_frequency = null, $crediting_frequency = null, $guarantee_years = null, $guarantee_months = null, $participation_rate = null, $premium = null ) {
+        public static function identify_products( $index = false, $carrier = null, $strategy_type = null, $strategy_configuration = null, $calculation_frequency = null, $crediting_frequency = null, $guarantee_years = null, $guarantee_months = null, $participation_rate = null, $premium = null, $inventory = [] ) {
             $matches = [];
 
             if ( empty( self::$indexes ) ) {
@@ -42,8 +42,12 @@
             // index
             if ( !empty( $index ) ) $strategies->whereIn( 'index_id', $index );
 
-            // carrier
-            if ( !empty( $carrier ) ) $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', CarriersProduct::whereIn( 'carrier_id', $carrier )->get()->pluck( 'product_id' )->toArray() )->get()->pluck( 'product_instance_id' )->toArray() );
+            // carrier inventory
+            if ( !empty( $inventory ) ) {
+                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', $inventory )->get()->pluck( 'product_instance_id' )->toArray() );
+            } else if ( !empty( $carrier ) ) {
+                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', CarriersProduct::whereIn( 'carrier_id', $carrier )->get()->pluck( 'product_id' )->toArray() )->get()->pluck( 'product_instance_id' )->toArray() );
+            }
 
             $strategies = $strategies->get();
 
@@ -72,7 +76,32 @@
             return $matches;
         }
 
-        public static function enumerate_products( $products, $type = 'B' ) {
+        public static function compare_products( $analysis_ids ) {
+            $matches = [];
+
+            if ( !empty( $analysis_ids ) ) {
+                $analyses = Product::whereIn( 'analysis_data_id', $analysis_ids )->get();
+
+                $matches = ProductsInstancesStrategiesRate::with(
+                    'strategy',
+                    'strategy.instances',
+                    'strategy.instances.product',
+                    'strategy.instances.product.carrier',
+                    'strategy.instances.product.carrier.ratings'
+                )
+                    ->whereIn( 'instance_id', $analyses->pluck( 'strategy_rate_instance_id' ) );
+
+                $matches = $matches->get();
+            }
+
+            if ( !empty( $matches ) ) {
+                $matches = self::enumerate_products( $matches, 'B', $analysis_ids );
+            }
+
+            return $matches;
+        }
+
+        public static function enumerate_products( $products, $type = 'B', $restrict_to = [] ) {
             $response = [];
 
             foreach ( $products as $product ) {
@@ -94,12 +123,30 @@
                         ];
                     }
 
-                    $analytics = Product::with( 'strategy' )
-                        ->where( 'product_instance_id', $product->product_instance_id )
+                    $analytics = Product::with(
+                        'strategy',
+                        'income_benefit',
+                        'income_benefit.rider_fee_current',
+                        'income_benefit.premium_multiplier',
+                        'income_benefit.premium_bonus',
+                        'income_benefit.roll_up',
+                        'income_benefit.interest_crediting',
+                        'income_benefit.interest_bonus_crediting',
+                        'income_benefit.interest_multiplier_crediting',
+                        'income_benefit.income_start_age'
+                    );
+
+                    // restrict to specific analysis_data_id's for compare mode?
+                    if ( !empty( $restrict_to ) ) {
+                        $analytics->whereIn( 'analysis_data_id', $restrict_to );
+                    }
+
+                    $analytics->where( 'product_instance_id', $product->product_instance_id )
                         ->where( 'strategy_details_instance_id', $product->product_strategy_instance_id )
                         ->where( 'strategy_rate_instance_id', $product->instance_id )
-                        ->where( 'analysis_cd', $type )
-                        ->get();
+                        ->where( 'analysis_cd', $type );
+
+                    $analytics = $analytics->get();
 
                     if ( $analytics->count() ) {
                         foreach ( $analytics as $analysis ) {
@@ -117,21 +164,6 @@
                                 'guarantee_period_years' => $analysis->guarantee_period_years,
                                 'surrender_period_months' => $analysis->surrender_period_months,
                                 'surrender_period_years' => $analysis->surrender_period_years,
-                                'cdsc_schedule_instance_id' => $analysis->cdsc_schedule_instance_id,
-                                'free_withdrawals_instance_id' => $analysis->free_withdrawals_instance_id,
-
-                                'income_benefit_profile_id' => $analysis->income_benefit_profile_id,
-                                'income_benefit_current_rider_fees_instance_id' => $analysis->income_benefit_current_rider_fees_instance_id,
-                                'income_benefit_step_ups_instance_id' => $analysis->income_benefit_step_ups_instance_id,
-                                'income_benefit_roll_ups_instance_id' => $analysis->income_benefit_roll_ups_instance_id,
-                                'income_benefit_withdrawal_tables_instance_id' => $analysis->income_benefit_withdrawal_tables_instance_id,
-                                'income_benefit_withdrawal_ruin_tables_instance_id' => $analysis->income_benefit_withdrawal_ruin_tables_instance_id,
-                                'income_benefit_premium_bonus_instance_id' => $analysis->income_benefit_premium_bonus_instance_id,
-                                'income_benefit_premium_multiplier_instance_id' => $analysis->income_benefit_premium_multiplier_instance_id,
-                                'income_benefit_interest_crediting_instance_id' => $analysis->income_benefit_interest_crediting_instance_id,
-                                'income_benefit_interest_bonus_crediting_instance_id' => $analysis->income_benefit_interest_bonus_crediting_instance_id,
-                                'income_benefit_interest_multiplier_crediting_instance_id' => $analysis->income_benefit_interest_multiplier_crediting_instance_id,
-                                'income_benefit_persistency_credit_instance_id' => $analysis->income_benefit_persistency_credit_instance_id,
 
                                 'premium_range_min' => $product->premium_range_min,
                                 'premium_range_max' => $product->premium_range_max,
@@ -147,18 +179,8 @@
                                 'current_protection_floor_rate' => $product->current_protection_floor_rate,
                                 'current_protection_downside_participation_rate' => $product->current_protection_downside_participation_rate,
 
-                                'announced_fixed_rate' => $product->announced_fixed_rate,
-                                'announced_declared_rate' => $product->announced_declared_rate,
-                                'announced_cap_rate' => $product->announced_cap_rate,
-                                'announced_cap_rate_cd' => $product->announced_cap_rate_cd,
-                                'announced_spread_rate' => $product->announced_spread_rate,
-                                'announced_participation_rate' => $product->announced_participation_rate,
-                                'announced_protection_buffer_rate' => $product->announced_protection_buffer_rate,
-                                'announced_protection_floor_rate' => $product->announced_protection_floor_rate,
-                                'announced_protection_downside_participation_rate' => $product->announced_protection_downside_participation_rate,
-
-                                // TODO: do we still need this?
-                                'strategy' => $analysis->strategy,
+                                'strategy' => $analysis->strategy, // TODO: do we still need the 'strategy' node?
+                                'income_benefit' => $analysis->income_benefit,
 
                                 'rules' => [
                                     'id' => $analysis->rule_id,

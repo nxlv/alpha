@@ -122,7 +122,7 @@
             return $response;
         }
 
-        public static function create_annuitant_profile( $transaction_id, $parameters, $dataset ) {
+        public static function create_annuitant_profile( $transaction_id, $parameters, $sequence, $dataset ) {
             $request_id = null;
 
             $endpoint_url = env( 'CANNEX_WS_ENDPOINT_INCOME' );
@@ -148,7 +148,7 @@
                             'transaction_id' => $transaction_id,
                             'anty_ds_version_id' => self::ANTY_ANLY_VERSION_ID,
                             'analysis_data_id' => $dataset,
-                            'cnx_sequence_id' => [ 0 ], // [ 0, 1 ]
+                            'cnx_sequence_id' => [ $sequence ], // [ 0, 1 ]
                             'income_request_data' => $parameters,
                             'is_test' => 'N'
                         )

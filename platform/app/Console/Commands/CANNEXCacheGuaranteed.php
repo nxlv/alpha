@@ -15,6 +15,7 @@ class CANNEXCacheGuaranteed extends Command {
     const DEFAULT_DEFERRAL_INTERVALS = [ 5, 10, 20 ];
     const DEFAULT_OWNER_STATE = 'FL';
     const DEFAULT_MARITAL_STATUSES = [ 'S', 'J' ];
+    const DEFAULT_ANALYSIS_SEQUENCES = [ 0, 1 ];
     const DEFAULT_PURCHASE_AGE = 50;
     const ANALYSIS_MAX_CHUNK_SIZE = 25;
 
@@ -25,7 +26,7 @@ class CANNEXCacheGuaranteed extends Command {
      *
      * @var string
      */
-    protected $signature = 'cannex:cache-guaranteed {--marital=S} {--premium=100.00} {--deferral=5}';
+    protected $signature = 'cannex:cache-guaranteed {--sequence=0} {--marital=S} {--premium=100.00} {--deferral=5}';
 
     /**
      * The console command description.
@@ -47,6 +48,12 @@ class CANNEXCacheGuaranteed extends Command {
         $marital_status = $this->option( 'marital' );
         $premium = $this->option( 'premium' );
         $deferral = $this->option( 'deferral' );
+        $sequence = $this->option( 'sequence' );
+
+        if ( in_array( $sequence, self::DEFAULT_ANALYSIS_SEQUENCES ) === false ) {
+            $this->line( '  <bg=red;fg=white> ERROR </> Invalid analysis (sequence) type.' . PHP_EOL );
+            exit;
+        }
 
         if ( in_array( $marital_status, self::DEFAULT_MARITAL_STATUSES ) === false ) {
             $this->line( '  <bg=red;fg=white> ERROR </> Invalid marital status provided.' . PHP_EOL );
@@ -70,6 +77,7 @@ class CANNEXCacheGuaranteed extends Command {
         $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Marital status: %s', $marital_status ) );
         $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Premium: %f', $premium ) );
         $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Deferral: %d', $deferral ) );
+        $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Sequence: %d', $sequence ) );
 
         $products = ProductHelper::identify_products();
 
@@ -168,7 +176,7 @@ class CANNEXCacheGuaranteed extends Command {
                         // create profile and get quotes
                         $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> Deferral: %d, Premium: %f', ( intval( $annuitant[ 'income_start_age_primary' ] ) - intval( $annuitant[ 'purchase_age_primary' ] ) ), $annuitant[ 'premium' ] ) );
 
-                        if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $annuitant, $chunk ) ) {
+                        if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $annuitant, $sequence, $chunk ) ) {
                             $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> Profile ID created (%s / %s), marital status: %s.  Sending batch %d of %d...', $profile_id, $transaction_id, $marital_status, $chunks_position, $chunks_total ) . PHP_EOL );
                             $this->line( sprintf( '[+] Analysis IDs: %s', implode( ', ', $chunk ) ) . PHP_EOL );
 

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 class Quoting extends Controller {
     const YEARS_DEFERRAL_MIN = 5;
     const YEARS_DEFERRAL_MAX = 20;
+    const PREMIUM_FAILSAFE = 10000;
 
     /**
      * FIA/FRA Quoting
@@ -34,27 +35,36 @@ class Quoting extends Controller {
         $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
 
         $premium = preg_replace( '/[^0-9.]/', '', $request->get( 'premium' ) );
+        $inventory = $request->get( 'inventory' );
 
         // TODO: decide how we want to handle minimum premiums
-        if ( $premium < 50000 ) {
-            $premium = 50000;
+        if ( $premium < self::PREMIUM_FAILSAFE ) {
+            $premium = self::PREMIUM_FAILSAFE;
         }
 
         /*
          * Identify products
          */
-        $products = ProductHelper::identify_products(
-            $request->get( 'index' ),
-            $request->get( 'carrier' ),
-            $request->get( 'strategy_type' ),
-            $request->get( 'strategy_configuration' ),
-            $request->get( 'calculation_frequency' ),
-            $request->get( 'crediting_frequency' ),
-            $request->get( 'guarantee_period_years' ),
-            $request->get( 'guarantee_period_months' ),
-            $request->get( 'participation_rate' ),
-            $premium
-        );
+        if ( !empty( $comparisons = $request->get( 'comparisons' ) ) ) {
+            error_log( 'COMPARISON STACK:' . PHP_EOL );
+            error_log( print_r( $comparisons, true ) );
+
+            $products = ProductHelper::compare_products( $comparisons );
+        } else {
+            $products = ProductHelper::identify_products(
+                $request->get( 'index' ),
+                $request->get( 'carrier' ),
+                $request->get( 'strategy_type' ),
+                $request->get( 'strategy_configuration' ),
+                $request->get( 'calculation_frequency' ),
+                $request->get( 'crediting_frequency' ),
+                $request->get( 'guarantee_period_years' ),
+                $request->get( 'guarantee_period_months' ),
+                $request->get( 'participation_rate' ),
+                $premium,
+                $inventory
+            );
+        }
 
         if ( count( $products ) ) {
             foreach ( $products as $product_id => $product ) {
@@ -65,6 +75,7 @@ class Quoting extends Controller {
                     // Hypothetical Income
                     // TODO: cache
                     $cache = AnalysisCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
+                    //$cache = AnalysisGuaranteedCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->where( 'is_estimated_return', true )->where( 'is_joint', false )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
 
                     if ( $cache->count() > 10 ) {
                         $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $premium, $deferrals );
@@ -92,7 +103,7 @@ class Quoting extends Controller {
         $messages = [];
         $response = [];
 
-        $premium = $request->get( 'premium', 0 );
+        $premium = preg_replace( '/[^0-9.]/', '', $request->get( 'premium', 0 ) );
         $deferral = $request->get( 'deferral', 0 );
         $horizon = $request->get( 'horizon', 10 );
         $owner_state = $request->get( 'owner_state', '' );
