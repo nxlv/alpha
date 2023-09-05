@@ -28,7 +28,7 @@
         <h3>Inventory</h3>
         <menu class="stats">
             <li data-type="title">{{ this.$inventoryUtils.get_inventory_data( 'title' ) }}</li>
-            <li data-type="counter">{{ this.$inventoryUtils.get_inventory_data( 'inventory' ).length }} products</li>
+            <li data-type="counter">{{ this.$inventoryUtils.get_inventory_data( 'inventory' ) }} products</li>
         </menu>
         <menu class="controls">
             <li data-type="edit"><a href="javascript:;" title="Edit Preset" v-on:click="show_manager( null )">Edit Preset</a></li>

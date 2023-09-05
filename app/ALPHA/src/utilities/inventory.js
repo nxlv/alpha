@@ -7,9 +7,28 @@ const inventoryUtils = {
         let response = null;
 
         if ( inventory.settings.hasOwnProperty( key ) ) {
-            response = inventory.settings[ key ];
+            switch ( key ) {
+                case 'inventory' :
+                    response = inventory.settings[ key ].length;
+                    break;
+
+                default :
+                    response = inventory.settings[ key ];
+                    break;
+            }
         }
 
+        if ( !response ) {
+            switch ( key ) {
+                case 'title' :
+                    response = 'All';
+                    break;
+
+                case 'inventory' :
+                    response = 'Showing all';
+                    break;
+            }
+        }
         return ( ( response ) ? response : 'n/a' );
     }
 };
