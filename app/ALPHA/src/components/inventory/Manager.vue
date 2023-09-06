@@ -181,10 +181,11 @@
 
                     <hr />
 
-                    <fieldset v-for="( carrier, carrier_index ) in this.$globalUtils.get_set_as_kvp( 'carriers' )" v-bind:key="carrier.id" v-bind:data-carrier-key="this.$globalUtils.sanitize_title( carrier.label )">
-                        <legend>{{ carrier.label }}</legend>
+                    <fieldset v-for="( carrier, carrier_index ) in this.$globalUtils.get_set_as_kvp( 'carriers' )" v-bind:key="carrier_index" v-bind:data-carrier-key="this.$globalUtils.sanitize_title( carrier.label )">
+                        <legend><label v-bind:for="'carrier_' + carrier.value">{{ carrier.label }} <span>{{ carrier.products.length }} products</span></label></legend>
+                        <input type="checkbox" v-bind:id="'carrier_' + carrier.value" v-bind:value="carrier.value">
 
-                        <div class="form">
+                        <div class="form form__collapsable">
                             <div class="form__row form__row--wrapped">
                                 <div class="form__column form__column--checkbox" v-for="( product, product_index ) in carrier.products" v-bind:key="product_index">
                                     <input type="checkbox" v-bind:id="product.product_id" v-bind:value="product.product_id" v-model="inputs.inventory">
