@@ -1,0 +1,57 @@
+.options {
+  &__details {
+    &-table.table-default {
+      thead,
+      tfoot {
+        tr {
+          th {
+            min-width: 100px;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            span {
+              display: block;
+              color: #555;
+
+              &[data-type="name"] {
+                font-size: 1.125rem;
+                line-height: 1.125rem;
+                margin: 0 0 0.5rem 0;
+                font-weight: 500;
+                color: #000;
+              }
+
+              &[data-type="link"] {
+                display: flex;
+                background-color: $brand-secondary;
+                color: #fff;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                font-size: 1.125rem;
+                line-height: 1.125rem;
+                padding: 0.875rem 0.875rem 0.75rem 0.875rem;
+                cursor: pointer;
+
+                &:hover {
+                  background-color: darken($brand-secondary, 15%);
+                }
+
+                i {
+                  margin-left: 0.25rem;
+                  position: relative;
+                  top: -2px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

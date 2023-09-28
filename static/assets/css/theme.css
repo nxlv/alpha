@@ -15654,6 +15654,43 @@ main#alpha .alpha__prologue {
     opacity: 0;
     transform: translateX(0px) rotateZ(-90deg); } }
 
+.table-default {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px #000 dotted; }
+  .table-default thead,
+  .table-default tfoot {
+    background-color: #01A7C2; }
+    .table-default thead tr th,
+    .table-default tfoot tr th {
+      border-right: 1px #000 dotted;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      line-height: 0.875rem;
+      font-weight: bold;
+      text-align: left;
+      color: #fff; }
+      .table-default thead tr th:last-child,
+      .table-default tfoot tr th:last-child {
+        border-right: none; }
+  .table-default tbody tr {
+    background-color: #E8E5DA; }
+    .table-default tbody tr:nth-child(even) {
+      background-color: #fff; }
+    .table-default tbody tr.has-income td.income {
+      color: #fff;
+      background-color: #238c00;
+      border-color: #fff;
+      font-weight: bold; }
+    .table-default tbody tr td {
+      padding: 0.75rem 0.75rem;
+      font-size: 0.9375rem;
+      vertical-align: middle;
+      border-right: 1px #000 dotted;
+      border-bottom: 1px #000 dotted; }
+      .table-default tbody tr td:last-child {
+        border-right: none; }
+
 p {
   font-size: 1.25rem;
   line-height: 1.875rem;
@@ -16247,6 +16284,8 @@ h6 {
         font-weight: bold;
         background-color: #01A7C2;
         color: #fff; }
+        .result__card-strategy-income-money[data-method="income"] {
+          background-color: #01A7C2; }
         .result__card-strategy-income-money:first-child {
           margin-top: 0; }
         .result__card-strategy-income-money:after {
@@ -16263,6 +16302,10 @@ h6 {
           background-color: #152935; }
         .result__card-strategy-income-money[data-type="hypothetical"] {
           background: linear-gradient(130deg, #fdb931 0%, #9f7928 30%, #d1b464 54%, #5d4a1f 89%, #5d4a1f 100%); }
+          .result__card-strategy-income-money[data-type="hypothetical"][data-method="income"] {
+            background: linear-gradient(130deg, #01a7c2 0%, #177b8b 30%, #152935 54%, #0c1418 89%, #177b8b 100%); }
+            .result__card-strategy-income-money[data-type="hypothetical"][data-method="income"]:after {
+              content: 'Estimated Premium'; }
     .result__card-strategy-data {
       border-left: 1px #aaa solid;
       margin: 0 0 0 1rem;
@@ -16351,6 +16394,20 @@ h6 {
         color: #fff; }
         .result__card-strategy-details-rule:before {
           color: white; }
+
+.result__notice {
+  border-top: 1px #000 solid;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 15rem; }
+  .result__notice p {
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: -1px;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    padding: 0 0 1.5rem 0;
+    margin: 0; }
 
 @keyframes transient {
   0% {
@@ -16659,42 +16716,46 @@ h6 {
           line-height: 0.75rem;
           opacity: 0.75; }
 
-.illustration__details-table {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px #000 dotted; }
-  .illustration__details-table thead,
-  .illustration__details-table tfoot {
-    background-color: #01A7C2; }
-    .illustration__details-table thead tr th,
-    .illustration__details-table tfoot tr th {
-      border-right: 1px #000 dotted;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.875rem;
-      line-height: 0.875rem;
-      font-weight: 300;
-      text-align: left;
-      color: #fff; }
-      .illustration__details-table thead tr th:last-child,
-      .illustration__details-table tfoot tr th:last-child {
-        border-right: none; }
-  .illustration__details-table tbody tr {
-    background-color: #E8E5DA; }
-    .illustration__details-table tbody tr:nth-child(even) {
-      background-color: #fff; }
-    .illustration__details-table tbody tr.has-income td.income {
-      color: #fff;
-      background-color: #238c00;
-      border-color: #fff;
-      font-weight: bold; }
-    .illustration__details-table tbody tr td {
-      padding: 0.75rem 0.75rem;
-      font-size: 0.875rem;
-      vertical-align: middle;
-      border-right: 1px #000 dotted;
-      border-bottom: 1px #000 dotted; }
-      .illustration__details-table tbody tr td:last-child {
-        border-right: none; }
+.infobox > h3 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  letter-spacing: -1px;
+  background-color: #152935;
+  color: #fff;
+  padding: 0.5rem 1rem 0.25rem 1rem;
+  margin: 0 0 1rem 0; }
+
+.options__details-table.table-default thead tr th,
+.options__details-table.table-default tfoot tr th {
+  min-width: 100px; }
+
+.options__details-table.table-default tbody tr td span {
+  display: block;
+  color: #555; }
+  .options__details-table.table-default tbody tr td span[data-type="name"] {
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+    color: #000; }
+  .options__details-table.table-default tbody tr td span[data-type="link"] {
+    display: flex;
+    background-color: #152935;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    padding: 0.875rem 0.875rem 0.75rem 0.875rem;
+    cursor: pointer; }
+    .options__details-table.table-default tbody tr td span[data-type="link"]:hover {
+      background-color: black; }
+    .options__details-table.table-default tbody tr td span[data-type="link"] i {
+      margin-left: 0.25rem;
+      position: relative;
+      top: -2px; }
 
 .modals {
   position: absolute;
@@ -16921,25 +16982,53 @@ h6 {
   .strategy__information {
     width: 35%;
     min-width: 35%; }
-  .strategy__illustration {
-    width: 65%;
-    min-width: 65%;
-    margin-right: 1rem;
-    padding-right: 1rem;
-    border-right: 1px #000 dotted; }
-    .strategy__illustration .illustration {
+  .strategy__details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-left: calc(250px + 2rem); }
+    .strategy__details-carrier, .strategy__details-options, .strategy__details-illustration {
+      width: 100%; }
+    .strategy__details-options .options__details table tbody tr td span[data-type] {
+      padding-left: 2rem;
+      position: relative; }
+      .strategy__details-options .options__details table tbody tr td span[data-type]:before {
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 1.25rem;
+        height: 100%;
+        content: '';
+        font-family: 'Font Awesome 6 Pro', sans-serif;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; }
+    .strategy__details-options .options__details table tbody tr td span[data-type="name"] {
+      padding-left: 0; }
+      .strategy__details-options .options__details table tbody tr td span[data-type="name"]:before {
+        display: none; }
+    .strategy__details-options .options__details table tbody tr td span[data-type="link"] {
+      padding-left: inherit; }
+      .strategy__details-options .options__details table tbody tr td span[data-type="link"]:before {
+        display: none; }
+    .strategy__details-options .options__details table tbody tr td span[data-type="premium"], .strategy__details-options .options__details table tbody tr td span[data-type="frequency"] {
+      margin: 0.5rem 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; }
+    .strategy__details-options .options__details table tbody tr td span[data-type="premium"] {
+      color: #238c00; }
+      .strategy__details-options .options__details table tbody tr td span[data-type="premium"]:before {
+        content: '\f53d'; }
+    .strategy__details-options .options__details table tbody tr td span[data-type="frequency"]:before {
+      content: '\e0d2'; }
+    .strategy__details-illustration .illustration {
+      padding: 0 1rem;
       border: 1px #000 dotted; }
-      .strategy__illustration .illustration > h3 {
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        letter-spacing: -1px;
-        background-color: #152935;
-        color: #fff;
-        padding: 0.5rem 1rem 0.25rem 1rem;
-        margin: 0 0 1rem 0; }
-      .strategy__illustration .illustration__details {
-        margin: 0 1rem; }
-    .strategy__illustration-notice-loader {
+    .strategy__details-illustration-notice-loader {
       font-size: 2rem;
       line-height: 2rem;
       display: inline-block;
@@ -16948,24 +17037,73 @@ h6 {
       font-weight: bold;
       letter-spacing: -2px;
       margin: 0 0 0.75rem 0; }
-      .strategy__illustration-notice-loader:after {
+      .strategy__details-illustration-notice-loader:after {
         content: '';
         height: 4px;
         width: 0%;
         display: block;
         background: #01A7C2;
         animation: 2s grow-line cubic-bezier(1, 0, 0, 1) infinite; }
-      .strategy__illustration-notice-loader i {
+      .strategy__details-illustration-notice-loader i {
         margin-right: 0.25rem; }
-    .strategy__illustration-notice-text {
+    .strategy__details-illustration-notice-text {
       font-size: 0.9375rem;
       line-height: 0.9375rem;
       font-weight: 300;
       opacity: 0.875; }
-  .strategy__details {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap; }
+  .strategy__menu {
+    position: absolute;
+    top: auto;
+    left: 2rem;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    list-style: none; }
+    .strategy__menu-item {
+      position: relative;
+      display: flex;
+      min-height: 56px;
+      align-items: center;
+      justify-content: flex-start;
+      border-top: 1px #999 solid;
+      padding: 0.5rem 1rem 0.5rem 56px;
+      cursor: pointer; }
+      .strategy__menu-item:hover {
+        background-color: #F4562A;
+        color: #fff;
+        border-color: #F4562A; }
+        .strategy__menu-item:hover:before {
+          color: #fff; }
+      .strategy__menu-item:before {
+        content: '';
+        font-family: 'Font Awesome 6 Pro', sans-serif;
+        position: absolute;
+        left: 0;
+        top: -1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 56px;
+        font-size: 1.625rem;
+        line-height: 1.625rem;
+        color: #F4562A; }
+      .strategy__menu-item[data-type="options"]:before {
+        content: '\e4a2'; }
+      .strategy__menu-item[data-type="carrier"]:before {
+        content: '\f19c'; }
+      .strategy__menu-item[data-type="illustration"]:before {
+        content: '\f00b'; }
+      .strategy__menu-item[data-type="rules"]:before {
+        content: '\f02d'; }
+      .strategy__menu-item[data-type="withdrawals"]:before {
+        content: '\f53d'; }
+      .strategy__menu-item span {
+        display: block;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+        font-weight: 500;
+        letter-spacing: -1px; }
 
 @keyframes grow-line {
   to {

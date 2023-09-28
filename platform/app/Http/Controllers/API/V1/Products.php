@@ -52,33 +52,6 @@ class Products extends Controller {
         );
     }
 
-    public function get_all_income_benefits() {
-        return response()->json(
-            IncomeBenefit::with(
-                'meta',
-                'rider_fee_current',
-                'rider_fee_minimum',
-                'rider_fee_maximum',
-                'premium_initial',
-                'premium_max',
-                'premium_bonus',
-                'premium_multiplier',
-                'interest_crediting',
-                'interest_bonus_crediting',
-                'interest_multiplier_crediting',
-                'withdrawal_tiers',
-                'withdrawal_tiers_ruin',
-                'withdrawal_deferral_ages',
-                'withdrawal_deferral_ages_ruin',
-                'income_start_age',
-                'persistency_credit',
-                'roll_up',
-                'step_up',
-                'states'
-            )->get()
-        );
-    }
-
     public function get_all_instances() {
         return response()->json(
             ProductsInstance::with(
@@ -99,17 +72,35 @@ class Products extends Controller {
      */
     public function get_product_details( Request $request ) {
         $messages = [];
-        $response = [];
+        $response = [
+            'details' => [],
+            'options' => []
+        ];
 
-        $products = $request->get( 'products', [] );
+        $product_analysis_id = $request->get( 'product', null );
+        // $owner_state = $request->get( 'owner_state', null );
 
-        if ( !empty( $products ) ) {
-            if ( !is_array( $products ) ) {
-                $products = [ $products ];
-            }
+        /*
+         *
+         * PARAMETERS AVAILABLE
+         *
+         * id
+         * investment
+         * method
+         * owner_name_first
+         * owner_name_last
+         * owner_birthdate
+         * owner_state
+         * joint_name_first
+         * joint_name_last
+         * joint_birthdate
+         * joint_state
+         *
+         */
 
+        if ( !empty( $product_analysis_id ) ) {
             try {
-                $strategies = Product::with(
+                $product = Product::with(
                     [
                         'strategy',
                         'carrier_product', 'carrier_product.carrier', 'carrier_product.ratings',
@@ -126,18 +117,43 @@ class Products extends Controller {
                             'income_benefit.interest_crediting', 'income_benefit.interest_bonus_crediting', 'income_benefit.interest_multiplier_crediting',
                             'income_benefit.income_start_age',
                             'income_benefit.persistency_credit', 'income_benefit.roll_up', 'income_benefit.step_up', 'income_benefit.states',
-                            'income_benefit.withdrawal_tiers', 'income_benefit.withdrawal_tiers_ruin', 'income_benefit.withdrawal_deferral_ages', 'income_benefit.withdrawal_deferral_ages_ruin'
+                            'income_benefit.withdrawal_tiers', 'income_benefit.withdrawal_tiers_ruin', 'income_benefit.withdrawal_deferral_ages', 'income_benefit.withdrawal_deferral_ages_ruin',
+                        'rules'
                     ]
-                )->whereIn( 'analysis_data_id', $products )->get();
+                )->where( 'analysis_data_id', $product_analysis_id )->get();
 
-                if ( $strategies->count() ) {
-                    $response = $strategies;
+                if ( $product->count() ) {
+                    $response[ 'details' ] = $product;
+
+                    $product_id = $product->first()->product_id;
+                    $product_analysis_code = $product->first()->analysis_cd;
+
+                    if ( ( !empty( $product_id ) ) && ( !empty( $product_analysis_code ) ) ) {
+                        $options = Product::with(
+                            [
+                                'strategy', 'strategy.rates',
+                                'income_benefit',
+                                    'income_benefit.meta',
+                                    'income_benefit.rider_fee_current', 'income_benefit.rider_fee_minimum', 'income_benefit.rider_fee_maximum',
+                                    'income_benefit.premium_initial', 'income_benefit.premium_max', 'income_benefit.premium_bonus', 'income_benefit.premium_multiplier',
+                                    'income_benefit.interest_crediting', 'income_benefit.interest_bonus_crediting', 'income_benefit.interest_multiplier_crediting',
+                                    'income_benefit.income_start_age',
+                                    'income_benefit.persistency_credit', 'income_benefit.roll_up', 'income_benefit.step_up', 'income_benefit.states',
+                                    'income_benefit.withdrawal_tiers', 'income_benefit.withdrawal_tiers_ruin', 'income_benefit.withdrawal_deferral_ages', 'income_benefit.withdrawal_deferral_ages_ruin',
+                                'rules'
+                            ]
+                        )->where( 'product_id', $product_id )->whereNot( 'analysis_data_id', $product_analysis_id )->where( 'analysis_cd', $product_analysis_code )->get();
+
+                        if ( $options->count() ) {
+                            $response[ 'options' ] = $options;
+                        }
+                    }
                 }
-            } catch ( \SoapFault $exception ) {
+            } catch ( \Exception $exception ) {
                 return response()->json( [ 'error' => true, 'messages' => print_r( $exception, true ) ] );
             }
         }
 
-        return response()->json( [ 'error' => false, 'messages' => $messages, 'details' => $response ] );
+        return response()->json( [ 'error' => false, 'messages' => $messages, 'details' => $response[ 'details' ], 'options' => $response[ 'options' ] ] );
     }
 }

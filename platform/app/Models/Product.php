@@ -35,6 +35,7 @@ class Product extends Model {
     public function death_benefit() {
         return $this->hasOne( DeathBenefit::class, 'death_benefit_profile_id', 'death_benefit_profile_id' );
     }
+
     public function income_benefit() {
         return $this->hasOne( IncomeBenefit::class, 'income_benefit_profile_id', 'income_benefit_profile_id' );
     }

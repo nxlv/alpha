@@ -1,9 +1,9 @@
 <template>
-    <div class="illustration" v-if="profile">
+    <div class="infobox illustration" v-if="profile">
         <h3>Illustration Details</h3>
 
         <div class="illustration__details">
-            <table class="illustration__details-table">
+            <table class="table-default illustration__details-table">
                 <thead>
                     <tr>
                         <th>Year</th>

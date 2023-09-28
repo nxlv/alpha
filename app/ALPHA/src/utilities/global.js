@@ -139,7 +139,7 @@ const globalUtils = {
 
             case 'frequency' :
                 dataset = {
-                    'A': 'Annually',
+                    'A': 'Annual',
                     'M': 'Monthly',
                     'D': 'Daily',
                     '2Y': '2-year',

@@ -364,6 +364,10 @@
                     background-color: $brand-primary;
                     color: #fff;
 
+                    &[data-method="income"] {
+                        background-color: $brand-primary;
+                    }
+
                     &:first-child {
                         margin-top: 0;
                     }
@@ -386,6 +390,14 @@
 
                     &[data-type="hypothetical"] {
                         background: linear-gradient(130deg, rgba(253,185,49,1) 0%, rgba(159,121,40,1) 30%, rgba(209,180,100,1) 54%, rgba(93,74,31,1) 89%, rgba(93,74,31,1) 100%);
+
+                        &[data-method="income"] {
+                            background: linear-gradient(130deg, rgb(1, 167, 194) 0%, rgb(23, 123, 139) 30%, rgb(21, 41, 53) 54%, rgb(12, 20, 24) 89%, rgb(23, 123, 139) 100%);
+
+                            &:after {
+                                content: 'Estimated Premium';
+                            }
+                        }
                     }
                 }
             }
@@ -518,6 +530,23 @@
                     }
                 }
             }
+        }
+    }
+
+    &__notice {
+        border-top: 1px #000 solid;
+        margin-top: 3rem;
+        padding-top: 3rem;
+        padding-bottom: 15rem;
+
+        p {
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: -1px;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+            padding: 0 0 1.5rem 0;
+            margin: 0;
         }
     }
 }

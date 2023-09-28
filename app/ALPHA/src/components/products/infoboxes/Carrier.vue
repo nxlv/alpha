@@ -1,7 +1,5 @@
 <template>
-    <div class="benefit" v-if="profile && profile.ratings">
-        <input type="checkbox" name="benefit-carrier-toggle" id="benefit-carrier-toggle" value="1" class="benefit__toggle hidden" v-bind:checked="expanded">
-
+    <div class="infobox carrier" v-if="profile && profile.ratings">
         <h3 class="benefit__header">
             <label for="benefit-carrier-toggle">
                 Carrier Information

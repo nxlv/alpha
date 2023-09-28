@@ -10,6 +10,7 @@
     import Infobox_Illustration from '@/components/products/infoboxes/Illustration.vue';
     import Infobox_Strategy from '@/components/products/infoboxes/Strategy.vue';
     import Infobox_Carrier from '@/components/products/infoboxes/Carrier.vue';
+    import Infobox_Options from '@/components/products/infoboxes/Options.vue';
 
     import axios from 'axios';
     import { VMoney } from 'v-money';
@@ -25,6 +26,7 @@
             Infobox_Illustration,
             Infobox_Strategy,
             Infobox_Carrier,
+            Infobox_Options,
 
             Multiselect
         },
@@ -39,6 +41,14 @@
                 let endpoint = '/api/quoting/get/fixed';
                 let settings = { ...this.parameters, inventory: inventory.settings.inventory };
 
+                this.errors = null;
+                this.quotes = null;
+                this.results = null;
+                this.show_all = false;
+                this.loading = true;
+
+                this.selections.method = this.parameters.method;
+
                 if ( this.mode === 'comparison' ) {
                     console.log( 'comparison mode enabled' );
 
@@ -49,9 +59,6 @@
 
                 let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
 
-                this.errors = null;
-                this.quotes = null;
-                this.results = null;
                 this.loading = false;
 
                 this.parameters.searched = true;
@@ -65,7 +72,7 @@
 
             async fetch_illustration() {
                 let endpoint = '/api/quoting/get/fixed/illustration';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...this.parameters, ...{ owner_state: this.parameters.state, product_analysis_id: this.selections.product_id } } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...this.parameters, ...{ premium: ( ( this.selections.method === 'income' ) ? this.selections.premium : this.parameters.premium ), owner_state: this.parameters.state, product_analysis_id: this.selections.product_id } } );
 
                 this.errors = null;
                 this.loading = false;
@@ -91,14 +98,17 @@
             async fetch_details() {
                 this.loading = true;
 
+                const client = useClientStore();
+
                 let endpoint = '/api/products/details';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...this.parameters, ...{ products: this.selections.product_id } } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...client.settings, ...{ product: this.selections.product_id } } );
 
                 this.errors = null;
                 this.loading = false;
 
-                if ( ( request ) && ( request.data ) ) {
-                    this.selections.product = request.data.details[ 0 ];
+                if ( ( request ) && ( request.data ) && ( request.data.details ) ) {
+                    this.selections.product = request.data.details;
+                    this.selections.product.options = ( ( request.data.options ) ? request.data.options : null );
 
                     // fetch illustration
                     await this.fetch_illustration();
@@ -138,29 +148,29 @@
                     }
                 }
 
-                response.sort( ( left, right ) => {
-                    return ( ( left.amount_guaranteed > right.amount_guaranteed ) ? -1 : ( ( left.amount_guaranteed === right.amount_guaranteed ) ? 0 : 1 ) );
-                    // return ( ( left.amount.income > right.amount.income ) ? -1 : ( ( left.amount.income === right.amount.income ) ? 0 : 1 ) );
-                } );
+                switch ( this.selections.method ) {
+                    case 'premium' :
+                        response.sort( ( left, right ) => {
+                            return ( ( left.amount.income > right.amount.income ) ? -1 : ( ( left.amount.income === right.amount.income ) ? 0 : 1 ) );
+                        } );
+                        break;
+
+                    case 'income' :
+                        response.sort( ( left, right ) => {
+                            return ( ( left.amount.premium < right.amount.premium ) ? -1 : ( ( left.amount.premium === right.amount.premium ) ? 0 : 1 ) );
+                        } );
+                        break;
+                }
 
                 this.results = response;
             },
 
-            get_deferred_income( strategy ) {
-                let income = 0.00;
-
-                if ( ( strategy.predictions ) && ( strategy.predictions.length ) ) {
-                    //console.log( strategy.product_analysis_data_id, strategy.predictions );
-
-                    for ( let counter = 0; counter < strategy.predictions.length; counter++ ) {
-                        if ( parseInt( strategy.predictions[ counter ].deferral ) === parseInt( this.parameters.deferral ) ) {
-                            income = strategy.predictions[ counter ].income;
-                            break;
-                        }
-                    }
+            get_results_dataset( show_all ) {
+                if ( show_all ) {
+                    return this.results;
+                } else {
+                    return this.results.slice( 0, 25 );
                 }
-
-                return parseFloat( income ).toFixed( 2 );
             },
 
             set_deferral_period() {
@@ -169,12 +179,25 @@
                 this.timers.refresh = setTimeout( () => { this.parameters.deferral = this.parameters.deferral_selected; this.sort_results(); }, 175 );
             },
 
-            set_product( product_id ) {
-                console.log( 'setting strategy ID', product_id );
+            set_product( product_id, strategy_premium ) {
+                console.log( 'setting product ID', product_id );
 
                 this.selections.product_id = product_id;
+                this.selections.details = 'illustration';
+
+                if ( strategy_premium ) {
+                    this.selections.premium = strategy_premium;
+                }
 
                 this.fetch_details();
+            },
+
+            replace_product( product_id, strategy_premium ) {
+                this.close_details();
+
+                clearTimeout( this.timers.replace );
+
+                this.timers.replace = setTimeout( () => { this.set_product( product_id, strategy_premium ) }, 250 );
             },
 
             close_details() {
@@ -185,10 +208,18 @@
                 this.selections.illustration.dataset = null;
             },
 
+            toggle_show_all_results() {
+                this.show_all = !this.show_all;
+            },
+
             toggle_comparison() {
                 this.mode = ( ( this.mode === 'comparison' ) ? 'normal' : 'comparison' );
 
                 this.fetch_quote();
+            },
+
+            set_details_page( page ) {
+                this.selections.details = page;
             }
         },
         created() {
@@ -203,29 +234,37 @@
                 console.log( 'Client Override -- setting owner state to ', client.settings.owner_state );
                 this.parameters.state = client.settings.owner_state;
             }
+
+            this.$emitter.on( 'set_product_id', this.replace_product, null );
         },
         data() {
             return {
                 errors: null,
                 quotes: null,
                 loading: false,
+                show_all: false,
                 mode: 'normal',
                 timers: {
+                    replace: null,
                     refresh: null
                 },
                 results: [],
                 selections: {
+                    method: 'premium',
                     product_id: null,
                     product: {
                         death_benefit: null,
                         income_benefit: null,
-                        carrier: null
+                        carrier: null,
+                        options: null,
                     },
                     illustration: {
                         valid: false,
                         message: null,
                         dataset: null
                     },
+                    details: 'options',
+                    premium: '100000',
                     comparison: []
                 },
                 parameters: {
@@ -422,13 +461,37 @@
                     <div class="strategy__inner">
                         <h3>Strategy Details<a href="javascript:" v-on:click="close_details"><i class="fal fa-close" aria-hidden="true"></i> <span>Close</span></a></h3>
 
+                        <menu class="strategy__menu">
+                            <li class="strategy__menu-item" data-type="options" v-on:click="set_details_page( 'options' )">
+                                <span>Options</span>
+                            </li>
+                            <li class="strategy__menu-item" data-type="carrier" v-on:click="set_details_page( 'carrier' )">
+                                <span>Carrier</span>
+                            </li>
+                            <li class="strategy__menu-item" data-type="illustration" v-on:click="set_details_page( 'illustration' )">
+                                <span>Illustration</span>
+                            </li>
+                            <li class="strategy__menu-item" data-type="withdrawals" v-on:click="set_details_page( 'withdrawals' )">
+                                <span>Withdrawals</span>
+                            </li>
+                            <li class="strategy__menu-item" data-type="rules" v-on:click="set_details_page( 'rules' )">
+                                <span>Rules</span>
+                            </li>
+                        </menu>
+
                         <div class="strategy__details">
-                            <div class="strategy__illustration">
-                                <div class="strategy__illustration-notice" v-if="!selections.illustration.dataset && !selections.illustration.message">
-                                    <div class="strategy__illustration-notice-loader">
+                            <div class="strategy__details-options" v-if="selections.details === 'options'">
+                                <Infobox_Options v-bind:profile="selections.product.options" />
+                            </div>
+                            <div class="strategy__details-options" v-if="selections.details === 'carrier'">
+                                <Infobox_Carrier v-bind:profile="selections.product.carrier_product" />
+                            </div>
+                            <div class="strategy__details-illustration" v-if="selections.details === 'illustration'">
+                                <div class="strategy__details-illustration-notice" v-if="!selections.illustration.dataset && !selections.illustration.message">
+                                    <div class="strategy__details-illustration-notice-loader">
                                         <i class="fal fa-folder-magnifying-glass" aria-hidden="true"></i> Fetching Illustration...
                                     </div>
-                                    <div class="strategy__illustration-notice-text">
+                                    <div class="strategy__details-illustration-notice-text">
                                         This could take a minute...
                                     </div>
                                 </div>
@@ -438,15 +501,9 @@
                                     <p><small>Reason: {{ selections.illustration.message }}</small></p>
                                 </div>
 
-                                <div class="strategy__illustration-table" v-if="selections.illustration.valid">
+                                <div class="strategy__details-illustration-table" v-if="selections.illustration.valid">
                                     <Infobox_Illustration v-bind:profile="selections.illustration.dataset" />
                                 </div>
-                            </div>
-                            <div class="strategy__information">
-                                <infobox_Strategy v-bind:profile="selections.product" v-bind:expanded="true" />
-                                <Infobox_Carrier v-bind:profile="selections.product.carrier_product" v-bind:expanded="false" />
-                                <Infobox_IncomeBenefits v-bind:profile="selections.product.income_benefit" v-bind:expanded="false" />
-                                <Infobox_DeathBenefits v-bind:profile="selections.product.death_benefit" v-bind:expanded="false" />
                             </div>
                         </div>
                     </div>
@@ -499,14 +556,16 @@
                     <p>Adjust any search parameters you like, and click <strong>Fetch Quotes</strong> to get started.</p>
                 </div>
 
-                <div class="results" v-bind:class="{ 'results--inactive': ( selections.product_id && selections.product ) }">
+                <div class="results" v-bind:class="{ 'results--inactive': selections.product_id }">
                     <div class="results__inner">
-                        <template v-if="results" v-for="( result, result_index ) in results" v-bind:key="result_index">
+                        <template v-if="results" v-for="( result, result_index ) in get_results_dataset( show_all )" v-bind:key="result_index">
                             <div class="result result__card" v-bind:class="{ 'result--faded': parameters.deferral != parameters.deferral_selected }">
                                 <h4 class="result__card-title" v-bind:data-product-id="result.product.id" v-bind:data-carrier-slug="this.$globalUtils.sanitize_title( result.carrier.name )">
                                     <div class="result__card-title-text">
                                         <strong>{{ result.product.name }}</strong>
-                                        {{ result.carrier.name }}
+                                        <!--{{ result.carrier.name }}-->
+                                        <span v-html="this.$productUtils.generate_iao_name( result )"></span>
+
                                         <!--{{ result.source.product_analysis_data_id }}-->
                                         <div class="result__card-title-comparison">
                                             <input type="checkbox" v-bind:id="'product_' + result.source.product_analysis_data_id" v-bind:value="result.source.product_analysis_data_id" v-model="selections.comparison">
@@ -515,19 +574,25 @@
                                     </div>
                                     <template v-if="result.carrier.ratings">
                                         <div class="result__card-title-ratings">
-                                            <span v-for="( rating, rating_index ) in result.carrier.ratings" class="result__card-title-ratings-rating" v-bind:data-rating-company="rating.company" v-bind:data-rating-value="rating.rating">{{ rating.rating }}</span>
+                                            <span v-for="( rating, rating_index ) in result.carrier.ratings" class="result__card-title-ratings-rating" v-bind:index="rating_index" v-bind:data-rating-company="rating.company" v-bind:data-rating-value="rating.rating">{{ rating.rating }}</span>
                                         </div>
                                     </template>
                                 </h4>
                                 <div class="result__card-strategies">
-                                    <divf class="result__card-strategy" v-on:click="set_product( result.source.product_analysis_data_id )">
+                                    <div class="result__card-strategy" v-on:click="set_product( result.source.product_analysis_data_id, result.amount.premium )">
                                         <div class="result__card-strategy-meta">
                                             <span data-type="id" title="CANNEX Analysis ID">{{ result.source.product_analysis_data_id }}</span>
                                             <span data-type="id" title="CANNEX Product ID">{{ result.product.id }}</span>
                                         </div>
                                         <div class="result__card-strategy-income">
-                                            <div class="result__card-strategy-income-money" data-period="annually" data-type="guaranteed">{{ this.$financeUtils.format_currency( result.amount_guaranteed.income, 'USD' ) }}</div>
-                                            <div class="result__card-strategy-income-money" data-period="annually" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.amount.income, 'USD' ) }}</div>
+                                            <template v-if="selections.method == 'premium'">
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="guaranteed">{{ this.$financeUtils.format_currency( result.amount_guaranteed.income, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.amount.income, 'USD' ) }}</div>
+                                            </template>
+                                            <template v-if="selections.method == 'income'">
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.amount.premium, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">{{ this.$financeUtils.format_currency( result.amount.income, 'USD' ) }}</div>
+                                            </template>
                                         </div>
                                         <div class="result__card-strategy-data">
                                             <div class="result__card-strategy-data-points">
@@ -561,7 +626,7 @@
                                                     </template>
                                                     <template v-if="!result.source.income_benefit.income_start_age.length">None</template>
                                                 </span>
-                                                <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Income Benefit Configuration">{{ result.source.income_benefit.name }}</span>
+                                                <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Rider Type/Name">{{ result.source.income_benefit.name }}</span>
                                             </div>
                                         </div>
                                         <div class="result__card-strategy-data result__card-strategy-data--extra">
@@ -571,8 +636,15 @@
                                                 <span class="result__card-strategy-details-point" data-type="setting" data-type-title="Configuration">{{ this.$globalUtils.format( 'strategy_configuration', result.source.strategy.strategy_configuration ) }}</span>
                                             </div>
                                         </div>
-                                    </divf>
+                                    </div>
                                 </div>
+                            </div>
+                        </template>
+
+                        <template v-if="( ( !this.show_all ) && ( ( this.results ) && ( this.results.length > 25 ) ) )">
+                            <div class="form result__notice">
+                                <p>Only the top 25 results are shown.</p>
+                                <button type="button" class="form__action" v-on:click="toggle_show_all_results">Show All</button>
                             </div>
                         </template>
                     </div>

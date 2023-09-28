@@ -20,6 +20,7 @@ class Quoting extends Controller {
     const YEARS_DEFERRAL_MIN = 5;
     const YEARS_DEFERRAL_MAX = 20;
     const PREMIUM_FAILSAFE = 10000;
+    const INCOME_FAILSAFE = 100;
 
     /**
      * FIA/FRA Quoting
@@ -27,19 +28,19 @@ class Quoting extends Controller {
      */
     public function query_fixed( Request $request ) {
         $messages = [];
-        $response = [];
 
-        $endpoint_url = env( 'CANNEX_WS_ENDPOINT_FIXED' );
-        $username = env( 'CANNEX_WS_USERNAME' );
-        $password = env( 'CANNEX_WS_PASSWORD' );
-        $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
-
+        $method = $request->get( 'method', 'income' );
         $premium = preg_replace( '/[^0-9.]/', '', $request->get( 'premium' ) );
+        $income = preg_replace( '/[^0-9.]/', '', $request->get( 'income' ) );
         $inventory = $request->get( 'inventory' );
 
         // TODO: decide how we want to handle minimum premiums
         if ( $premium < self::PREMIUM_FAILSAFE ) {
             $premium = self::PREMIUM_FAILSAFE;
+        }
+
+        if ( $income < self::INCOME_FAILSAFE ) {
+            $income = self::INCOME_FAILSAFE;
         }
 
         /*
@@ -61,7 +62,7 @@ class Quoting extends Controller {
                 $request->get( 'guarantee_period_years' ),
                 $request->get( 'guarantee_period_months' ),
                 $request->get( 'participation_rate' ),
-                $premium,
+                ( ( $method === 'premium' ) ? 0 : $premium ),
                 $inventory
             );
         }
@@ -78,7 +79,7 @@ class Quoting extends Controller {
                     //$cache = AnalysisGuaranteedCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->where( 'is_estimated_return', true )->where( 'is_joint', false )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
 
                     if ( $cache->count() > 10 ) {
-                        $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $premium, $deferrals );
+                        $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $method, $premium, $income, $deferrals );
                     }
 
                     // Guaranteed Income
@@ -86,7 +87,7 @@ class Quoting extends Controller {
                     $cache = AnalysisGuaranteedCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->where( 'is_estimated_return', false )->where( 'is_joint', false )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
 
                     if ( $cache->count() > 1 ) {
-                        $products[ $product_id ][ 'targets' ][ $counter ][ 'guaranteed' ] = HeuristicHelper::predict( $cache, $premium, $deferrals );
+                        $products[ $product_id ][ 'targets' ][ $counter ][ 'guaranteed' ] = HeuristicHelper::predict( $cache, $method, $premium, $income, $deferrals );
                     }
                 }
             }

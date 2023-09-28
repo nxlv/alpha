@@ -125,6 +125,7 @@
 
                     $analytics = Product::with(
                         'strategy',
+                        'strategy.rates',
                         'income_benefit',
                         'income_benefit.rider_fee_current',
                         'income_benefit.premium_multiplier',
