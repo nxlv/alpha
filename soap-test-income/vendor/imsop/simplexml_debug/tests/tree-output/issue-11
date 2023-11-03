@@ -1,4 +1,0 @@
-SimpleXML object (1 item)
-[0] // <notinnamespace>
-	->attributes('http://example.com')
-		->isinnamespace

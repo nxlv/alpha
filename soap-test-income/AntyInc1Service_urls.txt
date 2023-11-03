@@ -1,3 +1,0 @@
-UAT(not available at this time):	https://wwwdev.cannex.com/devext/CANX/AntyInc1Service
-PROD:	https://www.cannex.com/app/CANX/AntyInc1Service
-
