@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SshConfigs">
-    <configs>
-      <sshConfig host="alpha.staged.dev" id="c5145a15-2bbb-4d21-9647-f45ea7b59d10" keyPath="Q:\development\.keys\id_rsa" port="22" nameFormat="DESCRIPTIVE" username="chad" useOpenSSHConfig="true" />
-    </configs>
-  </component>
-</project>
