@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com" xmlns:cnx="http://www.cannex.com"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="req_antu_type-2.0.xsd" />
+
+	<xsd:complexType name="resp_antu_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:date" name="run_date" />
+			<xsd:element type="xsd:time" name="run_time" />
+			<xsd:element type="xsd:string" name="transaction_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="request_no"
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="single_institution_id"
+				minOccurs="0" />
+			<xsd:element type="cnx:req_antu_type" name="antu_request"
+				minOccurs="0" />
+			<xsd:element type="cnx:survey_notes_type" name="survey_notes"
+				minOccurs="0" />
+			<xsd:element type="cnx:carrier_type" name="carrier"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:error_type" name="error"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="2.0" />
+	</xsd:complexType>
+
+	<xsd:complexType name="carrier_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:string" name="institution_id" />
+			<xsd:element type="xsd:string" name="naic" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="institution_name" />
+			<xsd:element type="cnx:quote_type" name="quote"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="error_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:string" name="error_level" />
+			<xsd:element type="xsd:string" name="error_cd" />
+			<xsd:element type="xsd:string" name="error_message"
+				minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="expiry_cd_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="G|NB|NG|" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="name_value_type">
+      <xsd:simpleContent>
+         <xsd:extension base="xsd:string">
+            <xsd:attribute type="xsd:string" name="name" use="required" />
+         </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+
+	<xsd:complexType name="notes_type">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element type="cnx:note_type" name="note" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="note_type">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute type="xsd:string" name="note_id" use="required" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="quote_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:yn_type" name="return_of_premium" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="set" 
+				minOccurs="0" />
+			<xsd:element type="cnx:money_10_2_type" name="premium" 
+				minOccurs="0" />
+			<xsd:element type="cnx:money_10_2_type" name="income" 
+				minOccurs="0" />
+			<xsd:element type="cnx:money_10_2_type" name="tax_amount"
+				minOccurs="0" />
+			<xsd:element type="cnx:rate_5_3_type" name="return_of_premium_rate"
+				minOccurs="0" />
+			<xsd:element type="cnx:expiry_cd_type" name="expiry_cd"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="expiry_date"
+				minOccurs="0" />
+			<xsd:element type="xsd:time" name="expiry_time"
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="rating" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="set_unique" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="cusip" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="isin" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_name" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="illustration_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="illustration_pdf" 
+				minOccurs="0" />
+			<xsd:element type="cnx:request_overrides_type" name="request_overrides"
+				minOccurs="0" />
+			<xsd:element type="cnx:name_value_type" name="name_value" 
+				minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element type="cnx:notes_type" name="notes" 
+				minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="request_overrides_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:rate_6_3_type" name="percent"
+				minOccurs="0" />
+			<xsd:element type="cnx:rate_6_3_type" name="joint_percent"
+				minOccurs="0" />
+			<xsd:element type="cnx:rate_5_3_type" name="index_rate"
+				minOccurs="0" />
+			<xsd:element type="cnx:money_10_2_type" name="amount"
+				minOccurs="0" />
+			<xsd:element type="cnx:money_10_2_type" name="cost_basis"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="first_payment_date"
+				minOccurs="0" />
+			<xsd:element type="xsd:date" name="premium_payment_date"
+				minOccurs="0" />
+			<xsd:element type="cnx:guarantee_cd_type" name="guarantee_cd"
+				minOccurs="0" />
+			<xsd:element type="cnx:year_0_99_type" name="guarantee_year"
+				minOccurs="0" />
+			<xsd:element type="cnx:month_0_11_type" name="guarantee_month"
+				minOccurs="0" />
+			<xsd:element type="cnx:year_0_99_type" name="temporary_year"
+				minOccurs="0" />
+			<xsd:element type="cnx:month_0_11_type" name="temporary_month"
+				minOccurs="0" />
+			<xsd:element type="cnx:yn_type" name="has_changed" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="survey_notes_type">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element type="cnx:survey_note_type" name="survey_note" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="survey_note_type">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute type="xsd:string" name="survey_note_id"
+					use="required" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+
+</xsd:schema>

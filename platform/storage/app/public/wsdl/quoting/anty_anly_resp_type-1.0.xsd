@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com" xmlns:cnx="http://www.cannex.com"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_anly_req_type-1.0.xsd" />
+
+	<xsd:complexType name="anty_anly_resp_set_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:dateTime" name="analysis_datetime" />
+			<xsd:element type="xsd:string" name="transaction_id" 
+				minOccurs="0" />
+			<xsd:element type="cnx:anty_anly_resp_type" name="analysis_response" 
+				minOccurs="1" maxOccurs="20" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:decimal" name="version" fixed="1.0" />
+	</xsd:complexType>
+	
+	<xsd:complexType name="anty_anly_resp_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:string" name="request_no"
+				minOccurs="0" />
+			<xsd:element type="cnx:anty_anly_req_type" name="analysis_request"
+				minOccurs="0" />
+			<xsd:element type="cnx:anly_data_type" name="analysis_data" 
+				minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element type="cnx:error_type" name="analysis_error"
+				minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="anly_data_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:int" name="year" />
+			<xsd:element type="xsd:int" name="primary_age" />
+			<xsd:element type="xsd:double" name="account_value" />	
+			<xsd:element type="xsd:double" name="interest_percent" />
+			<xsd:element type="xsd:double" name="interest_amount" />			
+			<xsd:element type="xsd:double" name="income_benefit_base" />			
+			<xsd:element type="xsd:double" name="income" />
+			<xsd:element type="xsd:double" name="death_benefit" />
+			<xsd:element type="xsd:double" name="fees" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="error_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:string" name="error_cd" />
+			<xsd:element type="xsd:string" name="error_message" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>

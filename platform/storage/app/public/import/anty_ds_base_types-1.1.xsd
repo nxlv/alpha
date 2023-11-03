@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+ 	<xsd:complexType name="cd_name_list_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:cd_name_type" name="cd_name" 
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+   
+	<xsd:complexType name="cd_name_type">
+	     <xsd:simpleContent>
+	        <xsd:extension base="xsd:string">
+	           <xsd:attribute type="xsd:string" name="cd" use="optional" />
+	        </xsd:extension>
+	     </xsd:simpleContent>
+	</xsd:complexType>
+   
+	<xsd:complexType name="double_range_type">
+	   <xsd:simpleContent>
+	      <xsd:extension base="xsd:string">
+	      	<xsd:attribute type="xsd:double" name="min" use="required" />
+	        <xsd:attribute type="xsd:double" name="max" use="required" />
+	      </xsd:extension>
+	   </xsd:simpleContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="info_list_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:key_value_type" name="info" 
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="int_range_type">
+	   <xsd:simpleContent>
+	      <xsd:extension base="xsd:string">
+	      	<xsd:attribute type="xsd:int" name="min" use="required" />
+	        <xsd:attribute type="xsd:int" name="max" use="required" />
+	      </xsd:extension>
+	   </xsd:simpleContent>
+	</xsd:complexType>
+
+ 	<xsd:complexType name="instance_id_list_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:string" name="instance_id" 
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+   
+	<xsd:complexType name="key_value_type">
+	     <xsd:simpleContent>
+	        <xsd:extension base="xsd:string">
+	           <xsd:attribute type="xsd:string" name="key" use="required" />
+	        </xsd:extension>
+	     </xsd:simpleContent>
+	</xsd:complexType>
+   
+ 	<xsd:complexType name="name_list_type">
+		<xsd:sequence>
+			<xsd:element type="xsd:string" name="name" 
+				minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+   
+	<xsd:complexType name="period_type">
+	   <xsd:simpleContent>
+	      <xsd:extension base="xsd:string">
+	      	<xsd:attribute type="xsd:int" name="years" use="optional" />
+	        <xsd:attribute type="xsd:int" name="months" use="optional" />
+	      </xsd:extension>
+	   </xsd:simpleContent>
+	</xsd:complexType>
+	
+	<!--
+	"AL" = Alabama
+    "AK" = Alaska
+    "AZ" = Arizona
+    "AR" = Arkansas
+    "CA" = California
+    "CO" = Colorado
+    "CT" = Connecticut
+    "DE" = Delaware
+    "DC" = District of Columbia
+    "FL" = Florida
+    "GA" = Georgia
+    "GU" = Guam
+    "HI" = Hawaii
+    "ID" = Idaho
+    "IL" = Illinois
+    "IN" = Indiana
+    "IA" = Iowa
+    "KS" = Kansas
+    "KY" = Kentucky
+    "LA" = Louisiana
+    "ME" = Maine
+    "MD" = Maryland
+    "MA" = Massachusetts
+    "MI" = Michigan
+    "MN" = Minnesota
+    "MS" = Mississippi
+    "MO" = Missouri
+    "MT" = Montana
+    "NE" = Nebraska
+    "NV" = Nevada
+    "NH" = New Hampshire
+    "NJ" = New Jersey
+    "NM" = New Mexico
+    "NY" = New York
+    "NC" = North Carolina
+    "ND" = North Dakota
+    "OH" = Ohio
+    "OK" = Oklahoma
+    "OR" = Oregon
+    "PA" = Pennsylvania
+    "PR" = Puerto Rico
+    "RI" = Rhode Island
+    "SC" = South Carolina
+    "SD" = South Dakota
+    "TN" = Tennessee
+    "TX" = Texas
+    "UT" = Utah
+    "VT" = Vermont
+    "VI" = Virgin Islands
+    "VA" = Virginia
+    "WA" = Washington
+    "WV" = West Virginia
+    "WI" = Wisconsin
+    "WY" = Wyoming	 
+ 	-->
+	<xsd:simpleType name="state_cd_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="" />
+			<xsd:enumeration value="AL" />
+			<xsd:enumeration value="AK" />
+			<xsd:enumeration value="AZ" />
+			<xsd:enumeration value="AR" />
+			<xsd:enumeration value="CA" />
+			<xsd:enumeration value="CO" />
+			<xsd:enumeration value="CT" />
+			<xsd:enumeration value="DE" />
+			<xsd:enumeration value="DC" />
+			<xsd:enumeration value="FL" />
+			<xsd:enumeration value="GA" />
+			<xsd:enumeration value="HI" />
+			<xsd:enumeration value="ID" />
+			<xsd:enumeration value="IL" />
+			<xsd:enumeration value="IN" />
+			<xsd:enumeration value="IA" />
+			<xsd:enumeration value="KS" />
+			<xsd:enumeration value="KY" />
+			<xsd:enumeration value="LA" />
+			<xsd:enumeration value="ME" />
+			<xsd:enumeration value="MD" />
+			<xsd:enumeration value="MA" />
+			<xsd:enumeration value="MI" />
+			<xsd:enumeration value="MN" />
+			<xsd:enumeration value="MS" />
+			<xsd:enumeration value="MO" />
+			<xsd:enumeration value="MT" />
+			<xsd:enumeration value="NE" />
+			<xsd:enumeration value="NV" />
+			<xsd:enumeration value="NH" />
+			<xsd:enumeration value="NJ" />
+			<xsd:enumeration value="NM" />
+			<xsd:enumeration value="NY" />
+			<xsd:enumeration value="NC" />
+			<xsd:enumeration value="ND" />
+			<xsd:enumeration value="OH" />
+			<xsd:enumeration value="OK" />
+			<xsd:enumeration value="OR" />
+			<xsd:enumeration value="PA" />
+			<xsd:enumeration value="RI" />
+			<xsd:enumeration value="SC" />
+			<xsd:enumeration value="SD" />
+			<xsd:enumeration value="TN" />
+			<xsd:enumeration value="TX" />
+			<xsd:enumeration value="UT" />
+			<xsd:enumeration value="VT" />
+			<xsd:enumeration value="VA" />
+			<xsd:enumeration value="WA" />
+			<xsd:enumeration value="WV" />
+			<xsd:enumeration value="WI" />
+			<xsd:enumeration value="WY" />
+			<xsd:enumeration value="AA" />
+			<xsd:enumeration value="AE" />
+			<xsd:enumeration value="AP" />
+			<xsd:enumeration value="AS" />
+			<xsd:enumeration value="FM" />
+			<xsd:enumeration value="GU" />
+			<xsd:enumeration value="PR" />
+			<xsd:enumeration value="MH" />
+			<xsd:enumeration value="MP" />
+			<xsd:enumeration value="VI" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

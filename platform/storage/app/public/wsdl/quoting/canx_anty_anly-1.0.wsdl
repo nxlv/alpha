@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions xmlns:cnx="http://www.cannex.com"
+				  xmlns:cws="http://www.cannex.com/ws"
+				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+				  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				  name="canx_anty_anly" 
+				  targetNamespace="http://www.cannex.com/ws">
+  
+  <wsdl:documentation>
+  	This file and any supporting xsd schemas are located at "http://localhost:8080/CANX/wsdl"
+  </wsdl:documentation>
+  
+  <wsdl:types>
+	<xsd:schema targetNamespace="http://www.cannex.com/ws">
+	  <xsd:import schemaLocation="anty_anly_req_type-1.0.xsd" namespace="http://www.cannex.com" />
+      <xsd:element type="cnx:anty_anly_req_set_type" name="anty_analysis_requests" />
+    </xsd:schema>  
+	<xsd:schema targetNamespace="http://www.cannex.com/ws">
+      <xsd:import schemaLocation="anty_anly_resp_type-1.0.xsd" namespace="http://www.cannex.com" />
+      <xsd:element type="cnx:anty_anly_resp_set_type" name="anty_analysis_responses" />
+    </xsd:schema>  
+  </wsdl:types>
+  
+  <wsdl:message name="canx_anty_anly_request">
+    <wsdl:part element="cws:anty_analysis_requests" name="parameters" />
+  </wsdl:message>
+  <wsdl:message name="canx_anty_anly_response">
+    <wsdl:part element="cws:anty_analysis_responses" name="parameters" />
+  </wsdl:message>
+  
+  <wsdl:portType name="canx_anty_anly_porttype">
+    <wsdl:operation name="canx_anty_anly_operation">
+      <wsdl:input message="cws:canx_anty_anly_request" />
+      <wsdl:output message="cws:canx_anty_anly_response" />
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="canx_anty_anly_binding" type="cws:canx_anty_anly_porttype">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="canx_anty_anly_operation">
+      <soap:operation soapAction="http://www.cannex.com/ws/canx_anty_anly_operation" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="canx_anty_anly_service">
+    <wsdl:port binding="cws:canx_anty_anly_binding" name="canx_anty_anly_binding">
+      <soap:address location="https://wwwdev.cannex.com/devext/CANX/AntyAnlyService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.cannex.com/anty_ds" xmlns:cnx="http://www.cannex.com/anty_ds"
+	elementFormDefault="qualified">
+
+	<xsd:include schemaLocation="anty_ds_base_types-1.1.xsd" />
+
+	<xsd:complexType name="anty_ds_anly_data_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />			
+			<xsd:element type="cnx:cd_name_type" name="product_type" />
+			<xsd:element type="cnx:anly_data_type" name="analysis_data_instance"
+				minOccurs="1" maxOccurs="unbounded" />
+			<xsd:element type="cnx:info_list_type" name="custom_info"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="version" fixed="1.1" />
+	</xsd:complexType>
+
+	<xsd:complexType name="anly_data_type">
+		<xsd:sequence>
+			<xsd:element type="cnx:info_list_type" name="canx_info" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_profile_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="product_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="strategy_details_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="current_strategy_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="strategy_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="minimum_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="cnx:period_type" name="guarantee_period" 
+				minOccurs="0" />
+			<xsd:element type="cnx:period_type" name="surrender_period" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="cdsc_schedule_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="free_withdrawals_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="standard_gmv_initial_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="standard_gmv_increase_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="enhanced_gmv_initial_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="enhanced_gmv_increase_rate_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="current_m_e_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="current_admin_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="current_fund_facilitation_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="current_premium_based_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="current_other_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="premium_bonus_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="interest_bonus_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="interest_multiplier_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="persistency_credit_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_profile_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_current_rider_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_step_ups_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_roll_ups_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_withdrawal_tables_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_withdrawal_ruin_tables_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_premium_bonus_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_premium_multiplier_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_interest_crediting_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_interest_bonus_crediting_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_interest_multiplier_crediting_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="income_benefit_persistency_credit_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_profile_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_current_rider_fees_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_step_ups_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_roll_ups_instance_id" 
+				minOccurs="0" />			
+			<xsd:element type="xsd:string" name="death_benefit_premium_bonus_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_premium_multiplier_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_interest_crediting_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_interest_bonus_crediting_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_interest_multiplier_crediting_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_persistency_credit_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="xsd:string" name="death_benefit_enhancement_instance_id" 
+				minOccurs="0" />
+			<xsd:element type="cnx:info_list_type" name="custom_info"
+				minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute type="xsd:string" name="analysis_data_id" use="required" />
+		<xsd:attribute type="xsd:string" name="rule_id" use="required" />
+		<xsd:attribute type="cnx:anly_cd_type" name="analysis_cd" use="required" />
+	</xsd:complexType>
+
+	<!-- 
+	"A" = Accumulation/Growth Analysis
+	"B" = Both Accumulation/Growth & Income Analysis
+	"I" = Income Analysis	
+ 	-->
+	<xsd:simpleType name="anly_cd_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[ABI]" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>
