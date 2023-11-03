@@ -91,6 +91,23 @@
                 font-size: 1.125rem;
                 line-height: 1.125rem;
                 justify-content: center;
+
+                & > strong {
+                    display: block;
+                    font-size: 2rem;
+                    line-height: 2rem;
+                    letter-spacing: -1px;
+                    font-weight: 500;
+                }
+
+                & > span {
+                    align-self: flex-start;
+                    display: inline-flex;
+                    border: 1px $color-money solid;
+                    padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+                    color: $color-money;
+                    font-weight: 500;
+                }
             }
 
             &-ratings {
@@ -114,6 +131,7 @@
                     margin: 0 0 0 0.5rem;
                     padding: 1.75rem 0 0 0;
                     position: relative;
+                    max-height: 80px;
 
                     &[data-rating-company="AMB"] {
                         &:before {
@@ -265,13 +283,6 @@
                 &:before {
                     background-image: url(../images/logos/carriers/the-standard.png);
                 }
-            }
-
-            strong {
-                display: block;
-                font-size: 2rem;
-                line-height: 2rem;
-                letter-spacing: -1px;
             }
         }
 

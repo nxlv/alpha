@@ -27,12 +27,12 @@
     <aside class="alpha__prologue-secondary-client">
         <h3>
             {{ this.$clientUtils.get_client_data( 'owner_name_first' ) + ' ' + this.$clientUtils.get_client_data( 'owner_name_last' ) }}
-            <span class="money">{{ this.$financeUtils.format_currency( this.$globalUtils.ensure_type( this.$clientUtils.get_client_data( 'investment' ), 'float' ), 'USD' ) }}</span>
+            <span class="money">{{ this.$financeUtils.format_currency( this.$globalUtils.ensure_type( this.$clientUtils.get_client_data( 'annuity_investment' ), 'float' ), 'USD' ) }}</span>
         </h3>
         <menu class="stats">
             <li data-type="location">{{ this.$clientUtils.get_client_data( 'owner_state' ) }}</li>
             <li data-type="age">Age {{ this.$globalUtils.format( 'age', this.$clientUtils.get_client_data( 'owner_birthdate' ) ) }}</li>
-            <li data-type="marital">{{ this.$globalUtils.format( 'single_joint', this.$clientUtils.get_client_data( 'method' ) ) }}</li>
+            <li data-type="marital">{{ this.$globalUtils.format( 'single_joint', this.$clientUtils.get_client_data( 'annuity_contract' ) ) }}</li>
         </menu>
         <menu class="controls">
             <li data-type="change"><a href="javascript:;" title="Change Client" v-on:click="show_manager( null )">Change Client</a></li>

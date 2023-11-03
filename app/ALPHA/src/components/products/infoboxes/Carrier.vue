@@ -1,48 +1,49 @@
 <template>
-    <div class="infobox carrier" v-if="profile && profile.ratings">
-        <h3 class="benefit__header">
-            <label for="benefit-carrier-toggle">
-                Carrier Information
+    <div class="infobox carrier" v-if="profile">
+        <h3>Carrier Information</h3>
 
-                <span class="benefit__controls">
-                    <i class="fal fa-chevron-double-up" aria-hidden="true" data-type="collapse"></i>
-                    <i class="fal fa-chevron-double-down" aria-hidden="true" data-type="expand"></i>
-                </span>
-            </label>
-        </h3>
+        <div class="carrier__details">
+            <h3 class="carrier__title" v-bind:data-carrier-slug="this.$globalUtils.sanitize_title( profile.carrier.name )">
+                {{ profile.carrier.name }}
+            </h3>
 
-        <div class="benefit__details">
-            <fieldset class="benefit__details-group" data-group-type="carrier">
-                <legend>Product &amp; Profile</legend>
+            <div class="carrier__contact">
+                <div class="carrier__contact-item" data-type="address">
+                    <address>123 Main Street
+                    Orlando, FL  32801</address>
+                </div>
+                <div class="carrier__contact-item" data-type="phone">
+                    <a href="tel:407-555-1212">+1 (407) 555-1212</a>
+                </div>
+                <div class="carrier__contact-item" data-type="website">
+                    <a href="https://google.com/">https://google.com/</a>
+                </div>
+                <div class="carrier__contact-item" data-type="founded">
+                    Founded in 1901
+                </div>
+            </div>
+        </div>
 
-                <ul class="benefit__details-group-items">
-                    <li class="benefit__details-group-item" data-item-label="Carrier">
-                        {{ profile.carrier.name }}
-                    </li>
-                    <li class="benefit__details-group-item" data-item-label="Product">
-                        {{ profile.name }}
+        <br />
+
+        <h3>Carrier Ratings</h3>
+
+        <div class="carrier__details">
+            <div class="carrier__ratings">
+                <ul class="carrier__ratings-items">
+                    <li class="carrier__ratings-items-item" v-for="( rating, rating_index ) in profile.ratings" v-bind:key="rating_index" v-bind:data-item-label="this.$globalUtils.format( 'rating_company', rating.company )">
+                        <span class="carrier__ratings-items-item-rating">{{ rating.rating }}</span>
+                        <span class="carrier__ratings-items-item-date">{{ rating.effective_date }}</span>
                     </li>
                 </ul>
-            </fieldset>
-
-            <fieldset class="benefit__details-group" data-group-type="ratings">
-                <legend>Ratings</legend>
-
-                <ul class="benefit__details-group-items">
-                    <li class="benefit__details-group-item" v-for="( rating, rating_index ) in profile.ratings" v-bind:key="rating_index" v-bind:data-item-label="this.$globalUtils.format( 'rating_company', rating.company )">
-                        <span class="benefit__details-group-item-rating">{{ rating.rating }}</span>
-                        <span class="benefit__details-group-item-date">{{ rating.effective_date }}</span>
-                    </li>
-                </ul>
-            </fieldset>
+            </div>
         </div>
     </div>
 </template>
 <script>
 export default {
     props: {
-        profile: null,
-        expanded: false
+        profile: null
     },
     created() {
         console.log( 'carrier', this.profile );
@@ -52,4 +53,6 @@ export default {
         };
     }
 };
+</script>
+<script setup>
 </script>

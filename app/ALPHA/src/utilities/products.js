@@ -45,6 +45,7 @@ const productUtils = {
         let calculation_frequency = ( ( row.source ) ? row.source.strategy.calculation_frequency : row.strategy.calculation_frequency );
         let current_participation_rate = ( ( row.source ) ? row.source.current_participation_rate : row.current_participation_rate );
         let strategy_type = ( ( row.source ) ? row.source.strategy.strategy_type : row.strategy.strategy_type );
+        let strategy_configuration = ( ( row.source ) ? row.source.strategy.strategy_configuration : row.strategy.strategy_configuration );
         let guarantee_years = ( ( row.source ) ? row.source.strategy.guarantee_period_years : row.strategy.guarantee_period_years );
         let guarantee_months =  ( ( row.source ) ? row.source.strategy.guarantee_period_months : row.strategy.guarantee_period_months );
         let premium_range_min = ( ( row.source ) ? row.source.premium_range_min : row.rules.premium_min );
@@ -83,6 +84,10 @@ const productUtils = {
             }
         }
         */
+
+        if ( strategy_configuration ) {
+            parts.push( globalUtils.format( 'strategy_configuration', strategy_configuration ) );
+        }
 
         if ( current_participation_rate > 0 ) {
             parts.push( current_participation_rate + '% PR' );

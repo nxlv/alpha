@@ -68,77 +68,6 @@
     }
 
     &-options {
-      .options {
-        &__details {
-          table {
-            tbody {
-              tr {
-                td {
-                  span {
-                    &[data-type] {
-                      padding-left: 2rem;
-                      position: relative;
-
-                      &:before {
-                        position: absolute;
-                        top: -2px;
-                        left: 0;
-                        width: 1.25rem;
-                        height: 100%;
-                        content: '';
-                        font-family: 'Font Awesome 6 Pro', sans-serif;
-                        font-size: 1.25rem;
-                        line-height: 1.25rem;
-                        display: flex;
-                        align-items: center;
-                        justify-content: flex-start;
-                      }
-                    }
-
-                    &[data-type="name"] {
-                      padding-left: 0;
-
-                      &:before {
-                        display: none;
-                      }
-                    }
-
-                    &[data-type="link"] {
-                      padding-left: inherit;
-
-                      &:before {
-                        display: none;
-                      }
-                    }
-
-                    &[data-type="premium"],
-                    &[data-type="frequency"] {
-                      margin: 0.5rem 0 0 0;
-                      display: flex;
-                      align-items: center;
-                      justify-content: flex-start;
-                    }
-
-                    &[data-type="premium"] {
-                      color: $color-money;
-
-                      &:before {
-                        content: '\f53d';
-                      }
-                    }
-
-                    &[data-type="frequency"] {
-                      &:before {
-                        content: '\e0d2';
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
 
     &-illustration {
@@ -225,6 +154,39 @@
         font-size: 1.625rem;
         line-height: 1.625rem;
         color: $brand-quaternary;
+      }
+
+      &--disabled {
+        filter: grayscale(1);
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      &--special {
+        background-color: $brand-quaternary;
+        color: #fff;
+        border-color: #fff;
+        margin-bottom: 2rem;
+
+        &:before {
+          color: #fff;
+        }
+
+        &:hover {
+          background-color: $brand-quaternary;
+          color: #fff;
+          border-color: #fff;
+
+          &:before {
+            color: #fff;
+          }
+        }
+      }
+
+      &[data-type="download"] {
+        &:before {
+          content: '\f019';
+        }
       }
 
       &[data-type="options"] {

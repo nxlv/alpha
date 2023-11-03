@@ -396,10 +396,19 @@ main#alpha {
                             }
                         }
 
+                        &[data-type="reset"],
                         &[data-type="change"] {
                             margin-right: auto;
                             color: $brand-quaternary;
 
+                            a {
+                                &:before {
+                                    content: '\f2f9';
+                                }
+                            }
+                        }
+
+                        &[data-type="change"] {
                             a {
                                 &:before {
                                     content: '\f079';

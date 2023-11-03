@@ -62,7 +62,7 @@ class CANNEXCache extends Command {
         if ( $_param_fetchall ) {
             $this->line( PHP_EOL . '  <fg=white;bg=blue> NOTICE </> Request received to cache ALL products.' . PHP_EOL );
 
-            $products = ProductHelper::identify_products( false );
+            $products = ProductHelper::identify_products();
         } else {
             $this->line( PHP_EOL . '  <fg=white;bg=blue> NOTICE </> Caching default profile' . PHP_EOL );
 
@@ -78,7 +78,7 @@ class CANNEXCache extends Command {
              */
 
             $index_id = Index::where( 'index_name', 'S&P 500' )->get()->first()->index_id;
-            $products = ProductHelper::identify_products( $index_id );
+            $products = ProductHelper::identify_products( [ 'index' => $index_id ] );
         }
 
         if ( ( !empty( $products ) ) && ( count( $products ) ) ) {

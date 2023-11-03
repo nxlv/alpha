@@ -20,9 +20,10 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_anly-1.0.wsdl' ), [
-                    'trace'         => 0,
+                    'trace'         => false,
+                    'keep_alive'    => false,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
-                    'exception'     => 0
+                    'exception'     => false
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
@@ -133,9 +134,10 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
-                    'trace'         => 0,
+                    'trace'         => false,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
-                    'exception'     => 0
+                    'keep_alive'    => false,
+                    'exception'     => false
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
@@ -181,9 +183,10 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
-                    'trace'         => 0,
+                    'trace'         => false,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
-                    'exception'     => 0
+                    'keep_alive'    => false,
+                    'exception'     => false
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );

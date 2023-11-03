@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CANNEXCacheGuaranteed extends Command {
-    const DEFAULT_PREMIUM_BREAKPOINTS = [ '100', '100000' ];
-    const DEFAULT_DEFERRAL_INTERVALS = [ 5, 10, 20 ];
+    const DEFAULT_PREMIUM_BREAKPOINTS = [ '100' ];
+    const DEFAULT_DEFERRAL_INTERVALS = [ 0, 5, 10, 20 ];
     const DEFAULT_OWNER_STATE = 'FL';
     const DEFAULT_MARITAL_STATUSES = [ 'S', 'J' ];
     const DEFAULT_ANALYSIS_SEQUENCES = [ 0, 1 ];
     const DEFAULT_PURCHASE_AGE = 50;
+    const DEFAULT_AGE_RANGES = [ 50, 55, 60, 65, 70, 75 ];
     const ANALYSIS_MAX_CHUNK_SIZE = 25;
 
     protected $version = '1.0';
@@ -26,14 +27,14 @@ class CANNEXCacheGuaranteed extends Command {
      *
      * @var string
      */
-    protected $signature = 'cannex:cache-guaranteed {--sequence=0} {--marital=S} {--premium=100.00} {--deferral=5}';
+    protected $signature = 'cannex:cache-guaranteed {--sequence=0} {--marital=S} {--premium=100.00} {--deferral=5} {--starting-age=50} {--batch=0}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Caches guarnateed income quotes for preset investment amounts across all products.';
+    protected $description = 'Caches guaranteed income quotes for preset investment amounts across all products.';
 
     /**
      * Execute the console command.
@@ -49,6 +50,8 @@ class CANNEXCacheGuaranteed extends Command {
         $premium = $this->option( 'premium' );
         $deferral = $this->option( 'deferral' );
         $sequence = $this->option( 'sequence' );
+        $starting_age = $this->option( 'starting-age' );
+        $batch = $this->option( 'batch' );
 
         if ( in_array( $sequence, self::DEFAULT_ANALYSIS_SEQUENCES ) === false ) {
             $this->line( '  <bg=red;fg=white> ERROR </> Invalid analysis (sequence) type.' . PHP_EOL );
@@ -72,6 +75,8 @@ class CANNEXCacheGuaranteed extends Command {
             exit;
         }
 
+        $time_start = microtime();
+
         $this->line( sprintf( '  <bg=blue;fg=white> CANNEX Cache Builder </> v%s', $this->version ) . PHP_EOL );
         $this->line( PHP_EOL . '  <fg=white;bg=blue> NOTICE </> Obtaining default product list...' . PHP_EOL );
         $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Marital status: %s', $marital_status ) );
@@ -79,7 +84,7 @@ class CANNEXCacheGuaranteed extends Command {
         $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Deferral: %d', $deferral ) );
         $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Sequence: %d', $sequence ) );
 
-        $products = ProductHelper::identify_products();
+        $products = ProductHelper::identify_products( [], [], [ 'annuity_type' => 'S', 'owner_age' => 65, 'owner_state' => 'FL', 'joint_age' => null, 'joint_state' => null ], [ 'premium' => 100000 ] );
 
         if ( ( !empty( $products ) ) && ( count( $products ) ) ) {
             $stack = [];
@@ -123,25 +128,39 @@ class CANNEXCacheGuaranteed extends Command {
             if ( !empty( $stack ) ) {
                 $queue = [];
 
-                foreach ( $stack as $state_code => $state ) {
-                    $profile = [
-                        'annuitant' => [
-                            'state_cd' => $state_code,
-                            'contract_cd' => false,
-                            'premium' => number_format( $premium, 2, '.', '' ),
-                            'purchase_date' => gmdate( 'Y-m-d' ),
-                            'gender_cd_primary' => false,
-                            'purchase_age_primary' => self::DEFAULT_PURCHASE_AGE,
-                            'income_start_age_primary' => self::DEFAULT_PURCHASE_AGE + $deferral
-                        ],
-                        'targets' => []
-                    ];
+                $age_ranges = [];
 
-                    foreach ( $state as $row ) {
-                        $profile[ 'targets' ][] = $row[ 'analysis_data_id' ];
+                foreach ( self::DEFAULT_AGE_RANGES as $age ) {
+                    if ( $starting_age ) {
+                        if ( $age >= $starting_age ) {
+                            $age_ranges[] = $age;
+                        }
+                    } else {
+                        $age_ranges[] = $age;
                     }
+                }
 
-                    $queue[] = $profile;
+                foreach ( $stack as $state_code => $state ) {
+                    foreach ( $age_ranges as $age ) {
+                        $profile = [
+                            'annuitant' => [
+                                'state_cd' => $state_code,
+                                'contract_cd' => false,
+                                'premium' => number_format( $premium, 2, '.', '' ),
+                                'purchase_date' => gmdate( 'Y-m-d' ),
+                                'gender_cd_primary' => false,
+                                'purchase_age_primary' => $age,
+                                'income_start_age_primary' => $age + $deferral
+                            ],
+                            'targets' => []
+                        ];
+
+                        foreach ( $state as $row ) {
+                            $profile[ 'targets' ][] = $row[ 'analysis_data_id' ];
+                        }
+
+                        $queue[] = $profile;
+                    }
                 }
 
                 // truncate cache table
@@ -155,6 +174,12 @@ class CANNEXCacheGuaranteed extends Command {
                     $chunks_position = 1;
 
                     foreach ( array_chunk( $profile[ 'targets' ], self::ANALYSIS_MAX_CHUNK_SIZE ) as $chunk ) {
+                        if ( ( $batch ) && ( $chunks_position < $batch ) ) {
+                            $chunks_position++;
+                            continue;
+                        }
+
+                        $batch = null;
                         $transaction_id = uuid_create();
 
                         $annuitant = array_merge(
@@ -193,8 +218,8 @@ class CANNEXCacheGuaranteed extends Command {
                                 $result_deferral = intval( $results->income_request_data->income_start_age_primary ) - intval( $results->income_request_data->purchase_age_primary );
 
                                 foreach ( $results->income_response_data as $result ) {
-                                    if ( !isset( $result->income_error ) ) {
-                                        $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> Sequence: %d, ID: %s, Premium: %f, Deferral: %d, Income (Init/High/Low): %f/%f/%f', $result->cnx_sequence_id, $result->analysis_data_id, $results->income_request_data->premium, $result_deferral, $result->income_data->initial_income, $result->income_data->highest_income, $result->income_data->lowest_income ) );
+                                    if ( ( !isset( $result->income_error ) ) && ( isset( $result->cnx_sequence_id ) ) ) {
+                                        $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> Sequence: %d, ID: %s, Premium: %f, Age: %d, Deferral: %d, Income (Init/High/Low): %f/%f/%f', $result->cnx_sequence_id, $result->analysis_data_id, $results->income_request_data->premium, $results->income_request_data->purchase_age_primary, $result_deferral, $result->income_data->initial_income, $result->income_data->highest_income, $result->income_data->lowest_income ) );
 
                                         $cache = new AnalysisGuaranteedCache;
                                         $cache->analysis_data_id = $result->analysis_data_id;
@@ -203,6 +228,7 @@ class CANNEXCacheGuaranteed extends Command {
                                         $cache->owner_state = $results->income_request_data->state_cd;
                                         $cache->is_estimated_return = $result->cnx_sequence_id;
                                         $cache->is_joint = ( ( $results->income_request_data->contract_cd === 'J' ) ? true : false );
+                                        $cache->purchase_age = floatval( $results->income_request_data->purchase_age_primary );
                                         $cache->income_initial = floatval( $result->income_data->initial_income );
                                         $cache->income_high = floatval( $result->income_data->highest_income );
                                         $cache->income_low = floatval( $result->income_data->lowest_income );

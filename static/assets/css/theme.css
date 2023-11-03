@@ -14333,7 +14333,7 @@ readers do not read off random characters that represent icons */
 .alert {
   padding: 1.5rem;
   border: 1px #000 dotted;
-  margin: 0; }
+  margin: 0 0 2rem 0; }
   .alert h3 {
     margin: 0 0 1rem -1.5rem;
     padding: 0.75rem 1.5rem 0.5rem 1.5rem;
@@ -14366,6 +14366,31 @@ readers do not read off random characters that represent icons */
   .alert.alert-error p small {
     background-color: red;
     color: #fff; }
+  .alert.alert--inline-button {
+    position: relative; }
+    .alert.alert--inline-button h3 {
+      max-width: 50%; }
+    .alert.alert--inline-button button {
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      width: auto;
+      z-index: 100;
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+      background-color: transparent;
+      border: 2px #152935 solid;
+      color: #152935;
+      padding: 0.9375rem 1rem 0.875rem 3rem; }
+      .alert.alert--inline-button button i {
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 1rem;
+        margin-top: -2px; }
 
 main#auth {
   height: 100vh;
@@ -15272,11 +15297,13 @@ main#alpha .alpha__prologue {
             content: '\f234'; }
           main#alpha .alpha__prologue-secondary-client .controls li[data-type="edit"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="edit"] a:before {
             content: '\f4ff'; }
-          main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"], main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="change"] {
+          main#alpha .alpha__prologue-secondary-client .controls li[data-type="reset"], main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"], main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="reset"], main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="change"] {
             margin-right: auto;
             color: #F4562A; }
-            main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="change"] a:before {
-              content: '\f079'; }
+            main#alpha .alpha__prologue-secondary-client .controls li[data-type="reset"] a:before, main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="reset"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="change"] a:before {
+              content: '\f2f9'; }
+          main#alpha .alpha__prologue-secondary-client .controls li[data-type="change"] a:before, main#alpha .alpha__prologue-secondary-inventory .controls li[data-type="change"] a:before {
+            content: '\f079'; }
           main#alpha .alpha__prologue-secondary-client .controls li a, main#alpha .alpha__prologue-secondary-inventory .controls li a {
             position: absolute;
             width: 20px;
@@ -16116,6 +16143,19 @@ h6 {
       font-size: 1.125rem;
       line-height: 1.125rem;
       justify-content: center; }
+      .result__card-title-text > strong {
+        display: block;
+        font-size: 2rem;
+        line-height: 2rem;
+        letter-spacing: -1px;
+        font-weight: 500; }
+      .result__card-title-text > span {
+        align-self: flex-start;
+        display: inline-flex;
+        border: 1px #238c00 solid;
+        padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+        color: #238c00;
+        font-weight: 500; }
     .result__card-title-ratings {
       width: auto;
       display: flex;
@@ -16135,7 +16175,8 @@ h6 {
         min-width: 5rem;
         margin: 0 0 0 0.5rem;
         padding: 1.75rem 0 0 0;
-        position: relative; }
+        position: relative;
+        max-height: 80px; }
         .result__card-title-ratings-rating[data-rating-company="AMB"]:before {
           content: 'A.M. Best'; }
         .result__card-title-ratings-rating[data-rating-company="MOOD"]:before {
@@ -16207,11 +16248,6 @@ h6 {
       background-image: url(../images/logos/carriers/securian.png); }
     .result__card-title[data-carrier-slug="the-standard"]:before {
       background-image: url(../images/logos/carriers/the-standard.png); }
-    .result__card-title strong {
-      display: block;
-      font-size: 2rem;
-      line-height: 2rem;
-      letter-spacing: -1px; }
   .result__card-strategies {
     display: block;
     border: 1px #aaa solid;
@@ -16716,6 +16752,145 @@ h6 {
           line-height: 0.75rem;
           opacity: 0.75; }
 
+.carrier__title {
+  width: 100%;
+  padding: 0 0 0 250px;
+  font-weight: 500;
+  position: relative;
+  letter-spacing: -2px;
+  min-height: 100px;
+  display: flex;
+  align-items: center; }
+  .carrier__title:before {
+    content: '';
+    width: calc(250px - 2rem);
+    height: 100%;
+    border: 1px #000 solid;
+    position: absolute;
+    top: -3px;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain; }
+  .carrier__title[data-carrier-slug="aig"]:before {
+    background-image: url(../images/logos/carriers/aig.png); }
+  .carrier__title[data-carrier-slug*="allianz"]:before {
+    background-image: url(../images/logos/carriers/allianz.png); }
+  .carrier__title[data-carrier-slug*="american-equity"]:before {
+    background-image: url(../images/logos/carriers/american-equity.png); }
+  .carrier__title[data-carrier-slug*="american-national"]:before {
+    background-image: url(../images/logos/carriers/american-national.png); }
+  .carrier__title[data-carrier-slug*="athene"]:before {
+    background-image: url(../images/logos/carriers/athene.png); }
+  .carrier__title[data-carrier-slug*="delaware-life"]:before {
+    background-image: url(../images/logos/carriers/delaware-life.png); }
+  .carrier__title[data-carrier-slug="fidelity-and-guaranty"]:before {
+    background-image: url(../images/logos/carriers/f-and-g.png); }
+  .carrier__title[data-carrier-slug*="global-atlantic"]:before {
+    background-image: url(../images/logos/carriers/global-atlantic.png); }
+  .carrier__title[data-carrier-slug*="massmutual-ascend"]:before {
+    background-image: url(../images/logos/carriers/massmutual-ascend.png); }
+  .carrier__title[data-carrier-slug*="midland-national"]:before {
+    background-image: url(../images/logos/carriers/midland-national.png); }
+  .carrier__title[data-carrier-slug*="north-american"]:before {
+    background-image: url(../images/logos/carriers/north-american.png); }
+  .carrier__title[data-carrier-slug*="protective"]:before {
+    background-image: url(../images/logos/carriers/protective.png); }
+  .carrier__title[data-carrier-slug*="reliance-standard"]:before {
+    background-image: url(../images/logos/carriers/reliance-standard.png); }
+  .carrier__title[data-carrier-slug*="securian"]:before {
+    background-image: url(../images/logos/carriers/securian.png); }
+  .carrier__title[data-carrier-slug="the-standard"]:before {
+    background-image: url(../images/logos/carriers/the-standard.png); }
+
+.carrier__contact {
+  display: flex;
+  flex-direction: row;
+  background-color: #E8E5DA;
+  border-top: 1px #aaa solid;
+  border-bottom: 1px #aaa solid;
+  padding: 1.5rem 1rem;
+  justify-content: center; }
+  .carrier__contact-item {
+    position: relative;
+    padding: 0 2rem;
+    min-height: 24px;
+    display: flex;
+    align-items: center; }
+    .carrier__contact-item:before {
+      position: absolute;
+      top: -2px;
+      left: 0;
+      content: '\f0d0';
+      font-family: 'Font Awesome 6 Pro', sans-serif;
+      display: flex;
+      height: 100%;
+      width: 1.5rem;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      font-weight: bold;
+      color: #F4562A; }
+    .carrier__contact-item[data-type="address"]:before {
+      content: '\f3c5'; }
+    .carrier__contact-item[data-type="phone"]:before {
+      content: '\f2a0'; }
+    .carrier__contact-item[data-type="website"]:before {
+      content: '\f245'; }
+    .carrier__contact-item[data-type="founded"]:before {
+      content: '\f19c'; }
+    .carrier__contact-item address {
+      font-style: normal;
+      white-space: pre-line; }
+    .carrier__contact-item a {
+      color: #000; }
+
+.carrier__ratings-items {
+  display: flex;
+  flex-direction: row;
+  margin: 0 -1rem;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-start; }
+  .carrier__ratings-items-item {
+    width: 150px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
+    padding: 0;
+    border: 1px #238c00 solid; }
+    .carrier__ratings-items-item:before {
+      content: attr(data-item-label);
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1rem;
+      background-color: #238c00;
+      color: #fff;
+      padding: 0.5rem;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .carrier__ratings-items-item-rating {
+      font-size: 3rem;
+      line-height: 3rem;
+      font-weight: bold;
+      color: #238c00;
+      text-align: center;
+      display: block;
+      padding: 1rem 0 0 0; }
+    .carrier__ratings-items-item-date {
+      color: #000;
+      text-align: center;
+      font-size: 0.875rem;
+      line-height: 0.875rem;
+      display: block;
+      padding: 0.25rem 0 1rem 0;
+      opacity: 0.5; }
+
 .infobox > h3 {
   font-size: 1.5rem;
   line-height: 1.5rem;
@@ -16732,12 +16907,42 @@ h6 {
 .options__details-table.table-default tbody tr td span {
   display: block;
   color: #555; }
+  .options__details-table.table-default tbody tr td span[data-type] {
+    padding-left: 2rem;
+    position: relative; }
+    .options__details-table.table-default tbody tr td span[data-type]:before {
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 1.25rem;
+      height: 100%;
+      content: '';
+      font-family: 'Font Awesome 6 Pro', sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; }
+  .options__details-table.table-default tbody tr td span[data-type="premium"], .options__details-table.table-default tbody tr td span[data-type="frequency"] {
+    margin: 0.5rem 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; }
+  .options__details-table.table-default tbody tr td span[data-type="premium"] {
+    color: #238c00; }
+    .options__details-table.table-default tbody tr td span[data-type="premium"]:before {
+      content: '\f53d'; }
+  .options__details-table.table-default tbody tr td span[data-type="frequency"]:before {
+    content: '\e0d2'; }
   .options__details-table.table-default tbody tr td span[data-type="name"] {
     font-size: 1.125rem;
-    line-height: 1.125rem;
+    line-height: 1.375rem;
     margin: 0 0 0.5rem 0;
     font-weight: 500;
-    color: #000; }
+    color: #000;
+    padding-left: 0; }
+    .options__details-table.table-default tbody tr td span[data-type="name"]:before {
+      display: none; }
   .options__details-table.table-default tbody tr td span[data-type="link"] {
     display: flex;
     background-color: #152935;
@@ -16750,6 +16955,8 @@ h6 {
     line-height: 1.125rem;
     padding: 0.875rem 0.875rem 0.75rem 0.875rem;
     cursor: pointer; }
+    .options__details-table.table-default tbody tr td span[data-type="link"]:before {
+      display: none; }
     .options__details-table.table-default tbody tr td span[data-type="link"]:hover {
       background-color: black; }
     .options__details-table.table-default tbody tr td span[data-type="link"] i {
@@ -16990,41 +17197,6 @@ h6 {
     padding-left: calc(250px + 2rem); }
     .strategy__details-carrier, .strategy__details-options, .strategy__details-illustration {
       width: 100%; }
-    .strategy__details-options .options__details table tbody tr td span[data-type] {
-      padding-left: 2rem;
-      position: relative; }
-      .strategy__details-options .options__details table tbody tr td span[data-type]:before {
-        position: absolute;
-        top: -2px;
-        left: 0;
-        width: 1.25rem;
-        height: 100%;
-        content: '';
-        font-family: 'Font Awesome 6 Pro', sans-serif;
-        font-size: 1.25rem;
-        line-height: 1.25rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start; }
-    .strategy__details-options .options__details table tbody tr td span[data-type="name"] {
-      padding-left: 0; }
-      .strategy__details-options .options__details table tbody tr td span[data-type="name"]:before {
-        display: none; }
-    .strategy__details-options .options__details table tbody tr td span[data-type="link"] {
-      padding-left: inherit; }
-      .strategy__details-options .options__details table tbody tr td span[data-type="link"]:before {
-        display: none; }
-    .strategy__details-options .options__details table tbody tr td span[data-type="premium"], .strategy__details-options .options__details table tbody tr td span[data-type="frequency"] {
-      margin: 0.5rem 0 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start; }
-    .strategy__details-options .options__details table tbody tr td span[data-type="premium"] {
-      color: #238c00; }
-      .strategy__details-options .options__details table tbody tr td span[data-type="premium"]:before {
-        content: '\f53d'; }
-    .strategy__details-options .options__details table tbody tr td span[data-type="frequency"]:before {
-      content: '\e0d2'; }
     .strategy__details-illustration .illustration {
       padding: 0 1rem;
       border: 1px #000 dotted; }
@@ -17088,6 +17260,25 @@ h6 {
         font-size: 1.625rem;
         line-height: 1.625rem;
         color: #F4562A; }
+      .strategy__menu-item--disabled {
+        filter: grayscale(1);
+        opacity: 0.5;
+        pointer-events: none; }
+      .strategy__menu-item--special {
+        background-color: #F4562A;
+        color: #fff;
+        border-color: #fff;
+        margin-bottom: 2rem; }
+        .strategy__menu-item--special:before {
+          color: #fff; }
+        .strategy__menu-item--special:hover {
+          background-color: #F4562A;
+          color: #fff;
+          border-color: #fff; }
+          .strategy__menu-item--special:hover:before {
+            color: #fff; }
+      .strategy__menu-item[data-type="download"]:before {
+        content: '\f019'; }
       .strategy__menu-item[data-type="options"]:before {
         content: '\e4a2'; }
       .strategy__menu-item[data-type="carrier"]:before {
@@ -17150,11 +17341,13 @@ h6 {
       .income-solver[data-mode="comparison"] .result__card-strategy-data-points {
         flex-direction: row; }
       .income-solver[data-mode="comparison"] .result__card-strategy-data-point, .income-solver[data-mode="comparison"] .result__card-strategy-data-rule {
+        max-width: 100%;
         margin-left: 0;
         margin-right: 0;
         font-size: 1rem;
         line-height: 1rem;
-        margin-bottom: 1rem; }
+        margin-bottom: 1rem;
+        white-space: normal; }
   .income-solver[data-mode="comparison"] .result__card-title {
     padding: 5rem 0 0 0;
     flex-direction: column; }
@@ -17165,7 +17358,8 @@ h6 {
       transform: translateX(-50%);
       height: 5rem;
       width: 50%;
-      background-size: 90% auto; }
+      background-size: 90% auto;
+      border: none; }
     .income-solver[data-mode="comparison"] .result__card-title strong {
       font-size: 1.5rem;
       line-height: 1.5rem;
@@ -17173,9 +17367,13 @@ h6 {
       margin-bottom: 0; }
     .income-solver[data-mode="comparison"] .result__card-title-text {
       padding: 1rem 0;
-      text-align: center;
-      font-size: 0;
-      line-height: 0; }
+      text-align: center; }
+      .income-solver[data-mode="comparison"] .result__card-title-text > span {
+        padding: 0.5rem 1rem 0.25rem 1rem;
+        font-weight: normal;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        margin-top: 0.75rem; }
     .income-solver[data-mode="comparison"] .result__card-title-comparison {
       position: absolute;
       top: 0;
@@ -17193,11 +17391,15 @@ h6 {
           height: 100%;
           top: -1px;
           left: 0;
+          visibility: visible;
+          opacity: 1;
           font-size: 1.5rem;
           line-height: 1.5rem;
-          content: '\f05e'; }
+          content: '\f055'; }
       .income-solver[data-mode="comparison"] .result__card-title-comparison input[type="checkbox"]:checked + label {
         background-color: #F4562A; }
+        .income-solver[data-mode="comparison"] .result__card-title-comparison input[type="checkbox"]:checked + label:before {
+          content: '\f057'; }
     .income-solver[data-mode="comparison"] .result__card-title-ratings {
       justify-content: center; }
       .income-solver[data-mode="comparison"] .result__card-title-ratings-rating {

@@ -29,10 +29,25 @@
 
                 for ( key in this.inputs ) {
                     switch ( key ) {
-                        case 'investment' :
+                        case 'annuity_investment' :
                             console.log( 'investment amount', this.inputs[ key ], this.$globalUtils.ensure_type( this.inputs[ key ], 'float' ) );
 
                             this.inputs[ key ] = this.$globalUtils.ensure_type( this.inputs[ key ], 'float' );
+                            break;
+
+                        case 'owner_age' :
+                        case 'joint_age' :
+                            let date = this.inputs[ key.replace( '_age', '_birthdate' ) ];
+
+                            if ( date ) {
+                                date = this.$moment().diff( this.$moment( date ), 'years' );
+
+                                console.log( 'age', date );
+
+                                if ( ( date ) && ( !isNaN( date ) ) ) {
+                                    this.inputs[ key ] = date;
+                                }
+                            }
                             break;
                     }
 
@@ -162,17 +177,22 @@
                 clients: [],
                 inputs: {
                     id: '',
-                    investment: 100000.00,
-                    method: 'S',
+
+                    annuity_investment: 100000.00,
+                    annuity_contract: 'S',
 
                     owner_name_first: 'Joe',
                     owner_name_last: 'Smith',
                     owner_birthdate: '1958-01-01',
+                    owner_age: 65,
+                    owner_gender: 'M',
                     owner_state: 'FL',
 
                     joint_name_first: null,
                     joint_name_last: null,
                     joint_birthdate: null,
+                    joint_age: null,
+                    joint_gender: null,
                     joint_state: null
                 }
             };
@@ -192,7 +212,7 @@
                         <div class="form__row">
                             <div class="form__column form__column--large">
                                 <label>Initial Investment</label>
-                                <input type="text" id="owner__investment" name="investment" class="money" placeholder="i.e., $100,000.00" v-model="inputs.investment">
+                                <input type="text" id="owner__investment" name="investment" class="money" placeholder="i.e., $100,000.00" v-model="inputs.annuity_investment">
                             </div>
                         </div>
                         <div class="form__row">
@@ -227,11 +247,11 @@
                             <div class="form__column">
                                 <div class="form__buttons">
                                     <div class="form__buttons-column">
-                                        <input type="radio" id="owner__method-single" name="method" value="S" checked v-model="inputs.method">
+                                        <input type="radio" id="owner__method-single" name="method" value="S" checked v-model="inputs.annuity_contract">
                                         <label for="owner__method-single">Single</label>
                                     </div>
                                     <div class="form__buttons-column">
-                                        <input type="radio" id="owner__method-joint" name="method" value="J" v-model="inputs.method">
+                                        <input type="radio" id="owner__method-joint" name="method" value="J" v-model="inputs.annuity_contract">
                                         <label for="owner__method-joint">Joint</label>
                                     </div>
                                 </div>
@@ -240,7 +260,7 @@
                     </div>
                 </fieldset>
 
-                <fieldset v-bind:class="{ 'hidden': ( inputs.method === 'S' ) }">
+                <fieldset v-bind:class="{ 'hidden': ( inputs.annuity_contract === 'S' ) }">
                     <legend>Joint Information</legend>
 
                     <div class="form">
@@ -286,11 +306,11 @@
                         <div class="alpha__clients-record">
                             <div class="alpha__clients-record-details">
                                 <h3>{{ client.owner_name_first }} {{ client.owner_name_last }}</h3>
-                                <div class="alpha__clients-record-amount">{{ this.$financeUtils.format_currency( client.investment, 'USD' ) }}</div>
+                                <div class="alpha__clients-record-amount">{{ this.$financeUtils.format_currency( client.annuity_investment, 'USD' ) }}</div>
                                 <ul class="alpha__clients-record-stats">
                                     <li data-type="location">{{ client.owner_state }}</li>
                                     <li data-type="age">Age {{ this.$globalUtils.format( 'age', client.owner_birthdate ) }}</li>
-                                    <li data-type="marital">{{ this.$globalUtils.format( 'single_joint', client.method ) }}</li>
+                                    <li data-type="marital">{{ this.$globalUtils.format( 'single_joint', client.annuity_contract ) }}</li>
                                 </ul>
                             </div>
                             <div class="alpha__clients-record-controls">

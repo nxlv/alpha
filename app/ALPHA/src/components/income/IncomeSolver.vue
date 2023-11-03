@@ -37,9 +37,10 @@
                 this.loading = true;
 
                 const inventory = useInventoryStore();
+                const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, inventory: inventory.settings.inventory };
+                let settings = { ...this.parameters, annuitant: client.settings, inventory: inventory.settings.inventory };
 
                 this.errors = null;
                 this.quotes = null;
@@ -107,7 +108,7 @@
                 this.loading = false;
 
                 if ( ( request ) && ( request.data ) && ( request.data.details ) ) {
-                    this.selections.product = request.data.details;
+                    this.selections.product = request.data.details[ 0 ];
                     this.selections.product.options = ( ( request.data.options ) ? request.data.options : null );
 
                     // fetch illustration
@@ -124,14 +125,13 @@
 
                 for ( product in this.quotes ) {
                     for ( counter = 0; counter < this.quotes[ product ].targets.length; counter++ ) {
-                        if ( this.quotes[ product ].targets[ counter ].predictions ) {
-                            for ( counter_inner = 0; counter_inner < this.quotes[ product ].targets[ counter ].predictions.length; counter_inner++ ) {
-                                if ( parseInt( this.quotes[ product ].targets[ counter ].predictions[ counter_inner ].deferral ) === parseInt( this.parameters.deferral ) ) {
-                                    if ( ( this.quotes[ product ].targets[ counter ].predictions ) && ( this.quotes[ product ].targets[ counter ].guaranteed ) ) {
+                        if ( this.quotes[ product ].targets[ counter ].guaranteed ) {
+                            for ( counter_inner = 0; counter_inner < this.quotes[ product ].targets[ counter ].guaranteed.length; counter_inner++ ) {
+                                if ( parseInt( this.quotes[ product ].targets[ counter ].guaranteed[ counter_inner ].deferral ) === parseInt( this.parameters.deferral ) ) {
+                                    if ( this.quotes[ product ].targets[ counter ].guaranteed ) {
                                         response.push(
                                             {
-                                                amount: this.quotes[ product ].targets[ counter ].predictions[ counter_inner ],
-                                                amount_guaranteed: this.quotes[ product ].targets[ counter ].guaranteed[ counter_inner ],
+                                                income: this.quotes[ product ].targets[ counter ].guaranteed[ counter_inner ],
                                                 product: this.quotes[ product ].product,
                                                 carrier: this.quotes[ product ].carrier,
                                                 source: this.quotes[ product ].targets[ counter ]
@@ -151,13 +151,13 @@
                 switch ( this.selections.method ) {
                     case 'premium' :
                         response.sort( ( left, right ) => {
-                            return ( ( left.amount.income > right.amount.income ) ? -1 : ( ( left.amount.income === right.amount.income ) ? 0 : 1 ) );
+                            return ( ( left.income.amount > right.income.amount ) ? -1 : ( ( left.income.amount === right.income.amount ) ? 0 : 1 ) );
                         } );
                         break;
 
                     case 'income' :
                         response.sort( ( left, right ) => {
-                            return ( ( left.amount.premium < right.amount.premium ) ? -1 : ( ( left.amount.premium === right.amount.premium ) ? 0 : 1 ) );
+                            return ( ( left.income.amount < right.income.amount ) ? -1 : ( ( left.income.amount === right.income.amount ) ? 0 : 1 ) );
                         } );
                         break;
                 }
@@ -462,6 +462,9 @@
                         <h3>Strategy Details<a href="javascript:" v-on:click="close_details"><i class="fal fa-close" aria-hidden="true"></i> <span>Close</span></a></h3>
 
                         <menu class="strategy__menu">
+                            <li class="strategy__menu-item strategy__menu-item--special" data-type="download" v-on:click="set_details_page( 'download' )">
+                                <span>Download Report</span>
+                            </li>
                             <li class="strategy__menu-item" data-type="options" v-on:click="set_details_page( 'options' )">
                                 <span>Options</span>
                             </li>
@@ -471,10 +474,10 @@
                             <li class="strategy__menu-item" data-type="illustration" v-on:click="set_details_page( 'illustration' )">
                                 <span>Illustration</span>
                             </li>
-                            <li class="strategy__menu-item" data-type="withdrawals" v-on:click="set_details_page( 'withdrawals' )">
+                            <li class="strategy__menu-item strategy__menu-item--disabled" data-type="withdrawals" v-on:click="set_details_page( 'withdrawals' )">
                                 <span>Withdrawals</span>
                             </li>
-                            <li class="strategy__menu-item" data-type="rules" v-on:click="set_details_page( 'rules' )">
+                            <li class="strategy__menu-item strategy__menu-item--disabled" data-type="rules" v-on:click="set_details_page( 'rules' )">
                                 <span>Rules</span>
                             </li>
                         </menu>
@@ -534,8 +537,11 @@
                     </div>
                 </div>
 
-                <div class="alert alert-info" v-if="mode == 'comparison'">
-                    <h3>Comparison mode</h3>
+                <div class="alert alert-info alert--inline-button" v-if="mode == 'comparison'">
+                    <h3>
+                        Comparison mode
+                        <button class="btn btn-primary" type="button"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Report (.pdf)</button>
+                    </h3>
                 </div>
 
                 <div class="alert alert-error" v-if="errors">
@@ -579,34 +585,42 @@
                                     </template>
                                 </h4>
                                 <div class="result__card-strategies">
-                                    <div class="result__card-strategy" v-on:click="set_product( result.source.product_analysis_data_id, result.amount.premium )">
+                                    <div class="result__card-strategy" v-on:click="set_product( result.source.product_analysis_data_id, result.income.premium )">
                                         <div class="result__card-strategy-meta">
                                             <span data-type="id" title="CANNEX Analysis ID">{{ result.source.product_analysis_data_id }}</span>
                                             <span data-type="id" title="CANNEX Product ID">{{ result.product.id }}</span>
                                         </div>
                                         <div class="result__card-strategy-income">
                                             <template v-if="selections.method == 'premium'">
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="guaranteed">{{ this.$financeUtils.format_currency( result.amount_guaranteed.income, 'USD' ) }}</div>
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.amount.income, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="guaranteed">{{ this.$financeUtils.format_currency( result.income.amount, 'USD' ) }}</div>
                                             </template>
                                             <template v-if="selections.method == 'income'">
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.amount.premium, 'USD' ) }}</div>
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">{{ this.$financeUtils.format_currency( result.amount.income, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.income.premium, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">{{ this.$financeUtils.format_currency( result.income.amount, 'USD' ) }}</div>
                                             </template>
                                         </div>
                                         <div class="result__card-strategy-data">
                                             <div class="result__card-strategy-data-points">
-                                                <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Roll-up Rate">
-                                                    <template v-for="( roll_up, roll_up_index ) in result.source.income_benefit.roll_up" v-bind:key="roll_up_index" v-if="result.source.income_benefit.roll_up.length">
-                                                        <span><em>Tier {{ roll_up.tier_no }}</em> {{ roll_up.rate }}%</span>
-                                                    </template>
-                                                    <template v-if="!result.source.income_benefit.roll_up.length">n/a</template>
+                                                <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Rider Type/Name">
+                                                    {{ result.source.income_benefit.name }}
                                                 </span>
                                                 <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Annual Rider Fee">
                                                     <template v-for="( fee, fee_index ) in result.source.income_benefit.rider_fee_current" v-bind:key="fee_index" v-if="result.source.income_benefit.rider_fee_current.length">
                                                         <span><em>Tier {{ fee.tier_no }}</em> {{ fee.rate }}%</span>
                                                     </template>
                                                     <template v-if="!result.source.income_benefit.rider_fee_current.length">None</template>
+                                                </span>
+                                                <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Roll-up Rate">
+                                                    <template v-for="( roll_up, roll_up_index ) in result.source.income_benefit.roll_up" v-bind:key="roll_up_index" v-if="result.source.income_benefit.roll_up.length">
+                                                        <span><em>Tier {{ roll_up.tier_no }}</em> {{ roll_up.rate }}%</span>
+                                                    </template>
+                                                    <template v-if="!result.source.income_benefit.roll_up.length">n/a</template>
+                                                </span>
+                                                <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Min. Income Start Age">
+                                                    <template v-for="( age, age_index ) in result.source.income_benefit.income_start_age" v-bind:key="age_index" v-if="result.source.income_benefit.income_start_age.length">
+                                                        <span>{{ age.min_years }} years old</span>
+                                                    </template>
+                                                    <template v-if="!result.source.income_benefit.income_start_age.length">None</template>
                                                 </span>
                                                 <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Premium Bonus">
                                                     <template v-for="( bonus, bonus_index ) in result.source.income_benefit.premium_bonus" v-bind:key="bonus_index" v-if="result.source.income_benefit.premium_bonus.length">
@@ -620,13 +634,6 @@
                                                     </template>
                                                     <template v-if="!result.source.income_benefit.premium_multiplier.length">None</template>
                                                 </span>
-                                                <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Min. Income Start Age">
-                                                    <template v-for="( age, age_index ) in result.source.income_benefit.income_start_age" v-bind:key="age_index" v-if="result.source.income_benefit.income_start_age.length">
-                                                        <span>{{ age.min_years }} years old</span>
-                                                    </template>
-                                                    <template v-if="!result.source.income_benefit.income_start_age.length">None</template>
-                                                </span>
-                                                <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Rider Type/Name">{{ result.source.income_benefit.name }}</span>
                                             </div>
                                         </div>
                                         <div class="result__card-strategy-data result__card-strategy-data--extra">

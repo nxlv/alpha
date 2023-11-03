@@ -62,11 +62,13 @@
 
           &-point,
           &-rule {
+            max-width: 100%;
             margin-left: 0;
             margin-right: 0;
             font-size: 1rem;
             line-height: 1rem;
             margin-bottom: 1rem;
+            white-space: normal;
           }
         }
       }
@@ -83,6 +85,7 @@
           height: 5rem;
           width: 50%;
           background-size: 90% auto;
+          border: none;
         }
 
         strong {
@@ -95,8 +98,14 @@
         &-text {
           padding: 1rem 0;
           text-align: center;
-          font-size: 0;
-          line-height: 0;
+
+          & > span {
+            padding: 0.5rem 1rem 0.25rem 1rem;
+            font-weight: normal;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            margin-top: 0.75rem;
+          }
         }
 
         &-comparison {
@@ -119,15 +128,21 @@
                 height: 100%;
                 top: -1px;
                 left: 0;
+                visibility: visible;
+                opacity: 1;
                 font-size: 1.5rem;
                 line-height: 1.5rem;
-                content: '\f05e';
+                content: '\f055';
               }
             }
 
             &:checked {
               & + label {
                 background-color: $brand-quaternary;
+
+                &:before {
+                  content: '\f057';
+                }
               }
             }
           }

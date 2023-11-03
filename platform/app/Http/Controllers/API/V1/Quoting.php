@@ -9,6 +9,8 @@ use App\Http\Helpers\ProductHelper;
 use App\Http\Helpers\CANNEXHelper;
 use App\Http\Helpers\HeuristicHelper;
 
+use Carbon\Carbon;
+
 use App\Models\AnalysisCache;
 use App\Models\AnalysisGuaranteedCache;
 use App\Models\Product;
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 
 class Quoting extends Controller {
     const YEARS_DEFERRAL_MIN = 5;
-    const YEARS_DEFERRAL_MAX = 20;
+    const YEARS_DEFERRAL_MAX = 25;
     const PREMIUM_FAILSAFE = 10000;
     const INCOME_FAILSAFE = 100;
 
@@ -32,7 +34,6 @@ class Quoting extends Controller {
         $method = $request->get( 'method', 'income' );
         $premium = preg_replace( '/[^0-9.]/', '', $request->get( 'premium' ) );
         $income = preg_replace( '/[^0-9.]/', '', $request->get( 'income' ) );
-        $inventory = $request->get( 'inventory' );
 
         // TODO: decide how we want to handle minimum premiums
         if ( $premium < self::PREMIUM_FAILSAFE ) {
@@ -43,6 +44,17 @@ class Quoting extends Controller {
             $income = self::INCOME_FAILSAFE;
         }
 
+        $annuitant = $request->get( 'annuitant' );
+        $inventory = $request->get( 'inventory' );
+
+        $parameters = [
+            'method' => $method,
+            'premium' => $premium,
+            'income' => $income,
+            'index_id' => $request->get( 'index' ),
+            'carrier_id' => $request->get( 'carrier' )
+        ];
+
         /*
          * Identify products
          */
@@ -50,29 +62,54 @@ class Quoting extends Controller {
             error_log( 'COMPARISON STACK:' . PHP_EOL );
             error_log( print_r( $comparisons, true ) );
 
-            $products = ProductHelper::compare_products( $comparisons );
+            $products = ProductHelper::compare_products( $comparisons, $annuitant, $parameters );
         } else {
             $products = ProductHelper::identify_products(
-                $request->get( 'index' ),
-                $request->get( 'carrier' ),
-                $request->get( 'strategy_type' ),
-                $request->get( 'strategy_configuration' ),
-                $request->get( 'calculation_frequency' ),
-                $request->get( 'crediting_frequency' ),
-                $request->get( 'guarantee_period_years' ),
-                $request->get( 'guarantee_period_months' ),
-                $request->get( 'participation_rate' ),
-                ( ( $method === 'premium' ) ? 0 : $premium ),
+                [
+                    'strategy_type' => $request->get( 'strategy_type' ),
+                    'strategy_configuration' => $request->get( 'strategy_configuration' ),
+                    'calculation_frequency' => $request->get( 'calculation_frequency' ),
+                    'crediting_frequency' => $request->get( 'crediting_frequency' ),
+                    'guarantee_period_years' => $request->get( 'guarantee_period_years' ),
+                    'guarantee_period_months' => $request->get( 'guarantee_period_months' )
+                ],
+                [
+                    'current_participation_rate' => $request->get( 'participation_rate' ),
+                ],
+                $annuitant,
+                $parameters,
                 $inventory
             );
         }
 
+        error_log( 'PRODUCT COUNT: ' . count( $products ) );
+
         if ( count( $products ) ) {
+            // get cache
+            $analysis_ids = [];
+
+            foreach ( $products as $product ) {
+                foreach ( $product[ 'targets' ] as $target ) {
+                    $analysis_ids[] = $target[ 'product_analysis_data_id' ];
+                }
+            }
+
+            error_log( 'Analysis IDs: ' . count( $analysis_ids ) );
+
+            $cache = AnalysisGuaranteedCache::whereIn( 'analysis_data_id', $analysis_ids )
+                ->where( 'is_joint', ( $annuitant[ 'annuity_type' ] === 'J' ) )
+                ->orderBy( 'deferral', 'asc' )
+                ->orderBy( 'purchase_age', 'asc' )
+                ->get();
+
+            error_log( 'Cache count: ' . $cache->count() );
+
+            // create deferrals
+            $deferrals = range( self::YEARS_DEFERRAL_MIN, self::YEARS_DEFERRAL_MAX );
+
             foreach ( $products as $product_id => $product ) {
                 for ( $counter = 0; $counter < count( $product[ 'targets' ] ); $counter++ ) {
-                    // create deferrals
-                    $deferrals = range( self::YEARS_DEFERRAL_MIN, self::YEARS_DEFERRAL_MAX );
-
+                    /*
                     // Hypothetical Income
                     // TODO: cache
                     $cache = AnalysisCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
@@ -81,14 +118,18 @@ class Quoting extends Controller {
                     if ( $cache->count() > 10 ) {
                         $products[ $product_id ][ 'targets' ][ $counter ][ 'predictions' ] = HeuristicHelper::predict( $cache, $method, $premium, $income, $deferrals );
                     }
+                    */
 
                     // Guaranteed Income
                     // TODO: cache
-                    $cache = AnalysisGuaranteedCache::where( 'analysis_data_id', $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ] )->where( 'is_estimated_return', false )->where( 'is_joint', false )->orderBy( 'deferral', 'ASC' )->orderBy( 'premium', 'ASC' )->get();
-
-                    if ( $cache->count() > 1 ) {
-                        $products[ $product_id ][ 'targets' ][ $counter ][ 'guaranteed' ] = HeuristicHelper::predict( $cache, $method, $premium, $income, $deferrals );
-                    }
+                    $products[ $product_id ][ 'targets' ][ $counter ][ 'guaranteed' ] = HeuristicHelper::predict_guaranteed(
+                        $cache,
+                        $product[ 'targets' ][ $counter ][ 'product_analysis_data_id' ],
+                        $annuitant,
+                        $method,
+                        $premium,
+                        $deferrals
+                    );
                 }
             }
         }
