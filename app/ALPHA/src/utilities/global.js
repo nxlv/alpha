@@ -210,12 +210,6 @@ const globalUtils = {
 
                 extra = [ 'products' ];
                 break;
-
-            case 'products' :
-                dataset = sets.sets.products;
-
-                label = 'name';
-                value = 'id';
         }
 
         if ( ( dataset ) && ( label ) && ( value ) ) {

@@ -68,8 +68,6 @@
             },
 
             async fetch_quote_guaranteed( inputs ) {
-                console.log( 'fetching guaranteed rates', inputs.products, inputs.parameters );
-
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/guaranteed';
@@ -101,7 +99,27 @@
                 this.selections.offset += this.parameters.chunk_size;
 
                 if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
-                    this.timers.populator = setTimeout( this.prefetch_results, 1000 );
+                    this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
+                }
+            },
+
+            async fetch_chunk() {
+                const inventory = useInventoryStore();
+                const client = useClientStore();
+
+                let endpoint = '/api/quoting/get/fixed';
+                let settings = { ...this.parameters, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: client.settings, inventory: inventory.settings.inventory };
+
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+
+                if ( ( request ) && ( request.data ) ) {
+                    for ( let counter = 0; counter < request.data.length; counter++ ) {
+                        console.log( 'adding', request.data[ counter ] );
+
+                        this.quotes.push( request.data[ counter ] );
+                    }
+
+                    this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( this.selections.offset, ( this.selections.offset + this.parameters.chunk_size ) ), parameters: this.parameters } );
                 }
             },
 
@@ -170,26 +188,6 @@
                 this.quotes = response;
             },
 
-            async prefetch_results() {
-                const inventory = useInventoryStore();
-                const client = useClientStore();
-
-                let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: client.settings, inventory: inventory.settings.inventory };
-
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
-
-                if ( ( request ) && ( request.data ) ) {
-                    for ( let counter = 0; counter < request.data.length; counter++ ) {
-                        console.log( 'adding', request.data[ counter ] );
-
-                        this.quotes.push( request.data[ counter ] );
-                    }
-
-                    this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( this.selections.offset, ( this.selections.offset + this.parameters.chunk_size ) ), parameters: this.parameters } );
-                }
-            },
-
             set_deferral_period() {
                 clearTimeout( this.timers.refresh );
                 clearTimeout( this.timers.populator );
@@ -201,7 +199,7 @@
                 console.log( 'setting product ID', product_id );
 
                 this.selections.product_id = product_id;
-                this.selections.details = 'illustration';
+                this.selections.details = 'illustration';   // start on the illustration tab of the details window
 
                 if ( strategy_premium ) {
                     this.selections.premium = strategy_premium;
@@ -239,9 +237,9 @@
         created() {
             const client = useClientStore();
 
-            if ( client.settings.investment ) {
-                console.log( 'Client Override -- setting premium ', client.settings.investment );
-                this.parameters.premium = client.settings.investment;
+            if ( client.settings.annuity_investment ) {
+                console.log( 'Client Override -- setting premium ', client.settings.annuity_investment );
+                this.parameters.premium = client.settings.annuity_investment;
             }
 
             if ( client.settings.owner_state ) {
@@ -669,7 +667,7 @@
                         <template v-if="this.quotes">
                             <div class="form result__notice">
                                 <p>The top {{ selections.offset }} results are shown.</p>
-                                <button type="button" class="form__action" v-on:click="prefetch_results">Load More</button>
+                                <button type="button" class="form__action" v-on:click="fetch_chunk">Load More</button>
                             </div>
                         </template>
                     </div>
