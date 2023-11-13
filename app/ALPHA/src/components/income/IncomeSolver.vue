@@ -616,6 +616,22 @@
                                                 <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</div>
                                                 <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</div>
                                             </template>
+
+                                            <div class="result__card-strategy-income-backtest">
+                                                <div class="result__card-strategy-data-points">
+                                                    <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Surrender Period">
+                                                        <abbr title="Years"><strong>{{ result.analysis.surrender_period_years }}</strong> years</abbr> <abbr title="Months" v-if="result.analysis.surrender_period_months"><strong>{{ result.analysis.surrender_period_months }}</strong> months</abbr>
+                                                    </span>
+
+                                                    <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Guarantee Period">
+                                                        <abbr title="Years"><strong>{{ result.analysis.guarantee_period_years }}</strong> years</abbr> <abbr title="Months" v-if="result.analysis.guarantee_period_months"><strong>{{ result.analysis.guarantee_period_months }}</strong> months</abbr>
+                                                    </span>
+                                                </div>
+
+                                                <cite class="result__card-strategy-income-backtest-results">
+                                                    <strong>0.00%</strong> return over last 10 years.
+                                                </cite>
+                                            </div>
                                         </div>
                                         <div class="result__card-strategy-data">
                                             <div class="result__card-strategy-data-points">

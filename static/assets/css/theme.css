@@ -16376,6 +16376,21 @@ h6 {
     width: 20px; }
   100% {
     width: 48px; } }
+      .result__card-strategy-income-backtest {
+        margin: 1rem 0 0 0;
+        background-color: #fff;
+        border: 1px #000 solid;
+        padding: 0.675rem 0.5rem 0 0.5rem; }
+        .result__card-strategy-income-backtest-results {
+          font-style: normal;
+          color: #fff;
+          padding: 0.375rem 0.5rem 0.25rem 0.5rem;
+          display: block;
+          position: relative;
+          border-top: 1px #238c00 solid;
+          border-bottom: 1px #238c00 solid;
+          margin: 0 -0.5rem;
+          background-color: #238c00; }
     .result__card-strategy-data {
       border-left: 1px #aaa solid;
       margin: 0 0 0 1rem;

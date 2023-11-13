@@ -452,6 +452,25 @@
                         }
                     }
                 }
+
+                &-backtest {
+                    margin: 1rem 0 0 0;
+                    background-color: #fff;
+                    border: 1px #000 solid;
+                    padding: 0.675rem 0.5rem 0 0.5rem;
+
+                    &-results {
+                        font-style: normal;
+                        color: #fff;
+                        padding: 0.375rem 0.5rem 0.25rem 0.5rem;
+                        display: block;
+                        position: relative;
+                        border-top: 1px $color-money solid;
+                        border-bottom: 1px $color-money solid;
+                        margin: 0 -0.5rem;
+                        background-color: $color-money;
+                    }
+                }
             }
 
             &-data {
