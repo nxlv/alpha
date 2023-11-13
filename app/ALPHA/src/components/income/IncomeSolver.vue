@@ -3,6 +3,7 @@
 
     import { useSetsStore } from '@/stores/sets';
     import { useClientStore } from '@/stores/client';
+    import { useInventoryStore } from "../../stores/inventory";
     import { useComparisonStore } from '@/stores/compare';
 
     import Infobox_IncomeBenefits from '@/components/products/infoboxes/IncomeBenefit.vue';
@@ -15,7 +16,6 @@
     import axios from 'axios';
     import { VMoney } from 'v-money';
     import Multiselect from '@vueform/multiselect';
-    import {useInventoryStore} from "../../stores/inventory";
 
     export default {
         components: {
@@ -179,9 +179,13 @@
                         break;
 
                     case 'income' :
+                        /*
+                        TODO: rebuild
+
                         response.sort( ( left, right ) => {
                             return ( ( left.quotes.income_data.initial_income < right.quotes.income_data.initial_income ) ? -1 : ( ( left.quotes.income_data.initial_income === right.quotes.income_data.initial_income ) ? 0 : 1 ) );
                         } );
+                        */
                         break;
                 }
 
@@ -196,8 +200,6 @@
             },
 
             set_product( product_id, strategy_premium ) {
-                console.log( 'setting product ID', product_id );
-
                 this.selections.product_id = product_id;
                 this.selections.details = 'illustration';   // start on the illustration tab of the details window
 

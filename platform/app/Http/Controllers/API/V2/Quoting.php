@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API\V2;
 use App\Http\Helpers\CANNEXHelper;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Cache;
+
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\ProductHelper;
 
@@ -54,49 +56,57 @@ class Quoting extends Controller {
         if ( !empty( $comparisons = $request->get( 'comparisons' ) ) ) {
             //$matches = ProductHelper::compare_products( $comparisons, $annuitant, $parameters );
         } else {
-            $matches = ProductHelper::identify_products(
-                [
-                    'strategy_type' => $request->get( 'strategy_type' ),
-                    'strategy_configuration' => $request->get( 'strategy_configuration' ),
-                    'calculation_frequency' => $request->get( 'calculation_frequency' ),
-                    'crediting_frequency' => $request->get( 'crediting_frequency' ),
-                    'guarantee_period_years' => $request->get( 'guarantee_period_years' ),
-                    'guarantee_period_months' => $request->get( 'guarantee_period_months' )
-                ],
-                [
-                    'current_participation_rate' => $request->get( 'participation_rate' ),
-                ],
-                $annuitant,
-                $parameters,
-                $inventory
-            );
+            $hash = 'alpha__fia-guaranteed-products-' . crc32( $method . '|' . $premium . '|' . $offset . '|' . $chunk_size ) . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $inventory ) );
 
-            if ( $matches->count() ) {
-                $products = AnalysisGuaranteedCache::with(
-                        [
-                            'analysis.carrier_product',
-                            'analysis.carrier_product.carrier',
-                            'analysis.carrier_product.carrier.ratings',
-                            'analysis.strategy',
-                            'analysis.strategy.rates',
-                            'analysis.income_benefit',
-                            'analysis.income_benefit.rider_fee_current',
-                            'analysis.income_benefit.income_start_age',
-                            'analysis.income_benefit.premium_multiplier',
-                            'analysis.income_benefit.premium_bonus',
-                            'analysis.income_benefit.roll_up',
-                            'analysis.income_benefit.step_up',
-                        ]
-                    )
-                    ->whereIn( 'analysis_data_id', $matches->pluck( 'analysis_data_id' )->toArray() )
-                    ->where( 'purchase_age', 65 )
-                    ->where( 'deferral', 10 )
-                    ->where( 'premium', 100 )
-                    ->where( 'is_joint', ( ( $annuitant[ 'annuity_type' ] === 'J' ) ? true : false ) )
-                    ->orderBy( 'income_initial', 'desc' )
-                    ->offset( $offset )
-                    ->limit( $chunk_size )
-                    ->get();
+            if ( Cache::has( $hash ) ) {
+                $products = Cache::get( $hash );
+            } else {
+                $matches = ProductHelper::identify_products(
+                    [
+                        'strategy_type' => $request->get( 'strategy_type' ),
+                        'strategy_configuration' => $request->get( 'strategy_configuration' ),
+                        'calculation_frequency' => $request->get( 'calculation_frequency' ),
+                        'crediting_frequency' => $request->get( 'crediting_frequency' ),
+                        'guarantee_period_years' => $request->get( 'guarantee_period_years' ),
+                        'guarantee_period_months' => $request->get( 'guarantee_period_months' )
+                    ],
+                    [
+                        'current_participation_rate' => $request->get( 'participation_rate' ),
+                    ],
+                    $annuitant,
+                    $parameters,
+                    $inventory
+                );
+
+                if ( $matches->count() ) {
+                    $products = AnalysisGuaranteedCache::with(
+                            [
+                                'analysis.carrier_product',
+                                'analysis.carrier_product.carrier',
+                                'analysis.carrier_product.carrier.ratings',
+                                'analysis.strategy',
+                                'analysis.strategy.rates',
+                                'analysis.income_benefit',
+                                'analysis.income_benefit.rider_fee_current',
+                                'analysis.income_benefit.income_start_age',
+                                'analysis.income_benefit.premium_multiplier',
+                                'analysis.income_benefit.premium_bonus',
+                                'analysis.income_benefit.roll_up',
+                                'analysis.income_benefit.step_up',
+                            ]
+                        )
+                        ->whereIn( 'analysis_data_id', $matches->pluck( 'analysis_data_id' )->toArray() )
+                        ->where( 'purchase_age', 65 )
+                        ->where( 'deferral', 10 )
+                        ->where( 'premium', 100 )
+                        ->where( 'is_joint', ( ( $annuitant[ 'annuity_type' ] === 'J' ) ? true : false ) )
+                        ->orderBy( 'income_initial', 'desc' )
+                        ->offset( $offset )
+                        ->limit( $chunk_size )
+                        ->get();
+
+                    Cache::add( $hash, $products, ( 60 * 10 ) );    // 10 minutes
+                }
             }
         }
 
@@ -128,17 +138,28 @@ class Quoting extends Controller {
             $parameters[ 'income_start_age_joint' ] = ( intval( $annuitant[ 'joint_age' ] ) + intval( $settings[ 'deferral' ] ) );
         }
 
-        if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) {
-            $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
+        // TODO: hash only fields that matter, not entire arrays, for better accuracy
+        $hash = 'alpha__fia-guaranteed-' . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $settings ) ) . crc32( serialize( $products ) );
 
-            if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
-                if ( !is_array( $results->income_response_data ) ) {
+        if ( Cache::has( $hash ) ) {
+            $response = Cache::get( $hash );
+        } else {
+            if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) {
+                $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
 
-                } else {
-                    foreach ( $results->income_response_data as $result ) {
-                        $response[] = $result;
+                if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
+                    if ( !is_array( $results->income_response_data ) ) {
+
+                    } else {
+                        foreach ( $results->income_response_data as $result ) {
+                            $response[] = $result;
+                        }
                     }
                 }
+            }
+
+            if ( !empty( $response ) ) {
+                Cache::add( $hash, $response, ( 60 * 10 ) ); // 10 minutes
             }
         }
 
