@@ -51,5 +51,7 @@ Route::get( '/indexes/all', [ App\Http\Controllers\API\V1\Indexes::class, 'get_a
  */
 Route::post( '/quoting/get/immediate', [ App\Http\Controllers\API\V1\Quoting::class, 'query_spia_dia' ] );
 
-Route::post( '/quoting/get/fixed', [ App\Http\Controllers\API\V1\Quoting::class, 'query_fixed' ] );
+Route::post( '/quoting/get/fixed', [ App\Http\Controllers\API\V2\Quoting::class, 'query_fixed' ] );
+Route::post( '/quoting/get/fixed/guaranteed', [ App\Http\Controllers\API\V2\Quoting::class, 'query_fixed_guaranteed' ] );
+
 Route::post( '/quoting/get/fixed/illustration', [ App\Http\Controllers\API\V1\Quoting::class, 'query_fixed_illustration' ] );

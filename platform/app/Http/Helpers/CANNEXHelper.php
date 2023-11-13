@@ -2,20 +2,22 @@
 
     namespace App\Http\Helpers;
 
+    use Illuminate\Support\Facades\Config;
+
     use App\Http\Helpers\WSSoapClient;
 
     class CANNEXHelper {
         //const ANTY_ANLY_VERSION_ID = 'BY13MD';
-        const ANTY_ANLY_VERSION_ID = 'C4FB2W';
+        const ANTY_ANLY_VERSION_ID = 'C645NX';
         const MAX_POLL_RETRIES = 25;
 
         public static function analyze_fixed( $products ) {
             $result = [];
 
-            $endpoint_url = env( 'CANNEX_WS_ENDPOINT_FIXED' );
-            $username = env( 'CANNEX_WS_USERNAME' );
-            $password = env( 'CANNEX_WS_PASSWORD' );
-            $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
+            $endpoint_url = Config::get( 'canx.cannex.endpoints.fixed' );
+            $username = Config::get( 'canx.cannex.credentials.username' );
+            $password = Config::get( 'canx.cannex.credentials.password' );
+            $token_type = Config::get( 'canx.cannex.credentials.token_type' );
             $endpoint_function = 'canx_anty_anly_operation';
 
             try {
@@ -126,10 +128,10 @@
         public static function create_annuitant_profile( $transaction_id, $parameters, $sequence, $dataset ) {
             $request_id = null;
 
-            $endpoint_url = env( 'CANNEX_WS_ENDPOINT_INCOME' );
-            $username = env( 'CANNEX_WS_USERNAME' );
-            $password = env( 'CANNEX_WS_PASSWORD' );
-            $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
+            $endpoint_url = Config::get( 'canx.cannex.endpoints.income' );
+            $username = Config::get( 'canx.cannex.credentials.username' );
+            $password = Config::get( 'canx.cannex.credentials.password' );
+            $token_type = Config::get( 'canx.cannex.credentials.token_type' );
             $function_name = 'canx_anty_inc1_operation';
 
             try {
@@ -139,6 +141,7 @@
                     'keep_alive'    => false,
                     'exception'     => false
                 ] );
+
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
 
@@ -163,10 +166,13 @@
                     if ( ( isset( $result->income_response1 ) ) && ( $result->income_response1->income_request_id ) ) {
                         $request_id = $result->income_response1->income_request_id;
                     }
-                } catch ( SoapFault $exception ) {
+                } catch ( \SoapFault $exception ) {
+                    print_r( $exception );
+                    die();
                 }
             } catch ( \SoapFault $exception ) {
-                return false;
+                print_r( $exception );
+                die();
             }
 
             return $request_id;
@@ -175,10 +181,10 @@
         public static function get_guaranteed_rates( $profile_id, $transaction_id ) {
             $result = [];
 
-            $endpoint_url = env( 'CANNEX_WS_ENDPOINT_INCOME' );
-            $username = env( 'CANNEX_WS_USERNAME' );
-            $password = env( 'CANNEX_WS_PASSWORD' );
-            $token_type = env( 'CANNEX_WS_DIGEST_TYPE' );
+            $endpoint_url = Config::get( 'canx.cannex.endpoints.income' );
+            $username = Config::get( 'canx.cannex.credentials.username' );
+            $password = Config::get( 'canx.cannex.credentials.password' );
+            $token_type = Config::get( 'canx.cannex.credentials.token_type' );
             $function_name = 'canx_anty_inc1_operation';
 
             try {
@@ -209,17 +215,17 @@
                     try {
                         $analysis = $client->__call( $function_name, $arguments );
 
-                        echo sprintf( '[+] Request status: %s', $analysis->income_response1_set->status_cd ) . PHP_EOL;
+                        //echo sprintf( '[+] Request status: %s', $analysis->income_response1_set->status_cd ) . PHP_EOL;
 
                         if ( $analysis->income_response1_set->status_cd === 'P' ) {
-                            echo '[+] Request pending, polling in 3 seconds...' . PHP_EOL;
+                            //echo '[+] Request pending, polling in 2 seconds...' . PHP_EOL;
 
-                            sleep(3);
+                            sleep(2);
                         } else {
                             $result = $analysis->income_response1_set;
                             break;
                         }
-                    } catch ( SoapFault $exception ) {
+                    } catch ( \SoapFault $exception ) {
                         print_r( $exception );
                     }
 
@@ -229,7 +235,7 @@
                         break;
                     }
                 }
-            } catch ( SoapFault $exception ) {
+            } catch ( \SoapFault $exception ) {
                 print_r( $exception );
             }
 

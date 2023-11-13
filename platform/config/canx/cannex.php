@@ -1,6 +1,17 @@
 <?php
 
 return [
+    'credentials' => [
+        'username' => env( 'CANNEX_WS_USERNAME' ),
+        'password' => env( 'CANNEX_WS_PASSWORD' ),
+        'token_type' => env( 'CANNEX_WS_DIGEST_TYPE' )
+    ],
+    'endpoints' => [
+        'immediate' => env( 'CANNEX_WS_ENDPOINT_IMMEDIATE' ),
+        'fixed' => env( 'CANNEX_WS_ENDPOINT_FIXED' ),
+        'illustration' => env( 'CANNEX_WS_ENDPOINT_ILLUSTRATION' ),
+        'income' => env( 'CANNEX_WS_ENDPOINT_INCOME' )
+    ], 
     'lookup' => [
         'carriers' => 'anty_ds_crr_prds',
         'products' => 'anty_ds_anly_data',

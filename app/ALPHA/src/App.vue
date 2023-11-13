@@ -42,7 +42,7 @@
 
             const preload = [
                 { 'identifier': 'carriers', 'endpoint': '/api/carriers/all', 'text': 'Loading carrier information' },
-                { 'identifier': 'products', 'endpoint': '/api/products/all', 'text': 'Loading annuity product data' },
+                { 'identifier': 'products', 'endpoint': '/api/carriers/all', 'text': 'Loading annuity product data' },
                 { 'identifier': 'indexes', 'endpoint': '/api/indexes/all', 'text': 'Loading financial index data' }
             ];
 

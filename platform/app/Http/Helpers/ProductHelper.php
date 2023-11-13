@@ -15,7 +15,7 @@
 
     class ProductHelper {
         public static function identify_products( $params_strategy = [], $params_rate = [], $annuitant = [], $parameters = [], $inventory = [] ) {
-            $matches = [];
+            $products = [];
 
             foreach ( $params_strategy as $param_key => $param_value ) {
                 if ( !empty( $params_strategy[ $param_key ] ) ) {
@@ -52,20 +52,8 @@
 
             $strategies = $strategies->get();
 
-            error_log( 'STRATEGY COUNT: ' . $strategies->count() );
-
             if ( $strategies->count() ) {
-                error_log( 'GETTING RATES' );
-                error_log( 'PARAMETERS: ' . print_r( $parameters, true ) );
-
-                $matches = ProductsInstancesStrategiesRate::with(
-                    'strategy',
-                    'strategy.instances',
-                    'strategy.instances.product',
-                    'strategy.instances.product.carrier',
-                    'strategy.instances.product.carrier.ratings'
-                )
-                    ->whereIn( 'product_strategy_instance_id', $strategies->pluck( 'instance_id' ) )
+                $matches = ProductsInstancesStrategiesRate::whereIn( 'product_strategy_instance_id', $strategies->pluck( 'instance_id' ) )
                     ->where( $params_rate );
 
                 if ( !empty( $parameters[ 'premium' ] ) ) {
@@ -73,15 +61,23 @@
                 }
 
                 $matches = $matches->get();
+
+                if ( $matches->count() ) {
+                    $rule_ids = Rule::whereIn( 'rule_id', RulesState::where( 'state_cd', $annuitant[ 'owner_state' ] )->get()->pluck( 'rule_id' )->toArray() )
+                        ->where( 'age_range_min_years', '<=', $annuitant[ 'owner_age' ] )
+                        ->where( 'age_range_max_years', '>=', $annuitant[ 'owner_age' ] )
+                        ->where( 'premium_min', '<=', $parameters[ 'premium' ] )
+                        ->where( 'premium_max', '>=', $parameters[ 'premium' ] )
+                        ->whereIn( 'contract', [ '', $annuitant[ 'annuity_type' ] ] )
+                        ->get()->pluck( 'rule_id' )->toArray();
+
+                    $products = Product::whereIn( 'rule_id', $rule_ids )
+                        ->whereIn( 'strategy_rate_instance_id', $matches->pluck( 'instance_id' )->toArray() )
+                        ->get();
+                }
             }
 
-            error_log( 'MATCHES COUNT: ' . $matches->count() );
-
-            if ( !empty( $matches ) ) {
-                $matches = self::enumerate_products( $matches, $annuitant, $parameters );
-            }
-
-            return $matches;
+            return $products;
         }
 
         public static function compare_products( $analysis_ids, $annuitant, $parameters ) {

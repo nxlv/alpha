@@ -76,6 +76,11 @@
         width: calc(15% + 52px);
         max-width: calc(15% + 52px);
 
+        @media screen and (max-width: 1440px) {
+            width: calc(25% + 52px);
+            max-width: calc(25% + 52px);
+        }
+
         &-toggle {
             display: none;
 

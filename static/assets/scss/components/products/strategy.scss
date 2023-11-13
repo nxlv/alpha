@@ -1,9 +1,10 @@
 .strategy {
   position: fixed;
   z-index: 500;
-  width: calc((75% - (350px + 1.5rem)));
+  width: auto;
   height: 75vh;
-  top: auto;
+  top: calc(100px + 1.5rem);
+  left: calc(350px + 1.5rem);
 
   &__inner {
     position: relative;

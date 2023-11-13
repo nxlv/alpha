@@ -41,15 +41,15 @@ const productUtils = {
     generate_iao_name( row ) {
         let parts = [];
 
-        let index_id = ( ( row.source ) ? row.source.strategy.index_id : row.strategy.index_id );
-        let calculation_frequency = ( ( row.source ) ? row.source.strategy.calculation_frequency : row.strategy.calculation_frequency );
-        let current_participation_rate = ( ( row.source ) ? row.source.current_participation_rate : row.current_participation_rate );
-        let strategy_type = ( ( row.source ) ? row.source.strategy.strategy_type : row.strategy.strategy_type );
-        let strategy_configuration = ( ( row.source ) ? row.source.strategy.strategy_configuration : row.strategy.strategy_configuration );
-        let guarantee_years = ( ( row.source ) ? row.source.strategy.guarantee_period_years : row.strategy.guarantee_period_years );
-        let guarantee_months =  ( ( row.source ) ? row.source.strategy.guarantee_period_months : row.strategy.guarantee_period_months );
-        let premium_range_min = ( ( row.source ) ? row.source.premium_range_min : row.rules.premium_min );
-        let premium_range_max = ( ( row.source ) ? row.source.premium_range_max : row.rules.premium_max );
+        let index_id = row.analysis.strategy.index_id;
+        let calculation_frequency = row.analysis.strategy.calculation_frequency;
+        let current_participation_rate = row.analysis.strategy.rates.current_participation_rate;
+        let strategy_type = row.analysis.strategy.strategy_type;
+        let strategy_configuration = row.analysis.strategy.strategy_configuration;
+        let guarantee_years = row.analysis.strategy.guarantee_period_years;
+        let guarantee_months = row.analysis.strategy.guarantee_period_months;
+        let premium_range_min = row.analysis.strategy.rates.premium_range_min;
+        let premium_range_max = row.analysis.strategy.rates.premium_range_max;
 
         if ( guarantee_years ) {
             parts.push( guarantee_years + ' ' + ( ( guarantee_years === 1 ) ? 'year' : 'years' ) );

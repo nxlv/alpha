@@ -32,8 +32,6 @@
         },
         methods: {
             async fetch_quote() {
-                console.log( 'fetching quote' );
-
                 this.loading = true;
 
                 const inventory = useInventoryStore();
@@ -43,31 +41,67 @@
                 let settings = { ...this.parameters, annuitant: client.settings, inventory: inventory.settings.inventory };
 
                 this.errors = null;
-                this.quotes = null;
-                this.results = null;
-                this.show_all = false;
                 this.loading = true;
 
                 this.selections.method = this.parameters.method;
+                this.selections.offset = 0;
 
                 if ( this.mode === 'comparison' ) {
-                    console.log( 'comparison mode enabled' );
-
-                    settings = { ...settings, comparisons: this.selections.comparison };
-
-                    console.log( 'settings = ', settings );
+                    settings = { ...settings, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, comparisons: this.selections.comparison };
                 }
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+                clearTimeout( this.timers.populator );
 
-                this.loading = false;
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
 
                 this.parameters.searched = true;
 
                 if ( ( request ) && ( request.data ) ) {
-                    this.quotes = request.data.products;
+                    this.quotes = [];
 
-                    this.sort_results();
+                    for ( let counter = 0; counter < request.data.length; counter++ ) {
+                        this.quotes.push( request.data[ counter ] );
+                    }
+
+                    this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( 0, this.parameters.chunk_size ), parameters: this.parameters } );
+                }
+            },
+
+            async fetch_quote_guaranteed( inputs ) {
+                console.log( 'fetching guaranteed rates', inputs.products, inputs.parameters );
+
+                const client = useClientStore();
+
+                let endpoint = '/api/quoting/get/fixed/guaranteed';
+                let settings = { products: [], settings: inputs.parameters, annuitant: client.settings };
+
+                for ( let counter = 0; counter < inputs.products.length; counter++ ) {
+                    settings.products.push( inputs.products[ counter ].analysis_data_id );
+                }
+
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+
+                if ( ( request ) && ( request.data ) ) {
+                    let index, index_inner;
+
+                    for ( index = 0; index < request.data.length; index++ ) {
+                        for ( index_inner = 0; index_inner < this.quotes.length; index_inner++ ) {
+                            if ( this.quotes[ index_inner ].analysis_data_id === request.data[ index ].analysis_data_id ) {
+                                this.quotes[ index_inner ].quotes = request.data[ index ];
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                this.sort_results();
+
+                this.loading = false;
+
+                this.selections.offset += this.parameters.chunk_size;
+
+                if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
+                    this.timers.populator = setTimeout( this.prefetch_results, 1000 );
                 }
             },
 
@@ -117,66 +151,50 @@
             },
 
             sort_results() {
-                let response = [];
-                let counter, counter_inner;
-                let product;
-
-                this.results = null;
-
-                for ( product in this.quotes ) {
-                    for ( counter = 0; counter < this.quotes[ product ].targets.length; counter++ ) {
-                        if ( this.quotes[ product ].targets[ counter ].guaranteed ) {
-                            for ( counter_inner = 0; counter_inner < this.quotes[ product ].targets[ counter ].guaranteed.length; counter_inner++ ) {
-                                if ( parseInt( this.quotes[ product ].targets[ counter ].guaranteed[ counter_inner ].deferral ) === parseInt( this.parameters.deferral ) ) {
-                                    if ( this.quotes[ product ].targets[ counter ].guaranteed ) {
-                                        response.push(
-                                            {
-                                                income: this.quotes[ product ].targets[ counter ].guaranteed[ counter_inner ],
-                                                product: this.quotes[ product ].product,
-                                                carrier: this.quotes[ product ].carrier,
-                                                source: this.quotes[ product ].targets[ counter ]
-                                            }
-                                        )
-                                    } else {
-                                        console.log( 'error' );
-                                        break;
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                let response = this.quotes;
 
                 switch ( this.selections.method ) {
                     case 'premium' :
                         response.sort( ( left, right ) => {
-                            return ( ( left.income.amount > right.income.amount ) ? -1 : ( ( left.income.amount === right.income.amount ) ? 0 : 1 ) );
+                            return ( ( left.quotes.income_data.initial_income > right.quotes.income_data.initial_income ) ? -1 : ( ( left.quotes.income_data.initial_income === right.quotes.income_data.initial_income ) ? 0 : 1 ) );
                         } );
                         break;
 
                     case 'income' :
                         response.sort( ( left, right ) => {
-                            return ( ( left.income.amount < right.income.amount ) ? -1 : ( ( left.income.amount === right.income.amount ) ? 0 : 1 ) );
+                            return ( ( left.quotes.income_data.initial_income < right.quotes.income_data.initial_income ) ? -1 : ( ( left.quotes.income_data.initial_income === right.quotes.income_data.initial_income ) ? 0 : 1 ) );
                         } );
                         break;
                 }
 
-                this.results = response;
+                this.quotes = response;
             },
 
-            get_results_dataset( show_all ) {
-                if ( show_all ) {
-                    return this.results;
-                } else {
-                    return this.results.slice( 0, 25 );
+            async prefetch_results() {
+                const inventory = useInventoryStore();
+                const client = useClientStore();
+
+                let endpoint = '/api/quoting/get/fixed';
+                let settings = { ...this.parameters, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: client.settings, inventory: inventory.settings.inventory };
+
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+
+                if ( ( request ) && ( request.data ) ) {
+                    for ( let counter = 0; counter < request.data.length; counter++ ) {
+                        console.log( 'adding', request.data[ counter ] );
+
+                        this.quotes.push( request.data[ counter ] );
+                    }
+
+                    this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( this.selections.offset, ( this.selections.offset + this.parameters.chunk_size ) ), parameters: this.parameters } );
                 }
             },
 
             set_deferral_period() {
                 clearTimeout( this.timers.refresh );
+                clearTimeout( this.timers.populator );
 
-                this.timers.refresh = setTimeout( () => { this.parameters.deferral = this.parameters.deferral_selected; this.sort_results(); }, 175 );
+                this.timers.refresh = setTimeout( () => { this.parameters.deferral = this.parameters.deferral_selected; this.fetch_quote(); }, 175 );
             },
 
             set_product( product_id, strategy_premium ) {
@@ -208,10 +226,6 @@
                 this.selections.illustration.dataset = null;
             },
 
-            toggle_show_all_results() {
-                this.show_all = !this.show_all;
-            },
-
             toggle_comparison() {
                 this.mode = ( ( this.mode === 'comparison' ) ? 'normal' : 'comparison' );
 
@@ -235,20 +249,20 @@
                 this.parameters.state = client.settings.owner_state;
             }
 
-            this.$emitter.on( 'set_product_id', this.replace_product, null );
+            this.$emitter.on( 'set_product_id', this.replace_product );
+            this.$emitter.on( 'fetch_guaranteed', this.fetch_quote_guaranteed );
         },
         data() {
             return {
                 errors: null,
                 quotes: null,
                 loading: false,
-                show_all: false,
                 mode: 'normal',
                 timers: {
                     replace: null,
-                    refresh: null
+                    refresh: null,
+                    populator: null
                 },
-                results: [],
                 selections: {
                     method: 'premium',
                     product_id: null,
@@ -265,10 +279,13 @@
                     },
                     details: 'options',
                     premium: '100000',
+                    offset: 0,
                     comparison: []
                 },
                 parameters: {
                     searched: false,
+                    chunk_size: 25,
+                    chunk_prefetch: 3,
                     premium: '100000',
                     income: '',
                     deferral: 10,
@@ -327,7 +344,7 @@
                             <div class="form__buttons">
                                 <div class="form__buttons-column">
                                     <input type="radio" id="parameters__method-income" name="method" value="income" v-model="parameters.method">
-                                    <label for="parameters__method-income">Income</label>
+                                    <label for="parameters__method-income--disabled">Income</label>
                                 </div>
                                 <div class="form__buttons-column">
                                     <input type="radio" id="parameters__method-premium" name="method" value="premium" v-model="parameters.method">
@@ -512,7 +529,7 @@
                     </div>
                 </div>
 
-                <div class="income-solver__results-controls" v-if="results">
+                <div class="income-solver__results-controls" v-if="quotes && !loading">
                     <div class="form__row">
                         <div class="form__column form__column--full">
                             <label for="deferral">Defer Income for <strong>{{ parameters.deferral_selected }} years</strong></label>
@@ -552,95 +569,96 @@
                     </template>
                 </div>
 
-                <div class="alert alert-info" v-if="parameters.searched && !loading && !results.length">
+                <div class="alert alert-info" v-if="parameters.searched && !loading && !quotes">
                     <h3>No products found!</h3>
                     <p>Try adjusting your search criteria, and try again.</p>
                 </div>
 
-                <div class="alert alert-info" v-if="!parameters.searched && !loading && !results.length">
+                <div class="alert alert-info" v-if="!parameters.searched && !loading && !quotes">
                     <h3>Begin your search</h3>
                     <p>Adjust any search parameters you like, and click <strong>Fetch Quotes</strong> to get started.</p>
                 </div>
 
                 <div class="results" v-bind:class="{ 'results--inactive': selections.product_id }">
                     <div class="results__inner">
-                        <template v-if="results" v-for="( result, result_index ) in get_results_dataset( show_all )" v-bind:key="result_index">
+                        <template v-if="quotes" v-for="( result, result_index ) in quotes" v-bind:key="result_index">
                             <div class="result result__card" v-bind:class="{ 'result--faded': parameters.deferral != parameters.deferral_selected }">
-                                <h4 class="result__card-title" v-bind:data-product-id="result.product.id" v-bind:data-carrier-slug="this.$globalUtils.sanitize_title( result.carrier.name )">
+                                <h4 class="result__card-title" v-bind:data-product-id="result.analysis_data_id" v-bind:data-carrier-slug="this.$globalUtils.sanitize_title( result.analysis.carrier_product.carrier.name )">
                                     <div class="result__card-title-text">
-                                        <strong>{{ result.product.name }}</strong>
-                                        <!--{{ result.carrier.name }}-->
+                                        <strong>{{ result.analysis.carrier_product.name }}</strong>
                                         <span v-html="this.$productUtils.generate_iao_name( result )"></span>
 
-                                        <!--{{ result.source.product_analysis_data_id }}-->
                                         <div class="result__card-title-comparison">
-                                            <input type="checkbox" v-bind:id="'product_' + result.source.product_analysis_data_id" v-bind:value="result.source.product_analysis_data_id" v-model="selections.comparison">
-                                            <label v-bind:for="'product_' + result.source.product_analysis_data_id">Add to Compare</label>
+                                            <input type="checkbox" v-bind:id="'product_' + result.analysis_data_id" v-bind:value="result.analysis_data_id" v-model="selections.comparison">
+                                            <label v-bind:for="'product_' + result.analysis_data_id">Add to Compare</label>
                                         </div>
                                     </div>
-                                    <template v-if="result.carrier.ratings">
+                                    <template v-if="result.analysis.carrier_product.carrier.ratings">
                                         <div class="result__card-title-ratings">
-                                            <span v-for="( rating, rating_index ) in result.carrier.ratings" class="result__card-title-ratings-rating" v-bind:index="rating_index" v-bind:data-rating-company="rating.company" v-bind:data-rating-value="rating.rating">{{ rating.rating }}</span>
+                                            <span v-for="( rating, rating_index ) in result.analysis.carrier_product.carrier.ratings" class="result__card-title-ratings-rating" v-bind:index="rating_index" v-bind:data-rating-company="rating.company" v-bind:data-rating-value="rating.rating">{{ rating.rating }}</span>
                                         </div>
                                     </template>
                                 </h4>
                                 <div class="result__card-strategies">
-                                    <div class="result__card-strategy" v-on:click="set_product( result.source.product_analysis_data_id, result.income.premium )">
+                                    <div class="result__card-strategy" v-on:click="set_product( result.analysis_data_id, selections.premium )">
                                         <div class="result__card-strategy-meta">
-                                            <span data-type="id" title="CANNEX Analysis ID">{{ result.source.product_analysis_data_id }}</span>
-                                            <span data-type="id" title="CANNEX Product ID">{{ result.product.id }}</span>
+                                            <span data-type="id" title="CANNEX Analysis ID">{{ result.analysis_data_id }}</span>
+                                            <span data-type="id" title="CANNEX Product ID">{{ result.analysis.product_id }}</span>
                                         </div>
-                                        <div class="result__card-strategy-income">
+                                        <div class="result__card-strategy-income" v-bind:class="{ 'result__card-strategy-income--loading': !result.quotes }">
                                             <template v-if="selections.method == 'premium'">
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="guaranteed">{{ this.$financeUtils.format_currency( result.income.amount, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="guaranteed">
+                                                    <span v-if="result.quotes" data-type="result">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</span>
+                                                    <span v-if="!result.quotes" data-type="loading">Loading...</span>
+                                                </div>
                                             </template>
                                             <template v-if="selections.method == 'income'">
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.income.premium, 'USD' ) }}</div>
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">{{ this.$financeUtils.format_currency( result.income.amount, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</div>
+                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</div>
                                             </template>
                                         </div>
                                         <div class="result__card-strategy-data">
                                             <div class="result__card-strategy-data-points">
                                                 <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Rider Type/Name">
-                                                    {{ result.source.income_benefit.name }}
+                                                    {{ result.analysis.income_benefit.name }}
                                                 </span>
                                                 <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Annual Rider Fee">
-                                                    <template v-for="( fee, fee_index ) in result.source.income_benefit.rider_fee_current" v-bind:key="fee_index" v-if="result.source.income_benefit.rider_fee_current.length">
+                                                    <template v-for="( fee, fee_index ) in result.analysis.income_benefit.rider_fee_current" v-bind:key="fee_index" v-if="result.analysis.income_benefit.rider_fee_current.length">
                                                         <span><em>Tier {{ fee.tier_no }}</em> {{ fee.rate }}%</span>
                                                     </template>
-                                                    <template v-if="!result.source.income_benefit.rider_fee_current.length">None</template>
+                                                    <template v-if="!result.analysis.income_benefit.rider_fee_current.length">None</template>
                                                 </span>
                                                 <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Roll-up Rate">
-                                                    <template v-for="( roll_up, roll_up_index ) in result.source.income_benefit.roll_up" v-bind:key="roll_up_index" v-if="result.source.income_benefit.roll_up.length">
+                                                    <template v-for="( roll_up, roll_up_index ) in result.analysis.income_benefit.roll_up" v-bind:key="roll_up_index" v-if="result.analysis.income_benefit.roll_up.length">
                                                         <span><em>Tier {{ roll_up.tier_no }}</em> {{ roll_up.rate }}%</span>
                                                     </template>
-                                                    <template v-if="!result.source.income_benefit.roll_up.length">n/a</template>
+                                                    <template v-if="!result.analysis.income_benefit.roll_up.length">n/a</template>
                                                 </span>
                                                 <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Min. Income Start Age">
-                                                    <template v-for="( age, age_index ) in result.source.income_benefit.income_start_age" v-bind:key="age_index" v-if="result.source.income_benefit.income_start_age.length">
+                                                    <template v-for="( age, age_index ) in result.analysis.income_benefit.income_start_age" v-bind:key="age_index" v-if="result.analysis.income_benefit.income_start_age.length">
                                                         <span>{{ age.min_years }} years old</span>
                                                     </template>
-                                                    <template v-if="!result.source.income_benefit.income_start_age.length">None</template>
+                                                    <template v-if="!result.analysis.income_benefit.income_start_age.length">None</template>
                                                 </span>
                                                 <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Premium Bonus">
-                                                    <template v-for="( bonus, bonus_index ) in result.source.income_benefit.premium_bonus" v-bind:key="bonus_index" v-if="result.source.income_benefit.premium_bonus.length">
+                                                    <template v-for="( bonus, bonus_index ) in result.analysis.income_benefit.premium_bonus" v-bind:key="bonus_index" v-if="result.analysis.income_benefit.premium_bonus.length">
                                                         <span><em>Tier {{ bonus.tier_no }}</em> {{ bonus.rate }}%</span>
                                                     </template>
-                                                    <template v-if="!result.source.income_benefit.premium_bonus.length">None</template>
+                                                    <template v-if="!result.analysis.income_benefit.premium_bonus.length">None</template>
                                                 </span>
                                                 <span class="result__card-strategy-data-point" data-type="rate-percent" data-type-title="Premium Multiplier">
-                                                    <template v-for="( multiplier, multiplier_index ) in result.source.income_benefit.premium_multiplier" v-bind:key="multiplier_index" v-if="result.source.income_benefit.premium_multiplier.length">
+                                                    <template v-for="( multiplier, multiplier_index ) in result.analysis.income_benefit.premium_multiplier" v-bind:key="multiplier_index" v-if="result.analysis.income_benefit.premium_multiplier.length">
                                                         <span><em>Tier {{ multiplier.tier_no }}</em> {{ multiplier.rate }}%</span>
                                                     </template>
-                                                    <template v-if="!result.source.income_benefit.premium_multiplier.length">None</template>
+                                                    <template v-if="!result.analysis.income_benefit.premium_multiplier.length">None</template>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="result__card-strategy-data result__card-strategy-data--extra">
                                             <div class="result__card-strategy-details-points result__card-strategy-details-points--vertical">
-                                                <span class="result__card-strategy-details-point" data-type="index" data-type-title="Index">{{ this.$globalUtils.format( 'index', result.source.strategy.index_id ) }}</span>
-                                                <span class="result__card-strategy-details-point" data-type="setting" data-type-title="Type">{{ this.$globalUtils.format( 'strategy_type', result.source.strategy.strategy_type ) }}</span>
-                                                <span class="result__card-strategy-details-point" data-type="setting" data-type-title="Configuration">{{ this.$globalUtils.format( 'strategy_configuration', result.source.strategy.strategy_configuration ) }}</span>
+                                                <span class="result__card-strategy-details-point" data-type="index" data-type-title="Index">{{ this.$globalUtils.format( 'index', result.analysis.strategy.index_id ) }}</span>
+                                                <span class="result__card-strategy-details-point" data-type="setting" data-type-title="Type">{{ this.$globalUtils.format( 'strategy_type', result.analysis.strategy.strategy_type ) }}</span>
+                                                <span class="result__card-strategy-details-point" data-type="setting" data-type-title="Configuration">{{ this.$globalUtils.format( 'strategy_configuration', result.analysis.strategy.strategy_configuration ) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -648,10 +666,10 @@
                             </div>
                         </template>
 
-                        <template v-if="( ( !this.show_all ) && ( ( this.results ) && ( this.results.length > 25 ) ) )">
+                        <template v-if="this.quotes">
                             <div class="form result__notice">
-                                <p>Only the top 25 results are shown.</p>
-                                <button type="button" class="form__action" v-on:click="toggle_show_all_results">Show All</button>
+                                <p>The top {{ selections.offset }} results are shown.</p>
+                                <button type="button" class="form__action" v-on:click="prefetch_results">Load More</button>
                             </div>
                         </template>
                     </div>
