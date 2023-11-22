@@ -20,8 +20,6 @@ class Quoting extends Controller {
     const INCOME_FAILSAFE = 100;
 
     public function query_fixed( Request $request ) {
-        $messages = [];
-
         $products = [];
 
         $method = $request->get( 'method', 'income' );

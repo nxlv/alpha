@@ -30,12 +30,6 @@ class HeuristicHelper {
             }
 
             if ( ( !empty( $known_params ) ) && ( !empty( $known_income ) ) && ( count( $known_params ) == count( $known_income ) ) ) {
-                error_log( 'STARTING PREDICTIONS' );
-
-                error_log( print_r( $known_params, true ) );
-                error_log( print_r( $known_income, true ) );
-
-
                 $regression = new LeastSquares();
                 $regression->train( $known_params, $known_income );
 
@@ -43,12 +37,7 @@ class HeuristicHelper {
                     $income = 0;
 
                     foreach ( $breakpoints as $breakpoint ) {
-                        error_log( 'BREAKPOINT CHECK: D: ' . $deferral . ' vs. ' . $breakpoint[ 'deferral' ] . ' | A: ' . $annuitant[ 'owner_age' ] . ' vs. ' . $breakpoint[ 'purchase_age' ] );
-
                         if ( ( $breakpoint[ 'deferral' ] === $deferral ) && ( intval( $breakpoint[ 'purchase_age' ] ) === intval( $annuitant[ 'owner_age' ] ) ) ) {
-                            error_log( '------------------------------------' );
-                            error_log( 'BREAKPOINT FOUND: D: ' . $deferral . ' vs. ' . $breakpoint[ 'deferral' ] . ' | A: ' . $annuitant[ 'owner_age' ] . ' vs. ' . $breakpoint[ 'purchase_age' ] );
-
                             $income = $breakpoint[ 'income' ];
                             break;
                         } else {
@@ -62,8 +51,6 @@ class HeuristicHelper {
                         'amount' => $income * ( $amount / 100 )
                     ];
                 }
-
-                error_log( 'ENDING PREDICTIONS' );
             }
         }
 
@@ -91,9 +78,6 @@ class HeuristicHelper {
             }
         }
 
-        error_log( print_r( $known_income, true ) );
-        error_log( print_r( $known_params, true ) );
-
         // Use linear regression to fit a model to the data
         $regression = new LeastSquares();
         $regression->train( $known_params, $known_income );
@@ -103,8 +87,6 @@ class HeuristicHelper {
         }
 
         foreach ( $deferrals as $deferral ) {
-            error_log( 'deferral = ' . $deferral . ' | income = ' . $income . ' | premium = ' . $premium );
-
             switch ( $method ) {
                 case 'income' :
                     $response[] = [
