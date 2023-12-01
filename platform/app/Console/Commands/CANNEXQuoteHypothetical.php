@@ -4,9 +4,15 @@ namespace App\Console\Commands;
 
 use App\Http\Helpers\CANNEXHelper;
 
+use App\Http\Helpers\ProductHelper;
+use App\Models\ProductsInstancesStrategy;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
+
+use App\Models\Product;
+use App\Models\Index;
 
 class CANNEXQuoteHypothetical extends Command {
     protected $version = '1.0';
@@ -26,6 +32,13 @@ class CANNEXQuoteHypothetical extends Command {
     protected $description = 'Fetches a real-time quote for guaranteed income based on the parameters specified.';
 
     /**
+     * Local cached storage of index data
+     *
+     * @var array
+     */
+    public static $indexes = [];
+
+    /**
      * Execute the console command.
      *
      * @return int
@@ -37,8 +50,6 @@ class CANNEXQuoteHypothetical extends Command {
 
         $this->line( sprintf( '  <bg=blue;fg=black> CANNEX Hypothetical Quote Generator </> v%s', $this->version ) . PHP_EOL );
 
-        $transaction_id = uuid_create();
-
         $analysis_id = $this->argument( 'analysis_id' );
         $premium = preg_replace( '/[^0-9.]/', '', $this->argument( 'premium' ) );
         $deferral = $this->argument( 'deferral' );
@@ -47,52 +58,105 @@ class CANNEXQuoteHypothetical extends Command {
         $type = $this->argument( 'type' );
         $state = $this->argument( 'state' );
         $start_date = $this->argument( 'index_start_date' );
-        $index_start_date = time();
 
-        if ( strtotime( $start_date ) ) {
+        if ( !empty( $start_date ) ) {
             $index_start_date = strtotime( $start_date );
+        } else {
+            $index_start_date = time();
         }
 
         if ( ( !empty( $analysis_id ) ) && ( !empty( $premium ) ) && ( !empty( $age ) ) && ( !empty( $type ) ) ) {
             $this->line( sprintf( '  <bg=blue;fg=black> PARAMETERS </> ID: %s | Inv: %f | Def: %d | Age: %d | Gender: %s | Type: %s | State: %s | Index Start Date: %s', $analysis_id, $premium, $deferral, $age, $gender, $type, $state, $start_date ) . PHP_EOL );
 
-            $request = [
-                'contract_cd'                 => $type,
-                'premium'                     => $premium,
-                'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
-                'gender_cd_primary'           => $gender,
-                'gender_cd_joint'             => null,
-                'purchase_age_primary'        => $age,
-                'purchase_age_joint'          => null,
-                'income_start_age_primary'    => ( $age + $deferral ),
-                'income_start_age_joint'      => null,
-                'anty_ds_version_id'          => CANNEXHelper::ANTY_ANLY_VERSION_ID,
-                'index_time_range'            => [
-                    'start_month' => gmdate( 'n', $index_start_date ),
-                    'start_year' => ( gmdate( 'Y', $index_start_date ) - ( 2 + $deferral ) ),
-                    'end_month' => 12,
-                    'end_year' => ( gmdate( 'Y', $index_start_date ) - 2 )
-                ],
-                'analysis_cd'                 => 'I',
-                'analysis_data_id'            => $analysis_id,
-                'analysis_time_horizon_years' => ( $deferral + 1 ),
-                'is_test'                     => 'N'
-            ];
+            $analysis_record = Product::where( 'analysis_data_id', $analysis_id )->with( 'instances', 'instances.strategies' )->get();
 
-            $response = CANNEXHelper::analyze_fixed( $request );
+            if ( $analysis_record->count() ) {
+                // override index date if necessary
+                $record = $analysis_record->first();
 
-            if ( $response ) {
-                foreach ( $response as $row ) {
-                    if ( isset( $row->analysis_error ) ) {
-                        $this->line( PHP_EOL . '  <bg=red;fg=white> ERROR </> ' . $row->analysis_error->error_message );
-                    } else if ( isset( $row->analysis_data ) ) {
-                        foreach ( $row->analysis_data as $prediction ) {
-                            if ( $prediction->income > 0 ) {
-                                $this->line( '  <bg=green;fg=black> INCOME </> $' . number_format( $prediction->income, 2, '.', ',' ) . '/year starting at age ' . $prediction->primary_age );
-                                break;
-                            }
+                $index_date_oldest = null;
+                $index_date_newest = null;
+                $index_id = ProductsInstancesStrategy::where( 'instance_id', $record->strategy_details_instance_id )->get()->pluck( 'index_id' );
+
+                if ( $index_id->count() ) {
+                    $index_id = $index_id->first();
+
+                    // cache index data
+                    if ( empty( self::$indexes ) ) {
+                        if ( !Cache::has( 'alpha__fia-indexes' ) ) {
+                            $query = \App\Models\Index::all();
+
+                            Cache::add( 'alpha__fia-indexes', $query, ( 60 * 60 ) );    // 60 minutes
+
+                            self::$indexes = $query;
+                        } else {
+                            self::$indexes = Cache::get( 'alpha__fia-indexes' );
                         }
                     }
+
+                    foreach ( self::$indexes as $index ) {
+                        if ( $index->index_id === $index_id ) {
+                            $index_date_oldest = $index->oldest_date;
+                            $index_date_newest = $index->most_recent_date;
+                            break;
+                        }
+                    }
+                } else {
+                    $index_id = null;
+                }
+
+                if ( ( !empty( $index_id ) ) && ( !empty( $index_date_oldest ) ) && ( ( !empty( $index_date_newest ) ) ) ) {
+                    $index_data_limits = ProductHelper::validate_index_dates( $index_id, strtotime( $index_date_oldest ), strtotime( $index_date_newest ), $index_start_date, $deferral );
+
+                    print_r( $index_data_limits );
+
+                    $request = [
+                        'contract_cd'                 => $type,
+                        'premium'                     => $premium,
+                        'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
+                        'gender_cd_primary'           => $gender,
+                        'gender_cd_joint'             => null,
+                        'purchase_age_primary'        => $age,
+                        'purchase_age_joint'          => null,
+                        'income_start_age_primary'    => intval( $age ) + intval( $index_data_limits[ 'deferral' ] ),
+                        'income_start_age_joint'      => null,
+                        'index_time_range'            => array(
+                            'start_month' => $index_data_limits[ 'index_date_end' ]->format( 'n' ),
+                            'start_year' => $index_data_limits[ 'index_date_end' ]->format( 'Y' ),
+                            'end_month' => $index_data_limits[ 'index_date_start' ]->format( 'n' ),
+                            'end_year' => $index_data_limits[ 'index_date_start' ]->format( 'Y' )
+                        ),
+                        'anty_ds_version_id'          => CANNEXHelper::ANTY_ANLY_VERSION_ID,
+                        'analysis_cd'                 => 'B',
+                        'analysis_data_id'            => $analysis_id,
+                        'analysis_time_horizon_years' => $index_data_limits[ 'deferral' ] + 1,
+                        'is_test'                     => 'N'
+                    ];
+
+                    print_r( $request );
+
+                    $response = CANNEXHelper::analyze_fixed( $request );
+
+                    if ( $response ) {
+                        foreach ( $response as $row ) {
+                            if ( isset( $row->analysis_error ) ) {
+                                $this->line( PHP_EOL . '  <bg=red;fg=white> ERROR </> ' . $row->analysis_error->error_message );
+                            } else if ( isset( $row->analysis_data ) ) {
+                                foreach ( $row->analysis_data as $prediction ) {
+                                    if ( $prediction->income > 0 ) {
+                                        print_r( $row );
+
+                                        $this->line( '  <bg=green;fg=black> INCOME </> $' . number_format( $prediction->income, 2, '.', ',' ) . '/year starting at age ' . $prediction->primary_age );
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        $this->line( PHP_EOL . '  <bg=red;fg=white> ERROR </> No response from CANNEX server.' );
+                    }
+                } else {
+                    $this->line( PHP_EOL . '  <bg=red;fg=white> ERROR </> Index dates could not be determined.' );
                 }
             }
 

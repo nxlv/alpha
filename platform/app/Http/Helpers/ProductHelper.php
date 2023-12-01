@@ -11,9 +11,12 @@
     use App\Models\Rule;
     use App\Models\RulesState;
 
+    use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\DB;
 
     class ProductHelper {
+        public static $indexes = [];
+
         public static function identify_products( $params_strategy = [], $params_rate = [], $annuitant = [], $parameters = [], $inventory = [] ) {
             $products = [];
 
@@ -158,12 +161,8 @@
 
             $analyses = $analyses->get();
 
-            error_log( 'END: FETCHING MASTER PRODUCT LIST (COUNT: ' . $analyses->count() . ')' );
-
             if ( $analyses->count() ) {
                 foreach ( $analyses as $analysis ) {
-                    error_log( 'ANALYSIS: START' );
-
                     if ( !isset( $response[ $analysis->product_id ] ) ) {
                         $response[ $analysis->product_id ] = [
                             'product' => [
@@ -224,5 +223,64 @@
             }
 
             return $response;
+        }
+
+        public static function validate_index_dates( $analysis_data_id, $purchase_date, $deferral ) {
+            // cache index data
+            if ( empty( self::$indexes ) ) {
+                if ( !Cache::has( 'alpha__fia-indexes' ) ) {
+                    $query = \App\Models\Index::all();
+
+                    Cache::add( 'alpha__fia-indexes', $query, ( 60 * 60 ) );    // 60 minutes
+
+                    self::$indexes = $query;
+                } else {
+                    self::$indexes = Cache::get( 'alpha__fia-indexes' );
+                }
+            }
+
+            // find index dates
+            $index_id = ProductsInstancesStrategy::where( 'instance_id', Product::where( 'analysis_data_id', $analysis_data_id )->get()->pluck( 'strategy_details_instance_id' )->first() )->get()->pluck( 'index_id' )->first();
+            $index_date_oldest = null;
+            $index_date_newest = null;
+
+            if ( !empty( $index_data ) ) {
+                foreach ( self::$indexes as $index ) {
+                    if ( $index->index_id === $index_id ) {
+                        $index_date_oldest = $index->oldest_date;
+                        $index_date_newest = $index->most_recent_date;
+                        break;
+                    }
+                }
+            }
+
+            $_deferral = $deferral;
+
+            $date_oldest = new \DateTime( sprintf( '@%d', strtotime( $index_date_oldest ) ) );
+            $date_newest = new \DateTime( sprintf( '@%d', strtotime( $index_date_newest ) ) );
+            $date_purchase = new \DateTime( sprintf( '@%d', strtotime( $purchase_date ) ) );
+
+            $date_start = new \DateTime( $date_purchase->format( 'Y-m-d' ) );
+
+            $deferral_max = intval( $date_oldest->diff( $date_newest )->format( '%y' ) );
+
+            if ( $deferral > $deferral_max ) {
+                $deferral = $deferral_max;
+            }
+
+            if ( $date_start > $date_newest ) {
+                $date_start = clone $date_newest;
+            }
+
+            $date_end = clone $date_start;
+            $date_end = $date_end->sub( \DateInterval::createFromDateString( sprintf( '%d years', $deferral ) ) );
+
+            return [
+                'deferral_original' => $_deferral,
+                'deferral' => $deferral,
+                'deferral_max' => $deferral_max,
+                'index_date_start' => $date_start,
+                'index_date_end' => $date_end
+            ];
         }
     }

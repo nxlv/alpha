@@ -94,12 +94,59 @@
 
                 this.sort_results();
 
+                // fetch backtested returns
+                this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
+
                 this.loading = false;
 
                 this.selections.offset += this.parameters.chunk_size;
+            },
 
-                if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
-                    this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
+            async fetch_quote_backtested_return( inputs ) {
+                const client = useClientStore();
+
+                let endpoint = '/api/quoting/get/fixed/chunk/backtested';
+                let settings = { products: [], settings: inputs.parameters, annuitant: client.settings };
+
+                for ( let counter = 0; counter < inputs.products.length; counter++ ) {
+                    settings.products.push( inputs.products[ counter ].analysis_data_id );
+                }
+
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+
+                if ( ( request ) && ( request.data ) ) {
+                    let index, index_inner, index_income;
+
+                    for ( index = 0; index < request.data.length; index++ ) {
+                        for ( index_inner = 0; index_inner < this.quotes.length; index_inner++ ) {
+                            if ( ( request.data[ index ].analysis_request ) && ( request.data[ index ].analysis_data ) ) {
+                                if ( this.quotes[ index_inner ].analysis_data_id === request.data[ index ].analysis_request.analysis_data_id ) {
+                                    console.log( 'found backtested match for analysis id# ', this.quotes[ index_inner ].analysis_data_id );
+
+                                    this.quotes[ index_inner ].historical = {
+                                        request: request.data[ index ].analysis_request,
+                                        income: 0
+                                    };
+
+                                    for ( index_income = 0; index_income < request.data[ index ].analysis_data.length; index_income++ ) {
+                                        if ( request.data[ index ].analysis_data[ index_income ].income ) {
+                                            this.quotes[ index_inner ].historical.income = request.data[ index ].analysis_data[ index_income ].income;
+                                            break;
+                                        }
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // auto fetch the first 100 results
+                    /*
+                    if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
+                        this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
+                    }
+                    */
                 }
             },
 
@@ -251,6 +298,7 @@
 
             this.$emitter.on( 'set_product_id', this.replace_product );
             this.$emitter.on( 'fetch_guaranteed', this.fetch_quote_guaranteed );
+            this.$emitter.on( 'fetch_backtested', this.fetch_quote_backtested_return );
         },
         data() {
             return {
@@ -284,7 +332,7 @@
                 },
                 parameters: {
                     searched: false,
-                    chunk_size: 25,
+                    chunk_size: 20,
                     chunk_prefetch: 3,
                     premium: '100000',
                     income: '',
@@ -628,8 +676,10 @@
                                                     </span>
                                                 </div>
 
-                                                <cite class="result__card-strategy-income-backtest-results">
-                                                    <strong>0.00%</strong> return over last 10 years.
+                                                <cite class="result__card-strategy-income-backtest-results" v-bind:class="{ 'result__card-strategy-income-backtest-results--loading': !result.historical }">
+                                                    <span v-if="result.historical">
+                                                        <strong>{{ result.historical.income }}</strong> return over last {{ result.historical.request.analysis_time_horizon_years - 1 }} years.
+                                                    </span>
                                                 </cite>
                                             </div>
                                         </div>

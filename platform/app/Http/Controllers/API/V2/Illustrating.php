@@ -14,17 +14,40 @@ use App\Models\Product;
 use App\Models\AnalysisGuaranteedCache;
 
 class Illustrating extends Controller {
-    public function generate_report( Request $request ) {
-        $data = [];
+    public static $indexes = [];
 
+    public function generate_report( Request $request ) {
+        $response = [];
+
+        $queue = [];
+
+        $products = $request->get( 'products' );
+        $settings = $request->get( 'settings' );
         $annuitant = $request->get( 'annuitant' );
-        $parameters = $request->get( 'parameters' );
+
+        $deferral = $settings[ 'deferral' ];
+        $premium = preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] );
 
         // generate guaranteed illustration
 
         // generate hypothetical illustration
-        $illustration = CANNEXHelper::build_analysis_request()
 
-        return view( 'reporting.illustration', $data );
+        if ( ( !empty( $products ) ) && ( !empty( $annuitant ) ) && ( $premium ) && ( $deferral ) ) {
+            foreach ( $products as $product ) {
+                $queue[] = CANNEXHelper::build_analysis_request(
+                    [
+                        'analysis_data_id' => $product,
+                        'analysis_cd' => 'B',
+                        'index' => ProductHelper::validate_index_dates( $product, time(), $deferral )
+                    ],
+                    $annuitant,
+                    $settings
+                );
+            }
+
+            $response = CANNEXHelper::analyze_fixed( $queue );
+        }
+
+        return view( 'reporting.illustration', $response );
     }
 }

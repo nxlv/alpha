@@ -84,6 +84,27 @@ class CANNEXCache extends Command {
         if ( ( !empty( $products ) ) && ( count( $products ) ) ) {
             $stack = [];
 
+            $annuitant = [
+                'id' => '',
+
+                'annuity_investment' => 0,
+                'annuity_type' => 'S',
+
+                'owner_name_first' => 'ALPHA',
+                'owner_name_last' => 'Platform',
+                'owner_birthdate' => '1958-01-01',
+                'owner_age' => '65',
+                'owner_gender' => 'M',
+                'owner_state' => 'FL',
+
+                'joint_name_first' => null,
+                'joint_name_last' => null,
+                'joint_birthdate' => null,
+                'joint_age' => null,
+                'joint_gender' => null,
+                'joint_state' => null,
+            ];
+
             $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> %d top-level products queued.', count( $products ) ) . PHP_EOL );
 
             if ( !empty( $_param_recovery ) ) {
@@ -191,12 +212,16 @@ class CANNEXCache extends Command {
                     }
 
                     $queue[] = CANNEXHelper::build_analysis_request(
-                        $row[ 'target' ][ 'product_analysis_data_id' ],
+                        [
+                            'analysis_data_id' => $product,
+                            'analysis_cd' => 'B',
+                            'index' => ProductHelper::validate_index_dates( $product, time(), $row[ 'deferral' ] )
+                        ],
+                        // owner state may have changed based on valid states for this annuity, so we need to overwrite if so
+                        array_merge( $annuitant, [ 'owner_state' => $row[ 'owner_state' ] ] ),
                         [
                             'premium' => $row[ 'premium' ],
                             'deferral' => $row[ 'deferral' ],
-                            'owner_state' => $row[ 'owner_state' ],
-                            'analysis_cd' => $row[ 'target' ][ 'product_analysis_cd' ]
                         ]
                     );
                 }

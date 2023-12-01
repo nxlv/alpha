@@ -145,22 +145,23 @@ class Quoting extends Controller {
         $messages = [];
         $response = [];
 
-        $premium = preg_replace( '/[^0-9.]/', '', $request->get( 'premium', 0 ) );
-        $deferral = $request->get( 'deferral', 0 );
-        $horizon = $request->get( 'horizon', 10 );
-        $owner_state = $request->get( 'owner_state', '' );
-        $analysis_id = $request->get( 'product_analysis_id', null );
+        $product = $request->get( 'product' );
+        $settings = $request->get( 'settings' );
+        $annuitant = $request->get( 'annuitant' );
 
-        if ( ( !empty( $analysis_id ) ) && ( !empty( $owner_state ) ) && ( $premium ) && ( $deferral ) ) {
-            $queue = CANNEXHelper::build_analysis_request(
-                $analysis_id,
+        $deferral = $settings[ 'deferral' ];
+        $premium = preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] );
+
+        // generate hypothetical illustration
+        if ( ( !empty( $product ) ) && ( !empty( $annuitant ) ) && ( $premium ) && ( $deferral ) ) {
+            $queue[] = CANNEXHelper::build_analysis_request(
                 [
-                    'premium' => $premium,
-                    'deferral' => $deferral,
-                    'horizon' => ( intval( $deferral ) + intval( $horizon ) ),
-                    'owner_state' => $owner_state,
-                    'analysis_cd' => 'B'
-                ]
+                    'analysis_data_id' => $product,
+                    'analysis_cd' => 'B',
+                    'index' => ProductHelper::validate_index_dates( $product, time(), $deferral )
+                ],
+                $annuitant,
+                $settings
             );
 
             $response = CANNEXHelper::analyze_fixed( $queue );

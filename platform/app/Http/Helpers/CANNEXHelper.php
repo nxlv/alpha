@@ -2,13 +2,15 @@
 
     namespace App\Http\Helpers;
 
+    use App\Models\ProductsInstancesStrategy;
+    use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Config;
 
     use App\Http\Helpers\WSSoapClient;
 
     class CANNEXHelper {
         //const ANTY_ANLY_VERSION_ID = 'BY13MD';
-        const ANTY_ANLY_VERSION_ID = 'C645NX';
+        const ANTY_ANLY_VERSION_ID = 'C8H47Y';
         const MAX_POLL_RETRIES = 25;
 
         public static function analyze_fixed( $products ) {
@@ -22,7 +24,7 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_anly-1.0.wsdl' ), [
-                    'trace'         => false,
+                    'trace'         => true,
                     'keep_alive'    => false,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
                     'exception'     => false
@@ -37,7 +39,7 @@
                 $endpoint_function => array(
                     'logon_id'         => $username,
                     'user_id'          => null,
-                    'transaction_id'   => null,
+                    'transaction_id'   => uuid_create(),
                     'analysis_request' => $products
                 )
             );
@@ -45,7 +47,13 @@
             try {
                 $response = $client->__call( $endpoint_function, $query );
 
-                if ( property_exists( $response, 'analysis_response' ) ) {
+                error_log( '-- DIAG: query_fixed() ---------------------' );
+                error_log( '-- LAST REQUEST ----------------------------' );
+                error_log( print_r( $client->__getLastRequest(), true ) );
+                error_log( '-- LAST RESPONSE ---------------------------' );
+                error_log( print_r( $client->__getLastResponse(), true ) );
+
+                if ( ( $response ) && ( property_exists( $response, 'analysis_response' ) ) ) {
                     if ( !is_array( $response->analysis_response ) ) {
                         $result[] = $response->analysis_response;
                     } else {
@@ -55,70 +63,49 @@
             } catch ( \SoapFault $exception ) {
                 // error
                 // TODO: Log it
+                error_log( '-- DIAG: query_fixed() ---------------------' );
+                error_log( '-- LAST REQUEST ----------------------------' );
+                error_log( print_r( $client->__getLastRequest(), true ) );
+                error_log( '-- LAST RESPONSE ---------------------------' );
+                error_log( print_r( $client->__getLastResponse(), true ) );
+                error_log( '-- EXCEPTION -------------------------------' );
+                error_log( print_r( $exception, true ) );
             }
 
             return $result;
         }
 
-        public static function build_analysis_request( $product_analysis_id, $arguments ) {
-            $parameters = array_merge(
-                [
-                    'method' => 'premium',
-                    'deferral' => 10,
-                    'premium' => 0.00,
-                    'income' => 0.00,
-                    'frequency' => 'A',
-                    'analysis_cd' => 'B',
-                    'horizon' => 1,
-
-                    'owner_name' => 'ALPHA',
-                    'owner_dob' => gmdate( 'Y-m-d', gmmktime( 0, 0, 0, 1, 1, gmdate( 'Y' ) - 55 ) ),
-                    'owner_gender' => 'M',
-                    'owner_region', 'FL',
-                    'owner_is_primary' => 'Y',
-
-                    'joint_name' => null,
-                    'joint_dob' => null,
-                    'joint_gender' => null,
-                    'joint_is_spouse' => null
-
-                    //'index_range' => [],
-                    //'set_index_range' => true
-                ],
-                $arguments
-            );
-
-            /*
-            if ( $parameters[ 'set_index_range' ] ) {
-                $parameters[ 'index_range' ] = [
-                    'start_month' => gmdate( 'n' ),
-                    'start_year' => ( gmdate( 'Y' ) - ( 2 + intval( $parameters[ 'deferral' ] ) ) ),
-                    'end_month' => 12,
-                    'end_year' => ( gmdate( 'Y' ) - 2 )
-                ];
-            }
-            */
+        public static function build_analysis_request( $product, $annuitant, $settings ) {
+            /**
+             * we use $product[ 'index' ][ 'deferral' ] instead of the deferral on $settings since
+             * depending on the index, the deferral requested may overlap outside the bounds of our
+             * historical data for that index.  when that happens, we truncate the deferral to make sure
+             * we stay within the bounds of the historical data.
+             *
+             * so, for instance, if you request a 25 year deferral, but our index only has 20 years of data,
+             * then we will truncate the deferral to 20 years in order to prevent an analysis error.
+             */
 
             $response = [
                 'contract_cd'                 => 'S',
-                'premium'                     => $parameters[ 'premium' ],
+                'premium'                     => $settings[ 'premium' ],
                 'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
-                'gender_cd_primary'           => $parameters[ 'owner_gender' ],
-                'gender_cd_joint'             => $parameters[ 'joint_gender' ],
-                'purchase_age_primary'        => ( gmdate( 'Y' ) - gmdate( 'Y', strtotime( $parameters[ 'owner_dob' ] ) ) ),
-                'purchase_age_joint'          => null,
-                'income_start_age_primary'    => ( intval( ( gmdate( 'Y' ) - gmdate( 'Y', strtotime( $parameters[ 'owner_dob' ] ) ) ) ) + intval( $parameters[ 'deferral' ] ) ),
-                'income_start_age_joint'      => null,
+                'gender_cd_primary'           => $annuitant[ 'owner_gender' ],
+                'gender_cd_joint'             => $annuitant[ 'joint_gender' ],
+                'purchase_age_primary'        => $annuitant[ 'owner_age' ],
+                'purchase_age_joint'          => $annuitant[ 'joint_age' ],
+                'income_start_age_primary'    => $annuitant[ 'owner_age' ] + $product[ 'index' ][ 'deferral' ],
+                'income_start_age_joint'      => ( ( !empty( $annuitant[ 'joint_age' ] ) ) ? ( $annuitant[ 'joint_age' ] + $product[ 'index' ][ 'deferral' ] ) : null ),
                 'index_time_range'            => [
-                    'start_month' => gmdate( 'n' ),
-                    'start_year' => ( gmdate( 'Y' ) - ( 2 + intval( $parameters[ 'deferral' ] ) ) ),
-                    'end_month' => 12,
-                    'end_year' => ( gmdate( 'Y' ) - 2 )
+                    'start_month' => $product[ 'index' ][ 'index_date_end' ]->format( 'n' ),
+                    'start_year' => $product[ 'index' ][ 'index_date_end' ]->format( 'Y' ),
+                    'end_month' => $product[ 'index' ][ 'index_date_start' ]->format( 'n' ),
+                    'end_year' => $product[ 'index' ][ 'index_date_start' ]->format( 'Y' )
                 ],
                 'anty_ds_version_id'          => self::ANTY_ANLY_VERSION_ID,
-                'analysis_cd'                 => $parameters[ 'analysis_cd' ],
-                'analysis_data_id'            => $product_analysis_id,
-                'analysis_time_horizon_years' => ( intval( $parameters[ 'deferral' ] ) + intval( $parameters[ 'horizon' ] ) ),
+                'analysis_cd'                 => $product[ 'analysis_cd' ],
+                'analysis_data_id'            => $product[ 'analysis_data_id' ],
+                'analysis_time_horizon_years' => ( $product[ 'index' ][ 'deferral' ] + 1 ),
                 'is_test'                     => 'N'
             ];
 
@@ -136,10 +123,10 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
-                    'trace'         => false,
+                    'trace'         => true,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
                     'keep_alive'    => false,
-                    'exception'     => false
+                    'exception'     => true
                 ] );
 
                 $client->__setLocation( $endpoint_url );
@@ -167,12 +154,10 @@
                         $request_id = $result->income_response1->income_request_id;
                     }
                 } catch ( \SoapFault $exception ) {
-                    print_r( $exception );
-                    die();
+                    error_log( print_r( $exception, true ) );
                 }
             } catch ( \SoapFault $exception ) {
-                print_r( $exception );
-                die();
+                error_log( print_r( $exception, true ) );
             }
 
             return $request_id;
@@ -189,7 +174,7 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
-                    'trace'         => false,
+                    'trace'         => true,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
                     'keep_alive'    => false,
                     'exception'     => false
@@ -226,7 +211,7 @@
                             break;
                         }
                     } catch ( \SoapFault $exception ) {
-                        print_r( $exception );
+                        error_log( print_r( $exception, true ) );
                     }
 
                     $retry_count++;
@@ -236,9 +221,11 @@
                     }
                 }
             } catch ( \SoapFault $exception ) {
-                print_r( $exception );
+                error_log( print_r( $exception, true ) );
+                return false;
             }
 
             return $result;
         }
     }
+
