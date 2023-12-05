@@ -3,12 +3,14 @@
 
     import { useSetsStore } from '@/stores/sets';
     import { useClientStore } from '@/stores/client';
-    import { useInventoryStore } from "../../stores/inventory";
+    import { useInventoryStore } from "@/stores/inventory";
     import { useComparisonStore } from '@/stores/compare';
 
     import Infobox_IncomeBenefits from '@/components/products/infoboxes/IncomeBenefit.vue';
     import Infobox_DeathBenefits from '@/components/products/infoboxes/DeathBenefit.vue';
     import Infobox_Illustration from '@/components/products/infoboxes/Illustration.vue';
+    import Infobox_Rules from '@/components/products/infoboxes/Rules.vue';
+    import Infobox_Withdrawals from '@/components/products/infoboxes/Withdrawals.vue';
     import Infobox_Strategy from '@/components/products/infoboxes/Strategy.vue';
     import Infobox_Carrier from '@/components/products/infoboxes/Carrier.vue';
     import Infobox_Options from '@/components/products/infoboxes/Options.vue';
@@ -52,7 +54,7 @@
 
                 clearTimeout( this.timers.populator );
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 this.parameters.searched = true;
 
@@ -77,7 +79,7 @@
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
                 }
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 if ( ( request ) && ( request.data ) ) {
                     let index, index_inner;
@@ -112,7 +114,7 @@
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
                 }
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 if ( ( request ) && ( request.data ) ) {
                     let index, index_inner, index_income;
@@ -125,12 +127,18 @@
 
                                     this.quotes[ index_inner ].historical = {
                                         request: request.data[ index ].analysis_request,
-                                        income: 0
+                                        income: 0,
+                                        account_value: 0,
+                                        account_return: 0
                                     };
 
                                     for ( index_income = 0; index_income < request.data[ index ].analysis_data.length; index_income++ ) {
                                         if ( request.data[ index ].analysis_data[ index_income ].income ) {
                                             this.quotes[ index_inner ].historical.income = request.data[ index ].analysis_data[ index_income ].income;
+                                            this.quotes[ index_inner ].historical.account_value = request.data[ index ].analysis_data[ index_income - 1 ].account_value;
+                                            this.quotes[ index_inner ].historical.account_return = ( ( request.data[ index ].analysis_data[ index_income - 1 ].account_value / request.data[ index ].analysis_request.premium ) - 1 ) * 100;
+
+                                            console.log( 'account value', request.data[ index ].analysis_data[ index_income - 1 ].account_value, 'premium', request.data[ index ].analysis_request.premium );
                                             break;
                                         }
                                     }
@@ -157,7 +165,7 @@
                 let endpoint = '/api/quoting/get/fixed';
                 let settings = { ...this.parameters, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: client.settings, inventory: inventory.settings.inventory };
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, settings );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 if ( ( request ) && ( request.data ) ) {
                     for ( let counter = 0; counter < request.data.length; counter++ ) {
@@ -171,8 +179,10 @@
             },
 
             async fetch_illustration() {
+                const client = useClientStore();
+
                 let endpoint = '/api/quoting/get/fixed/illustration';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...this.parameters, ...{ premium: ( ( this.selections.method === 'income' ) ? this.selections.premium : this.parameters.premium ), owner_state: this.parameters.state, product_analysis_id: this.selections.product_id } } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: client.settings, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -201,7 +211,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/products/details';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...client.settings, ...{ product: this.selections.product_id } } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...client.settings, ...{ product: this.selections.product_id }, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -212,6 +222,22 @@
 
                     // fetch illustration
                     await this.fetch_illustration();
+                }
+            },
+
+            async fetch_report() {
+                this.loading = true;
+
+                const client = useClientStore();
+
+                let endpoint = '/api/quoting/report'
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: client.settings, signal: this.aborters.requests.signal } );
+
+                this.errors = null;
+                this.loading = false;
+
+                if ( ( request ) && ( request.data ) ) {
+                    console.log( request.data );
                 }
             },
 
@@ -299,6 +325,8 @@
             this.$emitter.on( 'set_product_id', this.replace_product );
             this.$emitter.on( 'fetch_guaranteed', this.fetch_quote_guaranteed );
             this.$emitter.on( 'fetch_backtested', this.fetch_quote_backtested_return );
+
+            this.aborters.requests = new AbortController();
         },
         data() {
             return {
@@ -309,7 +337,10 @@
                 timers: {
                     replace: null,
                     refresh: null,
-                    populator: null
+                    populator: null,
+                },
+                aborters: {
+                    requests: null
                 },
                 selections: {
                     method: 'premium',
@@ -409,7 +440,7 @@
                         </div>
                         <div class="form__column" v-if="parameters.method === 'income'">
                             <label>Desired Annual Income</label>
-                            <input type="text" id="parameters__premium" name="income" class="money" placeholder="i.e., $1,000.00" v-model.lazy="parameters.income" v-money="options.money">
+                            <input disabled type="text" id="parameters__premium" name="income" class="money" placeholder="i.e., $5,000.00" v-model.lazy="parameters.income" v-money="options.money">
                         </div>
                     </div>
                 </fieldset>
@@ -526,8 +557,10 @@
                     <div class="strategy__inner">
                         <h3>Strategy Details<a href="javascript:" v-on:click="close_details"><i class="fal fa-close" aria-hidden="true"></i> <span>Close</span></a></h3>
 
+                        <h4>{{ }}</h4>
+
                         <menu class="strategy__menu">
-                            <li class="strategy__menu-item strategy__menu-item--special" data-type="download" v-on:click="set_details_page( 'download' )">
+                            <li class="strategy__menu-item strategy__menu-item--special" data-type="download" v-on:click="fetch_report()">
                                 <span>Download Report</span>
                             </li>
                             <li class="strategy__menu-item" data-type="options" v-on:click="set_details_page( 'options' )">
@@ -539,10 +572,10 @@
                             <li class="strategy__menu-item" data-type="illustration" v-on:click="set_details_page( 'illustration' )">
                                 <span>Illustration</span>
                             </li>
-                            <li class="strategy__menu-item strategy__menu-item--disabled" data-type="withdrawals" v-on:click="set_details_page( 'withdrawals' )">
+                            <li class="strategy__menu-item" data-type="withdrawals" v-on:click="set_details_page( 'withdrawals' )">
                                 <span>Withdrawals</span>
                             </li>
-                            <li class="strategy__menu-item strategy__menu-item--disabled" data-type="rules" v-on:click="set_details_page( 'rules' )">
+                            <li class="strategy__menu-item" data-type="rules" v-on:click="set_details_page( 'rules' )">
                                 <span>Rules</span>
                             </li>
                         </menu>
@@ -572,6 +605,12 @@
                                 <div class="strategy__details-illustration-table" v-if="selections.illustration.valid">
                                     <Infobox_Illustration v-bind:profile="selections.illustration.dataset" />
                                 </div>
+                            </div>
+                            <div class="strategy__details-options" v-if="selections.details === 'withdrawals'">
+                                <Infobox_Withdrawals v-bind:profile="selections.product" />
+                            </div>
+                            <div class="strategy__details-options" v-if="selections.details === 'rules'">
+                                <Infobox_Rules v-bind:profile="selections.product.rules" />
                             </div>
                         </div>
                     </div>
@@ -627,6 +666,10 @@
                     <p>Adjust any search parameters you like, and click <strong>Fetch Quotes</strong> to get started.</p>
                 </div>
 
+                <div>
+                    <button type="button" v-on:click="aborters.requests.abort()">Abort All</button>
+                </div>
+
                 <div class="results" v-bind:class="{ 'results--inactive': selections.product_id }">
                     <div class="results__inner">
                         <template v-if="quotes" v-for="( result, result_index ) in quotes" v-bind:key="result_index">
@@ -677,12 +720,12 @@
                                                 </div>
 
                                                 <cite class="result__card-strategy-income-backtest-results" v-bind:class="{ 'result__card-strategy-income-backtest-results--loading': !result.historical }">
-                                                    <span v-if="result.historical">
-                                                        <strong>{{ result.historical.income }}</strong> return over last {{ result.historical.request.analysis_time_horizon_years - 1 }} years.
-                                                    </span>
+                                                    <span v-if="result.historical" data-type="result"><strong>{{ result.historical.account_return.toFixed( 2 ) }}%</strong> anticipated return over {{ result.historical.request.analysis_time_horizon_years - 1 }} years.</span>
+                                                    <span v-if="!result.historical" data-type="loading">Calculating anticipated return...</span>
                                                 </cite>
                                             </div>
                                         </div>
+
                                         <div class="result__card-strategy-data">
                                             <div class="result__card-strategy-data-points">
                                                 <span class="result__card-strategy-data-point" data-type="setting" data-type-title="Rider Type/Name">

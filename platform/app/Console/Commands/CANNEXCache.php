@@ -215,7 +215,7 @@ class CANNEXCache extends Command {
                         [
                             'analysis_data_id' => $product,
                             'analysis_cd' => 'B',
-                            'index' => ProductHelper::validate_index_dates( $product, time(), $row[ 'deferral' ] )
+                            'index' => ProductHelper::validate_index_dates( $product, date( 'Y-m-d' ), $row[ 'deferral' ] )
                         ],
                         // owner state may have changed based on valid states for this annuity, so we need to overwrite if so
                         array_merge( $annuitant, [ 'owner_state' => $row[ 'owner_state' ] ] ),

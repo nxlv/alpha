@@ -244,13 +244,11 @@
             $index_date_oldest = null;
             $index_date_newest = null;
 
-            if ( !empty( $index_data ) ) {
-                foreach ( self::$indexes as $index ) {
-                    if ( $index->index_id === $index_id ) {
-                        $index_date_oldest = $index->oldest_date;
-                        $index_date_newest = $index->most_recent_date;
-                        break;
-                    }
+            foreach ( self::$indexes as $index ) {
+                if ( $index->index_id === $index_id ) {
+                    $index_date_oldest = $index->oldest_date;
+                    $index_date_newest = $index->most_recent_date;
+                    break;
                 }
             }
 
@@ -269,7 +267,7 @@
             }
 
             if ( $date_start > $date_newest ) {
-                $date_start = clone $date_newest;
+                $date_start = new \DateTime( $date_newest->format( 'Y-m-d' ) );
             }
 
             $date_end = clone $date_start;

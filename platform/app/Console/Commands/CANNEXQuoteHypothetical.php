@@ -60,13 +60,13 @@ class CANNEXQuoteHypothetical extends Command {
         $start_date = $this->argument( 'index_start_date' );
 
         if ( !empty( $start_date ) ) {
-            $index_start_date = strtotime( $start_date );
+            $analysis_purchase_date = date( 'Y-m-d', strtotime( $start_date ) );
         } else {
-            $index_start_date = time();
+            $analysis_purchase_date = date( 'Y-m-d', time() );
         }
 
         if ( ( !empty( $analysis_id ) ) && ( !empty( $premium ) ) && ( !empty( $age ) ) && ( !empty( $type ) ) ) {
-            $this->line( sprintf( '  <bg=blue;fg=black> PARAMETERS </> ID: %s | Inv: %f | Def: %d | Age: %d | Gender: %s | Type: %s | State: %s | Index Start Date: %s', $analysis_id, $premium, $deferral, $age, $gender, $type, $state, $start_date ) . PHP_EOL );
+            $this->line( sprintf( '  <bg=blue;fg=black> PARAMETERS </> ID: %s | Inv: %f | Def: %d | Age: %d | Gender: %s | Type: %s | State: %s | Index Start Date: %s', $analysis_id, $premium, $deferral, $age, $gender, $type, $state, $analysis_purchase_date ) . PHP_EOL );
 
             $analysis_record = Product::where( 'analysis_data_id', $analysis_id )->with( 'instances', 'instances.strategies' )->get();
 
@@ -106,9 +106,7 @@ class CANNEXQuoteHypothetical extends Command {
                 }
 
                 if ( ( !empty( $index_id ) ) && ( !empty( $index_date_oldest ) ) && ( ( !empty( $index_date_newest ) ) ) ) {
-                    $index_data_limits = ProductHelper::validate_index_dates( $index_id, strtotime( $index_date_oldest ), strtotime( $index_date_newest ), $index_start_date, $deferral );
-
-                    print_r( $index_data_limits );
+                    $index_data_limits = ProductHelper::validate_index_dates( $analysis_id, $analysis_purchase_date, $deferral );
 
                     $request = [
                         'contract_cd'                 => $type,
@@ -133,8 +131,6 @@ class CANNEXQuoteHypothetical extends Command {
                         'is_test'                     => 'N'
                     ];
 
-                    print_r( $request );
-
                     $response = CANNEXHelper::analyze_fixed( $request );
 
                     if ( $response ) {
@@ -144,8 +140,6 @@ class CANNEXQuoteHypothetical extends Command {
                             } else if ( isset( $row->analysis_data ) ) {
                                 foreach ( $row->analysis_data as $prediction ) {
                                     if ( $prediction->income > 0 ) {
-                                        print_r( $row );
-
                                         $this->line( '  <bg=green;fg=black> INCOME </> $' . number_format( $prediction->income, 2, '.', ',' ) . '/year starting at age ' . $prediction->primary_age );
                                         break;
                                     }

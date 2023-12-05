@@ -54,4 +54,7 @@ Route::post( '/quoting/get/immediate', [ App\Http\Controllers\API\V1\Quoting::cl
 Route::post( '/quoting/get/fixed', [ App\Http\Controllers\API\V2\Quoting::class, 'query_fixed' ] );
 Route::post( '/quoting/get/fixed/guaranteed', [ App\Http\Controllers\API\V2\Quoting::class, 'query_fixed_guaranteed' ] );
 Route::post( '/quoting/get/fixed/chunk/backtested', [ App\Http\Controllers\API\V2\Quoting::class, 'query_fixed_backtested_return' ] );
-Route::post( '/quoting/get/fixed/illustration', [ App\Http\Controllers\API\V1\Quoting::class, 'query_fixed_illustration' ] );
+Route::post( '/quoting/get/fixed/illustration', [ App\Http\Controllers\API\V2\Quoting::class, 'query_fixed_illustration' ] );
+
+Route::post( '/quoting/report', [ App\Http\Controllers\API\V2\Illustrating::class, 'fetch_report' ] );
+

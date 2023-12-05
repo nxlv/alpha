@@ -115,6 +115,36 @@ class Quoting extends Controller {
         return $products;
     }
 
+    public function query_fixed_illustration( Request $request ) {
+        $messages = [];
+        $response = [];
+
+        $product = $request->get( 'product' );
+        $settings = $request->get( 'settings' );
+        $annuitant = $request->get( 'annuitant' );
+
+        $deferral = $settings[ 'deferral' ];
+        $premium = preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] );
+
+        // generate hypothetical illustration
+        if ( ( !empty( $product ) ) && ( !empty( $annuitant ) ) && ( $premium ) && ( $deferral ) ) {
+            $queue[] = CANNEXHelper::build_analysis_request(
+                [
+                    'analysis_data_id' => $product,
+                    'analysis_cd' => 'B',
+                    'analysis_time_horizon_years' => ( $deferral + 1 ) + 10,
+                    'index' => ProductHelper::validate_index_dates( $product, date( 'Y-m-d' ), $deferral )
+                ],
+                $annuitant,
+                $settings
+            );
+
+            $response = CANNEXHelper::analyze_fixed( $queue );
+        }
+
+        return response()->json( [ 'error' => false, 'messages' => $messages, 'result' => $response ] );
+    }
+
     public function query_fixed_guaranteed( Request $request ) {
         $response = [];
 
@@ -229,7 +259,7 @@ class Quoting extends Controller {
                     }
 
                     if ( ( !empty( $index_id ) ) && ( !empty( $index_date_oldest ) ) && ( ( !empty( $index_date_newest ) ) ) ) {
-                        $index_data_limits = ProductHelper::validate_index_dates( $index_id, strtotime( $index_date_oldest ), strtotime( $index_date_newest ), time(), $deferral );
+                        $index_data_limits = ProductHelper::validate_index_dates( $product, date( 'Y-m-d' ), $deferral );
 
                         $queue[] = [
                             'contract_cd'                 => $annuitant[ 'annuity_type' ],

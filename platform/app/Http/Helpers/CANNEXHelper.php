@@ -47,12 +47,6 @@
             try {
                 $response = $client->__call( $endpoint_function, $query );
 
-                error_log( '-- DIAG: query_fixed() ---------------------' );
-                error_log( '-- LAST REQUEST ----------------------------' );
-                error_log( print_r( $client->__getLastRequest(), true ) );
-                error_log( '-- LAST RESPONSE ---------------------------' );
-                error_log( print_r( $client->__getLastResponse(), true ) );
-
                 if ( ( $response ) && ( property_exists( $response, 'analysis_response' ) ) ) {
                     if ( !is_array( $response->analysis_response ) ) {
                         $result[] = $response->analysis_response;
@@ -88,7 +82,7 @@
 
             $response = [
                 'contract_cd'                 => 'S',
-                'premium'                     => $settings[ 'premium' ],
+                'premium'                     => preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] ),
                 'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
                 'gender_cd_primary'           => $annuitant[ 'owner_gender' ],
                 'gender_cd_joint'             => $annuitant[ 'joint_gender' ],
@@ -105,7 +99,7 @@
                 'anty_ds_version_id'          => self::ANTY_ANLY_VERSION_ID,
                 'analysis_cd'                 => $product[ 'analysis_cd' ],
                 'analysis_data_id'            => $product[ 'analysis_data_id' ],
-                'analysis_time_horizon_years' => ( $product[ 'index' ][ 'deferral' ] + 1 ),
+                'analysis_time_horizon_years' => ( ( isset( $product[ 'analysis_time_horizon_years' ] ) ) ? ( intval( $product[ 'analysis_time_horizon_years' ] ) + 1 ) : ( $product[ 'index' ][ 'deferral' ] + 1 ) ),
                 'is_test'                     => 'N'
             ];
 
@@ -200,10 +194,10 @@
                     try {
                         $analysis = $client->__call( $function_name, $arguments );
 
-                        //echo sprintf( '[+] Request status: %s', $analysis->income_response1_set->status_cd ) . PHP_EOL;
+                        error_log( sprintf( '[+] Request status: %s', $analysis->income_response1_set->status_cd ) . PHP_EOL );
 
                         if ( $analysis->income_response1_set->status_cd === 'P' ) {
-                            //echo '[+] Request pending, polling in 2 seconds...' . PHP_EOL;
+                            error_log( '[+] Request pending, polling in 2 seconds...' . PHP_EOL );
 
                             sleep(2);
                         } else {
