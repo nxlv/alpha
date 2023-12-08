@@ -1,10 +1,10 @@
 .strategy {
   position: fixed;
   z-index: 500;
-  width: auto;
+  width: calc((100% - #{$nav-primary-width-xl}) - 1.5rem * 2);
   height: 75vh;
   top: calc(100px + 1.5rem);
-  left: calc(350px + 1.5rem);
+  left: calc(#{$nav-primary-width-xl} + 1.5rem);
 
   &__inner {
     position: relative;
@@ -47,6 +47,147 @@
           top: -2px;
         }
       }
+    }
+  }
+
+  &__header {
+    position: relative;
+    padding: 0 0 0 calc(150px + 1rem);
+    margin: 0 0 2rem 0;
+
+    &:before {
+      content: '';
+      width: 150px;
+      height: 100%;
+      position: absolute;
+      border: 1px $color-grey-mid solid;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
+
+    &[data-carrier-slug="aig"] {
+      &:before {
+        background-image: url(../images/logos/carriers/aig.png);
+      }
+    }
+
+    &[data-carrier-slug*="allianz"] {
+      &:before {
+        background-image: url(../images/logos/carriers/allianz.png);
+      }
+    }
+
+    &[data-carrier-slug*="american-equity"] {
+      &:before {
+        background-image: url(../images/logos/carriers/american-equity.png);
+      }
+    }
+
+    &[data-carrier-slug*="american-national"] {
+      &:before {
+        background-image: url(../images/logos/carriers/american-national.png);
+      }
+    }
+
+    &[data-carrier-slug*="athene"] {
+      &:before {
+        background-image: url(../images/logos/carriers/athene.png);
+      }
+    }
+
+    &[data-carrier-slug*="delaware-life"] {
+      &:before {
+        background-image: url(../images/logos/carriers/delaware-life.png);
+      }
+    }
+
+    &[data-carrier-slug="fidelity-and-guaranty"] {
+      &:before {
+        background-image: url(../images/logos/carriers/f-and-g.png);
+      }
+    }
+
+    &[data-carrier-slug*="global-atlantic"] {
+      &:before {
+        background-image: url(../images/logos/carriers/global-atlantic.png);
+      }
+    }
+
+    &[data-carrier-slug*="massmutual-ascend"] {
+      &:before {
+        background-image: url(../images/logos/carriers/massmutual-ascend.png);
+      }
+    }
+
+    &[data-carrier-slug*="midland-national"] {
+      &:before {
+        background-image: url(../images/logos/carriers/midland-national.png);
+      }
+    }
+
+    &[data-carrier-slug*="north-american"] {
+      &:before {
+        background-image: url(../images/logos/carriers/north-american.png);
+      }
+    }
+
+    &[data-carrier-slug*="protective"] {
+      &:before {
+        background-image: url(../images/logos/carriers/protective.png);
+      }
+    }
+
+    &[data-carrier-slug*="reliance-standard"] {
+      &:before {
+        background-image: url(../images/logos/carriers/reliance-standard.png);
+      }
+    }
+
+    &[data-carrier-slug*="securian"] {
+      &:before {
+        background-image: url(../images/logos/carriers/securian.png);
+      }
+    }
+
+    &[data-carrier-slug="the-standard"] {
+      &:before {
+        background-image: url(../images/logos/carriers/the-standard.png);
+      }
+    }
+
+    h4 {
+      font-size: 3rem;
+      line-height: 3rem;
+      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      span {
+        display: inline-block;
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        border: 1px $color-money solid;
+        color: $color-money;
+        padding: 0.75rem 1rem 0.5rem 1rem;
+        font-weight: 400;
+        position: relative;
+        top: -0.375rem;
+        margin: 0 0 0 1rem;
+      }
+    }
+
+    h5 {
+      font-weight: normal;
+      letter-spacing: -2px;
+      font-size: 2rem;
+      line-height: 2rem;
+      margin: 0;
+      padding: 0;
     }
   }
 
@@ -157,6 +298,15 @@
         color: $brand-quaternary;
       }
 
+      &--selected {
+        color: $brand-quaternary;
+        border-color: $brand-quaternary;
+
+        &:before {
+          color: $brand-quaternary;
+        }
+      }
+
       &--disabled {
         filter: grayscale(1);
         opacity: 0.5;
@@ -184,37 +334,37 @@
         }
       }
 
-      &[data-type="download"] {
+      &[data-type='download'] {
         &:before {
           content: '\f019';
         }
       }
 
-      &[data-type="options"] {
+      &[data-type='options'] {
         &:before {
           content: '\e4a2';
         }
       }
 
-      &[data-type="carrier"] {
+      &[data-type='carrier'] {
         &:before {
           content: '\f19c';
         }
       }
 
-      &[data-type="illustration"] {
+      &[data-type='illustration'] {
         &:before {
           content: '\f00b';
         }
       }
 
-      &[data-type="rules"] {
+      &[data-type='rules'] {
         &:before {
           content: '\f02d';
         }
       }
 
-      &[data-type="withdrawals"] {
+      &[data-type='withdrawals'] {
         &:before {
           content: '\f53d';
         }

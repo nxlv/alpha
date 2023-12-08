@@ -26,6 +26,8 @@
             Infobox_IncomeBenefits,
             Infobox_DeathBenefits,
             Infobox_Illustration,
+            Infobox_Rules,
+            Infobox_Withdrawals,
             Infobox_Strategy,
             Infobox_Carrier,
             Infobox_Options,
@@ -39,8 +41,10 @@
                 const inventory = useInventoryStore();
                 const client = useClientStore();
 
+                this.aborters.requests.abort();
+
                 let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, annuitant: client.settings, inventory: inventory.settings.inventory };
+                let settings = { ...this.parameters, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 this.errors = null;
                 this.loading = true;
@@ -73,7 +77,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/guaranteed';
-                let settings = { products: [], settings: inputs.parameters, annuitant: client.settings };
+                let settings = { products: [], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: inputs.parameters };
 
                 for ( let counter = 0; counter < inputs.products.length; counter++ ) {
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
@@ -108,7 +112,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/chunk/backtested';
-                let settings = { products: [], settings: inputs.parameters, annuitant: client.settings };
+                let settings = { products: [], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: inputs.parameters };
 
                 for ( let counter = 0; counter < inputs.products.length; counter++ ) {
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
@@ -163,7 +167,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: client.settings, inventory: inventory.settings.inventory };
+                let settings = { ...this.parameters, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
@@ -182,7 +186,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/illustration';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: client.settings, signal: this.aborters.requests.signal } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -231,7 +235,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/report'
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: client.settings, signal: this.aborters.requests.signal } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -327,6 +331,8 @@
             this.$emitter.on( 'fetch_backtested', this.fetch_quote_backtested_return );
 
             this.aborters.requests = new AbortController();
+
+            this.fetch_quote();
         },
         data() {
             return {
@@ -379,7 +385,14 @@
                     crediting_frequency: [],
                     participation_rate: '100',
                     guarantee_period_years: 1,
-                    guarantee_period_months: 0
+                    guarantee_period_months: 0,
+                    overrides: {
+                        annuitant: {
+                            owner_state: null,
+                            owner_age: null,
+                            owner_gender: null
+                        }
+                    }
                 },
                 options: {
                     money: {
@@ -404,152 +417,234 @@
 <template>
     <section class="income-solver" v-bind:data-mode="mode">
         <div class="income-solver__content">
+            <!--
             <label for="income-solver__compare-toggle" class="income-solver__compare-toggler" v-if="selections.comparison.length" v-on:click="toggle_comparison">
                 <i class="fal fa-list-timeline" aria-hidden="true"></i>
             </label>
+            -->
 
-            <input type="checkbox" id="income-solver__parameters-toggle" class="income-solver__parameters-toggle" value="1">
-            <label for="income-solver__parameters-toggle" class="income-solver__parameters-toggler">
-                <i class="fal fa-filter-list" aria-hidden="true"></i>
-            </label>
+            <button type="submit" class="income-solver__fetch-button" v-on:click="fetch_quote">Fetch Quotes <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
 
             <aside class="income-solver__parameters form">
                 <fieldset data-filter-type="income">
-                    <legend>Income Method</legend>
+                    <legend><i class="fa-duotone fa-money-check-dollar-pen"></i> Premium &amp; Income</legend>
 
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label>Solve for...</label>
-                            <div class="form__buttons">
-                                <div class="form__buttons-column">
-                                    <input type="radio" id="parameters__method-income" name="method" value="income" v-model="parameters.method">
-                                    <label for="parameters__method-income--disabled">Income</label>
-                                </div>
-                                <div class="form__buttons-column">
-                                    <input type="radio" id="parameters__method-premium" name="method" value="premium" v-model="parameters.method">
-                                    <label for="parameters__method-premium">Premium</label>
+                    <input type="checkbox" class="hidden" id="income__toggler" value="1">
+                    <label for="income__toggler"></label>
+
+                    <div class="income__content">
+                        <div class="form__row" data-row-type="mode">
+                            <div class="form__column">
+                                <label>Solve for...</label>
+                                <div class="form__buttons">
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__method-income" name="method" value="income" v-model="parameters.method">
+                                        <label for="parameters__method-income--disabled">Income</label>
+                                    </div>
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__method-premium" name="method" value="premium" v-model="parameters.method">
+                                        <label for="parameters__method-premium">Premium</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form__row">
-                        <div class="form__column" v-if="parameters.method === 'premium'">
-                            <label>Desired Premium</label>
-                            <input type="text" id="parameters__premium" name="premium" class="money" placeholder="i.e., $100,000" v-model.lazy="parameters.premium" v-money="options.money">
-                        </div>
-                        <div class="form__column" v-if="parameters.method === 'income'">
-                            <label>Desired Annual Income</label>
-                            <input disabled type="text" id="parameters__premium" name="income" class="money" placeholder="i.e., $5,000.00" v-model.lazy="parameters.income" v-money="options.money">
-                        </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Filtering Options</legend>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="indexes">Index</label>
-                            <multiselect v-model="parameters.index"
-                                         mode="multiple"
-                                         label="label"
-                                         track-by="label"
-                                         :options="this.$globalUtils.get_set_as_kvp( 'indexes' )"
-                                         :hide-selected="false"
-                                         :close-on-select="false"
-                                         :searchable="true"
-                                         :create-option="false">
-                            </multiselect>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="indexes">Carrier</label>
-                            <multiselect v-model="parameters.carrier"
-                                         mode="multiple"
-                                         label="label"
-                                         track-by="label"
-                                         :options="this.$globalUtils.get_set_as_kvp( 'carriers' )"
-                                         :hide-selected="false"
-                                         :close-on-select="false"
-                                         :searchable="true"
-                                         :create-option="false">
-                            </multiselect>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="strategy_configuration">Strategy</label>
-                            <multiselect v-model="parameters.strategy_configuration"
-                                         mode="multiple"
-                                         label="label"
-                                         track-by="label"
-                                         :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_configuration' )"
-                                         :hide-selected="false"
-                                         :close-on-select="false"
-                                         :searchable="true"
-                                         :create-option="false">
-                            </multiselect>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="strategy_type">Type</label>
-                            <multiselect v-model="parameters.strategy_type"
-                                         mode="multiple"
-                                         label="label"
-                                         track-by="label"
-                                         :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_type' )"
-                                         :hide-selected="false"
-                                         :close-on-select="false"
-                                         :searchable="true"
-                                         :create-option="false">
-                            </multiselect>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="calculation_frequency">Calculation Frequency</label>
-                            <multiselect v-model="parameters.calculation_frequency"
-                                         mode="multiple"
-                                         label="label"
-                                         track-by="label"
-                                         :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
-                                         :hide-selected="false"
-                                         :close-on-select="false"
-                                         :searchable="true"
-                                         :create-option="false">
-                            </multiselect>
-                        </div>
-                    </div>
-
-                    <div class="form__row">
-                        <div class="form__column">
-                            <label for="crediting_frequency">Crediting Frequency</label>
-                            <multiselect v-model="parameters.crediting_frequency"
-                                         mode="multiple"
-                                         label="label"
-                                         track-by="label"
-                                         :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
-                                         :hide-selected="false"
-                                         :close-on-select="false"
-                                         :searchable="true"
-                                         :create-option="false">
-                            </multiselect>
+                        <div class="form__row" data-row-type="input">
+                            <div class="form__column" v-if="parameters.method === 'premium'">
+                                <label>Desired Premium</label>
+                                <input type="text" id="parameters__premium" name="premium" class="money" placeholder="i.e., $100,000" v-model.lazy="parameters.premium" v-money="options.money">
+                            </div>
+                            <div class="form__column" v-if="parameters.method === 'income'">
+                                <label>Desired Annual Income</label>
+                                <input disabled type="text" id="parameters__premium" name="income" class="money" placeholder="i.e., $5,000.00" v-model.lazy="parameters.income" v-money="options.money">
+                            </div>
                         </div>
                     </div>
                 </fieldset>
 
-                <div class="form__row">
-                    <div class="form__column">
-                        <button type="submit" class="form__action" v-on:click="fetch_quote">Fetch Quotes</button>
+                <fieldset data-filter-type="client">
+                    <legend><i class="fa-duotone fa-handshake"></i> Client Information</legend>
+
+                    <input type="checkbox" class="hidden" id="client__toggler" value="1">
+                    <label for="client__toggler"></label>
+
+                    <div class="client__content">
+                        <div class="form__row">
+                            <div class="form__column">
+                                <div class="notice"><p>You can override any of your clients' settings here.  This will not make permanent changes to your client records.</p></div>
+
+                                <label>Benefit Type</label>
+                                <select id="parameters__client-type" name="client-type" v-model="parameters.overrides.annuitant.annuity_type">
+                                    <option value="">&nbsp;</option>
+                                    <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'single_joint' )" v-bind:key="option_index" v-bind:value="option.value">{{ option.label }}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form__row">
+                            <div class="form__column">
+                                <fieldset>
+                                    <legend>Owner</legend>
+
+                                    <div class="form__row">
+                                        <div class="form__column">
+                                            <label>Gender</label>
+                                            <select id="owner__gender" name="owner_gender" v-model="parameters.overrides.annuitant.owner_gender">
+                                                <option value="">&nbsp;</option>
+                                                <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'gender' )" v-bind:key="option_index" v-bind:value="option.value">{{ option.label }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form__column">
+                                            <label>Age</label>
+                                            <input type="number" id="owner__age" name="owner_age" v-model="parameters.overrides.annuitant.owner_age">
+                                        </div>
+                                        <div class="form__column">
+                                            <label>State</label>
+                                            <select id="owner__state" name="owner_state" v-model="parameters.overrides.annuitant.owner_state">
+                                                <option value="">&nbsp;</option>
+                                                <option v-for="( state, state_index ) in this.$globalUtils.get_dataset( 'states_usa' )" v-bind:key="state_index" v-bind:value="state_index">{{ this.$globalUtils.format( 'states_usa', state ) }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column">
+                                <fieldset v-if="parameters.overrides.annuitant.annuity_type === 'J'">
+                                    <legend>Joint</legend>
+
+                                    <div class="form__row">
+                                        <div class="form__column">
+                                            <label>Gender</label>
+                                            <select id="joint__gender" name="joint_gender" v-model="parameters.overrides.annuitant.joint_gender">
+                                                <option value="">&nbsp;</option>
+                                                <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'gender' )" v-bind:key="option_index" v-bind:value="option.value">{{ option.label }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form__column">
+                                            <label>Age</label>
+                                            <input type="number" id="joint__age" name="joint_age" v-model="parameters.overrides.annuitant.joint_age">
+                                        </div>
+                                        <div class="form__column">
+                                            <label>State</label>
+                                            <select id="joint__state" name="joint_state" v-model="parameters.overrides.annuitant.joint_state">
+                                                <option value="">&nbsp;</option>
+                                                <option v-for="( state, state_index ) in this.$globalUtils.get_dataset( 'states_usa' )" v-bind:key="state_index" v-bind:value="state_index">{{ this.$globalUtils.format( 'states_usa', state ) }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
+
+                <fieldset data-filter-type="filtering">
+                    <legend><i class="fa-duotone fa-filter-list"></i> Filtering Options</legend>
+
+                    <input type="checkbox" class="hidden" id="filtering__toggler" value="1">
+                    <label for="filtering__toggler"></label>
+
+                    <div class="filtering__content">
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="indexes">Index</label>
+                                <multiselect v-model="parameters.index"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_set_as_kvp( 'indexes' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="indexes">Carrier</label>
+                                <multiselect v-model="parameters.carrier"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_set_as_kvp( 'carriers' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="strategy_configuration">Strategy</label>
+                                <multiselect v-model="parameters.strategy_configuration"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_configuration' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="strategy_type">Type</label>
+                                <multiselect v-model="parameters.strategy_type"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_type' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="calculation_frequency">Calculation Frequency</label>
+                                <multiselect v-model="parameters.calculation_frequency"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="crediting_frequency">Crediting Frequency</label>
+                                <multiselect v-model="parameters.crediting_frequency"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
             </aside>
 
             <div class="income-solver__results">
@@ -557,25 +652,30 @@
                     <div class="strategy__inner">
                         <h3>Strategy Details<a href="javascript:" v-on:click="close_details"><i class="fal fa-close" aria-hidden="true"></i> <span>Close</span></a></h3>
 
-                        <h4>{{ }}</h4>
+                        <header class="strategy__header" v-bind:data-carrier-slug="this.$globalUtils.sanitize_title( selections.product.carrier_product.carrier.name )">
+                            <h4>{{ selections.product.carrier_product.name }} <span>{{ this.$productUtils.generate_iao_name( selections.product ) }}</span></h4>
+                            <h5>{{ selections.product.carrier_product.carrier.name }}</h5>
+                        </header>
 
                         <menu class="strategy__menu">
                             <li class="strategy__menu-item strategy__menu-item--special" data-type="download" v-on:click="fetch_report()">
                                 <span>Download Report</span>
                             </li>
-                            <li class="strategy__menu-item" data-type="options" v-on:click="set_details_page( 'options' )">
+
+                            <!-- TODO: Replace with loop to avoid duplicated code -->
+                            <li class="strategy__menu-item" v-bind:class="{ 'strategy__menu-item--selected': selections.details === 'options' }" data-type="options" v-on:click="set_details_page( 'options' )">
                                 <span>Options</span>
                             </li>
-                            <li class="strategy__menu-item" data-type="carrier" v-on:click="set_details_page( 'carrier' )">
+                            <li class="strategy__menu-item" v-bind:class="{ 'strategy__menu-item--selected': selections.details === 'carrier' }" data-type="carrier" v-on:click="set_details_page( 'carrier' )">
                                 <span>Carrier</span>
                             </li>
-                            <li class="strategy__menu-item" data-type="illustration" v-on:click="set_details_page( 'illustration' )">
+                            <li class="strategy__menu-item" v-bind:class="{ 'strategy__menu-item--selected': selections.details === 'illustration' }" data-type="illustration" v-on:click="set_details_page( 'illustration' )">
                                 <span>Illustration</span>
                             </li>
-                            <li class="strategy__menu-item" data-type="withdrawals" v-on:click="set_details_page( 'withdrawals' )">
+                            <li class="strategy__menu-item" v-bind:class="{ 'strategy__menu-item--selected': selections.details === 'withdrawals' }" data-type="withdrawals" v-on:click="set_details_page( 'withdrawals' )">
                                 <span>Withdrawals</span>
                             </li>
-                            <li class="strategy__menu-item" data-type="rules" v-on:click="set_details_page( 'rules' )">
+                            <li class="strategy__menu-item" v-bind:class="{ 'strategy__menu-item--selected': selections.details === 'rules' }" data-type="rules" v-on:click="set_details_page( 'rules' )">
                                 <span>Rules</span>
                             </li>
                         </menu>
@@ -661,14 +761,11 @@
                     <p>Try adjusting your search criteria, and try again.</p>
                 </div>
 
-                <div class="alert alert-info" v-if="!parameters.searched && !loading && !quotes">
-                    <h3>Begin your search</h3>
-                    <p>Adjust any search parameters you like, and click <strong>Fetch Quotes</strong> to get started.</p>
-                </div>
-
+                <!--
                 <div>
                     <button type="button" v-on:click="aborters.requests.abort()">Abort All</button>
                 </div>
+                -->
 
                 <div class="results" v-bind:class="{ 'results--inactive': selections.product_id }">
                     <div class="results__inner">
@@ -677,7 +774,7 @@
                                 <h4 class="result__card-title" v-bind:data-product-id="result.analysis_data_id" v-bind:data-carrier-slug="this.$globalUtils.sanitize_title( result.analysis.carrier_product.carrier.name )">
                                     <div class="result__card-title-text">
                                         <strong>{{ result.analysis.carrier_product.name }}</strong>
-                                        <span v-html="this.$productUtils.generate_iao_name( result )"></span>
+                                        <span v-html="this.$productUtils.generate_iao_name( result.analysis )"></span>
 
                                         <div class="result__card-title-comparison">
                                             <input type="checkbox" v-bind:id="'product_' + result.analysis_data_id" v-bind:value="result.analysis_data_id" v-model="selections.comparison">

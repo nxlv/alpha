@@ -4,6 +4,22 @@ import {useSetsStore} from '@/stores/sets';
 import {useCommonStore} from '@/stores/common';
 
 const globalUtils = {
+    merge_with_defaults( defaults, overrides ) {
+        let result = { ...defaults };
+
+        for ( let key in overrides ) {
+            if ( ( overrides[ key ] !== undefined ) && ( overrides[ key ] !== null ) ) {
+                if ( ( result[ key ] ) && ( result[ key ] !== overrides[ key ] ) ) {
+                    console.log( 'overriding ', key, ' with ', overrides[ key ] );
+
+                    result[ key ] = overrides[ key ];
+                }
+            }
+        }
+
+        return result;
+    },
+
     get_dataset(key) {
         let dataset = [];
 
@@ -161,6 +177,13 @@ const globalUtils = {
                 dataset = {
                     'S': 'Single',
                     'J': 'Joint'
+                }
+                break;
+
+            case 'gender' :
+                dataset = {
+                    'M': 'Male',
+                    'F': 'Female'
                 }
                 break;
         }

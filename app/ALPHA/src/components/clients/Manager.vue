@@ -218,21 +218,28 @@
                         <div class="form__row">
                             <div class="form__column">
                                 <label>First Name</label>
-                                <input type="text" id="owner__name-first" name="name_first" placeholder="i.e., Benjamin" v-model="inputs.owner_name_first">
+                                <input type="text" id="owner__name-first" name="owner_name_first" placeholder="i.e., Benjamin" v-model="inputs.owner_name_first">
                             </div>
                             <div class="form__column">
                                 <label>Last Name</label>
-                                <input type="text" id="owner__name-last" name="name_last" placeholder="i.e., Franklin" v-model="inputs.owner_name_last">
+                                <input type="text" id="owner__name-last" name="owner_name_last" placeholder="i.e., Franklin" v-model="inputs.owner_name_last">
+                            </div>
+                            <div class="form__column">
+                                <label>Gender</label>
+                                <select id="owner__gender" name="owner_gender" v-model="inputs.owner_gender">
+                                    <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'gender' )" v-bind:key="option.value" v-bind:value="option.value">{{ option.label }}</option>
+                                </select>
                             </div>
                         </div>
+
                         <div class="form__row">
                             <div class="form__column">
                                 <label>Birthdate <span class="badge" v-if="inputs.owner_birthdate">Age {{ this.$globalUtils.format( 'age', inputs.owner_birthdate ) }}</span></label>
-                                <input type="date" id="owner__birthdate" name="birthdate" placeholder="i.e., 08/12/1979" v-model="inputs.owner_birthdate">
+                                <input type="date" id="owner__birthdate" name="owner_birthdate" placeholder="i.e., 08/12/1979" v-model="inputs.owner_birthdate">
                             </div>
                             <div class="form__column">
                                 <label>State</label>
-                                <select id="owner__state" name="state" v-model="inputs.owner_state">
+                                <select id="owner__state" name="owner_state" v-model="inputs.owner_state">
                                     <option v-for="( state, state_index ) in this.$globalUtils.get_dataset( 'states_usa' )" v-bind:key="state_index" v-bind:value="state_index">{{ this.$globalUtils.format( 'states_usa', state ) }}</option>
                                 </select>
                             </div>
@@ -267,11 +274,17 @@
                         <div class="form__row">
                             <div class="form__column">
                                 <label for="joint__name-first">First Name</label>
-                                <input type="text" id="joint__name-first" name="joint_first" placeholder="i.e., Deborah" v-model="inputs.joint_name_first">
+                                <input type="text" id="joint__name-first" name="joint_name_first" placeholder="i.e., Deborah" v-model="inputs.joint_name_first">
                             </div>
                             <div class="form__column">
                                 <label for="joint__name-last">Last Name</label>
-                                <input type="text" id="joint__name-last" name="joint_last" placeholder="i.e., Read" v-model="inputs.joint_name_last">
+                                <input type="text" id="joint__name-last" name="joint_name_last" placeholder="i.e., Read" v-model="inputs.joint_name_last">
+                            </div>
+                            <div class="form__column">
+                                <label>Gender</label>
+                                <select id="joint__gender" name="joint_gender" v-model="inputs.joint_gender">
+                                    <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'gender' )" v-bind:key="option.value" v-bind:value="option.value">{{ option.label }}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form__row">

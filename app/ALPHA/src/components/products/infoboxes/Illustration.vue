@@ -1,6 +1,6 @@
 <template>
     <div class="infobox illustration" v-if="profile">
-        <h3>Illustration Details</h3>
+        <h3>Hypothetical Illustration</h3>
 
         <div class="illustration__details">
             <table class="table-default illustration__details-table">

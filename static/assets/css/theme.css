@@ -14392,6 +14392,28 @@ readers do not read off random characters that represent icons */
         left: 1rem;
         margin-top: -2px; }
 
+.notice {
+  margin: 0 0 1rem 0;
+  background-color: #152935;
+  padding: 1rem 1rem 1rem 4rem;
+  color: #fff;
+  position: relative; }
+  .notice:before {
+    width: 2rem;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    background-color: #F4562A;
+    content: '\f05a';
+    font-family: 'Font Awesome 6 Pro', sans-serif;
+    display: block;
+    text-align: center;
+    padding: 1rem 0 1.75rem 0; }
+  .notice p {
+    font-size: 1rem;
+    line-height: 1.375rem; }
+
 main#auth {
   height: 100vh;
   display: flex;
@@ -14890,8 +14912,10 @@ main article {
         padding: 0.25rem 0 0 0;
         opacity: 0.75;
         font-weight: normal; }
-  main article .alpha__modal .form__action,
-  main article .form__action {
+  main article .alpha__modal .form__action, main article .alpha__modal .income-solver .income-solver__fetch-button, .income-solver main article .alpha__modal .income-solver__fetch-button,
+  main article .form__action,
+  main article .income-solver .income-solver__fetch-button,
+  .income-solver main article .income-solver__fetch-button {
     display: flex;
     min-width: 200px;
     height: auto;
@@ -14909,10 +14933,16 @@ main article {
     justify-content: center;
     width: 100%;
     cursor: pointer; }
-    main article .alpha__modal .form__action:hover, main article .alpha__modal .form__action:focus, main article .alpha__modal .form__action:active,
+    main article .alpha__modal .form__action:hover, main article .alpha__modal .income-solver .income-solver__fetch-button:hover, .income-solver main article .alpha__modal .income-solver__fetch-button:hover, main article .alpha__modal .form__action:focus, main article .alpha__modal .income-solver .income-solver__fetch-button:focus, .income-solver main article .alpha__modal .income-solver__fetch-button:focus, main article .alpha__modal .form__action:active, main article .alpha__modal .income-solver .income-solver__fetch-button:active, .income-solver main article .alpha__modal .income-solver__fetch-button:active,
     main article .form__action:hover,
+    main article .income-solver .income-solver__fetch-button:hover,
+    .income-solver main article .income-solver__fetch-button:hover,
     main article .form__action:focus,
-    main article .form__action:active {
+    main article .income-solver .income-solver__fetch-button:focus,
+    .income-solver main article .income-solver__fetch-button:focus,
+    main article .form__action:active,
+    main article .income-solver .income-solver__fetch-button:active,
+    .income-solver main article .income-solver__fetch-button:active {
       background-color: #fff;
       color: #152935; }
 
@@ -15012,7 +15042,7 @@ main#alpha .alpha__prologue {
   height: 100vh;
   width: 350px;
   top: 0;
-  z-index: 10;
+  z-index: 25;
   transition: width 0.25s cubic-bezier(0.19, 1, 0.22, 1); }
   main#alpha .alpha__prologue-collapse {
     display: none; }
@@ -17216,7 +17246,7 @@ h6 {
 .strategy {
   position: fixed;
   z-index: 500;
-  width: auto;
+  width: calc((100% - 350px) - 1.5rem * 2);
   height: 75vh;
   top: calc(100px + 1.5rem);
   left: calc(350px + 1.5rem); }
@@ -17256,6 +17286,77 @@ h6 {
           margin-left: 0.5rem;
           position: relative;
           top: -2px; }
+  .strategy__header {
+    position: relative;
+    padding: 0 0 0 calc(150px + 1rem);
+    margin: 0 0 2rem 0; }
+    .strategy__header:before {
+      content: '';
+      width: 150px;
+      height: 100%;
+      position: absolute;
+      border: 1px #aaa solid;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain; }
+    .strategy__header[data-carrier-slug="aig"]:before {
+      background-image: url(../images/logos/carriers/aig.png); }
+    .strategy__header[data-carrier-slug*="allianz"]:before {
+      background-image: url(../images/logos/carriers/allianz.png); }
+    .strategy__header[data-carrier-slug*="american-equity"]:before {
+      background-image: url(../images/logos/carriers/american-equity.png); }
+    .strategy__header[data-carrier-slug*="american-national"]:before {
+      background-image: url(../images/logos/carriers/american-national.png); }
+    .strategy__header[data-carrier-slug*="athene"]:before {
+      background-image: url(../images/logos/carriers/athene.png); }
+    .strategy__header[data-carrier-slug*="delaware-life"]:before {
+      background-image: url(../images/logos/carriers/delaware-life.png); }
+    .strategy__header[data-carrier-slug="fidelity-and-guaranty"]:before {
+      background-image: url(../images/logos/carriers/f-and-g.png); }
+    .strategy__header[data-carrier-slug*="global-atlantic"]:before {
+      background-image: url(../images/logos/carriers/global-atlantic.png); }
+    .strategy__header[data-carrier-slug*="massmutual-ascend"]:before {
+      background-image: url(../images/logos/carriers/massmutual-ascend.png); }
+    .strategy__header[data-carrier-slug*="midland-national"]:before {
+      background-image: url(../images/logos/carriers/midland-national.png); }
+    .strategy__header[data-carrier-slug*="north-american"]:before {
+      background-image: url(../images/logos/carriers/north-american.png); }
+    .strategy__header[data-carrier-slug*="protective"]:before {
+      background-image: url(../images/logos/carriers/protective.png); }
+    .strategy__header[data-carrier-slug*="reliance-standard"]:before {
+      background-image: url(../images/logos/carriers/reliance-standard.png); }
+    .strategy__header[data-carrier-slug*="securian"]:before {
+      background-image: url(../images/logos/carriers/securian.png); }
+    .strategy__header[data-carrier-slug="the-standard"]:before {
+      background-image: url(../images/logos/carriers/the-standard.png); }
+    .strategy__header h4 {
+      font-size: 3rem;
+      line-height: 3rem;
+      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0; }
+      .strategy__header h4 span {
+        display: inline-block;
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        border: 1px #238c00 solid;
+        color: #238c00;
+        padding: 0.75rem 1rem 0.5rem 1rem;
+        font-weight: 400;
+        position: relative;
+        top: -0.375rem;
+        margin: 0 0 0 1rem; }
+    .strategy__header h5 {
+      font-weight: normal;
+      letter-spacing: -2px;
+      font-size: 2rem;
+      line-height: 2rem;
+      margin: 0;
+      padding: 0; }
   .strategy__information {
     width: 35%;
     min-width: 35%; }
@@ -17330,6 +17431,11 @@ h6 {
         font-size: 1.625rem;
         line-height: 1.625rem;
         color: #F4562A; }
+      .strategy__menu-item--selected {
+        color: #F4562A;
+        border-color: #F4562A; }
+        .strategy__menu-item--selected:before {
+          color: #F4562A; }
       .strategy__menu-item--disabled {
         filter: grayscale(1);
         opacity: 0.5;
@@ -17347,17 +17453,17 @@ h6 {
           border-color: #fff; }
           .strategy__menu-item--special:hover:before {
             color: #fff; }
-      .strategy__menu-item[data-type="download"]:before {
+      .strategy__menu-item[data-type='download']:before {
         content: '\f019'; }
-      .strategy__menu-item[data-type="options"]:before {
+      .strategy__menu-item[data-type='options']:before {
         content: '\e4a2'; }
-      .strategy__menu-item[data-type="carrier"]:before {
+      .strategy__menu-item[data-type='carrier']:before {
         content: '\f19c'; }
-      .strategy__menu-item[data-type="illustration"]:before {
+      .strategy__menu-item[data-type='illustration']:before {
         content: '\f00b'; }
-      .strategy__menu-item[data-type="rules"]:before {
+      .strategy__menu-item[data-type='rules']:before {
         content: '\f02d'; }
-      .strategy__menu-item[data-type="withdrawals"]:before {
+      .strategy__menu-item[data-type='withdrawals']:before {
         content: '\f53d'; }
       .strategy__menu-item span {
         display: block;
@@ -17785,6 +17891,43 @@ h6 {
           .result__fixed .result__grid-cta-info dl dd:empty {
             content: '\2012\2012'; }
 
+.income-solver .income-solver__fetch-button {
+  margin-bottom: 1.5rem !important;
+  font-size: 1.375rem !important;
+  line-height: 1.375rem !important;
+  background-color: #F4562A !important;
+  color: #fff !important;
+  border: none !important;
+  transition: background-color 0.125s ease-out, color 0.125s ease-out !important;
+  pointer-events: all !important;
+  position: relative !important;
+  z-index: 10 !important;
+  box-shadow: 0 0 10px #f4562a;
+  animation: 2s fetch-button infinite; }
+  .income-solver .income-solver__fetch-button:hover, .income-solver .income-solver__fetch-button:focus, .income-solver .income-solver__fetch-button:active {
+    background-color: #c7330a !important;
+    color: #fff !important; }
+  .income-solver .income-solver__fetch-button i {
+    position: relative;
+    top: -1px;
+    padding-left: 0.5rem; }
+
+@keyframes fetch-button {
+  0% {
+    box-shadow: 0 0 0 #f4562a; }
+  15% {
+    box-shadow: 0 0 10px #f4562a; }
+  35% {
+    box-shadow: 0 0 20px rgba(244, 86, 42, 0.75); }
+  50% {
+    box-shadow: 0 0 30px rgba(244, 86, 42, 0.65); }
+  65% {
+    box-shadow: 0 0 35px rgba(244, 86, 42, 0.5); }
+  85% {
+    box-shadow: 0 0 35px rgba(244, 86, 42, 0.35); }
+  100% {
+    box-shadow: 0 0 35px rgba(244, 86, 42, 0); } }
+
 .income-solver .form__row {
   padding-bottom: 1.25rem; }
   .income-solver .form__row .form__column {
@@ -17819,8 +17962,8 @@ h6 {
 
 .income-solver__content {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  flex-wrap: wrap;
   position: relative; }
 
 .income-solver__parameters-toggler, .income-solver__compare-toggler {
@@ -17847,13 +17990,14 @@ h6 {
   margin-top: 0.5rem; }
 
 .income-solver__parameters {
-  padding-left: 52px;
-  width: calc(15% + 52px);
-  max-width: calc(15% + 52px); }
-  @media screen and (max-width: 1440px) {
-    .income-solver__parameters {
-      width: calc(25% + 52px);
-      max-width: calc(25% + 52px); } }
+  padding: 0;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-bottom: 2rem; }
   .income-solver__parameters-toggle {
     display: none; }
     .income-solver__parameters-toggle:checked + .income-solver__parameters-toggler + .income-solver__parameters {
@@ -17862,12 +18006,95 @@ h6 {
       overflow: hidden; }
   .income-solver__parameters-toggler {
     background-color: #F4562A; }
+  .income-solver__parameters > fieldset {
+    position: relative !important;
+    padding: 0 1.375rem !important;
+    margin: 0 0.25rem !important;
+    border-color: transparent !important; }
+    .income-solver__parameters > fieldset > legend i {
+      font-size: 2rem;
+      line-height: 2rem;
+      position: relative;
+      margin-top: -8px;
+      top: 3px;
+      padding-right: 0.25rem; }
+    .income-solver__parameters > fieldset > input[type="checkbox"]:checked ~ label:before {
+      content: 'Close'; }
+    .income-solver__parameters > fieldset > input[type="checkbox"]:checked ~ label:after {
+      content: '\f357'; }
+    .income-solver__parameters > fieldset > input[type="checkbox"]:checked ~ label ~ div[class*="__content"] {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all; }
+    .income-solver__parameters > fieldset > input[type="checkbox"] + label {
+      position: absolute;
+      top: -1rem;
+      right: 1.375rem;
+      transform: translateY(-50%);
+      padding: 0.25rem 0.5rem;
+      background-color: #F4562A;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 300; }
+      .income-solver__parameters > fieldset > input[type="checkbox"] + label:before {
+        content: 'Open'; }
+      .income-solver__parameters > fieldset > input[type="checkbox"] + label:after {
+        position: relative;
+        display: inline-block;
+        content: '\f354';
+        font-family: 'Font Awesome 6 Pro', sans-serif;
+        padding-left: 0.375rem;
+        font-weight: bold; }
+    .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"], .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"], .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] {
+      position: absolute;
+      z-index: 200;
+      width: calc(100% - (1.375rem * 2));
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s cubic-bezier(0.95, 0.05, 0.8, 0.04), visibility 0.25s cubic-bezier(0.95, 0.05, 0.8, 0.04); }
+    .income-solver__parameters > fieldset[data-filter-type="income"] {
+      display: flex;
+      width: 25%;
+      min-width: 25%; }
+      .income-solver__parameters > fieldset[data-filter-type="income"] .income__content {
+        flex-direction: row; }
+        .income-solver__parameters > fieldset[data-filter-type="income"] .income__content .form__row {
+          margin-right: 0.5rem; }
+          .income-solver__parameters > fieldset[data-filter-type="income"] .income__content .form__row:last-child, .income-solver__parameters > fieldset[data-filter-type="income"] .income__content .form__row:last-of-type {
+            margin-right: 0; }
+    .income-solver__parameters > fieldset[data-filter-type="client"] {
+      width: 25%;
+      min-width: 25%; }
+      .income-solver__parameters > fieldset[data-filter-type="client"] .form__row:last-child, .income-solver__parameters > fieldset[data-filter-type="client"] .form__row:last-of-type {
+        padding-bottom: 0; }
+      .income-solver__parameters > fieldset[data-filter-type="client"] .form__row fieldset {
+        margin: 0; }
+        .income-solver__parameters > fieldset[data-filter-type="client"] .form__row fieldset legend {
+          font-weight: bold;
+          letter-spacing: -1px;
+          font-size: 1.25rem;
+          line-height: 1.25rem; }
+      .income-solver__parameters > fieldset[data-filter-type="client"] .form__row .form__column:last-child, .income-solver__parameters > fieldset[data-filter-type="client"] .form__row .form__column:last-of-type {
+        padding-right: 0; }
+      .income-solver__parameters > fieldset[data-filter-type="client"] .form__row .form__column label {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0 1rem 0 0; }
+    .income-solver__parameters > fieldset[data-filter-type="filtering"] {
+      width: 100%; }
 
 .income-solver__results {
   width: 100%;
   min-width: 0;
-  padding: 0 2rem;
-  transition: padding 0.25s ease-out; }
+  padding: 0;
+  transition: padding 0.25s cubic-bezier(0.95, 0.05, 0.8, 0.04); }
   .income-solver__results-controls {
     position: sticky;
     width: 100%;

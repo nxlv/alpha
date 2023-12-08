@@ -64,29 +64,11 @@ class Products extends Controller {
         $product_analysis_id = $request->get( 'product', null );
         // $owner_state = $request->get( 'owner_state', null );
 
-        /*
-         *
-         * PARAMETERS AVAILABLE
-         *
-         * id
-         * investment
-         * method
-         * owner_name_first
-         * owner_name_last
-         * owner_birthdate
-         * owner_state
-         * joint_name_first
-         * joint_name_last
-         * joint_birthdate
-         * joint_state
-         *
-         */
-
         if ( !empty( $product_analysis_id ) ) {
             try {
                 $product = Product::with(
                     [
-                        'strategy',
+                        'strategy', 'strategy.rates',
                         'carrier_product', 'carrier_product.carrier', 'carrier_product.ratings',
                         'death_benefit',
                             'death_benefit.meta',
