@@ -56,12 +56,6 @@
                     console.log( '[      END ]', 'Loading of dataset', preload[ counter ].identifier, 'complete!' );
 
                     sets.commit( preload[ counter ].identifier, request.data );
-
-                    switch ( preload[ counter ].identifier ) {
-                        case 'products' :
-                            // TODO: post processing
-                            break;
-                    }
                 }
             }
 

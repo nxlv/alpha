@@ -269,6 +269,32 @@ const globalUtils = {
         return value;
     },
 
+    generate_nonce() {
+        let nonce_length = 12;
+        let result = '';
+        let dictionary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+        for ( let counter = 0; counter < nonce_length; counter++ ) {
+            result += dictionary.charAt( Math.floor( Math.random() * nonce_length ) );
+        }
+
+        return result;
+    },
+
+    verify_nonce(nonce, response) {
+        let valid = false;
+
+        if ( ( response ) && ( response.config ) && ( response.config.data ) ) {
+            let request = JSON.parse( response.config.data );
+
+            if ( ( request ) && ( request.nonce ) ) {
+                valid = request.nonce === nonce;
+            }
+        }
+
+        return valid;
+    },
+
     sanitize_title(title) {
         let slug = '';
 

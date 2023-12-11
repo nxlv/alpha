@@ -169,8 +169,8 @@
 
       span {
         display: inline-block;
-        font-size: 1.75rem;
-        line-height: 1.75rem;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
         border: 1px $color-money solid;
         color: $color-money;
         padding: 0.75rem 1rem 0.5rem 1rem;
@@ -178,6 +178,7 @@
         position: relative;
         top: -0.375rem;
         margin: 0 0 0 1rem;
+        letter-spacing: -1px;
       }
     }
 
@@ -203,13 +204,8 @@
     width: 100%;
     padding-left: calc(250px + 2rem);
 
-    &-carrier,
-    &-options,
-    &-illustration {
+    & > [data-type] {
       width: 100%;
-    }
-
-    &-options {
     }
 
     &-illustration {
@@ -367,6 +363,12 @@
       &[data-type='withdrawals'] {
         &:before {
           content: '\f53d';
+        }
+      }
+
+      &[data-type='highlights'] {
+        &:before {
+          content: '\f762';
         }
       }
 

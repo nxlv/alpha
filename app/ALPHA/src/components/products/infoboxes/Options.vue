@@ -1,6 +1,6 @@
 <template>
     <div class="infobox options" v-if="profile">
-        <h3>Index Allocation Options</h3>
+        <h3>Allocation Options</h3>
 
         <div class="options__details">
             <table class="table-default options__details-table">

@@ -18,7 +18,7 @@
         public static $indexes = [];
 
         public static function identify_products( $params_strategy = [], $params_rate = [], $annuitant = [], $parameters = [], $inventory = [] ) {
-            $products = [];
+            $products = false;
 
             foreach ( $params_strategy as $param_key => $param_value ) {
                 if ( !empty( $params_strategy[ $param_key ] ) ) {
@@ -44,13 +44,13 @@
                 $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', $inventory )->get()->pluck( 'product_instance_id' )->toArray() );
             } else if ( !empty( $parameters[ 'carrier' ] ) ) {
                 // restrict to carrier inventory
-                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', CarriersProduct::whereIn( 'carrier_id', $parameters[ 'carrier_id' ] )->get()->pluck( 'product_id' )->toArray() )->get()->pluck( 'product_instance_id' )->toArray() );
+                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', CarriersProduct::whereIn( 'carrier_id', $parameters[ 'carrier' ] )->get()->pluck( 'product_id' )->toArray() )->get()->pluck( 'product_instance_id' )->toArray() );
             }
 
             // index
             if ( !empty( $parameters[ 'index' ] ) ) {
                 // restrict to index
-                $strategies->where( 'index_id', $parameters[ 'index' ] );
+                $strategies->whereIn( 'index_id', $parameters[ 'index' ] );
             }
 
             $strategies = $strategies->get();
@@ -84,25 +84,10 @@
         }
 
         public static function compare_products( $analysis_ids, $annuitant, $parameters ) {
-            $matches = [];
+            $matches = false;
 
             if ( !empty( $analysis_ids ) ) {
-                $analyses = Product::whereIn( 'analysis_data_id', $analysis_ids )->get();
-
-                $matches = ProductsInstancesStrategiesRate::with(
-                    'strategy',
-                    'strategy.instances',
-                    'strategy.instances.product',
-                    'strategy.instances.product.carrier',
-                    'strategy.instances.product.carrier.ratings'
-                )
-                    ->whereIn( 'instance_id', $analyses->pluck( 'strategy_rate_instance_id' ) );
-
-                $matches = $matches->get();
-            }
-
-            if ( !empty( $matches ) ) {
-                $matches = self::enumerate_products( $matches, $annuitant, $parameters, $analysis_ids );
+                $matches = Product::whereIn( 'analysis_data_id', $analysis_ids )->get();
             }
 
             return $matches;

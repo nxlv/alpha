@@ -14894,7 +14894,7 @@ main article {
     main article .alpha__modal .form__buttons-column label,
     main article .form__buttons-column label {
       background-color: #fff;
-      padding: 0.75rem 1.25rem;
+      padding: 1rem 1.25rem;
       border: 1px #000 solid;
       cursor: pointer;
       text-align: left;
@@ -14903,8 +14903,7 @@ main article {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      justify-content: center;
-      min-height: 58px; }
+      justify-content: center; }
       main article .alpha__modal .form__buttons-column label small,
       main article .form__buttons-column label small {
         display: block;
@@ -14945,6 +14944,32 @@ main article {
     .income-solver main article .income-solver__fetch-button:active {
       background-color: #fff;
       color: #152935; }
+  main article .infotable__row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap; }
+    main article .infotable__row .infotable__label {
+      width: 250px;
+      min-height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: #ddd;
+      font-size: 1.125rem;
+      line-height: 1.125rem;
+      padding: 1rem;
+      font-weight: 300;
+      border-bottom: 1px #fff solid; }
+    main article .infotable__row .infotable__value {
+      width: 100%;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 1.25rem;
+      line-height: 1.25rem;
+      border-bottom: 1px #fff solid;
+      background-color: #efefef; }
 
 /* TODO: Refactor into SCSS */
 input[type=range] {
@@ -17341,15 +17366,16 @@ h6 {
       padding: 0; }
       .strategy__header h4 span {
         display: inline-block;
-        font-size: 1.75rem;
-        line-height: 1.75rem;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
         border: 1px #238c00 solid;
         color: #238c00;
         padding: 0.75rem 1rem 0.5rem 1rem;
         font-weight: 400;
         position: relative;
         top: -0.375rem;
-        margin: 0 0 0 1rem; }
+        margin: 0 0 0 1rem;
+        letter-spacing: -1px; }
     .strategy__header h5 {
       font-weight: normal;
       letter-spacing: -2px;
@@ -17366,7 +17392,7 @@ h6 {
     flex-wrap: nowrap;
     width: 100%;
     padding-left: calc(250px + 2rem); }
-    .strategy__details-carrier, .strategy__details-options, .strategy__details-illustration {
+    .strategy__details > [data-type] {
       width: 100%; }
     .strategy__details-illustration .illustration {
       padding: 0 1rem;
@@ -17465,6 +17491,8 @@ h6 {
         content: '\f02d'; }
       .strategy__menu-item[data-type='withdrawals']:before {
         content: '\f53d'; }
+      .strategy__menu-item[data-type='highlights']:before {
+        content: '\f762'; }
       .strategy__menu-item span {
         display: block;
         font-size: 1.25rem;
@@ -17482,7 +17510,8 @@ h6 {
   overflow-x: scroll; }
 
 .income-solver[data-mode="comparison"] .result__card {
-  max-width: calc(25% - 0.75rem);
+  width: calc(25% - 0.75rem);
+  min-width: calc(25% - 0.75rem);
   margin-right: 1rem;
   padding: 0.75rem; }
   .income-solver[data-mode="comparison"] .result__card-strategies {
@@ -17523,7 +17552,8 @@ h6 {
         font-size: 1rem;
         line-height: 1rem;
         margin-bottom: 1rem;
-        white-space: normal; }
+        white-space: normal;
+        padding-right: 0.25rem; }
   .income-solver[data-mode="comparison"] .result__card-title {
     padding: 5rem 0 0 0;
     flex-direction: column; }
@@ -17549,7 +17579,15 @@ h6 {
         font-weight: normal;
         font-size: 1rem;
         line-height: 1.25rem;
-        margin-top: 0.75rem; }
+        margin-top: 0.75rem;
+        margin-left: auto;
+        margin-right: auto;
+        height: 2rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        display: block; }
     .income-solver[data-mode="comparison"] .result__card-title-comparison {
       position: absolute;
       top: 0;
@@ -17581,315 +17619,373 @@ h6 {
       .income-solver[data-mode="comparison"] .result__card-title-ratings-rating {
         margin: 0 0.25rem 0; }
 
-.result__immediate {
-  display: flex;
-  flex-direction: row;
-  border: 1px #000 dotted;
-  margin: 0 0 1rem 0;
-  padding: 0.75rem 1.5rem; }
-  .result__immediate-logo {
-    width: 120px;
-    height: auto;
-    min-width: 120px;
-    max-width: 120px;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    mix-blend-mode: multiply; }
-    .result__immediate-logo[data-carrier-name="AIG"] {
-      background-image: url(../images/logos/carriers/aig.png); }
-    .result__immediate-logo[data-carrier-name*="Allianz"] {
-      background-image: url(../images/logos/carriers/allianz.png); }
-    .result__immediate-logo[data-carrier-name*="American Equity"] {
-      background-image: url(../images/logos/carriers/american-equity.jpg); }
-    .result__immediate-logo[data-carrier-name*="American National"] {
-      background-image: url(../images/logos/carriers/american-national.png); }
-    .result__immediate-logo[data-carrier-name*="Athene"] {
-      background-image: url(../images/logos/carriers/athene.jpg); }
-    .result__immediate-logo[data-carrier-name*="Delaware Life"] {
-      background-image: url(../images/logos/carriers/delaware-life.png); }
-    .result__immediate-logo[data-carrier-name*="Fidelity"] {
-      background-image: url(../images/logos/carriers/fidelity-and-guaranty.svg); }
-    .result__immediate-logo[data-carrier-name*="Global Atlantic"] {
-      background-image: url(../images/logos/carriers/global-atlantic.jpg); }
-    .result__immediate-logo[data-carrier-name*="MassMutual"] {
-      background-image: url(../images/logos/carriers/massmutualascend-logo.svg); }
-    .result__immediate-logo[data-carrier-name*="Midland"] {
-      background-image: url(../images/logos/carriers/midland-national.png); }
-    .result__immediate-logo[data-carrier-name*="Minnesota Life"] {
-      background-image: url(../images/logos/carriers/minnesota-life.svg); }
-    .result__immediate-logo[data-carrier-name*="North American Company"] {
-      background-image: url(../images/logos/carriers/north-american-company-for-life.jpg); }
-    .result__immediate-logo[data-carrier-name*="Protective Life"] {
-      background-image: url(../images/logos/carriers/protective-life.jpg); }
-    .result__immediate-logo[data-carrier-name*="Reliance Standard"] {
-      background-image: url(../images/logos/carriers/reliance-standard.png); }
-    .result__immediate-logo[data-carrier-name*="The Standard"] {
-      background-image: url(../images/logos/carriers/the-standard.svg); }
-    .result__immediate-logo img {
-      display: none; }
-  .result__immediate-details {
-    padding: 0 1rem 0;
-    border-left: 1px #000 dotted;
-    margin: 0 0 0 1rem; }
-    .result__immediate-details h4 {
-      background-color: #152935;
-      padding: 0.75rem 1rem 0.5rem 1rem;
-      margin: 0 0 1rem -1rem;
+.income-solver__results {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  transition: padding 0.25s cubic-bezier(0.95, 0.05, 0.8, 0.04); }
+  .income-solver__results-controls {
+    position: sticky;
+    width: 100%;
+    left: 0;
+    top: 175px;
+    z-index: 10;
+    background-color: #E8E5DA;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border-top: 1px #000 solid;
+    border-bottom: 1px #000 solid;
+    margin-bottom: 4rem; }
+    .income-solver__results-controls .form__row .form__column > label[for="deferral"] {
       font-size: 1.5rem;
       line-height: 1.5rem;
-      font-weight: 500;
-      letter-spacing: -1px;
-      color: #fff; }
-    .result__immediate-details h5 {
-      margin: 0 0 1rem 0;
-      padding: 0;
-      font-size: 1rem;
-      line-height: 1rem;
-      font-weight: 300; }
-    .result__immediate-details-wrapper {
-      display: flex; }
-    .result__immediate-details-financials {
-      display: flex;
-      flex-direction: row; }
-      .result__immediate-details-financials-item {
-        background-color: green;
+      border-bottom: none;
+      margin: 0; }
+      .income-solver__results-controls .form__row .form__column > label[for="deferral"] strong {
+        background-color: #F4562A;
         color: #fff;
-        padding: 0.75rem 1rem 0.5rem 1rem;
-        font-size: 1.375rem;
-        line-height: 1.375rem;
-        font-weight: bold;
-        position: relative;
-        margin: 0 0.5rem 0 0;
-        display: flex;
-        align-items: center; }
-        .result__immediate-details-financials-item[data-type="premium"]:after {
-          content: 'Premium'; }
-        .result__immediate-details-financials-item[data-type="tax"]:after {
-          content: 'Tax'; }
-        .result__immediate-details-financials-item[data-type="income"]:after, .result__immediate-details-financials-item[data-type="income"][data-frequency="M"]:after {
-          content: 'Income (monthly)'; }
-        .result__immediate-details-financials-item[data-type="income"][data-frequency="A"]:after {
-          content: 'Income (yearly)'; }
-        .result__immediate-details-financials-item:after {
-          content: '';
-          font-size: 0.75rem;
-          line-height: 0.75rem;
-          font-weight: normal;
-          border: 1px green solid;
-          background-color: #fff;
-          color: #000;
-          text-transform: uppercase;
-          display: inline-block;
-          padding: 0.375rem 0.5rem 0.25rem 0.5rem;
-          transform: translateY(-2px);
-          margin-left: 0.5rem; }
-    .result__immediate-details-actions {
-      display: flex;
-      flex-direction: row;
-      margin-left: 0.5rem;
-      padding-left: 1rem;
-      border-left: 1px #000 dotted; }
-      .result__immediate-details-actions-link {
-        text-decoration: none;
-        color: #000;
-        margin: 0 1rem 0 0;
-        text-align: center;
-        font-size: 0.75rem;
-        line-height: 0.75rem;
-        text-transform: uppercase;
-        font-weight: 500;
-        letter-spacing: -0.5px; }
-        .result__immediate-details-actions-link i {
-          display: block;
-          font-size: 2rem;
-          line-height: 2rem;
-          text-transform: none;
-          margin: 0 0 0.5rem; }
-    .result__immediate-details-notes {
-      margin: 1rem 0 0 0;
-      padding: 0; }
-      .result__immediate-details-notes h6 {
-        font-size: 1rem;
-        line-height: 1rem;
-        display: inline-block;
-        margin: 0.5rem 0 0.75rem -1rem;
-        padding: 0.75rem 1rem 0.5rem 1rem;
-        background-color: #152935;
-        color: #fff;
-        font-weight: normal; }
-      .result__immediate-details-notes ul {
-        margin: 0;
-        padding: 0;
-        list-style: none; }
-        .result__immediate-details-notes ul li {
-          display: block;
-          margin: 0 0 0.5rem 0;
-          padding: 0 0 0 1.25rem;
-          list-style: none;
-          position: relative; }
-          .result__immediate-details-notes ul li:last-child {
-            margin-bottom: 0; }
-          .result__immediate-details-notes ul li:before {
-            position: absolute;
-            top: 0;
-            left: 0;
-            content: '\f054';
-            font-family: 'Font Awesome 6 Pro', sans-serif;
-            font-size: 1rem;
-            line-height: 1rem;
-            width: 1rem; }
-          .result__immediate-details-notes ul li p {
-            font-size: 0.9375rem;
-            line-height: 1.25rem; }
-
-.result__fixed > h4 {
-  background-color: #01A7C2;
-  display: inline-block;
-  color: #fff;
-  padding: 1.5rem 2rem 1rem 2rem;
-  margin: 0 0 1rem -2rem;
-  font-size: 2rem;
-  line-height: 2rem;
-  font-weight: normal;
-  min-width: 40%; }
-  .result__fixed > h4 strong {
-    font-weight: bold;
-    display: block;
-    font-size: 2.5rem;
-    line-height: 2.5rem;
-    letter-spacing: -1px; }
-
-.result__fixed .result__grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin-bottom: 2rem; }
-  .result__fixed .result__grid-illustration {
-    min-width: 80%;
-    width: 80%; }
-    .result__fixed .result__grid-illustration-banner {
-      display: flex;
-      margin: 0 0 1rem 0;
-      background-color: #B8336A;
-      color: #fff;
-      padding: 1rem;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      cursor: pointer; }
-      .result__fixed .result__grid-illustration-banner strong {
-        margin: 0 0.5rem 0 0;
-        border: 1px #fff solid;
-        padding: 0.5rem 0.5rem 0.25rem 0.5rem;
-        font-size: 1.125rem;
-        line-height: 1.125rem; }
-      .result__fixed .result__grid-illustration-banner i {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 2rem;
-        display: flex;
-        align-items: center;
-        font-size: 1.5rem;
-        line-height: 1.5rem; }
-    .result__fixed .result__grid-illustration-inner {
-      width: 100%;
-      height: 100%;
-      padding: 1rem;
-      border: 1px #aaa solid;
-      background-color: #fff;
-      position: relative;
-      max-height: 500px;
-      overflow-y: auto; }
-      .result__fixed .result__grid-illustration-inner table {
-        width: 100%;
-        height: auto;
-        border: 1px #aaa solid; }
-        .result__fixed .result__grid-illustration-inner table thead tr th {
-          background-color: #152935;
-          color: #fff;
-          font-size: 0.75rem;
-          line-height: 0.75rem;
-          text-transform: uppercase;
-          padding: 0.5rem 0.5rem 0.375rem 0.5rem;
-          border-right: 1px #fff solid;
-          letter-spacing: 1px; }
-        .result__fixed .result__grid-illustration-inner table tbody tr:nth-child(2n) {
-          background-color: #eee; }
-        .result__fixed .result__grid-illustration-inner table tbody tr[data-has-income="false"] td[data-type="income"] {
-          background-color: inherit !important;
-          color: inherit !important;
-          font-weight: normal; }
-        .result__fixed .result__grid-illustration-inner table tbody tr td {
-          border-right: 1px #152935 solid;
-          padding: 0.5rem 0.5rem 0.375rem 0.5rem;
-          text-align: center;
-          font-size: 0.875rem;
-          line-height: 0.875rem;
-          border-bottom: 1px #152935 solid; }
-          .result__fixed .result__grid-illustration-inner table tbody tr td[data-type="income"] {
-            background-color: #152935;
-            color: #fff;
-            font-weight: bold; }
-  .result__fixed .result__grid-cta {
-    width: 20%;
-    min-width: 20%;
-    margin-right: 1rem; }
-    .result__fixed .result__grid-cta-financials {
+        padding: 0.5rem 0.5rem 0.5rem 0.375rem; }
+    .income-solver__results-controls .form__row .form__column input[type="range"] {
+      margin: 0; }
+    .income-solver__results-controls button {
+      width: auto;
+      min-width: 0;
+      align-self: flex-start;
+      position: absolute;
+      bottom: 0;
+      left: auto;
+      transform: translateY(50%) translateX(-5px);
+      padding: 1.25rem 1rem 1rem 1rem;
+      border: 4px #E8E5DA solid;
       background-color: #152935;
       color: #fff;
-      font-size: 1rem;
-      line-height: 1rem;
-      padding: 1rem;
-      margin: 0 0 1rem 0; }
-      .result__fixed .result__grid-cta-financials span {
-        font-size: 0.9375rem;
-        line-height: 0.9375rem;
-        color: #E8E5DA; }
-        .result__fixed .result__grid-cta-financials span.money {
-          display: block;
-          font-size: 2rem;
-          line-height: 2rem;
-          font-weight: bold;
-          padding-bottom: 0.25rem;
-          letter-spacing: -1px;
-          color: #fff; }
-    .result__fixed .result__grid-cta-info {
-      background-color: #fff;
-      border: 1px #aaa solid;
-      padding: 1rem; }
-      .result__fixed .result__grid-cta-info h5 {
+      font-family: 'Ofelia Display', 'ofelia-display', sans-serif;
+      font-weight: normal;
+      font-size: 0.9375rem;
+      line-height: 0.9375rem;
+      cursor: pointer; }
+      .income-solver__results-controls button:hover, .income-solver__results-controls button:active, .income-solver__results-controls button:focus {
+        background-color: #01A7C2;
+        border-color: #E8E5DA; }
+      .income-solver__results-controls button span {
+        position: relative;
+        padding-left: 2.25rem; }
+        .income-solver__results-controls button span i {
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+          position: absolute;
+          top: -3px;
+          left: 0;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center; }
+  .income-solver__results .result__immediate {
+    display: flex;
+    flex-direction: row;
+    border: 1px #000 dotted;
+    margin: 0 0 1rem 0;
+    padding: 0.75rem 1.5rem; }
+    .income-solver__results .result__immediate-logo {
+      width: 120px;
+      height: auto;
+      min-width: 120px;
+      max-width: 120px;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      mix-blend-mode: multiply; }
+      .income-solver__results .result__immediate-logo[data-carrier-name="AIG"] {
+        background-image: url(../images/logos/carriers/aig.png); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Allianz"] {
+        background-image: url(../images/logos/carriers/allianz.png); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="American Equity"] {
+        background-image: url(../images/logos/carriers/american-equity.jpg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="American National"] {
+        background-image: url(../images/logos/carriers/american-national.png); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Athene"] {
+        background-image: url(../images/logos/carriers/athene.jpg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Delaware Life"] {
+        background-image: url(../images/logos/carriers/delaware-life.png); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Fidelity"] {
+        background-image: url(../images/logos/carriers/fidelity-and-guaranty.svg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Global Atlantic"] {
+        background-image: url(../images/logos/carriers/global-atlantic.jpg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="MassMutual"] {
+        background-image: url(../images/logos/carriers/massmutualascend-logo.svg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Midland"] {
+        background-image: url(../images/logos/carriers/midland-national.png); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Minnesota Life"] {
+        background-image: url(../images/logos/carriers/minnesota-life.svg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="North American Company"] {
+        background-image: url(../images/logos/carriers/north-american-company-for-life.jpg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Protective Life"] {
+        background-image: url(../images/logos/carriers/protective-life.jpg); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="Reliance Standard"] {
+        background-image: url(../images/logos/carriers/reliance-standard.png); }
+      .income-solver__results .result__immediate-logo[data-carrier-name*="The Standard"] {
+        background-image: url(../images/logos/carriers/the-standard.svg); }
+      .income-solver__results .result__immediate-logo img {
+        display: none; }
+    .income-solver__results .result__immediate-details {
+      padding: 0 1rem 0;
+      border-left: 1px #000 dotted;
+      margin: 0 0 0 1rem; }
+      .income-solver__results .result__immediate-details h4 {
+        background-color: #152935;
+        padding: 0.75rem 1rem 0.5rem 1rem;
+        margin: 0 0 1rem -1rem;
         font-size: 1.5rem;
         line-height: 1.5rem;
-        letter-spacing: -0.5px;
+        font-weight: 500;
+        letter-spacing: -1px;
+        color: #fff; }
+      .income-solver__results .result__immediate-details h5 {
         margin: 0 0 1rem 0;
-        padding: 0; }
-      .result__fixed .result__grid-cta-info p {
+        padding: 0;
         font-size: 1rem;
-        line-height: 1.25rem;
-        margin: 0;
-        padding: 0 0 1rem 0; }
-      .result__fixed .result__grid-cta-info dl {
-        display: block;
-        list-style: none;
-        margin: 0;
-        padding: 0; }
-        .result__fixed .result__grid-cta-info dl dt {
-          display: block;
-          color: #000;
+        line-height: 1rem;
+        font-weight: 300; }
+      .income-solver__results .result__immediate-details-wrapper {
+        display: flex; }
+      .income-solver__results .result__immediate-details-financials {
+        display: flex;
+        flex-direction: row; }
+        .income-solver__results .result__immediate-details-financials-item {
+          background-color: green;
+          color: #fff;
+          padding: 0.75rem 1rem 0.5rem 1rem;
+          font-size: 1.375rem;
+          line-height: 1.375rem;
           font-weight: bold;
+          position: relative;
+          margin: 0 0.5rem 0 0;
+          display: flex;
+          align-items: center; }
+          .income-solver__results .result__immediate-details-financials-item[data-type="premium"]:after {
+            content: 'Premium'; }
+          .income-solver__results .result__immediate-details-financials-item[data-type="tax"]:after {
+            content: 'Tax'; }
+          .income-solver__results .result__immediate-details-financials-item[data-type="income"]:after, .income-solver__results .result__immediate-details-financials-item[data-type="income"][data-frequency="M"]:after {
+            content: 'Income (monthly)'; }
+          .income-solver__results .result__immediate-details-financials-item[data-type="income"][data-frequency="A"]:after {
+            content: 'Income (yearly)'; }
+          .income-solver__results .result__immediate-details-financials-item:after {
+            content: '';
+            font-size: 0.75rem;
+            line-height: 0.75rem;
+            font-weight: normal;
+            border: 1px green solid;
+            background-color: #fff;
+            color: #000;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 0.375rem 0.5rem 0.25rem 0.5rem;
+            transform: translateY(-2px);
+            margin-left: 0.5rem; }
+      .income-solver__results .result__immediate-details-actions {
+        display: flex;
+        flex-direction: row;
+        margin-left: 0.5rem;
+        padding-left: 1rem;
+        border-left: 1px #000 dotted; }
+        .income-solver__results .result__immediate-details-actions-link {
+          text-decoration: none;
+          color: #000;
+          margin: 0 1rem 0 0;
+          text-align: center;
+          font-size: 0.75rem;
+          line-height: 0.75rem;
+          text-transform: uppercase;
+          font-weight: 500;
+          letter-spacing: -0.5px; }
+          .income-solver__results .result__immediate-details-actions-link i {
+            display: block;
+            font-size: 2rem;
+            line-height: 2rem;
+            text-transform: none;
+            margin: 0 0 0.5rem; }
+      .income-solver__results .result__immediate-details-notes {
+        margin: 1rem 0 0 0;
+        padding: 0; }
+        .income-solver__results .result__immediate-details-notes h6 {
           font-size: 1rem;
           line-height: 1rem;
-          padding: 0 0 0.25rem 0; }
-        .result__fixed .result__grid-cta-info dl dd {
-          color: #aaa;
-          font-size: 0.875rem;
-          line-height: 0.875rem;
-          padding: 0 0 0.75rem 0; }
-          .result__fixed .result__grid-cta-info dl dd:empty {
-            content: '\2012\2012'; }
+          display: inline-block;
+          margin: 0.5rem 0 0.75rem -1rem;
+          padding: 0.75rem 1rem 0.5rem 1rem;
+          background-color: #152935;
+          color: #fff;
+          font-weight: normal; }
+        .income-solver__results .result__immediate-details-notes ul {
+          margin: 0;
+          padding: 0;
+          list-style: none; }
+          .income-solver__results .result__immediate-details-notes ul li {
+            display: block;
+            margin: 0 0 0.5rem 0;
+            padding: 0 0 0 1.25rem;
+            list-style: none;
+            position: relative; }
+            .income-solver__results .result__immediate-details-notes ul li:last-child {
+              margin-bottom: 0; }
+            .income-solver__results .result__immediate-details-notes ul li:before {
+              position: absolute;
+              top: 0;
+              left: 0;
+              content: '\f054';
+              font-family: 'Font Awesome 6 Pro', sans-serif;
+              font-size: 1rem;
+              line-height: 1rem;
+              width: 1rem; }
+            .income-solver__results .result__immediate-details-notes ul li p {
+              font-size: 0.9375rem;
+              line-height: 1.25rem; }
+  .income-solver__results .result__fixed > h4 {
+    background-color: #01A7C2;
+    display: inline-block;
+    color: #fff;
+    padding: 1.5rem 2rem 1rem 2rem;
+    margin: 0 0 1rem -2rem;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: normal;
+    min-width: 40%; }
+    .income-solver__results .result__fixed > h4 strong {
+      font-weight: bold;
+      display: block;
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+      letter-spacing: -1px; }
+  .income-solver__results .result__fixed .result__grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 2rem; }
+    .income-solver__results .result__fixed .result__grid-illustration {
+      min-width: 80%;
+      width: 80%; }
+      .income-solver__results .result__fixed .result__grid-illustration-banner {
+        display: flex;
+        margin: 0 0 1rem 0;
+        background-color: #B8336A;
+        color: #fff;
+        padding: 1rem;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+        cursor: pointer; }
+        .income-solver__results .result__fixed .result__grid-illustration-banner strong {
+          margin: 0 0.5rem 0 0;
+          border: 1px #fff solid;
+          padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+          font-size: 1.125rem;
+          line-height: 1.125rem; }
+        .income-solver__results .result__fixed .result__grid-illustration-banner i {
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 100%;
+          width: 2rem;
+          display: flex;
+          align-items: center;
+          font-size: 1.5rem;
+          line-height: 1.5rem; }
+      .income-solver__results .result__fixed .result__grid-illustration-inner {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        border: 1px #aaa solid;
+        background-color: #fff;
+        position: relative;
+        max-height: 500px;
+        overflow-y: auto; }
+        .income-solver__results .result__fixed .result__grid-illustration-inner table {
+          width: 100%;
+          height: auto;
+          border: 1px #aaa solid; }
+          .income-solver__results .result__fixed .result__grid-illustration-inner table thead tr th {
+            background-color: #152935;
+            color: #fff;
+            font-size: 0.75rem;
+            line-height: 0.75rem;
+            text-transform: uppercase;
+            padding: 0.5rem 0.5rem 0.375rem 0.5rem;
+            border-right: 1px #fff solid;
+            letter-spacing: 1px; }
+          .income-solver__results .result__fixed .result__grid-illustration-inner table tbody tr:nth-child(2n) {
+            background-color: #eee; }
+          .income-solver__results .result__fixed .result__grid-illustration-inner table tbody tr[data-has-income="false"] td[data-type="income"] {
+            background-color: inherit !important;
+            color: inherit !important;
+            font-weight: normal; }
+          .income-solver__results .result__fixed .result__grid-illustration-inner table tbody tr td {
+            border-right: 1px #152935 solid;
+            padding: 0.5rem 0.5rem 0.375rem 0.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            line-height: 0.875rem;
+            border-bottom: 1px #152935 solid; }
+            .income-solver__results .result__fixed .result__grid-illustration-inner table tbody tr td[data-type="income"] {
+              background-color: #152935;
+              color: #fff;
+              font-weight: bold; }
+    .income-solver__results .result__fixed .result__grid-cta {
+      width: 20%;
+      min-width: 20%;
+      margin-right: 1rem; }
+      .income-solver__results .result__fixed .result__grid-cta-financials {
+        background-color: #152935;
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1rem;
+        padding: 1rem;
+        margin: 0 0 1rem 0; }
+        .income-solver__results .result__fixed .result__grid-cta-financials span {
+          font-size: 0.9375rem;
+          line-height: 0.9375rem;
+          color: #E8E5DA; }
+          .income-solver__results .result__fixed .result__grid-cta-financials span.money {
+            display: block;
+            font-size: 2rem;
+            line-height: 2rem;
+            font-weight: bold;
+            padding-bottom: 0.25rem;
+            letter-spacing: -1px;
+            color: #fff; }
+      .income-solver__results .result__fixed .result__grid-cta-info {
+        background-color: #fff;
+        border: 1px #aaa solid;
+        padding: 1rem; }
+        .income-solver__results .result__fixed .result__grid-cta-info h5 {
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+          letter-spacing: -0.5px;
+          margin: 0 0 1rem 0;
+          padding: 0; }
+        .income-solver__results .result__fixed .result__grid-cta-info p {
+          font-size: 1rem;
+          line-height: 1.25rem;
+          margin: 0;
+          padding: 0 0 1rem 0; }
+        .income-solver__results .result__fixed .result__grid-cta-info dl {
+          display: block;
+          list-style: none;
+          margin: 0;
+          padding: 0; }
+          .income-solver__results .result__fixed .result__grid-cta-info dl dt {
+            display: block;
+            color: #000;
+            font-weight: bold;
+            font-size: 1rem;
+            line-height: 1rem;
+            padding: 0 0 0.25rem 0; }
+          .income-solver__results .result__fixed .result__grid-cta-info dl dd {
+            color: #aaa;
+            font-size: 0.875rem;
+            line-height: 0.875rem;
+            padding: 0 0 0.75rem 0; }
+            .income-solver__results .result__fixed .result__grid-cta-info dl dd:empty {
+              content: '\2012\2012'; }
 
 .income-solver .income-solver__fetch-button {
   margin-bottom: 1.5rem !important;
@@ -17997,7 +18093,7 @@ h6 {
   display: flex;
   flex-direction: row;
   position: relative;
-  margin-bottom: 2rem; }
+  margin-bottom: 1.5rem; }
   .income-solver__parameters-toggle {
     display: none; }
     .income-solver__parameters-toggle:checked + .income-solver__parameters-toggler + .income-solver__parameters {
@@ -18058,6 +18154,28 @@ h6 {
       visibility: hidden;
       pointer-events: none;
       transition: opacity 0.25s cubic-bezier(0.95, 0.05, 0.8, 0.04), visibility 0.25s cubic-bezier(0.95, 0.05, 0.8, 0.04); }
+      .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"] fieldset, .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"] fieldset, .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] fieldset {
+        position: relative; }
+        .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"] fieldset legend, .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"] fieldset legend, .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] fieldset legend {
+          color: #F4562A; }
+          .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"] fieldset legend .form__action--inline, .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"] fieldset legend .form__action--inline, .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] fieldset legend .form__action--inline {
+            display: block;
+            position: absolute;
+            right: 1.5rem;
+            top: auto;
+            transform: translateY(-100%);
+            font-size: 1rem;
+            line-height: 1rem;
+            text-decoration: none;
+            padding: 0.5rem 0.5rem 0.375rem 0.5rem;
+            background-color: #fff;
+            margin-top: 0.375rem;
+            cursor: pointer; }
+            .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"] fieldset legend .form__action--inline:hover, .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"] fieldset legend .form__action--inline:active, .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"] fieldset legend .form__action--inline:focus, .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"] fieldset legend .form__action--inline:hover, .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"] fieldset legend .form__action--inline:active, .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"] fieldset legend .form__action--inline:focus, .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] fieldset legend .form__action--inline:hover, .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] fieldset legend .form__action--inline:active, .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] fieldset legend .form__action--inline:focus {
+              background-color: #F4562A;
+              color: #fff; }
+        .income-solver__parameters > fieldset[data-filter-type="income"] > [class*="__content"] fieldset .form__row .form__column fieldset, .income-solver__parameters > fieldset[data-filter-type="client"] > [class*="__content"] fieldset .form__row .form__column fieldset, .income-solver__parameters > fieldset[data-filter-type="filtering"] > [class*="__content"] fieldset .form__row .form__column fieldset {
+          padding: 0.75rem 1rem; }
     .income-solver__parameters > fieldset[data-filter-type="income"] {
       display: flex;
       width: 25%;
@@ -18090,30 +18208,7 @@ h6 {
     .income-solver__parameters > fieldset[data-filter-type="filtering"] {
       width: 100%; }
 
-.income-solver__results {
-  width: 100%;
-  min-width: 0;
-  padding: 0;
-  transition: padding 0.25s cubic-bezier(0.95, 0.05, 0.8, 0.04); }
-  .income-solver__results-controls {
-    position: sticky;
-    width: 100%;
-    left: 0;
-    top: 175px;
-    z-index: 10;
-    background-color: #E8E5DA;
-    padding: 1.5rem 0 1rem 0;
-    border-top: 1px #000 solid;
-    border-bottom: 1px #000 solid;
-    margin-bottom: 2rem; }
-    .income-solver__results-controls .form__row .form__column > label[for="deferral"] {
-      font-size: 1.5rem;
-      line-height: 1.5rem;
-      border-bottom: none;
-      margin: 0; }
-      .income-solver__results-controls .form__row .form__column > label[for="deferral"] strong {
-        background-color: orange;
-        color: #fff;
-        padding: 0.5rem 0.5rem 0.5rem 0.375rem; }
-    .income-solver__results-controls .form__row .form__column input[type="range"] {
-      margin: 0; }
+.multiselect {
+  --ms-max-height: 24rem; }
+  .multiselect-dropdown {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.25); }

@@ -47,15 +47,17 @@ class Quoting extends Controller {
             'method' => $method,
             'premium' => $premium,
             'income' => $income,
-            'index_id' => $request->get( 'index' ),
-            'carrier_id' => $request->get( 'carrier' )
+            'index' => $request->get( 'index' ),
+            'carrier' => $request->get( 'carrier' )
         ];
+
+        $hash = null;
 
         /*
          * Identify products
          */
         if ( !empty( $comparisons = $request->get( 'comparisons' ) ) ) {
-            //$matches = ProductHelper::compare_products( $comparisons, $annuitant, $parameters );
+            $matches = ProductHelper::compare_products( $comparisons, $annuitant, $parameters );
         } else {
             $hash = 'alpha__fia-guaranteed-products-' . crc32( $method . '|' . $premium . '|' . $offset . '|' . $chunk_size ) . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $inventory ) );
 
@@ -78,37 +80,40 @@ class Quoting extends Controller {
                     $parameters,
                     $inventory
                 );
+            }
+        }
 
-                if ( $matches->count() ) {
-                    // TODO: Do we even need to query the Guaranteed Cache?  Review and see
-                    $products = AnalysisGuaranteedCache::with(
-                            [
-                                'analysis.carrier_product',
-                                'analysis.carrier_product.carrier',
-                                'analysis.carrier_product.carrier.ratings',
-                                'analysis.strategy',
-                                'analysis.strategy.rates',
-                                'analysis.income_benefit',
-                                'analysis.income_benefit.rider_fee_current',
-                                'analysis.income_benefit.income_start_age',
-                                'analysis.income_benefit.premium_multiplier',
-                                'analysis.income_benefit.premium_bonus',
-                                'analysis.income_benefit.roll_up',
-                                'analysis.income_benefit.step_up',
-                            ]
-                        )
-                        ->whereIn( 'analysis_data_id', $matches->pluck( 'analysis_data_id' )->toArray() )
-                        ->where( 'purchase_age', 65 )
-                        ->where( 'deferral', 10 )
-                        ->where( 'premium', 100 )
-                        ->where( 'is_joint', ( ( $annuitant[ 'annuity_type' ] === 'J' ) ? true : false ) )
-                        ->orderBy( 'income_initial', 'desc' )
-                        ->offset( $offset )
-                        ->limit( $chunk_size )
-                        ->get();
+        if ( ( !$products ) && ( $matches ) && ( $matches->count() ) ) {
+            // TODO: Do we even need to query the Guaranteed Cache?  Review and see
+            // Update: We do since we are using this to sort by highest -> lowest income based on logged guaranteed incomes
+            $products = AnalysisGuaranteedCache::with(
+                    [
+                        'analysis.carrier_product',
+                        'analysis.carrier_product.carrier',
+                        'analysis.carrier_product.carrier.ratings',
+                        'analysis.strategy',
+                        'analysis.strategy.rates',
+                        'analysis.income_benefit',
+                        'analysis.income_benefit.rider_fee_current',
+                        'analysis.income_benefit.income_start_age',
+                        'analysis.income_benefit.premium_multiplier',
+                        'analysis.income_benefit.premium_bonus',
+                        'analysis.income_benefit.roll_up',
+                        'analysis.income_benefit.step_up',
+                    ]
+                )
+                ->whereIn( 'analysis_data_id', $matches->pluck( 'analysis_data_id' )->toArray() )
+                ->where( 'purchase_age', 65 )
+                ->where( 'deferral', 10 )
+                ->where( 'premium', 100 )
+                ->where( 'is_joint', ( ( $annuitant[ 'annuity_type' ] === 'J' ) ? true : false ) )
+                ->orderBy( 'income_initial', 'desc' )
+                ->offset( $offset )
+                ->limit( $chunk_size )
+                ->get();
 
-                    Cache::add( $hash, $products, ( 60 * 10 ) );    // 10 minutes
-                }
+            if ( $hash ) {
+                Cache::add( $hash, $products, ( 60 * 10 ) );    // 10 minutes
             }
         }
 

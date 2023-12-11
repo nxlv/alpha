@@ -8,6 +8,7 @@
 
     import Infobox_IncomeBenefits from '@/components/products/infoboxes/IncomeBenefit.vue';
     import Infobox_DeathBenefits from '@/components/products/infoboxes/DeathBenefit.vue';
+    import Infobox_Highlights from '@/components/products/infoboxes/Highlights.vue';
     import Infobox_Illustration from '@/components/products/infoboxes/Illustration.vue';
     import Infobox_Rules from '@/components/products/infoboxes/Rules.vue';
     import Infobox_Withdrawals from '@/components/products/infoboxes/Withdrawals.vue';
@@ -25,6 +26,7 @@
 
             Infobox_IncomeBenefits,
             Infobox_DeathBenefits,
+            Infobox_Highlights,
             Infobox_Illustration,
             Infobox_Rules,
             Infobox_Withdrawals,
@@ -43,22 +45,33 @@
 
                 this.aborters.requests.abort();
 
-                let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
-
+                this.nonce = this.$globalUtils.generate_nonce();
                 this.errors = null;
                 this.loading = true;
 
                 this.selections.method = this.parameters.method;
                 this.selections.offset = 0;
 
+                this.selections.comparison = [];
+
+                let endpoint = '/api/quoting/get/fixed';
+                let settings = { ...this.parameters, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
+
                 if ( this.mode === 'comparison' ) {
-                    settings = { ...settings, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, comparisons: this.selections.comparison };
+                    settings = { ...settings, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), offset: this.selections.offset, chunk_size: this.parameters.chunk_size, comparisons: this.selections.comparison };
                 }
 
                 clearTimeout( this.timers.populator );
 
                 let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+
+                /*
+                if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
+                    this.loading = false;
+
+                    return;
+                }
+                */
 
                 this.parameters.searched = true;
 
@@ -77,13 +90,21 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/guaranteed';
-                let settings = { products: [], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: inputs.parameters };
+                let settings = { products: [], nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: inputs.parameters };
 
                 for ( let counter = 0; counter < inputs.products.length; counter++ ) {
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
                 }
 
                 let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+
+                /*
+                if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
+                    this.loading = false;
+
+                    return;
+                }
+                */
 
                 if ( ( request ) && ( request.data ) ) {
                     let index, index_inner;
@@ -101,7 +122,7 @@
                 this.sort_results();
 
                 // fetch backtested returns
-                this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
+                //this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
 
                 this.loading = false;
 
@@ -112,13 +133,21 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/chunk/backtested';
-                let settings = { products: [], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: inputs.parameters };
+                let settings = { products: [], nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: inputs.parameters };
 
                 for ( let counter = 0; counter < inputs.products.length; counter++ ) {
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
                 }
 
                 let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+
+                /*
+                if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
+                    this.loading = false;
+
+                    return;
+                }
+                */
 
                 if ( ( request ) && ( request.data ) ) {
                     let index, index_inner, index_income;
@@ -167,9 +196,17 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
+                let settings = { ...this.parameters, nonce: this.nonce, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+
+                /*
+                if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
+                    this.loading = false;
+
+                    return;
+                }
+                */
 
                 if ( ( request ) && ( request.data ) ) {
                     for ( let counter = 0; counter < request.data.length; counter++ ) {
@@ -215,7 +252,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/products/details';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...client.settings, ...{ product: this.selections.product_id }, signal: this.aborters.requests.signal } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...client.settings, product: this.selections.product_id, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -251,7 +288,7 @@
                 switch ( this.selections.method ) {
                     case 'premium' :
                         response.sort( ( left, right ) => {
-                            return ( ( left.quotes.income_data.initial_income > right.quotes.income_data.initial_income ) ? -1 : ( ( left.quotes.income_data.initial_income === right.quotes.income_data.initial_income ) ? 0 : 1 ) );
+                            return ( ( left.income_initial > right.income_initial ) ? -1 : ( ( left.income_initial === right.income_initial ) ? 0 : 1 ) );
                         } );
                         break;
 
@@ -273,7 +310,12 @@
                 clearTimeout( this.timers.refresh );
                 clearTimeout( this.timers.populator );
 
-                this.timers.refresh = setTimeout( () => { this.parameters.deferral = this.parameters.deferral_selected; this.fetch_quote(); }, 175 );
+                this.timers.refresh = setTimeout( () => {
+                    this.parameters.deferral = this.parameters.deferral_selected;
+                    this.nonce = this.$globalUtils.generate_nonce();
+
+                    this.fetch_quote();
+                }, 175 );
             },
 
             set_product( product_id, strategy_premium ) {
@@ -305,26 +347,38 @@
 
             toggle_comparison() {
                 this.mode = ( ( this.mode === 'comparison' ) ? 'normal' : 'comparison' );
+                this.nonce = this.$globalUtils.generate_nonce();
 
                 this.fetch_quote();
             },
 
             set_details_page( page ) {
                 this.selections.details = page;
+            },
+
+            clear_client_overrides( type ) {
+                let key;
+
+                switch ( type ) {
+                    case 'owner' :
+                    case 'joint' :
+                        for ( key in this.parameters.overrides.annuitant ) {
+                            if ( key.indexOf( type + '_' ) > -1 ) {
+                                this.parameters.overrides.annuitant[ key ] = null;
+                            }
+                        }
+                        break;
+
+                    default :
+                        for ( key in this.parameters.overrides.annuitant ) {
+                            this.parameters.overrides.annuitant[ key ] = null;
+                        }
+                        break;
+                }
             }
         },
         created() {
             const client = useClientStore();
-
-            if ( client.settings.annuity_investment ) {
-                console.log( 'Client Override -- setting premium ', client.settings.annuity_investment );
-                this.parameters.premium = client.settings.annuity_investment;
-            }
-
-            if ( client.settings.owner_state ) {
-                console.log( 'Client Override -- setting owner state to ', client.settings.owner_state );
-                this.parameters.state = client.settings.owner_state;
-            }
 
             this.$emitter.on( 'set_product_id', this.replace_product );
             this.$emitter.on( 'fetch_guaranteed', this.fetch_quote_guaranteed );
@@ -332,22 +386,34 @@
 
             this.aborters.requests = new AbortController();
 
+            this.nonce = this.$globalUtils.generate_nonce();
+
+            if ( client.settings.annuity_investment ) {
+                console.log( 'Client Override -- setting premium ', client.settings.annuity_investment );
+                this.parameters.premium = client.settings.annuity_investment;
+            }
+
             this.fetch_quote();
         },
         data() {
             return {
+                mode: 'normal',
+                loading: false,
+
                 errors: null,
                 quotes: null,
-                loading: false,
-                mode: 'normal',
+                nonce: null,
+
                 timers: {
                     replace: null,
                     refresh: null,
                     populator: null,
                 },
+
                 aborters: {
                     requests: null
                 },
+
                 selections: {
                     method: 'premium',
                     product_id: null,
@@ -367,6 +433,7 @@
                     offset: 0,
                     comparison: []
                 },
+
                 parameters: {
                     searched: false,
                     chunk_size: 20,
@@ -376,7 +443,6 @@
                     deferral: 10,
                     deferral_selected: 10,
                     method: 'premium',
-                    state: 'FL',
                     index: [],
                     carrier: [],
                     strategy_type: [],
@@ -388,12 +454,19 @@
                     guarantee_period_months: 0,
                     overrides: {
                         annuitant: {
+                            annuity_type: null,
+
                             owner_state: null,
                             owner_age: null,
-                            owner_gender: null
+                            owner_gender: null,
+
+                            joint_state: null,
+                            joint_age: null,
+                            joint_gender: null,
                         }
                     }
                 },
+
                 options: {
                     money: {
                         decimal: '.',
@@ -471,11 +544,11 @@
                     <div class="client__content">
                         <div class="form__row">
                             <div class="form__column">
-                                <div class="notice"><p>You can override any of your clients' settings here.  This will not make permanent changes to your client records.</p></div>
+                                <div class="notice"><p>You can override any of your clients' settings here.  This <u>will not</u> make permanent changes to your client records.</p></div>
 
                                 <label>Benefit Type</label>
                                 <select id="parameters__client-type" name="client-type" v-model="parameters.overrides.annuitant.annuity_type">
-                                    <option value="">&nbsp;</option>
+                                    <option value="">&mdash;</option>
                                     <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'single_joint' )" v-bind:key="option_index" v-bind:value="option.value">{{ option.label }}</option>
                                 </select>
                             </div>
@@ -484,24 +557,24 @@
                         <div class="form__row">
                             <div class="form__column">
                                 <fieldset>
-                                    <legend>Owner</legend>
+                                    <legend>Owner <span class="form__action--inline" v-on:click="clear_client_overrides( 'owner' )">Clear All</span></legend>
 
                                     <div class="form__row">
                                         <div class="form__column">
                                             <label>Gender</label>
                                             <select id="owner__gender" name="owner_gender" v-model="parameters.overrides.annuitant.owner_gender">
-                                                <option value="">&nbsp;</option>
+                                                <option value="">&mdash;</option>
                                                 <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'gender' )" v-bind:key="option_index" v-bind:value="option.value">{{ option.label }}</option>
                                             </select>
                                         </div>
                                         <div class="form__column">
                                             <label>Age</label>
-                                            <input type="number" id="owner__age" name="owner_age" v-model="parameters.overrides.annuitant.owner_age">
+                                            <input type="number" id="owner__age" name="owner_age" placeholder="&mdash;" v-model="parameters.overrides.annuitant.owner_age">
                                         </div>
                                         <div class="form__column">
                                             <label>State</label>
                                             <select id="owner__state" name="owner_state" v-model="parameters.overrides.annuitant.owner_state">
-                                                <option value="">&nbsp;</option>
+                                                <option value="">&mdash;</option>
                                                 <option v-for="( state, state_index ) in this.$globalUtils.get_dataset( 'states_usa' )" v-bind:key="state_index" v-bind:value="state_index">{{ this.$globalUtils.format( 'states_usa', state ) }}</option>
                                             </select>
                                         </div>
@@ -513,7 +586,7 @@
                         <div class="form__row">
                             <div class="form__column">
                                 <fieldset v-if="parameters.overrides.annuitant.annuity_type === 'J'">
-                                    <legend>Joint</legend>
+                                    <legend>Joint <span class="form__action--inline" v-on:click="clear_client_overrides( 'joint' )">Clear All</span></legend>
 
                                     <div class="form__row">
                                         <div class="form__column">
@@ -663,6 +736,9 @@
                             </li>
 
                             <!-- TODO: Replace with loop to avoid duplicated code -->
+                            <li class="strategy__menu-item" v-bind:class="{ 'strategy__menu-item--selected': selections.details === 'highlights' }" data-type="highlights" v-on:click="set_details_page( 'highlights' )">
+                                <span>Highlights</span>
+                            </li>
                             <li class="strategy__menu-item" v-bind:class="{ 'strategy__menu-item--selected': selections.details === 'options' }" data-type="options" v-on:click="set_details_page( 'options' )">
                                 <span>Options</span>
                             </li>
@@ -681,13 +757,16 @@
                         </menu>
 
                         <div class="strategy__details">
-                            <div class="strategy__details-options" v-if="selections.details === 'options'">
+                            <div class="strategy__details-highlights" data-type="highlights" v-if="selections.details === 'highlights'">
+                                <Infobox_Highlights v-bind:profile="selections.product.options" />
+                            </div>
+                            <div class="strategy__details-options" data-type="options" v-if="selections.details === 'options'">
                                 <Infobox_Options v-bind:profile="selections.product.options" />
                             </div>
-                            <div class="strategy__details-options" v-if="selections.details === 'carrier'">
+                            <div class="strategy__details-carrier" data-type="carrier" v-if="selections.details === 'carrier'">
                                 <Infobox_Carrier v-bind:profile="selections.product.carrier_product" />
                             </div>
-                            <div class="strategy__details-illustration" v-if="selections.details === 'illustration'">
+                            <div class="strategy__details-illustration" data-type="highlights" v-if="selections.details === 'illustration'">
                                 <div class="strategy__details-illustration-notice" v-if="!selections.illustration.dataset && !selections.illustration.message">
                                     <div class="strategy__details-illustration-notice-loader">
                                         <i class="fal fa-folder-magnifying-glass" aria-hidden="true"></i> Fetching Illustration...
@@ -696,20 +775,20 @@
                                         This could take a minute...
                                     </div>
                                 </div>
-                                <div class="alert alert-error" v-if="!selections.illustration.dataset && selections.illustration.message">
+                                <div class="alert alert-error" data-type="highlights" v-if="!selections.illustration.dataset && selections.illustration.message">
                                     <h3>An error has occurred!</h3>
                                     <p>Please close this window and try again.</p>
                                     <p><small>Reason: {{ selections.illustration.message }}</small></p>
                                 </div>
 
-                                <div class="strategy__details-illustration-table" v-if="selections.illustration.valid">
+                                <div class="strategy__details-illustration-table" data-type="illustration" v-if="selections.illustration.valid">
                                     <Infobox_Illustration v-bind:profile="selections.illustration.dataset" />
                                 </div>
                             </div>
-                            <div class="strategy__details-options" v-if="selections.details === 'withdrawals'">
+                            <div class="strategy__details-withdrawals" data-type="withdrawals" v-if="selections.details === 'withdrawals'">
                                 <Infobox_Withdrawals v-bind:profile="selections.product" />
                             </div>
-                            <div class="strategy__details-options" v-if="selections.details === 'rules'">
+                            <div class="strategy__details-rules" data-type="rules" v-if="selections.details === 'rules'">
                                 <Infobox_Rules v-bind:profile="selections.product.rules" />
                             </div>
                         </div>
@@ -721,6 +800,15 @@
                         <div class="form__column form__column--full">
                             <label for="deferral">Defer Income for <strong>{{ parameters.deferral_selected }} years</strong></label>
                             <input type="range" name="deferral" step="1" min="5" max="20" v-on:change="set_deferral_period" v-model="parameters.deferral_selected">
+                        </div>
+                    </div>
+
+                    <div class="form__row" v-if="selections.comparison.length && selections.comparison.length > 1">
+                        <div class="form__column form__column--full">
+                            <button type="button" v-on:click="toggle_comparison">
+                                <span v-if="mode === 'comparison'"><i class="fa-solid fa-angles-left"></i> Exit Comparison Mode</span>
+                                <span v-if="mode === 'normal'"><i class="fa-light fa-sitemap" aria-hidden="true"></i> Enter Comparison Mode</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -739,13 +827,6 @@
                             Running the numbers, this might take a minute...
                         </div>
                     </div>
-                </div>
-
-                <div class="alert alert-info alert--inline-button" v-if="mode == 'comparison'">
-                    <h3>
-                        Comparison mode
-                        <button class="btn btn-primary" type="button"><i class="fas fa-file-pdf" aria-hidden="true"></i> Download Report (.pdf)</button>
-                    </h3>
                 </div>
 
                 <div class="alert alert-error" v-if="errors">
@@ -872,9 +953,9 @@
                             </div>
                         </template>
 
-                        <template v-if="this.quotes">
+                        <template v-if="this.quotes && this.mode !== 'comparison'">
                             <div class="form result__notice">
-                                <p>The top {{ selections.offset }} results are shown.</p>
+                                <p>Load more results?</p>
                                 <button type="button" class="form__action" v-on:click="fetch_chunk">Load More</button>
                             </div>
                         </template>
