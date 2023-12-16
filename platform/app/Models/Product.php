@@ -13,7 +13,7 @@ class Product extends Model {
     }
 
     public function profile() {
-        return $this->hasMany( ProductsProfile::class, 'product_profile_id', 'product_profile_id' );
+        return $this->hasOne( ProductsProfile::class, 'product_profile_id', 'product_profile_id' );
     }
 
     public function instances() {

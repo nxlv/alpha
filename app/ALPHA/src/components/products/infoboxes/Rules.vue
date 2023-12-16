@@ -3,6 +3,7 @@
         <h3>State Availability</h3>
 
         <div class="availability">
+            <span class="availability__region" v-for="( row, row_index ) in profile.states" v-bind:key="row_index">{{ row.state_cd }}</span>
             &mdash;
         </div>
 
@@ -11,12 +12,13 @@
         <div class="infotable">
             <div class="infotable__row">
                 <label class="infotable__label">Min Investment</label>
-                <span class="infotable__value">X</span>
+                <span class="infotable__value">{{ this.$financeUtils.format_currency( profile.premium_min, 'USD' ) }}</span>
             </div>
             <div class="infotable__row">
                 <label class="infotable__label">Max Investment</label>
-                <span class="infotable__value">X</span>
+                <span class="infotable__value">{{ this.$financeUtils.format_currency( profile.premium_max, 'USD' ) }}</span>
             </div>
+            <!--
             <div class="infotable__row">
                 <label class="infotable__label">Flexible Premiums</label>
                 <span class="infotable__value">X</span>
@@ -25,6 +27,7 @@
                 <label class="infotable__label">Types of Funds</label>
                 <span class="infotable__value">X</span>
             </div>
+            -->
         </div>
 
         <h3>Age Restrictions</h3>
@@ -32,11 +35,7 @@
         <div class="infotable">
             <div class="infotable__row">
                 <label class="infotable__label">Owner</label>
-                <span class="infotable__value">X</span>
-            </div>
-            <div class="infotable__row">
-                <label class="infotable__label">Annuitant</label>
-                <span class="infotable__value">X</span>
+                <span class="infotable__value">{{ profile.age_range_min_years }} <small>years</small> {{ profile.age_range_min_months }} <small>months</small> &nbsp;&mdash;&nbsp; {{ profile.age_range_max_years }} <small>years</small> {{ profile.age_range_max_months }} <small>months</small></span>
             </div>
         </div>
     </div>

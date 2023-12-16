@@ -52,13 +52,13 @@
                 this.selections.method = this.parameters.method;
                 this.selections.offset = 0;
 
-                this.selections.comparison = [];
-
                 let endpoint = '/api/quoting/get/fixed';
                 let settings = { ...this.parameters, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 if ( this.mode === 'comparison' ) {
                     settings = { ...settings, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), offset: this.selections.offset, chunk_size: this.parameters.chunk_size, comparisons: this.selections.comparison };
+                } else {
+                    this.selections.comparison = [];
                 }
 
                 clearTimeout( this.timers.populator );
@@ -220,6 +220,8 @@
             },
 
             async fetch_illustration() {
+                this.loading = true;
+
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/illustration';
@@ -272,7 +274,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/report'
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { products: [ this.selections.product_id ], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -758,7 +760,7 @@
 
                         <div class="strategy__details">
                             <div class="strategy__details-highlights" data-type="highlights" v-if="selections.details === 'highlights'">
-                                <Infobox_Highlights v-bind:profile="selections.product.options" />
+                                <Infobox_Highlights v-bind:profile="selections.product" />
                             </div>
                             <div class="strategy__details-options" data-type="options" v-if="selections.details === 'options'">
                                 <Infobox_Options v-bind:profile="selections.product.options" />
@@ -875,16 +877,12 @@
                                             <span data-type="id" title="CANNEX Product ID">{{ result.analysis.product_id }}</span>
                                         </div>
                                         <div class="result__card-strategy-income" v-bind:class="{ 'result__card-strategy-income--loading': !result.quotes }">
-                                            <template v-if="selections.method == 'premium'">
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="premium" data-type="guaranteed">
-                                                    <span v-if="result.quotes" data-type="result">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</span>
-                                                    <span v-if="!result.quotes" data-type="loading">Loading...</span>
-                                                </div>
-                                            </template>
-                                            <template v-if="selections.method == 'income'">
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="hypothetical">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</div>
-                                                <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</div>
-                                            </template>
+                                            <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">
+                                                {{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}
+                                            </div>
+
+                                            <span class="result__card-strategy-income-notice" v-if="result.quotes.income_data.initial_income > result.quotes.income_data.lowest_income" data-type="income-lower" title="Income may lower"><i class="fa-sharp fa-regular fa-circle-down" aria-hidden="true"></i> Income may decrease</span>
+                                            <span class="result__card-strategy-income-notice" v-if="result.quotes.income_data.initial_income < result.quotes.income_data.highest_income" data-type="income-higher" title="Income may increase"><i class="fa-sharp fa-regular fa-circle-up" aria-hidden="true"></i> Income may increase</span>
 
                                             <div class="result__card-strategy-income-backtest">
                                                 <div class="result__card-strategy-data-points">

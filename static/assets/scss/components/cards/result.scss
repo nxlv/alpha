@@ -453,6 +453,73 @@
                     }
                 }
 
+                &-notice {
+                    display: block;
+                    background-color: #fff;
+                    color: #000;
+                    padding: 0.25rem 0.5rem;
+                    font-weight: 600;
+                    letter-spacing: -0.5px;
+                    font-size: 1.125rem;
+                    line-height: 1.125rem;
+                    border: 1px #000 solid;
+                    overflow: hidden;
+                    position: relative;
+
+                    &:before {
+                        font-family: 'Font Awesome 6 Pro', sans-serif;
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        font-size: 5rem;
+                        line-height: 5rem;
+                        transform: rotate(32deg) translateY(-50%);
+                        opacity: 0.25;
+                        color: #000;
+                        padding-right: 1rem;
+                    }
+
+                    &[data-type="income-higher"] {
+                        border-left: 1px $color-money solid;
+                        border-right: 1px $color-money solid;
+                        border-bottom: 1px $color-money solid;
+                        border-top: none;
+
+                        &:before {
+                            color: $color-money;
+                            content: '\f35b';
+                        }
+
+                        i {
+                            color: $color-money;
+                        }
+                    }
+
+                    &[data-type="income-lower"] {
+                        border-left: 1px $color-danger solid;
+                        border-right: 1px $color-danger solid;
+                        border-bottom: 1px $color-danger solid;
+                        border-top: none;
+
+                        &:before {
+                            color: $color-danger;
+                            content: 'f358';
+                        }
+
+                        i {
+                            color: $color-danger;
+                        }
+                    }
+
+                    i {
+                        font-size: 1.25rem;
+                        line-height: 1.25rem;
+                        font-weight: 300;
+                        padding-right: 0.125rem;
+                    }
+                }
+
                 &-backtest {
                     margin: 1rem 0 0 0;
                     background-color: #fff;

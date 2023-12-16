@@ -18,7 +18,7 @@
                     </li>
                     <li class="report__client-data-point">
                         <label>DOB / Age</label>
-                        <span>{{ $annuitant[ 'owner_dob' ] }} ({{ $annuitant[ 'owner_age' ] }} years old)</span>
+                        <span>{{ $annuitant[ 'owner_birthdate' ] }} ({{ $annuitant[ 'owner_age' ] }} years old)</span>
                     </li>
                 </ul>
             </div>
@@ -36,11 +36,13 @@
             </div>
         </section>
 
-        @foreach ( $hypothetical as $illustration )
+        @if ( $hypothetical )
+        @foreach ( $hypothetical as $request )
         <section class="report page">
             <div class="report__illustration">
                 <h3>Hypothetical Income</h3>
 
+                @if ( isset( $request->analysis_data ) )
                 <table class="table-default illustration__details-table">
                     <thead>
                         <tr>
@@ -55,16 +57,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ( $illustration as $row )
-                            <tr <?php echo ( ( $row[ 'income' ] ) ? 'class="has-income"' : '' ); ?>>
-                                <td>{{ $row[ 'year' ] }}</td>
-                                <td>{{ $row[ 'primary_age' ] }}</td>
-                                <td>{{ $row[ 'account_value' ] }}</td>
-                                <td>{{ $row[ 'income_benefit_base' ], 'USD' }}</td>
-                                <td>{{ $row[ 'interest_amount' ] }} ({{ $row[ 'interest_percent' ] }}%)</td>
-                                <td>{{ $row[ 'fees' ] }}</td>
-                                <td class="income">{{ $row[ 'income' ] }}</td>
-                                <td>{{ $row[ 'death_benefit' ] }}</td>
+                        @foreach ( $request->analysis_data as $row )
+                            <tr>
+                                <td>{{ $row->year }}</td>
+                                <td>{{ $row->primary_age }}</td>
+                                <td>{{ $row->account_value }}</td>
+                                <td>{{ $row->income_benefit_base, 'USD' }}</td>
+                                <td>{{ $row->interest_amount }} ({{ $row->interest_percent }}%)</td>
+                                <td>{{ $row->fees }}</td>
+                                <td class="income">{{ $row->income }}</td>
+                                <td>{{ $row->death_benefit }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -81,8 +83,10 @@
                         </tr>
                     </tfoot>
                 </table>
+                @endif
             </div>
         </section>
         @endforeach
+        @endif
     </article>
 @endsection

@@ -62,14 +62,15 @@ class Products extends Controller {
         ];
 
         $product_analysis_id = $request->get( 'product', null );
-        // $owner_state = $request->get( 'owner_state', null );
 
         if ( !empty( $product_analysis_id ) ) {
             try {
                 $product = Product::with(
                     [
-                        'strategy', 'strategy.rates',
-                        'carrier_product', 'carrier_product.carrier', 'carrier_product.ratings',
+                        'strategy',
+                            'strategy.rates',
+                        'carrier_product',
+                            'carrier_product.carrier', 'carrier_product.ratings',
                         'death_benefit',
                             'death_benefit.meta',
                             'death_benefit.rider_fee_current', 'death_benefit.rider_fee_minimum', 'death_benefit.rider_fee_maximum',
@@ -84,7 +85,21 @@ class Products extends Controller {
                             'income_benefit.income_start_age',
                             'income_benefit.persistency_credit', 'income_benefit.roll_up', 'income_benefit.step_up', 'income_benefit.states',
                             'income_benefit.withdrawal_tiers', 'income_benefit.withdrawal_tiers_ruin', 'income_benefit.withdrawal_deferral_ages', 'income_benefit.withdrawal_deferral_ages_ruin',
-                        'rules'
+                        'profile',
+                            'profile.annuitant_types', 'profile.annuitization_age_max',
+                            'profile.cdsc_schedule',
+                            'profile.fund_type',
+                            'profile.gmv_increase_rate', 'profile.gmv_initial_rate',
+                            'profile.initial_premium', 'profile.maximum_premium',
+                            'profile.issue_age_annuitant', 'profile.issue_age_owner', 'profile.issue_age_joint_annuitant_rule', 'profile.issue_age_joint_owner_rule',
+                            'profile.mva',
+                            'profile.ownership_type',
+                            'profile.riders_benefit',
+                            'profile.rop',
+                            'profile.surrender_waiver',
+                            'profile.withdrawals_free_rate',
+                        'rules',
+                            'rules.states'
                     ]
                 )->where( 'analysis_data_id', $product_analysis_id )->get();
 
@@ -106,7 +121,8 @@ class Products extends Controller {
                                     'income_benefit.income_start_age',
                                     'income_benefit.persistency_credit', 'income_benefit.roll_up', 'income_benefit.step_up', 'income_benefit.states',
                                     'income_benefit.withdrawal_tiers', 'income_benefit.withdrawal_tiers_ruin', 'income_benefit.withdrawal_deferral_ages', 'income_benefit.withdrawal_deferral_ages_ruin',
-                                'rules'
+                                'rules',
+                                    'rules.states'
                             ]
                         )->where( 'product_id', $product_id )->whereNot( 'analysis_data_id', $product_analysis_id )->where( 'analysis_cd', $product_analysis_code )->get();
 
