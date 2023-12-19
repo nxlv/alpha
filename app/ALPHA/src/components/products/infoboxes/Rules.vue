@@ -35,7 +35,7 @@
         <div class="infotable">
             <div class="infotable__row">
                 <label class="infotable__label">Owner</label>
-                <span class="infotable__value">{{ profile.age_range_min_years }} <small>years</small> {{ profile.age_range_min_months }} <small>months</small> &nbsp;&mdash;&nbsp; {{ profile.age_range_max_years }} <small>years</small> {{ profile.age_range_max_months }} <small>months</small></span>
+                <span class="infotable__value">{{ profile.age_range_min_years }}&nbsp;<small>years</small>&nbsp;{{ profile.age_range_min_months }}&nbsp;<small>months</small> &nbsp;&mdash;&nbsp; {{ profile.age_range_max_years }}&nbsp;<small>years</small>&nbsp;{{ profile.age_range_max_months }}&nbsp;<small>months</small></span>
             </div>
         </div>
     </div>

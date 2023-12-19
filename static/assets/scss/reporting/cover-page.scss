@@ -1,0 +1,32 @@
+.report {
+    &__cover {
+        position: relative;
+        height: 100%;
+
+        & > h1 {
+            background-color: $brand-primary;
+            display: inline-block;
+            color: #fff;
+            margin: 0 0 1rem -2rem;
+            padding: 1.125rem 2rem 1rem 2rem;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        figure {
+            position: absolute;
+            bottom: -2rem;
+            right: -2rem;
+            width: 75%;
+            margin: 0;
+            padding: 0;
+            height: auto;
+            mix-blend-mode: multiply;
+            filter: hue-rotate(55deg);
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+}

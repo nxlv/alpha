@@ -69,6 +69,73 @@
             return $result;
         }
 
+        public static function analyze_fixed_zero_return( $products ) {
+            $result = [];
+
+            $endpoint_url = Config::get( 'canx.cannex.endpoints.illustration_zero_return' );
+            $username = Config::get( 'canx.cannex.credentials.username' );
+            $password = Config::get( 'canx.cannex.credentials.password' );
+            $token_type = Config::get( 'canx.cannex.credentials.token_type' );
+            $endpoint_function = 'canx_anty_eval_operation';
+
+            try {
+                $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_eval-1.0.wsdl' ), [
+                    'trace'         => true,
+                    'keep_alive'    => false,
+                    'cache_wsdl'    => WSDL_CACHE_NONE,
+                    'exception'     => false
+                ] );
+                $client->__setLocation( $endpoint_url );
+                $client->__setUsernameToken( $username, $password, $token_type );
+            } catch ( \SoapFault $exception ) {
+                return false;
+            }
+
+            $query = array(
+                $endpoint_function => array(
+                    'logon_id'         => $username,
+                    'user_id'          => null,
+                    'transaction_id'   => uuid_create(),
+                    'evaluate_request' => $products,
+                    'sequence'         => array(
+                        'v'                 => 121,
+                        'sequence_id'       => 1,
+                        'evaluate_cd'       => 'M'
+                    )
+                )
+            );
+
+            error_log( '' );
+            error_log( 'ZERO RETURN' );
+            error_log( print_r( $products, true ) );
+            error_log( '' );
+
+            try {
+                $response = $client->__call( $endpoint_function, $query );
+
+                error_log( '' );
+                error_log( 'RESPONSE:' );
+                error_log( print_r( $response, true ) );
+                error_log( '' );
+                error_log( 'SOAP RESPONSE:' );
+                error_log( print_r( $client->__getLastResponse(), true ) );
+
+                if ( ( $response ) && ( property_exists( $response, 'analysis_response' ) ) ) {
+                    if ( !is_array( $response->analysis_response ) ) {
+                        $result[] = $response->analysis_response;
+                    } else {
+                        $result = $response->analysis_response;
+                    }
+                }
+            } catch ( \SoapFault $exception ) {
+                error_log( print_r( $exception, true ) );
+
+                error_log( print_r( $client->__getLastRequest(), true ) );
+                error_log( print_r( $client->__getLastResponse(), true ) );
+                return false;
+            }
+        }
+
         public static function build_analysis_request( $product, $annuitant, $settings ) {
             /**
              * we use $product[ 'index' ][ 'deferral' ] instead of the deferral on $settings since
@@ -81,7 +148,7 @@
              */
 
             $response = [
-                'contract_cd'                 => 'S',
+                'contract_cd'                 => $annuitant[ 'annuity_type' ],
                 'premium'                     => preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] ),
                 'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
                 'gender_cd_primary'           => $annuitant[ 'owner_gender' ],
@@ -101,6 +168,29 @@
                 'analysis_data_id'            => $product[ 'analysis_data_id' ],
                 'analysis_time_horizon_years' => ( ( isset( $product[ 'analysis_time_horizon_years' ] ) ) ? ( intval( $product[ 'analysis_time_horizon_years' ] ) + 1 ) : ( $product[ 'index' ][ 'deferral' ] + 1 ) ),
                 'is_test'                     => 'N'
+            ];
+
+            return $response;
+        }
+
+        public static function build_evaluate_request( $product, $annuitant, $settings ) {
+            $response = [
+                'evaluate_request_a' => [
+                    'contract_cd'                 => $annuitant[ 'annuity_type' ],
+                    'premium'                     => preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] ),
+                    'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
+                    'gender_cd_primary'           => $annuitant[ 'owner_gender' ],
+                    'gender_cd_joint'             => $annuitant[ 'joint_gender' ],
+                    'purchase_age_primary'        => $annuitant[ 'owner_age' ],
+                    'purchase_age_joint'          => $annuitant[ 'joint_age' ],
+                    'income_start_age_primary'    => $annuitant[ 'owner_age' ] + $product[ 'index' ][ 'deferral' ],
+                    'income_start_age_joint'      => ( ( !empty( $annuitant[ 'joint_age' ] ) ) ? ( $annuitant[ 'joint_age' ] + $product[ 'index' ][ 'deferral' ] ) : null ),
+                    'income_analysis_data_id'     => $product[ 'analysis_data_id' ],
+                    'evaluate_time_horizon_years' => ( ( isset( $product[ 'analysis_time_horizon_years' ] ) ) ? ( intval( $product[ 'analysis_time_horizon_years' ] ) + 1 ) : ( $product[ 'index' ][ 'deferral' ] + 1 ) ),
+                    'anty_ds_version_id'          => self::ANTY_ANLY_VERSION_ID,
+                    'sequence_id'                 => 10000,
+                    'is_test'                     => 'N'
+                ]
             ];
 
             return $response;
@@ -188,6 +278,8 @@
                     )
                 );
 
+                error_log( PHP_EOL . 'guaranteed rates request' . PHP_EOL . PHP_EOL . print_r( $arguments, true ) . PHP_EOL . PHP_EOL );
+
                 $retry_count = 0;
 
                 while ( true ) {
@@ -195,12 +287,15 @@
                         $analysis = $client->__call( $function_name, $arguments );
 
                         error_log( sprintf( '[+] Request status: %s', $analysis->income_response1_set->status_cd ) . PHP_EOL );
+                        error_log( print_r( $analysis, true ) );
 
                         if ( $analysis->income_response1_set->status_cd === 'P' ) {
                             error_log( '[+] Request pending, polling in 2 seconds...' . PHP_EOL );
 
                             sleep(2);
                         } else {
+                            error_log( print_r( $client->__getLastRequest(), true ) );
+                            error_log( print_r( $client->__getLastResponse(), true ) );
                             $result = $analysis->income_response1_set;
                             break;
                         }

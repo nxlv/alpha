@@ -66,56 +66,44 @@ class Illustrating extends Controller {
          * Generate /guaranteed/ income
          *
          */
-        $parameters_guaranteed = [
-            'state_cd' => $annuitant[ 'owner_state' ],
-            'contract_cd' => $annuitant[ 'annuity_type' ],
-            'premium' => $premium,
-            'purchase_date' => date( 'Y-m-d' ),
-            'gender_cd_primary' => $annuitant[ 'owner_gender' ],
-            'purchase_age_primary' => $annuitant[ 'owner_age' ],
-            'income_start_age_primary' => ( intval( $annuitant[ 'owner_age' ] ) + intval( $settings[ 'deferral' ] ) )
-        ];
+        $queue = [];
 
-        if ( $annuitant[ 'annuity_type' ] === 'J' ) {
-            $parameters_guaranteed[ 'gender_cd_joint' ] = 'F';
-            $parameters_guaranteed[ 'purchase_age_joint' ] = date( 'Y-m-d' );
-            $parameters_guaranteed[ 'income_start_age_joint' ] = ( intval( $annuitant[ 'joint_age' ] ) + intval( $settings[ 'deferral' ] ) );
+        foreach ( $products as $product ) {
+            $queue[] = CANNEXHelper::build_evaluate_request(
+                [
+                    'analysis_data_id' => $product,
+                    'index' => ProductHelper::validate_index_dates( $product, date( 'Y-m-d' ), $deferral )       // time() here assumes purchase date of today.  TODO: allow overriding this
+                ],
+                $annuitant,
+                $settings
+            );
         }
 
-        if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters_guaranteed, 0, $products ) ) {
-            $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
-
-            if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
-                if ( is_array( $results->income_response_data ) ) {
-                    foreach ( $results->income_response_data as $result ) {
-                        $guaranteed[] = $result;
-                    }
-                }
-            }
-        }
+        //$guaranteed = CANNEXHelper::analyze_fixed_zero_return( $queue );
+        $guaranteed = false;
 
         /**
          *
-         * Phase 2:
+         * Phase 3:
          * Generate /hypothetical/ income and illustration
          *
          */
-        if ( ( !empty( $products ) ) && ( !empty( $annuitant ) ) && ( $premium ) && ( $deferral ) ) {
-            foreach ( $products as $product ) {
-                $queue[] = CANNEXHelper::build_analysis_request(
-                    [
-                        'analysis_data_id' => $product,
-                        'analysis_cd' => 'B',
-                        'index' => ProductHelper::validate_index_dates( $product, date( 'Y-m-d' ), $deferral )       // time() here assumes purchase date of today.  TODO: allow overriding this
-                    ],
-                    $annuitant,
-                    $settings
-                );
-            }
+        $queue = [];
 
-            $hypothetical = CANNEXHelper::analyze_fixed( $queue );
+        foreach ( $products as $product ) {
+            $queue[] = CANNEXHelper::build_analysis_request(
+                [
+                    'analysis_data_id' => $product,
+                    'analysis_cd' => 'B',
+                    'index' => ProductHelper::validate_index_dates( $product, date( 'Y-m-d' ), $deferral )       // time() here assumes purchase date of today.  TODO: allow overriding this
+                ],
+                $annuitant,
+                $settings
+            );
         }
 
-        return view( 'reporting.illustration' )->with( 'annuitant', $annuitant )->with( 'products', $products_extended )->with( 'guaranteed', $guaranteed )->with( 'hypothetical', $hypothetical );
+        $hypothetical = CANNEXHelper::analyze_fixed( $queue );
+
+        return view( 'reporting.illustration' )->with( 'annuitant', $annuitant )->with( 'settings', $settings )->with( 'products', $products_extended )->with( 'illustrations', [ 'guaranteed' => $guaranteed, 'hypothetical' => $hypothetical ] );
     }
 }

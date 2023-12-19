@@ -122,7 +122,7 @@
                 this.sort_results();
 
                 // fetch backtested returns
-                //this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
+                this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
 
                 this.loading = false;
 
@@ -280,7 +280,10 @@
                 this.loading = false;
 
                 if ( ( request ) && ( request.data ) ) {
-                    console.log( request.data );
+                    let report_window = window.open();
+
+                    report_window.resizeTo( 612, 791 );
+                    report_window.document.write( request.data );
                 }
             },
 
@@ -290,7 +293,7 @@
                 switch ( this.selections.method ) {
                     case 'premium' :
                         response.sort( ( left, right ) => {
-                            return ( ( left.income_initial > right.income_initial ) ? -1 : ( ( left.income_initial === right.income_initial ) ? 0 : 1 ) );
+                            return ( ( left.initial_income > right.initial_income ) ? -1 : ( ( left.initial_income === right.initial_income ) ? 0 : 1 ) );
                         } );
                         break;
 
@@ -502,7 +505,7 @@
 
             <aside class="income-solver__parameters form">
                 <fieldset data-filter-type="income">
-                    <legend><i class="fa-duotone fa-money-check-dollar-pen"></i> Premium &amp; Income</legend>
+                    <legend><i class="fa-duotone fa-money-check-dollar-pen"></i> Investment</legend>
 
                     <input type="checkbox" class="hidden" id="income__toggler" value="1">
                     <label for="income__toggler"></label>
@@ -538,7 +541,7 @@
                 </fieldset>
 
                 <fieldset data-filter-type="client">
-                    <legend><i class="fa-duotone fa-handshake"></i> Client Information</legend>
+                    <legend><i class="fa-duotone fa-handshake"></i> Client</legend>
 
                     <input type="checkbox" class="hidden" id="client__toggler" value="1">
                     <label for="client__toggler"></label>
@@ -617,7 +620,7 @@
                 </fieldset>
 
                 <fieldset data-filter-type="filtering">
-                    <legend><i class="fa-duotone fa-filter-list"></i> Filtering Options</legend>
+                    <legend><i class="fa-duotone fa-filter-list"></i> Filtering</legend>
 
                     <input type="checkbox" class="hidden" id="filtering__toggler" value="1">
                     <label for="filtering__toggler"></label>
@@ -896,8 +899,8 @@
                                                 </div>
 
                                                 <cite class="result__card-strategy-income-backtest-results" v-bind:class="{ 'result__card-strategy-income-backtest-results--loading': !result.historical }">
-                                                    <span v-if="result.historical" data-type="result"><strong>{{ result.historical.account_return.toFixed( 2 ) }}%</strong> anticipated return over {{ result.historical.request.analysis_time_horizon_years - 1 }} years.</span>
-                                                    <span v-if="!result.historical" data-type="loading">Calculating anticipated return...</span>
+                                                    <span v-if="result.historical" data-type="result"><strong><i class="fa fa-chart-simple" aria-hidden="true"></i> {{ result.historical.account_return.toFixed( 2 ) }}%</strong> return over last {{ result.historical.request.analysis_time_horizon_years - 1 }} years.</span>
+                                                    <span v-if="!result.historical" data-type="loading">Calculating historical return...</span>
                                                 </cite>
                                             </div>
                                         </div>

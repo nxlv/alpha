@@ -4,7 +4,7 @@
 
         <div class="infotable infotable--horizontal">
             <div class="infotable__row" v-for="( row, row_index ) in profile.profile.cdsc_schedule" v-bind:key="row_index">
-                <label class="infotable__label">Year {{ row.row }}</label>
+                <label class="infotable__label">Year {{ row.year }}</label>
                 <span class="infotable__value">{{ row.rate }}%</span>
             </div>
         </div>

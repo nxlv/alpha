@@ -170,7 +170,7 @@ class Quoting extends Controller {
         ];
 
         if ( $annuitant[ 'annuity_type' ] === 'J' ) {
-            $parameters[ 'gender_cd_joint' ] = 'F';
+            $parameters[ 'gender_cd_joint' ] = $annuitant[ 'joint_gender' ];
             $parameters[ 'purchase_age_joint' ] = date( 'Y-m-d' );
             $parameters[ 'income_start_age_joint' ] = ( intval( $annuitant[ 'joint_age' ] ) + intval( $settings[ 'deferral' ] ) );
         }
@@ -178,9 +178,14 @@ class Quoting extends Controller {
         // TODO: hash only fields that matter, not entire arrays, for better accuracy
         $hash = 'alpha__fia-guaranteed-' . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $settings ) ) . crc32( serialize( $products ) );
 
-        if ( ( Cache::has( $hash ) ) && ( !empty( Cache::get( $hash ) ) ) ) {
+        if ( ( !$hash ) && ( Cache::has( $hash ) ) && ( !empty( Cache::get( $hash ) ) ) ) {
             $response = Cache::get( $hash );
         } else {
+            // ANTY-WS01 1056: Analysis code cannot be used with fixed products.
+            if ( isset( $parameters[ 'analysis_cd' ] ) ) {
+                unset( $parameters[ 'analysis_cd' ] );
+            }
+
             if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) {
                 error_log( 'Profile created, ID#' . $profile_id );
 
@@ -203,6 +208,8 @@ class Quoting extends Controller {
                 Cache::add( $hash, $response, ( 60 * 10 ) ); // 10 minutes
             }
         }
+
+        error_log( print_r( $response, true ) );
 
         return $response;
     }

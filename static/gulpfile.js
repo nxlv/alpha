@@ -6,8 +6,12 @@ var gulp       = require( 'gulp' ),
 
 gulp.task( 'sass:watch',
     function () {
-        gulp.watch( 'assets/scss/**/*',
-        gulp.series( 'sass' ) );
+        gulp.watch( 'assets/scss/**/*', gulp.series( 'sass' ) )
+    } );
+
+gulp.task( 'sass:watch-reports',
+    function () {
+        gulp.watch( 'assets/scss/**/*', gulp.series( 'sass:reports' ) )
     } );
 
 gulp.task( 'sass',
@@ -15,8 +19,16 @@ gulp.task( 'sass',
         return gulp.src( 'assets/scss/theme.scss' )
             .pipe( sass_glob() )
             .pipe( sourcemaps.init() )
-            .pipe( sass().on( 'error',
-                sass.logError ) )
+            .pipe( sass().on( 'error', sass.logError ) )
+            .pipe( gulp.dest( 'assets/css' ) );
+    } );
+
+gulp.task( 'sass:reports',
+    function () {
+        return gulp.src( 'assets/scss/theme-reporting.scss' )
+            .pipe( sass_glob() )
+            .pipe( sourcemaps.init() )
+            .pipe( sass().on( 'error', sass.logError ) )
             .pipe( gulp.dest( 'assets/css' ) );
     } );
 
@@ -25,8 +37,7 @@ gulp.task( 'sass:admin',
         return gulp.src( 'assets/scss/theme-admin.scss' )
             .pipe( sass_glob() )
             .pipe( sourcemaps.init() )
-            .pipe( sass().on( 'error',
-                sass.logError ) )
+            .pipe( sass().on( 'error', sass.logError ) )
             .pipe( gulp.dest( 'assets/css' ) );
     } );
 
@@ -35,8 +46,7 @@ gulp.task( 'sass:editor',
         return gulp.src( 'assets/scss/theme-editor.scss' )
             .pipe( sass_glob() )
             .pipe( sourcemaps.init() )
-            .pipe( sass().on( 'error',
-                sass.logError ) )
+            .pipe( sass().on( 'error', sass.logError ) )
             .pipe( gulp.dest( 'assets/css' ) );
     } );
 

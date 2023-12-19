@@ -247,6 +247,26 @@
         }
       }
     }
+
+    .availability {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+
+      &__region {
+        width: calc(5% - 0.25rem);
+        height: 2rem;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px $color-money solid;
+        margin: 0.125rem;
+        font-size: 0.875rem;
+        color: $color-money;
+      }
+    }
   }
 
   &__menu {

@@ -10,6 +10,7 @@ return [
         'immediate' => env( 'CANNEX_WS_ENDPOINT_IMMEDIATE' ),
         'fixed' => env( 'CANNEX_WS_ENDPOINT_FIXED' ),
         'illustration' => env( 'CANNEX_WS_ENDPOINT_ILLUSTRATION' ),
+        'illustration_zero_return' => env( 'CANNEX_WS_ENDPOINT_ILLUSTRATION_GUARANTEED' ),
         'income' => env( 'CANNEX_WS_ENDPOINT_INCOME' )
     ], 
     'lookup' => [
