@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\API\V2;
 
 use App\Http\Helpers\CANNEXHelper;
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 use App\Http\Controllers\Controller;
@@ -12,6 +13,7 @@ use App\Http\Helpers\ProductHelper;
 
 use App\Models\Product;
 use App\Models\AnalysisGuaranteedCache;
+use Illuminate\Support\Facades\Storage;
 
 class Illustrating extends Controller {
     public static $indexes = [];
@@ -79,8 +81,7 @@ class Illustrating extends Controller {
             );
         }
 
-        //$guaranteed = CANNEXHelper::analyze_fixed_zero_return( $queue );
-        $guaranteed = false;
+        $guaranteed = CANNEXHelper::analyze_fixed_zero_return( $queue, $settings );
 
         /**
          *
@@ -103,6 +104,32 @@ class Illustrating extends Controller {
         }
 
         $hypothetical = CANNEXHelper::analyze_fixed( $queue );
+
+
+        $pdf = Pdf::loadView(
+            'reporting.illustration',
+            [
+                'annuitant' => $annuitant,
+                'settings' => $settings,
+                'products' => $products_extended,
+                'illustrations' => [
+                    'guaranteed' => $guaranteed,
+                    'hypothetical' => $hypothetical
+                ]
+            ]
+        );
+
+        /*
+        $filename = uniqid() . '.pdf';
+
+        if ( !Storage::exists( 'reports' ) ) {
+            Storage::makeDirectory( 'reports' );
+        }
+
+        $pdf->save( storage_path( 'app' . DIRECTORY_SEPARATOR . 'reports' . DIRECTORY_SEPARATOR . $filename ) );
+
+        //return response()->json( [ 'error' => false, 'filename' => storage_path( 'app' . DIRECTORY_SEPARATOR . 'reports' . DIRECTORY_SEPARATOR . $filename ) ] );
+        */
 
         return view( 'reporting.illustration' )->with( 'annuitant', $annuitant )->with( 'settings', $settings )->with( 'products', $products_extended )->with( 'illustrations', [ 'guaranteed' => $guaranteed, 'hypothetical' => $hypothetical ] );
     }

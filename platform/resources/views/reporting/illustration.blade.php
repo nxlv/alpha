@@ -1,7 +1,7 @@
 @extends('layouts.pdf')
 
 @section('content')
-    <article class="reporting">
+    <article class="reporting" style="max-width: 50vw; min-width: 992px; margin-left: auto; margin-right: auto; border-left: 1px #000 solid; border-right: 1px #000 solid;">
         <section class="report report--cover page">
             <div class="report__cover">
                 <h1>Annuity Association</h1>
@@ -88,29 +88,28 @@
             </div>
         </section>
 
-        @foreach ( [ 'guaranteed' => 'Guaranteed (Zero-return) Income', 'hypothetical' => 'Hypothetical Income' ] as $illustration_key => $illustration_title )
-            @if ( $illustrations[ $illustration_key ] )
-            @foreach ( $illustrations[ $illustration_key ] as $request )
+        @if ( $illustrations[ 'guaranteed' ] )
+            @foreach ( $illustrations[ 'guaranteed' ] as $request )
                 <section class="report page">
                     <div class="report__illustration">
-                        <h3>{{ $illustration_title }}</h3>
+                        <h3>Guaranteed Income</h3>
 
-                        @if ( isset( $request->analysis_data ) )
-                        <table class="table-default illustration__details-table">
-                            <thead>
+                        @if ( isset( $request->evaluate_data ) )
+                            <table class="table-default illustration__details-table">
+                                <thead>
                                 <tr>
                                     <th>Year</th>
                                     <th>Age</th>
                                     <th>Account Value</th>
-                                    <th>Income Base</th>
+                                    <th>Income Benefit Base</th>
                                     <th>Interest</th>
                                     <th>Fees</th>
                                     <th>Income</th>
                                     <th>Death Benefit</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ( $request->analysis_data as $row )
+                                </thead>
+                                <tbody>
+                                @foreach ( $request->evaluate_data as $row )
                                     <tr class="{{ ( ( $row->income ) ? 'has-income' : '' ) }}">
                                         <td>{{ $row->year }}</td>
                                         <td>{{ $row->primary_age }}</td>
@@ -122,8 +121,8 @@
                                         <td>${{ number_format( $row->death_benefit, 2 ) }}</td>
                                     </tr>
                                 @endforeach
-                            </tbody>
-                            <tfoot>
+                                </tbody>
+                                <tfoot>
                                 <tr>
                                     <th>Year</th>
                                     <th>Age</th>
@@ -134,13 +133,65 @@
                                     <th>Income</th>
                                     <th>Death Benefit</th>
                                 </tr>
-                            </tfoot>
-                        </table>
+                                </tfoot>
+                            </table>
                         @endif
                     </div>
                 </section>
             @endforeach
-            @endif
+        @endif
+
+        @if ( $illustrations[ 'hypothetical' ] )
+        @foreach ( $illustrations[ 'hypothetical' ] as $request )
+            <section class="report page">
+                <div class="report__illustration">
+                    <h3>Hypothetical Income</h3>
+
+                    @if ( isset( $request->analysis_data ) )
+                    <table class="table-default illustration__details-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Age</th>
+                                <th>Account Value</th>
+                                <th>Income Base</th>
+                                <th>Interest</th>
+                                <th>Fees</th>
+                                <th>Income</th>
+                                <th>Death Benefit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ( $request->analysis_data as $row )
+                                <tr class="{{ ( ( $row->income ) ? 'has-income' : '' ) }}">
+                                    <td>{{ $row->year }}</td>
+                                    <td>{{ $row->primary_age }}</td>
+                                    <td>${{ number_format( $row->account_value, 2 ) }}</td>
+                                    <td>${{ number_format( $row->income_benefit_base, 2 ) }}</td>
+                                    <td>${{ number_format( $row->interest_amount, 2 ) }} ({{ $row->interest_percent }}%)</td>
+                                    <td>${{ number_format( $row->fees, 2 ) }}</td>
+                                    <td class="income">${{ number_format( $row->income, 2 ) }}</td>
+                                    <td>${{ number_format( $row->death_benefit, 2 ) }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Year</th>
+                                <th>Age</th>
+                                <th>Account Value</th>
+                                <th>Income Base</th>
+                                <th>Interest</th>
+                                <th>Fees</th>
+                                <th>Income</th>
+                                <th>Death Benefit</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    @endif
+                </div>
+            </section>
         @endforeach
+        @endif
     </article>
 @endsection

@@ -25,9 +25,15 @@ class Quoting extends Controller {
     public function query_fixed( Request $request ) {
         $products = [];
 
-        $method = $request->get( 'method', 'income' );
-        $premium = preg_replace( '/[^0-9.]/', '', $request->get( 'premium' ) );
-        $income = preg_replace( '/[^0-9.]/', '', $request->get( 'income' ) );
+        $settings = $request->get( 'settings' );
+        $annuitant = $request->get( 'annuitant' );
+        $inventory = $request->get( 'inventory' );
+
+        $deferral = $settings[ 'deferral' ];
+        $premium = preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] );
+        $income = preg_replace( '/[^0-9.]/', '', $settings[ 'income' ] );
+
+        $method = $settings[ 'method' ];
         $offset = $request->get( 'offset', 0 );
         $chunk_size = $request->get( 'chunk_size', 25 );
 
@@ -40,15 +46,12 @@ class Quoting extends Controller {
             $income = self::INCOME_FAILSAFE;
         }
 
-        $annuitant = $request->get( 'annuitant' );
-        $inventory = $request->get( 'inventory' );
-
         $parameters = [
             'method' => $method,
             'premium' => $premium,
             'income' => $income,
-            'index' => $request->get( 'index' ),
-            'carrier' => $request->get( 'carrier' )
+            'index' => $settings[ 'index' ],
+            'carrier' => $settings[ 'carrier' ]
         ];
 
         $hash = null;
@@ -66,15 +69,15 @@ class Quoting extends Controller {
             } else {
                 $matches = ProductHelper::identify_products(
                     [
-                        'strategy_type' => $request->get( 'strategy_type' ),
-                        'strategy_configuration' => $request->get( 'strategy_configuration' ),
-                        'calculation_frequency' => $request->get( 'calculation_frequency' ),
-                        'crediting_frequency' => $request->get( 'crediting_frequency' ),
-                        'guarantee_period_years' => $request->get( 'guarantee_period_years' ),
-                        'guarantee_period_months' => $request->get( 'guarantee_period_months' )
+                        'strategy_type' => $settings[ 'strategy_type' ],
+                        'strategy_configuration' => $settings[ 'strategy_configuration' ],
+                        'calculation_frequency' => $settings[ 'calculation_frequency' ],
+                        'crediting_frequency' => $settings[ 'crediting_frequency' ],
+                        'guarantee_period_years' => $settings[ 'guarantee_period_years' ],
+                        'guarantee_period_months' => $settings[ 'guarantee_period_months' ]
                     ],
                     [
-                        'current_participation_rate' => $request->get( 'participation_rate' ),
+                        'current_participation_rate' => $settings[ 'participation_rate' ],
                     ],
                     $annuitant,
                     $parameters,
@@ -178,35 +181,27 @@ class Quoting extends Controller {
         // TODO: hash only fields that matter, not entire arrays, for better accuracy
         $hash = 'alpha__fia-guaranteed-' . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $settings ) ) . crc32( serialize( $products ) );
 
-        if ( ( !$hash ) && ( Cache::has( $hash ) ) && ( !empty( Cache::get( $hash ) ) ) ) {
-            $response = Cache::get( $hash );
-        } else {
-            // ANTY-WS01 1056: Analysis code cannot be used with fixed products.
-            if ( isset( $parameters[ 'analysis_cd' ] ) ) {
-                unset( $parameters[ 'analysis_cd' ] );
-            }
+        // ANTY-WS01 1056: Analysis code cannot be used with fixed products.
+        if ( isset( $parameters[ 'analysis_cd' ] ) ) {
+            unset( $parameters[ 'analysis_cd' ] );
+        }
 
-            if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) {
-                error_log( 'Profile created, ID#' . $profile_id );
+        if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) {
+            error_log( 'Profile created, ID#' . $profile_id );
 
-                $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
+            $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
 
-                if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
-                    if ( !is_array( $results->income_response_data ) ) {
-                        // TODO
-                    } else {
-                        foreach ( $results->income_response_data as $result ) {
-                            $response[] = $result;
-                        }
+            if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
+                if ( !is_array( $results->income_response_data ) ) {
+                    // TODO
+                } else {
+                    foreach ( $results->income_response_data as $result ) {
+                        $response[] = $result;
                     }
                 }
-            } else {
-                error_log( 'Failed to create annuitant profile' );
             }
-
-            if ( !empty( $response ) ) {
-                Cache::add( $hash, $response, ( 60 * 10 ) ); // 10 minutes
-            }
+        } else {
+            error_log( 'Failed to create annuitant profile' );
         }
 
         error_log( print_r( $response, true ) );

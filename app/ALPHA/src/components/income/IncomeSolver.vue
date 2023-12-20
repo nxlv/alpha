@@ -53,7 +53,7 @@
                 this.selections.offset = 0;
 
                 let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
+                let settings = { settings: this.parameters, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 if ( this.mode === 'comparison' ) {
                     settings = { ...settings, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), offset: this.selections.offset, chunk_size: this.parameters.chunk_size, comparisons: this.selections.comparison };
@@ -406,6 +406,7 @@
                 loading: false,
 
                 errors: null,
+                analysis_ids: null,
                 quotes: null,
                 nonce: null,
 
@@ -454,9 +455,9 @@
                     strategy_configuration: [],
                     calculation_frequency: [],
                     crediting_frequency: [],
-                    participation_rate: '100',
                     guarantee_period_years: 1,
                     guarantee_period_months: 0,
+                    participation_rate: 100,
                     overrides: {
                         annuitant: {
                             annuity_type: null,
@@ -881,11 +882,12 @@
                                         </div>
                                         <div class="result__card-strategy-income" v-bind:class="{ 'result__card-strategy-income--loading': !result.quotes }">
                                             <div class="result__card-strategy-income-money" data-period="annually" data-method="income" data-type="income">
-                                                {{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}
+                                                <span v-if="result.quotes" data-type="result">{{ this.$financeUtils.format_currency( result.quotes.income_data.initial_income, 'USD' ) }}</span>
+                                                <span v-if="!result.quotes" data-type="loading">Loading...</span>
                                             </div>
 
-                                            <span class="result__card-strategy-income-notice" v-if="result.quotes.income_data.initial_income > result.quotes.income_data.lowest_income" data-type="income-lower" title="Income may lower"><i class="fa-sharp fa-regular fa-circle-down" aria-hidden="true"></i> Income may decrease</span>
-                                            <span class="result__card-strategy-income-notice" v-if="result.quotes.income_data.initial_income < result.quotes.income_data.highest_income" data-type="income-higher" title="Income may increase"><i class="fa-sharp fa-regular fa-circle-up" aria-hidden="true"></i> Income may increase</span>
+                                            <span class="result__card-strategy-income-notice" v-if="result.quotes && result.quotes.income_data.initial_income > result.quotes.income_data.lowest_income" data-type="income-lower" title="Income may lower"><i class="fa-sharp fa-regular fa-circle-down" aria-hidden="true"></i> Income may decrease</span>
+                                            <span class="result__card-strategy-income-notice" v-if="result.quotes && result.quotes.income_data.initial_income < result.quotes.income_data.highest_income" data-type="income-higher" title="Income may increase"><i class="fa-sharp fa-regular fa-circle-up" aria-hidden="true"></i> Income may increase</span>
 
                                             <div class="result__card-strategy-income-backtest">
                                                 <div class="result__card-strategy-data-points">

@@ -69,7 +69,7 @@
             return $result;
         }
 
-        public static function analyze_fixed_zero_return( $products ) {
+        public static function analyze_fixed_zero_return( $products, $settings ) {
             $result = [];
 
             $endpoint_url = Config::get( 'canx.cannex.endpoints.illustration_zero_return' );
@@ -88,6 +88,8 @@
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
             } catch ( \SoapFault $exception ) {
+                error_log( print_r( $exception, true ) );
+
                 return false;
             }
 
@@ -98,33 +100,33 @@
                     'transaction_id'   => uuid_create(),
                     'evaluate_request' => $products,
                     'sequence'         => array(
-                        'v'                 => 121,
-                        'sequence_id'       => 1,
-                        'evaluate_cd'       => 'M'
+                        'sequence_id' => 10000,
+                        'evaluate_cd' => 'M'
                     )
                 )
             );
 
-            error_log( '' );
-            error_log( 'ZERO RETURN' );
-            error_log( print_r( $products, true ) );
-            error_log( '' );
+            $deferral = $settings[ 'deferral' ];
+            $deferral_months = ( ( ( $deferral + 1 ) * 12 ) + 1 );
+
+            for ( $counter_month = 0; $counter_month < $deferral_months; $counter_month++ ) {
+                $query[ $endpoint_function ][ 'sequence' ][ 'v' ][] = array(
+                    '_' => $deferral_months,
+                    'm' => $counter_month
+                );
+            }
 
             try {
                 $response = $client->__call( $endpoint_function, $query );
 
-                error_log( '' );
-                error_log( 'RESPONSE:' );
-                error_log( print_r( $response, true ) );
-                error_log( '' );
-                error_log( 'SOAP RESPONSE:' );
+                error_log( print_r( $client->__getLastRequest(), true ) );
                 error_log( print_r( $client->__getLastResponse(), true ) );
 
-                if ( ( $response ) && ( property_exists( $response, 'analysis_response' ) ) ) {
-                    if ( !is_array( $response->analysis_response ) ) {
-                        $result[] = $response->analysis_response;
+                if ( ( $response ) && ( property_exists( $response, 'evaluate_response' ) ) && ( property_exists( $response->evaluate_response, 'evaluate_data' ) ) ) {
+                    if ( !is_array( $response->evaluate_response ) ) {
+                        $result[] = $response->evaluate_response;
                     } else {
-                        $result = $response->analysis_response;
+                        $result = $response->evaluate_response;
                     }
                 }
             } catch ( \SoapFault $exception ) {
@@ -134,6 +136,8 @@
                 error_log( print_r( $client->__getLastResponse(), true ) );
                 return false;
             }
+
+            return $result;
         }
 
         public static function build_analysis_request( $product, $annuitant, $settings ) {
@@ -176,6 +180,7 @@
         public static function build_evaluate_request( $product, $annuitant, $settings ) {
             $response = [
                 'evaluate_request_a' => [
+                    'evaluate_no'                 => 1,
                     'contract_cd'                 => $annuitant[ 'annuity_type' ],
                     'premium'                     => preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] ),
                     'purchase_date'               => gmdate( 'Y-m-d\TH:i:s.v\Z' ),
@@ -216,6 +221,13 @@
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
 
+                /*
+                if ( isset( $parameters[ 'analysis_cd' ] ) ) {
+                    unset( $parameters[ 'analysis_cd' ] );
+                }
+                */
+                $parameters[ 'analysis_cd' ] = null;
+
                 $arguments = array(
                     'canx_anty_inc1_operation' => array(
                         'income_request1_set' => array(
@@ -233,6 +245,10 @@
 
                 try {
                     $result = $client->__call( $function_name, $arguments );
+
+                    error_log( '--------------- PROFILE CREATION RESULT ----------------' );
+                    error_log( print_r( $result, true ) );
+                    error_log( '--------------- PROFILE CREATION RESULT ----------------' );
 
                     if ( ( isset( $result->income_response1 ) ) && ( $result->income_response1->income_request_id ) ) {
                         $request_id = $result->income_response1->income_request_id;
@@ -277,6 +293,10 @@
                         )
                     )
                 );
+
+                if ( isset( $arguments[ 'analysis_cd' ] ) ) {
+                    unset( $arguments[ 'analysis_cd' ] );
+                }
 
                 error_log( PHP_EOL . 'guaranteed rates request' . PHP_EOL . PHP_EOL . print_r( $arguments, true ) . PHP_EOL . PHP_EOL );
 

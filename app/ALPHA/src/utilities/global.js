@@ -9,7 +9,7 @@ const globalUtils = {
 
         for ( let key in overrides ) {
             if ( ( overrides[ key ] !== undefined ) && ( overrides[ key ] !== null ) ) {
-                if ( ( result[ key ] ) && ( result[ key ] !== overrides[ key ] ) ) {
+                if ( ( result[ key ] === null ) || ( result[ key ] === undefined ) || ( result[ key ] !== overrides[ key ] ) ) {
                     console.log( 'overriding ', key, ' with ', overrides[ key ] );
 
                     result[ key ] = overrides[ key ];
