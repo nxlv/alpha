@@ -53,7 +53,7 @@
                 this.selections.offset = 0;
 
                 let endpoint = '/api/quoting/get/fixed';
-                let settings = { settings: this.parameters, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
+                let settings = { settings: this.parameters, offset: this.selections.offset, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 if ( this.mode === 'comparison' ) {
                     settings = { ...settings, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), offset: this.selections.offset, chunk_size: this.parameters.chunk_size, comparisons: this.selections.comparison };
@@ -83,6 +83,34 @@
                     }
 
                     this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( 0, this.parameters.chunk_size ), parameters: this.parameters } );
+                }
+            },
+
+            async fetch_chunk() {
+                const inventory = useInventoryStore();
+                const client = useClientStore();
+
+                let endpoint = '/api/quoting/get/fixed';
+                let settings = { settings: this.parameters, offset: this.selections.offset, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
+
+                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+
+                /*
+                if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
+                    this.loading = false;
+
+                    return;
+                }
+                */
+
+                if ( ( request ) && ( request.data ) ) {
+                    for ( let counter = 0; counter < request.data.length; counter++ ) {
+                        console.log( 'adding', request.data[ counter ] );
+
+                        this.quotes.push( request.data[ counter ] );
+                    }
+
+                    this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( this.selections.offset, ( this.selections.offset + this.parameters.chunk_size ) ), parameters: this.parameters } );
                 }
             },
 
@@ -122,7 +150,7 @@
                 this.sort_results();
 
                 // fetch backtested returns
-                this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
+                //this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
 
                 this.loading = false;
 
@@ -188,34 +216,6 @@
                         this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
                     }
                     */
-                }
-            },
-
-            async fetch_chunk() {
-                const inventory = useInventoryStore();
-                const client = useClientStore();
-
-                let endpoint = '/api/quoting/get/fixed';
-                let settings = { ...this.parameters, nonce: this.nonce, offset: this.selections.offset, chunk_size: this.parameters.chunk_size, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
-
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
-
-                /*
-                if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
-                    this.loading = false;
-
-                    return;
-                }
-                */
-
-                if ( ( request ) && ( request.data ) ) {
-                    for ( let counter = 0; counter < request.data.length; counter++ ) {
-                        console.log( 'adding', request.data[ counter ] );
-
-                        this.quotes.push( request.data[ counter ] );
-                    }
-
-                    this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( this.selections.offset, ( this.selections.offset + this.parameters.chunk_size ) ), parameters: this.parameters } );
                 }
             },
 
@@ -293,18 +293,13 @@
                 switch ( this.selections.method ) {
                     case 'premium' :
                         response.sort( ( left, right ) => {
-                            return ( ( left.initial_income > right.initial_income ) ? -1 : ( ( left.initial_income === right.initial_income ) ? 0 : 1 ) );
-                        } );
-                        break;
+                            let income_left = parseFloat( left.quotes.income_data.initial_income );
+                            let income_right = parseFloat( right.quotes.income_data.initial_income );
 
-                    case 'income' :
-                        /*
-                        TODO: rebuild
+                            console.log( income_left, income_right );
 
-                        response.sort( ( left, right ) => {
-                            return ( ( left.quotes.income_data.initial_income < right.quotes.income_data.initial_income ) ? -1 : ( ( left.quotes.income_data.initial_income === right.quotes.income_data.initial_income ) ? 0 : 1 ) );
+                            return ( ( income_left > income_right ) ? -1 : 1 );
                         } );
-                        */
                         break;
                 }
 

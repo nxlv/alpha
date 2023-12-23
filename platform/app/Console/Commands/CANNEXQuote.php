@@ -56,10 +56,16 @@ class CANNEXQuote extends Command {
                 'contract_cd' => $type,
                 'premium' => number_format( $premium, 2, '.', '' ),
                 'purchase_date' => gmdate( 'Y-m-d' ),
-                'gender_cd_primary' => 'M',
+                'gender_cd_primary' => $gender,
                 'purchase_age_primary' => $age,
                 'income_start_age_primary' => $age + $deferral
             ];
+
+            if ( $type === 'J' ) {
+                $annuitant[ 'gender_cd_joint' ] = ( ( $gender === 'M' ) ? 'F' : 'M' );
+                $annuitant[ 'purchase_age_joint' ] = ( $age - 3 );
+                $annuitant[ 'income_start_age_joint' ] = ( $age - 3 ) + $deferral;
+            }
 
             if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $annuitant, 0, $targets ) ) {
                 $this->line( sprintf( '  <fg=black;bg=blue> NOTICE </> Profile ID created (%s / %s), marital status: %s.', $profile_id, $transaction_id, $type ) . PHP_EOL );

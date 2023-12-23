@@ -105,7 +105,7 @@ class Illustrating extends Controller {
 
         $hypothetical = CANNEXHelper::analyze_fixed( $queue );
 
-
+        /*
         $pdf = Pdf::loadView(
             'reporting.illustration',
             [
@@ -118,6 +118,7 @@ class Illustrating extends Controller {
                 ]
             ]
         );
+        */
 
         /*
         $filename = uniqid() . '.pdf';

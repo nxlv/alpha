@@ -221,12 +221,9 @@
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
 
-                /*
                 if ( isset( $parameters[ 'analysis_cd' ] ) ) {
                     unset( $parameters[ 'analysis_cd' ] );
                 }
-                */
-                $parameters[ 'analysis_cd' ] = null;
 
                 $arguments = array(
                     'canx_anty_inc1_operation' => array(
@@ -245,10 +242,6 @@
 
                 try {
                     $result = $client->__call( $function_name, $arguments );
-
-                    error_log( '--------------- PROFILE CREATION RESULT ----------------' );
-                    error_log( print_r( $result, true ) );
-                    error_log( '--------------- PROFILE CREATION RESULT ----------------' );
 
                     if ( ( isset( $result->income_response1 ) ) && ( $result->income_response1->income_request_id ) ) {
                         $request_id = $result->income_response1->income_request_id;
@@ -298,8 +291,6 @@
                     unset( $arguments[ 'analysis_cd' ] );
                 }
 
-                error_log( PHP_EOL . 'guaranteed rates request' . PHP_EOL . PHP_EOL . print_r( $arguments, true ) . PHP_EOL . PHP_EOL );
-
                 $retry_count = 0;
 
                 while ( true ) {
@@ -307,7 +298,6 @@
                         $analysis = $client->__call( $function_name, $arguments );
 
                         error_log( sprintf( '[+] Request status: %s', $analysis->income_response1_set->status_cd ) . PHP_EOL );
-                        error_log( print_r( $analysis, true ) );
 
                         if ( $analysis->income_response1_set->status_cd === 'P' ) {
                             error_log( '[+] Request pending, polling in 2 seconds...' . PHP_EOL );

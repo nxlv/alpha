@@ -18,7 +18,7 @@ class CANNEXCacheGuaranteed extends Command {
     const DEFAULT_ANALYSIS_SEQUENCES = [ 0, 1 ];
     const DEFAULT_PURCHASE_AGE = 50;
     const DEFAULT_AGE_RANGES = [ 50, 55, 60, 65, 70, 75 ];
-    const ANALYSIS_MAX_CHUNK_SIZE = 25;
+    const ANALYSIS_MAX_CHUNK_SIZE = 1;  // 25, but the web service failes if ANY analysis data id is invalid for any reason, so we have to send one at a time :(
 
     protected $version = '1.0';
 
@@ -27,7 +27,7 @@ class CANNEXCacheGuaranteed extends Command {
      *
      * @var string
      */
-    protected $signature = 'cannex:cache-guaranteed {--sequence=0} {--marital=S} {--premium=100.00} {--deferral=5} {--starting-age=50} {--batch=0}';
+    protected $signature = 'cannex:cache-guaranteed {--sequence=0} {--marital=S} {--premium=100.00} {--deferral=5} {--gender=M} {--owner-age=50} {--state=FL} {--batch=0}';
 
     /**
      * The console command description.
@@ -47,10 +47,12 @@ class CANNEXCacheGuaranteed extends Command {
         }
 
         $marital_status = $this->option( 'marital' );
-        $premium = $this->option( 'premium' );
+        $owner_state = $this->option( 'state' );
+        $gender = $this->option( 'gender' );
+        $premium = preg_replace( '/[^0-9.]/', '', $this->option( 'premium' ) );
         $deferral = $this->option( 'deferral' );
         $sequence = $this->option( 'sequence' );
-        $starting_age = $this->option( 'starting-age' );
+        $owner_age = $this->option( 'owner-age' );
         $batch = $this->option( 'batch' );
 
         if ( in_array( $sequence, self::DEFAULT_ANALYSIS_SEQUENCES ) === false ) {
@@ -78,51 +80,57 @@ class CANNEXCacheGuaranteed extends Command {
         $time_start = microtime();
 
         $this->line( sprintf( '  <bg=blue;fg=white> CANNEX Cache Builder </> v%s', $this->version ) . PHP_EOL );
-        $this->line( PHP_EOL . '  <fg=white;bg=blue> NOTICE </> Obtaining default product list...' . PHP_EOL );
-        $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Marital status: %s', $marital_status ) );
-        $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Premium: %f', $premium ) );
-        $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Deferral: %d', $deferral ) );
-        $this->line( sprintf( '  <fg=white;bg=green> CONFIG </> Sequence: %d', $sequence ) );
+        $this->line( PHP_EOL . '  <fg=black;bg=blue> NOTICE </> Obtaining default product list...' . PHP_EOL );
+        $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> Marital status: %s', $marital_status ) );
+        $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> Premium: %f', $premium ) );
+        $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> Age: %f', $owner_age ) );
+        $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> State: %f', $owner_state ) );
+        $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> Deferral: %d', $deferral ) );
+        $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> Sequence: %d', $sequence ) );
 
-        $products = ProductHelper::identify_products( [], [], [ 'annuity_type' => 'S', 'owner_age' => 65, 'owner_state' => 'FL', 'joint_age' => null, 'joint_state' => null ], [ 'premium' => 100000 ] );
+        $products = ProductHelper::identify_products(
+            [],
+            [],
+            [
+                'annuity_type' => $marital_status,
+                'owner_age' => $owner_age,
+                'owner_state' => $owner_state,
+                'joint_age' => null,
+                'joint_state' => null
+            ],
+            [
+                'premium' => $premium
+            ]
+        );
 
-        if ( ( !empty( $products ) ) && ( count( $products ) ) ) {
+        if ( ( !empty( $products ) ) && ( $products->count() ) ) {
             $stack = [];
 
-            $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> %d top-level products queued.', count( $products ) ) . PHP_EOL );
+            $this->line( sprintf( '  <fg=black;bg=blue> NOTICE </> %d top-level product configurations queued.', $products->count() ) . PHP_EOL );
 
             foreach ( $products as $product ) {
-                $this->line( PHP_EOL . sprintf( 'Adding <bg=yellow;fg=black> %s </>', $product[ 'product' ][ 'name' ] ) );
+                $this->line( PHP_EOL . sprintf( 'Adding <bg=yellow;fg=black> %s </>', $product->carrier_product->name ) );
+                $this->line( sprintf( 'IBP: %s', $product->income_benefit->name ) );
 
-                if ( count( $product[ 'targets' ] ) ) {
-                    foreach ( $product[ 'targets' ] as $target ) {
-                        $this->line( sprintf( '* ADID: <bg=gray;fg=white> %s </> 🎯 Instance Premium Range: <bg=green;fg=black> %d ➡️ %d </> 🎯 Premium: <bg=cyan;fg=black> %s </> 🎯 Deferral Period: <bg=cyan;fg=black> %d </>', $target[ 'product_analysis_data_id' ], $target[ 'premium_range_min' ], $target[ 'premium_range_max' ], $premium, $deferral ) );
-                        $this->line( sprintf( '  🎯 Valid States: <bg=white;fg=black> %s </>', ( ( !empty( $target[ 'rules' ][ 'valid_states' ] ) ) ? $target[ 'rules' ][ 'valid_states' ] : 'Any/all' ) ) );
+                if ( !empty( $product->rules->valid_states ) ) {
+                    $valid_states = $product->rules->valid_states->pluck( 'state_cd' )->toArray();
 
-                        if ( !empty( $target[ 'rules' ][ 'valid_states' ] ) ) {
-                            $valid_states = explode( ',', trim( $target[ 'rules' ][ 'valid_states' ] ) );
-
-                            if ( array_search( self::DEFAULT_OWNER_STATE, $valid_states ) !== false ) {
-                                $owner_state = self::DEFAULT_OWNER_STATE;
-                            } else {
-                                $owner_state = $valid_states[ 0 ];
-                            }
-                        } else {
-                            $owner_state = self::DEFAULT_OWNER_STATE;
-                        }
-
-                        if ( !isset( $stack[ $owner_state ] ) ) {
-                            $stack[ $owner_state ] = [];
-                        }
-
-                        $stack[ $owner_state ][] = [
-                            'analysis_data_id' => $target[ 'product_analysis_data_id' ],
-                            'target' => $target
-                        ];
+                    if ( array_search( self::DEFAULT_OWNER_STATE, $valid_states ) !== false ) {
+                        $owner_state = self::DEFAULT_OWNER_STATE;
+                    } else {
+                        $owner_state = $valid_states[ 0 ];
                     }
                 } else {
-                    $this->line( PHP_EOL . sprintf( '‼️ Skipping <bg=red;fg=white> %s </>, no valid product targets found for the current index and search parameters.', $product[ 'product' ][ 'name' ] ) );
+                    $owner_state = self::DEFAULT_OWNER_STATE;
                 }
+
+                if ( !isset( $stack[ $owner_state ] ) ) {
+                    $stack[ $owner_state ] = [];
+                }
+
+                $stack[ $owner_state ][] = [
+                    'analysis_data_id' => $product->analysis_data_id,
+                ];
             }
 
             if ( !empty( $stack ) ) {
@@ -131,8 +139,8 @@ class CANNEXCacheGuaranteed extends Command {
                 $age_ranges = [];
 
                 foreach ( self::DEFAULT_AGE_RANGES as $age ) {
-                    if ( $starting_age ) {
-                        if ( $age >= $starting_age ) {
+                    if ( $owner_age ) {
+                        if ( $age >= $owner_age ) {
                             $age_ranges[] = $age;
                         }
                     } else {
@@ -140,7 +148,7 @@ class CANNEXCacheGuaranteed extends Command {
                     }
                 }
 
-                foreach ( $stack as $state_code => $state ) {
+                foreach ( $stack as $state_code => $rows ) {
                     foreach ( $age_ranges as $age ) {
                         $profile = [
                             'annuitant' => [
@@ -155,7 +163,7 @@ class CANNEXCacheGuaranteed extends Command {
                             'targets' => []
                         ];
 
-                        foreach ( $state as $row ) {
+                        foreach ( $rows as $row ) {
                             $profile[ 'targets' ][] = $row[ 'analysis_data_id' ];
                         }
 
@@ -186,23 +194,23 @@ class CANNEXCacheGuaranteed extends Command {
                             $profile[ 'annuitant' ],
                             [
                                 'contract_cd' => $marital_status,
-                                'gender_cd_primary' => 'M'
+                                'gender_cd_primary' => $gender
                             ]
                         );
 
                         switch ( $marital_status ) {
                             case 'J' :
-                                $annuitant[ 'gender_cd_joint' ] = 'F';
+                                $annuitant[ 'gender_cd_joint' ] = ( ( $gender === 'F' ) ? 'M' : 'F' );
                                 $annuitant[ 'purchase_age_joint' ] = $annuitant[ 'purchase_age_primary' ];
                                 $annuitant[ 'income_start_age_joint' ] = $annuitant[ 'income_start_age_primary' ];
                                 break;
                          }
 
                         // create profile and get quotes
-                        $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> Deferral: %d, Premium: %f', ( intval( $annuitant[ 'income_start_age_primary' ] ) - intval( $annuitant[ 'purchase_age_primary' ] ) ), $annuitant[ 'premium' ] ) );
+                        $this->line( sprintf( '  <fg=black;bg=blue> NOTICE </> Deferral: %d, Premium: %f', ( intval( $annuitant[ 'income_start_age_primary' ] ) - intval( $annuitant[ 'purchase_age_primary' ] ) ), $annuitant[ 'premium' ] ) );
 
                         if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $annuitant, $sequence, $chunk ) ) {
-                            $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> Profile ID created (%s / %s), marital status: %s.  Sending batch %d of %d...', $profile_id, $transaction_id, $marital_status, $chunks_position, $chunks_total ) . PHP_EOL );
+                            $this->line( sprintf( '  <fg=black;bg=blue> NOTICE </> Profile ID created (%s / %s), marital status: %s.  Sending batch %d of %d...', $profile_id, $transaction_id, $marital_status, $chunks_position, $chunks_total ) . PHP_EOL );
                             $this->line( sprintf( '[+] Analysis IDs: %s', implode( ', ', $chunk ) ) . PHP_EOL );
 
                             $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
@@ -217,9 +225,11 @@ class CANNEXCacheGuaranteed extends Command {
                             if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
                                 $result_deferral = intval( $results->income_request_data->income_start_age_primary ) - intval( $results->income_request_data->purchase_age_primary );
 
-                                foreach ( $results->income_response_data as $result ) {
+                                $this->line( sprintf( '[+] Deferral Period: %d', $result_deferral ) . PHP_EOL );
+
+                                foreach ( ( ( !is_array( $results->income_response_data ) ) ? [ $results->income_response_data ] : $results->income_response_data ) as $result ) {
                                     if ( ( !isset( $result->income_error ) ) && ( isset( $result->cnx_sequence_id ) ) ) {
-                                        $this->line( sprintf( '  <fg=white;bg=blue> NOTICE </> Sequence: %d, ID: %s, Premium: %f, Age: %d, Deferral: %d, Income (Init/High/Low): %f/%f/%f', $result->cnx_sequence_id, $result->analysis_data_id, $results->income_request_data->premium, $results->income_request_data->purchase_age_primary, $result_deferral, $result->income_data->initial_income, $result->income_data->highest_income, $result->income_data->lowest_income ) );
+                                        $this->line( sprintf( '  <fg=black;bg=blue> NOTICE </> Sequence: %d, ID: %s, Premium: %f, Age: %d, Deferral: %d, Income (Init/High/Low): %f/%f/%f', $result->cnx_sequence_id, $result->analysis_data_id, $results->income_request_data->premium, $results->income_request_data->purchase_age_primary, $result_deferral, $result->income_data->initial_income, $result->income_data->highest_income, $result->income_data->lowest_income ) );
 
                                         $cache = new AnalysisGuaranteedCache;
                                         $cache->analysis_data_id = $result->analysis_data_id;

@@ -60,23 +60,32 @@
                     ->where( $params_rate );
 
                 if ( !empty( $parameters[ 'premium' ] ) ) {
-                    $matches->where( 'premium_range_min', '<=', floatval( $parameters[ 'premium' ] ) )->where( 'premium_range_max', '>=', floatval( $parameters[ 'premium' ] ) );
+                    $matches->where( 'premium_range_min', '<=', $parameters[ 'premium' ] )->where( 'premium_range_max', '>=', $parameters[ 'premium' ] );
                 }
 
                 $matches = $matches->get();
 
+                error_log( 'identify_products: ' . $matches->count() . ' matches found.' );
+
                 if ( $matches->count() ) {
+                    // TODO: how do we handle age ranges for joint accounts? what if the joint person is outside the age range, but the owner is?
                     $rule_ids = Rule::whereIn( 'rule_id', RulesState::where( 'state_cd', $annuitant[ 'owner_state' ] )->get()->pluck( 'rule_id' )->toArray() )
                         ->where( 'age_range_min_years', '<=', $annuitant[ 'owner_age' ] )
                         ->where( 'age_range_max_years', '>=', $annuitant[ 'owner_age' ] )
-                        ->where( 'premium_min', '<=', $parameters[ 'premium' ] )
+                        //->where( 'premium_min', '<=', $parameters[ 'premium' ] )
                         ->where( 'premium_max', '>=', $parameters[ 'premium' ] )
-                        ->whereIn( 'contract', [ '', $annuitant[ 'annuity_type' ] ] )
+                        ->where( 'contract', $annuitant[ 'annuity_type' ] )
                         ->get()->pluck( 'rule_id' )->toArray();
 
+                    error_log( 'premium: ' . $parameters[ 'premium' ] );
+                    error_log( 'identify_products: ' . count( $rule_ids ) . ' rulesets found' );
+
                     $products = Product::whereIn( 'rule_id', $rule_ids )
+                        ->where( 'income_benefit_profile_id', '!=', '' )
                         ->whereIn( 'strategy_rate_instance_id', $matches->pluck( 'instance_id' )->toArray() )
                         ->get();
+
+                    error_log( 'identify_products: ' . $products->count() . ' products found' );
                 }
             }
 
@@ -91,123 +100,6 @@
             }
 
             return $matches;
-        }
-
-        public static function enumerate_products( $products, $annuitant, $parameters, $analysis_ids = [] ) {
-            $response = [];
-
-            error_log( 'ENUMERATING' );
-
-            // rules
-            $rule_ids = Rule::whereIn( 'rule_id', RulesState::where( 'state_cd', $annuitant[ 'owner_state' ] )->get()->pluck( 'rule_id' )->toArray() )
-                ->where( 'age_range_min_years', '<=', $annuitant[ 'owner_age' ] )
-                ->where( 'age_range_max_years', '>=', $annuitant[ 'owner_age' ] )
-                ->where( 'premium_min', '<=', $parameters[ 'premium' ] )
-                ->where( 'premium_max', '>=', $parameters[ 'premium' ] )
-                ->whereIn( 'contract', [ '', $annuitant[ 'annuity_type' ] ] )
-                ->get()->pluck( 'rule_id' )->toArray();
-
-            error_log( 'RULES FETCHED' );
-
-            // products
-            error_log( 'START: FETCHING MASTER PRODUCT LIST' );
-
-            $analyses = Product::with(
-                'carrier_product',
-                'carrier_product.carrier',
-                'carrier_product.carrier.ratings',
-                'strategy',
-                'strategy.rates',
-                'income_benefit',
-                'income_benefit.rider_fee_current',
-                'income_benefit.premium_multiplier',
-                'income_benefit.premium_bonus',
-                'income_benefit.roll_up',
-                'income_benefit.interest_crediting',
-                'income_benefit.interest_bonus_crediting',
-                'income_benefit.interest_multiplier_crediting',
-                'income_benefit.income_start_age'
-            )
-                /*
-                ->whereIn( 'product_instance_id', array_map( function( $element ) { return $element->product_instance_id; }, $products->toArray() ) )
-                ->whereIn( 'strategy_details_instance_id', array_map( function( $element ) { return $element->product_strategy_instance_id; }, $products->toArray() ) )
-                */
-                ->whereIn( 'strategy_rate_instance_id', $products->pluck( 'instance_id' )->toArray() )
-                ->where( 'analysis_cd', 'B' );
-
-            // restrict to specific analysis_data_id's for compare mode?
-            if ( !empty( $analysis_ids ) ) {
-                $analyses->whereIn( 'analysis_data_id', $analysis_ids );
-
-                // TODO: we don't really need rules on comparison mode, since the products added to compare
-            } else {
-                $analyses->whereIn( 'rule_id', $rule_ids );
-            }
-
-            $analyses = $analyses->get();
-
-            if ( $analyses->count() ) {
-                foreach ( $analyses as $analysis ) {
-                    if ( !isset( $response[ $analysis->product_id ] ) ) {
-                        $response[ $analysis->product_id ] = [
-                            'product' => [
-                                'id' => $analysis->product_id,
-                                'name' => $analysis->carrier_product->name,
-                            ],
-                            'carrier' => [
-                                'id' => $analysis->carrier_product->carrier->id,
-                                'name' => $analysis->carrier_product->carrier->name,
-                                'ratings' => $analysis->carrier_product->carrier->ratings
-                            ],
-                            'targets' => []
-                        ];
-                    }
-
-                    $target = [
-                        // important id's
-                        'product_analysis_cd' => $analysis->analysis_cd,
-                        'product_analysis_data_id' => $analysis->analysis_data_id,
-                        'rule_id' => $analysis->rule_id,
-                        'product_id' => $analysis->product_id,
-                        'product_profile_id' => $analysis->product_profile_id,
-                        'product_instance_id' => $analysis->product_instance_id,
-                        'product_strategy_details_instance_id' => $analysis->product_strategy_instance_id,
-                        'product_strategy_rate_instance_id' => $analysis->instance_id,
-
-                        // guarantee period metrics
-                        'guarantee_period_months' => $analysis->guarantee_period_months,
-                        'guarantee_period_years' => $analysis->guarantee_period_years,
-                        'surrender_period_months' => $analysis->surrender_period_months,
-                        'surrender_period_years' => $analysis->surrender_period_years,
-
-                        // premium range
-                        'premium_range_min' => $analysis->strategy->rates->premium_range_min,
-                        'premium_range_max' => $analysis->strategy->rates->premium_range_max,
-
-                        // current metrics
-                        'current_fixed_rate' => $analysis->strategy->rates->current_fixed_rate,
-                        'current_increase_fixed_rate' => $analysis->strategy->rates->current_increase_fixed_rate,
-                        'current_declared_rate' => $analysis->strategy->rates->current_declared_rate,
-                        'current_cap_rate' => $analysis->strategy->rates->current_cap_rate,
-                        'current_cap_rate_cd' => $analysis->strategy->rates->current_cap_rate_cd,
-                        'current_spread_rate' => $analysis->strategy->rates->current_spread_rate,
-                        'current_participation_rate' => $analysis->strategy->rates->current_participation_rate,
-                        'current_protection_buffer_rate' => $analysis->strategy->rates->current_protection_buffer_rate,
-                        'current_protection_floor_rate' => $analysis->strategy->rates->current_protection_floor_rate,
-                        'current_protection_downside_participation_rate' => $analysis->strategy->rates->current_protection_downside_participation_rate,
-
-                        // exported relations
-                        'strategy' => $analysis->strategy,
-                        'income_benefit' => $analysis->income_benefit
-                    ];
-
-                    $response[ $analysis->product_id ][ 'targets' ][] = $target;
-
-                    error_log( 'ANALYSIS: END' );
-                }
-            }
-
-            return $response;
         }
 
         public static function validate_index_dates( $analysis_data_id, $purchase_date, $deferral ) {

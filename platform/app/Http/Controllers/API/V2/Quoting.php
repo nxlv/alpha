@@ -35,7 +35,7 @@ class Quoting extends Controller {
 
         $method = $settings[ 'method' ];
         $offset = $request->get( 'offset', 0 );
-        $chunk_size = $request->get( 'chunk_size', 25 );
+        $chunk_size = $settings[ 'chunk_size' ];
 
         // TODO: decide how we want to handle minimum premiums
         if ( $premium < self::PREMIUM_FAILSAFE ) {
@@ -64,31 +64,30 @@ class Quoting extends Controller {
         } else {
             $hash = 'alpha__fia-guaranteed-products-' . crc32( $method . '|' . $premium . '|' . $offset . '|' . $chunk_size ) . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $inventory ) );
 
-            if ( Cache::has( $hash ) ) {
-                $products = Cache::get( $hash );
-            } else {
-                $matches = ProductHelper::identify_products(
-                    [
-                        'strategy_type' => $settings[ 'strategy_type' ],
-                        'strategy_configuration' => $settings[ 'strategy_configuration' ],
-                        'calculation_frequency' => $settings[ 'calculation_frequency' ],
-                        'crediting_frequency' => $settings[ 'crediting_frequency' ],
-                        'guarantee_period_years' => $settings[ 'guarantee_period_years' ],
-                        'guarantee_period_months' => $settings[ 'guarantee_period_months' ]
-                    ],
-                    [
-                        'current_participation_rate' => $settings[ 'participation_rate' ],
-                    ],
-                    $annuitant,
-                    $parameters,
-                    $inventory
-                );
-            }
+            $matches = ProductHelper::identify_products(
+                [
+                    'strategy_type' => $settings[ 'strategy_type' ],
+                    'strategy_configuration' => $settings[ 'strategy_configuration' ],
+                    'calculation_frequency' => $settings[ 'calculation_frequency' ],
+                    'crediting_frequency' => $settings[ 'crediting_frequency' ],
+                    'guarantee_period_years' => $settings[ 'guarantee_period_years' ],
+                    'guarantee_period_months' => $settings[ 'guarantee_period_months' ]
+                ],
+                [
+                    'current_participation_rate' => $settings[ 'participation_rate' ],
+                ],
+                $annuitant,
+                $parameters,
+                $inventory
+            );
         }
 
         if ( ( !$products ) && ( $matches ) && ( $matches->count() ) ) {
+            error_log( 'query_fixed: ' . $matches->count() . ' matches found' );
+
             // TODO: Do we even need to query the Guaranteed Cache?  Review and see
             // Update: We do since we are using this to sort by highest -> lowest income based on logged guaranteed incomes
+            // Rank & Sort by S/10y/$100 for now
             $products = AnalysisGuaranteedCache::with(
                     [
                         'analysis.carrier_product',
@@ -106,18 +105,16 @@ class Quoting extends Controller {
                     ]
                 )
                 ->whereIn( 'analysis_data_id', $matches->pluck( 'analysis_data_id' )->toArray() )
-                ->where( 'purchase_age', 65 )
-                ->where( 'deferral', 10 )
                 ->where( 'premium', 100 )
+                ->where( 'deferral', 10 )
+                ->where( 'purchase_age', 65 )
                 ->where( 'is_joint', ( ( $annuitant[ 'annuity_type' ] === 'J' ) ? true : false ) )
                 ->orderBy( 'income_initial', 'desc' )
                 ->offset( $offset )
-                ->limit( $chunk_size )
+                ->limit( ( ( $chunk_size ) ? $chunk_size : 20 ) )
                 ->get();
 
-            if ( $hash ) {
-                Cache::add( $hash, $products, ( 60 * 10 ) );    // 10 minutes
-            }
+            error_log( 'query_fixed: ' . $products->count() . ' products (cache hits) found' );
         }
 
         return $products;
@@ -167,26 +164,26 @@ class Quoting extends Controller {
             'contract_cd' => $annuitant[ 'annuity_type' ],
             'premium' => preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] ),
             'purchase_date' => date( 'Y-m-d' ),
-            'gender_cd_primary' => 'M',
+            'gender_cd_primary' => $annuitant[ 'owner_gender' ],
             'purchase_age_primary' => $annuitant[ 'owner_age' ],
             'income_start_age_primary' => ( intval( $annuitant[ 'owner_age' ] ) + intval( $settings[ 'deferral' ] ) )
         ];
 
         if ( $annuitant[ 'annuity_type' ] === 'J' ) {
             $parameters[ 'gender_cd_joint' ] = $annuitant[ 'joint_gender' ];
-            $parameters[ 'purchase_age_joint' ] = date( 'Y-m-d' );
+            $parameters[ 'purchase_age_joint' ] = $annuitant[ 'joint_age' ];
             $parameters[ 'income_start_age_joint' ] = ( intval( $annuitant[ 'joint_age' ] ) + intval( $settings[ 'deferral' ] ) );
         }
 
         // TODO: hash only fields that matter, not entire arrays, for better accuracy
-        $hash = 'alpha__fia-guaranteed-' . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $settings ) ) . crc32( serialize( $products ) );
+         $hash = 'alpha__fia-guaranteed-' . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $settings ) ) . crc32( serialize( $products ) );
 
         // ANTY-WS01 1056: Analysis code cannot be used with fixed products.
         if ( isset( $parameters[ 'analysis_cd' ] ) ) {
             unset( $parameters[ 'analysis_cd' ] );
         }
 
-        if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) {
+        if ( ( !empty( $products ) ) && ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) ) {
             error_log( 'Profile created, ID#' . $profile_id );
 
             $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
