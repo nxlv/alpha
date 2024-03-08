@@ -6,285 +6,271 @@
   <canx_info>
     <info key="DIST-CODE">AALLC</info>
     <info key="DIST-NAME"><![CDATA[Annuity Association]]></info>
-    <info key="REQUEST-NO">C645NX</info>
-    <info key="RUN-DATE">2023-09-25T06:00:08</info>
+    <info key="REQUEST-NO">CBB5U8</info>
+    <info key="RUN-DATE">2024-02-19T06:00:06</info>
     <info key="PRODUCT-TYPE">FIAX</info>
     <info key="CUSTOMER">22933</info>
     <info key="CUSTOMER-NAME"><![CDATA[Annuity Association, LLC]]></info>
     <info key="LOGON-ID"></info>
   </canx_info>
-  <version_id>0001905808</version_id>
+  <version_id>0001937946</version_id>
   <index index_id="A0000001">
     <index_name><![CDATA[AB All Market Index]]></index_name>
     <universal_ticker>ABALLMKT</universal_ticker>
     <live_date>2019-12-12</live_date>
     <oldest_date>2003-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000002">
     <index_name><![CDATA[AI Powered US Equity Index]]></index_name>
     <universal_ticker>AIPEX</universal_ticker>
     <live_date>2019-11-19</live_date>
     <oldest_date>2004-04-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000003">
     <index_name><![CDATA[AQR DynamiQ Allocation Index]]></index_name>
     <universal_ticker>AQRDAI5</universal_ticker>
     <live_date>2020-05-18</live_date>
     <oldest_date>2004-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000004">
     <index_name><![CDATA[Balanced Asset 10 Index]]></index_name>
     <universal_ticker>CIBQB10E</universal_ticker>
     <live_date>2019-08-01</live_date>
     <oldest_date>2003-10-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000005">
     <index_name><![CDATA[Barclays All Caps Trailblazer 5 Index]]></index_name>
     <universal_ticker>BXIITAC5</universal_ticker>
     <live_date>2016-09-30</live_date>
-    <oldest_date>2004-01-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2004-01-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000008">
     <index_name><![CDATA[Barclays Trailblazer Sectors 5 Index]]></index_name>
     <universal_ticker>BXIITBZ5</universal_ticker>
     <live_date>2015-11-30</live_date>
     <oldest_date>2003-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000009">
     <index_name><![CDATA[BlackRock Diversa]]></index_name>
     <universal_ticker>IBLDV7E</universal_ticker>
     <live_date>2015-10-14</live_date>
-    <oldest_date>2015-10-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2015-10-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000A">
     <index_name><![CDATA[BlackRock Endura]]></index_name>
     <universal_ticker>IBLDE55E</universal_ticker>
     <live_date>2016-06-14</live_date>
     <oldest_date>2016-06-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
-  </index>
-  <index index_id="A000000B">
-    <index_name><![CDATA[BlackRock iBLD Claria]]></index_name>
-    <universal_ticker>IBLDCLRA</universal_ticker>
-    <live_date>2018-01-19</live_date>
-    <oldest_date>2018-01-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000C">
     <index_name><![CDATA[BlackRock iBLD Claria Excess Return]]></index_name>
     <universal_ticker>IBLDCLRE</universal_ticker>
     <live_date>2018-09-10</live_date>
-    <oldest_date>2018-09-28</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2018-09-30</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000E">
     <index_name><![CDATA[Bloomberg US Dynamic Balance]]></index_name>
     <universal_ticker>BXIIUDBI</universal_ticker>
     <live_date>1989-03-01</live_date>
     <oldest_date>1989-03-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000F">
     <index_name><![CDATA[Bloomberg US Dynamic Balance II]]></index_name>
     <universal_ticker>BXIIUDB2</universal_ticker>
     <live_date>2004-05-31</live_date>
     <oldest_date>2004-06-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000G">
     <index_name><![CDATA[Bloomberg US Dynamic Balance II Excess Return]]></index_name>
     <universal_ticker>BTSIDB2E</universal_ticker>
     <live_date>2004-05-31</live_date>
     <oldest_date>2004-06-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000H">
     <index_name><![CDATA[BNP Paribas Multi Asset Diversified 5]]></index_name>
     <universal_ticker>BNPIMAD5</universal_ticker>
     <live_date>2016-01-25</live_date>
     <oldest_date>2002-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000I">
     <index_name><![CDATA[BofA Destinations Index]]></index_name>
     <universal_ticker>BOFADST5</universal_ticker>
     <live_date>2020-06-04</live_date>
     <oldest_date>2003-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000J">
     <index_name><![CDATA[Citi Flexible Allocation 6 Excess Return]]></index_name>
     <universal_ticker>CIISFM6E</universal_ticker>
     <live_date>2014-07-18</live_date>
     <oldest_date>1997-03-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000T">
     <index_name><![CDATA[Fidelity Multifactor Yield Index 5% Excess Return]]></index_name>
     <universal_ticker>FIDMFYDN</universal_ticker>
     <live_date>2019-12-11</live_date>
     <oldest_date>1998-06-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000U">
     <index_name><![CDATA[First Trust Capital Strength Barclays 5% Index]]></index_name>
     <universal_ticker>BXFTCS5E</universal_ticker>
     <live_date>2020-03-25</live_date>
     <oldest_date>2008-10-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000V">
     <index_name><![CDATA[Franklin US Index]]></index_name>
     <universal_ticker>FTUSLX</universal_ticker>
     <live_date>2017-11-13</live_date>
     <oldest_date>2001-01-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000000W">
     <index_name><![CDATA[Gold Commodity / LBMA Gold Price PM]]></index_name>
     <universal_ticker>LBMA GOLD PRICE PM</universal_ticker>
     <live_date>1968-01-02</live_date>
     <oldest_date>1985-01-31</oldest_date>
-    <most_recent_date>2022-12-29</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000011">
     <index_name><![CDATA[iShares Core S&P 500 ETF]]></index_name>
     <universal_ticker>IVV</universal_ticker>
     <live_date>2000-05-15</live_date>
     <oldest_date>2000-05-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000012">
     <index_name><![CDATA[iShares Gold Trust]]></index_name>
     <universal_ticker>IAU</universal_ticker>
     <live_date>2005-01-21</live_date>
     <oldest_date>2005-01-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000013">
     <index_name><![CDATA[iShares MSCI EAFE ETF]]></index_name>
     <universal_ticker>EFA</universal_ticker>
     <live_date>2001-08-14</live_date>
     <oldest_date>2001-08-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000014">
     <index_name><![CDATA[iShares US Real Estate ETF]]></index_name>
     <universal_ticker>IYR</universal_ticker>
     <live_date>2000-06-12</live_date>
     <oldest_date>2000-06-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000015">
     <index_name><![CDATA[J.P. Morgan Mojave]]></index_name>
     <universal_ticker>JPUSMOJ5</universal_ticker>
     <live_date>2020-01-27</live_date>
     <oldest_date>2004-06-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001C">
     <index_name><![CDATA[Franklin Quality Dividend Index]]></index_name>
     <universal_ticker>LMQDTR5</universal_ticker>
     <live_date>2019-12-20</live_date>
     <oldest_date>1997-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001D">
     <index_name><![CDATA[Merrill Lynch RPM Index]]></index_name>
     <universal_ticker>MLRPM</universal_ticker>
     <live_date>2016-03-01</live_date>
-    <oldest_date>2002-03-28</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2002-03-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001E">
     <index_name><![CDATA[ML Strategic Balanced]]></index_name>
     <universal_ticker>MLSB</universal_ticker>
     <live_date>2014-08-12</live_date>
     <oldest_date>1985-01-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001I">
     <index_name><![CDATA[Morgan Stanley Global Opportunities Index]]></index_name>
     <universal_ticker>MSUSMSGO</universal_ticker>
     <live_date>2017-07-17</live_date>
     <oldest_date>2001-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001L">
     <index_name><![CDATA[MSCI EAFE]]></index_name>
     <universal_ticker>MXEA</universal_ticker>
     <live_date>1986-03-31</live_date>
     <oldest_date>1980-01-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001M">
     <index_name><![CDATA[Nasdaq 100]]></index_name>
     <universal_ticker>NDX</universal_ticker>
     <live_date>1985-02-01</live_date>
     <oldest_date>1985-09-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001N">
     <index_name><![CDATA[Nasdaq FC Index]]></index_name>
     <universal_ticker>BOFANFCC</universal_ticker>
     <live_date>2020-01-29</live_date>
     <oldest_date>2005-02-28</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001Q">
     <index_name><![CDATA[PIMCO Balanced Index]]></index_name>
     <universal_ticker>PIMBAL</universal_ticker>
     <live_date>2017-11-30</live_date>
-    <oldest_date>2000-12-29</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2000-12-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001R">
     <index_name><![CDATA[PIMCO Global Optima Index]]></index_name>
     <universal_ticker>PIMGOPT</universal_ticker>
     <live_date>2017-10-09</live_date>
-    <oldest_date>2000-12-29</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2000-12-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001S">
     <index_name><![CDATA[PIMCO Tactical Balanced Excess Return]]></index_name>
     <universal_ticker>DBTBIER</universal_ticker>
     <live_date>2018-08-02</live_date>
     <oldest_date>2004-04-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
-  </index>
-  <index index_id="A000001T">
-    <index_name><![CDATA[PIMCO Tactical Balanced Index]]></index_name>
-    <universal_ticker>DBTBI</universal_ticker>
-    <live_date>2015-12-07</live_date>
-    <oldest_date>2004-04-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001U">
     <index_name><![CDATA[RBA Select Equity Yield CIBC 5% Index]]></index_name>
     <universal_ticker>CMRBEY5E</universal_ticker>
     <live_date>2020-03-06</live_date>
-    <oldest_date>2006-09-29</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2006-09-30</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000001V">
     <index_name><![CDATA[Russell 2000]]></index_name>
     <universal_ticker>RUT</universal_ticker>
     <live_date>1984-01-01</live_date>
-    <oldest_date>1978-12-29</oldest_date>
+    <oldest_date>1978-12-31</oldest_date>
     <most_recent_date>2023-05-31</most_recent_date>
   </index>
   <index index_id="A000001X">
     <index_name><![CDATA[S&P 500]]></index_name>
     <universal_ticker>SPX</universal_ticker>
     <live_date>1957-03-04</live_date>
-    <oldest_date>1927-12-30</oldest_date>
+    <oldest_date>1927-12-31</oldest_date>
     <most_recent_date>2023-02-28</most_recent_date>
   </index>
   <index index_id="A000001Y">
@@ -292,168 +278,161 @@
     <universal_ticker>SPXAV10P</universal_ticker>
     <live_date>2013-04-04</live_date>
     <oldest_date>1985-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000021">
     <index_name><![CDATA[S&P 500 Daily Risk Control 5% Total Return]]></index_name>
     <universal_ticker>SPXT5UT</universal_ticker>
     <live_date>2009-09-10</live_date>
-    <oldest_date>1999-01-29</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>1999-01-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000024">
     <index_name><![CDATA[S&P 500 Dividend Aristocrats Daily Risk Control 5% Excess Return]]></index_name>
     <universal_ticker>SPXD5UE</universal_ticker>
     <live_date>2010-08-25</live_date>
     <oldest_date>1998-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000025">
     <index_name><![CDATA[S&P 500 Low Volatility Daily Risk Control 5%]]></index_name>
     <universal_ticker>SPLV5UT</universal_ticker>
     <live_date>2011-08-18</live_date>
     <oldest_date>1998-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000026">
     <index_name><![CDATA[S&P 500 Low Volatility Daily Risk Control 8%]]></index_name>
     <universal_ticker>SPLV8UT</universal_ticker>
     <live_date>2011-08-18</live_date>
     <oldest_date>1998-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000002B">
     <index_name><![CDATA[S&P MARC 5% Excess Return]]></index_name>
     <universal_ticker>SPMARC5P</universal_ticker>
     <live_date>2017-03-27</live_date>
-    <oldest_date>1989-12-29</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>1989-12-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000002D">
     <index_name><![CDATA[S&P U.S. Retiree Spending]]></index_name>
     <universal_ticker>SPRETIRE</universal_ticker>
     <live_date>2016-09-26</live_date>
     <oldest_date>1995-07-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000002F">
     <index_name><![CDATA[Shiller Barclays Global Index]]></index_name>
     <universal_ticker>BXIISG6E</universal_ticker>
     <live_date>2019-01-31</live_date>
-    <oldest_date>2002-08-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2002-08-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000002G">
     <index_name><![CDATA[SPDR Gold Shares]]></index_name>
     <universal_ticker>GLD</universal_ticker>
     <live_date>2004-11-18</live_date>
     <oldest_date>2004-11-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000002H">
     <index_name><![CDATA[WisdomTree Siegel Strategic Value Index]]></index_name>
     <universal_ticker>CIBQWS6E</universal_ticker>
     <live_date>2018-12-19</live_date>
     <oldest_date>2002-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000002Y">
     <index_name><![CDATA[Citi Grandmaster Index]]></index_name>
     <universal_ticker>CITIMSTR</universal_ticker>
     <live_date>2020-04-21</live_date>
     <oldest_date>2001-10-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000030">
     <index_name><![CDATA[Shiller Barclays CAPE Allocator 6 Index]]></index_name>
     <universal_ticker>BXIISC6E</universal_ticker>
     <live_date>2005-09-20</live_date>
     <oldest_date>2005-09-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000034">
     <index_name><![CDATA[BlackRock ESG U.S. 5% Index ER]]></index_name>
     <universal_ticker>BESGUVCX</universal_ticker>
     <live_date>2021-01-25</live_date>
-    <oldest_date>2021-01-29</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2021-01-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000003B">
-    <index_name><![CDATA[Credit Suisse Tech Edge Index]]></index_name>
+    <index_name><![CDATA[UBS Tech Edge Index]]></index_name>
     <universal_ticker>CSEATEDG</universal_ticker>
     <live_date>2021-01-14</live_date>
     <oldest_date>2002-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000003C">
     <index_name><![CDATA[SG Global Sentiment Index]]></index_name>
     <universal_ticker>SGIXSENT</universal_ticker>
     <live_date>2020-12-24</live_date>
-    <oldest_date>2002-03-28</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
-  </index>
-  <index index_id="A000003M">
-    <index_name><![CDATA[UBS Climate Aware Equity Index]]></index_name>
-    <universal_ticker>UBSCLIMA</universal_ticker>
-    <live_date>2021-02-26</live_date>
-    <oldest_date>2011-02-28</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2002-03-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000003U">
     <index_name><![CDATA[GS Global Factor Index]]></index_name>
     <universal_ticker>GSGFI5E</universal_ticker>
     <live_date>2021-05-11</live_date>
-    <oldest_date>2004-10-29</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2004-10-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000003V">
     <index_name><![CDATA[Morgan Stanley Dynamic Global Index]]></index_name>
     <universal_ticker>MSUSMSDG</universal_ticker>
     <live_date>2022-03-17</live_date>
     <oldest_date>2007-04-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000040">
     <index_name><![CDATA[Balanced Asset 5 Index]]></index_name>
     <universal_ticker>CIBQB05E</universal_ticker>
     <live_date>2020-06-29</live_date>
     <oldest_date>2003-10-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000041">
     <index_name><![CDATA[AI Powered Multi-Asset Index]]></index_name>
     <universal_ticker>AIMAX</universal_ticker>
     <live_date>2019-08-09</live_date>
     <oldest_date>2005-01-31</oldest_date>
-    <most_recent_date>2023-01-24</most_recent_date>
+    <most_recent_date>2023-01-31</most_recent_date>
   </index>
   <index index_id="A0000047">
     <index_name><![CDATA[Loomis Sayles Managed Futures Index]]></index_name>
     <universal_ticker>LSMANFI</universal_ticker>
     <live_date>2021-08-30</live_date>
     <oldest_date>2002-01-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000004B">
     <index_name><![CDATA[S&P 500 ESG Daily Risk Control 5% Index]]></index_name>
     <universal_ticker>SPXESU5E</universal_ticker>
     <live_date>2021-09-20</live_date>
     <oldest_date>2005-09-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000004C">
     <index_name><![CDATA[Morgan Stanley Dynamic Contribution Index]]></index_name>
     <universal_ticker>MSUSMSDC</universal_ticker>
     <live_date>2019-04-19</live_date>
     <oldest_date>1998-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000004D">
     <index_name><![CDATA[S&P Maestro 5 Index Excess Return]]></index_name>
     <universal_ticker>SPMAES5E</universal_ticker>
     <live_date>2021-02-22</live_date>
-    <oldest_date>2021-07-30</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <oldest_date>2021-07-31</oldest_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000004F">
     <index_name><![CDATA[BofA Iris U.S. Sectors Index]]></index_name>
@@ -467,14 +446,14 @@
     <universal_ticker>DFAUSFDS</universal_ticker>
     <live_date>2022-09-30</live_date>
     <oldest_date>2021-03-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000004P">
     <index_name><![CDATA[S&P 500 Daily Risk Control 5% Excess Return (USD) Index]]></index_name>
     <universal_ticker>SPXT5UE</universal_ticker>
     <live_date>2009-09-10</live_date>
     <oldest_date>2021-03-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A000004S">
     <index_name><![CDATA[S&P 500 Low Volatility Daily Risk Control 5% Index (ER)]]></index_name>
@@ -487,7 +466,7 @@
     <index_name><![CDATA[S&P 500 Futures Daily Risk Control 5% Index (USD) Excess Return]]></index_name>
     <universal_ticker>SPXFR5UE</universal_ticker>
     <live_date>2009-12-18</live_date>
-    <oldest_date>2000-12-29</oldest_date>
+    <oldest_date>2000-12-31</oldest_date>
     <most_recent_date>2023-07-31</most_recent_date>
   </index>
   <index index_id="A0000052">
@@ -495,35 +474,35 @@
     <universal_ticker>BMADVVCX</universal_ticker>
     <live_date>2023-01-31</live_date>
     <oldest_date>2023-01-31</oldest_date>
-    <most_recent_date>2023-04-21</most_recent_date>
+    <most_recent_date>2023-04-30</most_recent_date>
   </index>
   <index index_id="A0000055">
     <index_name><![CDATA[S&P 500 Duo Swift Index]]></index_name>
     <universal_ticker>SPDUWE</universal_ticker>
     <live_date>2023-03-06</live_date>
     <oldest_date>2021-12-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000056">
     <index_name><![CDATA[Barclays Atlas 5 Index]]></index_name>
     <universal_ticker>BXIIAT5E</universal_ticker>
     <live_date>2019-12-06</live_date>
     <oldest_date>2004-04-30</oldest_date>
-    <most_recent_date>2023-04-28</most_recent_date>
+    <most_recent_date>2023-04-30</most_recent_date>
   </index>
   <index index_id="A0000057">
     <index_name><![CDATA[Credit Suisse RavenPack]]></index_name>
     <universal_ticker>CSRPAI5E</universal_ticker>
     <live_date>2017-10-06</live_date>
     <oldest_date>2005-09-30</oldest_date>
-    <most_recent_date>2023-07-31</most_recent_date>
+    <most_recent_date>2023-12-29</most_recent_date>
   </index>
   <index index_id="A0000058">
     <index_name><![CDATA[Nasdaq Generations 5]]></index_name>
     <universal_ticker>NDXGEN5</universal_ticker>
     <live_date>2020-08-24</live_date>
     <oldest_date>2022-08-31</oldest_date>
-    <most_recent_date>2022-12-30</most_recent_date>
+    <most_recent_date>2022-12-31</most_recent_date>
   </index>
   <index index_id="A0000059">
     <index_name><![CDATA[S&P PRISM Index]]></index_name>
@@ -549,6 +528,7 @@
   <index index_id="A000005D">
     <index_name><![CDATA[BofA Global MegaTrends Index]]></index_name>
     <universal_ticker>BOFAMEG7</universal_ticker>
+    <live_date>2008-03-07</live_date>
     <oldest_date>2006-06-30</oldest_date>
     <most_recent_date>2023-08-31</most_recent_date>
   </index>
@@ -572,5 +552,11 @@
     <live_date>2023-03-20</live_date>
     <oldest_date>2004-11-30</oldest_date>
     <most_recent_date>2022-02-28</most_recent_date>
+  </index>
+  <index index_id="A000005X">
+    <index_name><![CDATA[J.P. Morgan Cross-Asset Strategy Index]]></index_name>
+    <universal_ticker>JPUSCAS</universal_ticker>
+    <oldest_date>2002-11-29</oldest_date>
+    <most_recent_date>2023-12-29</most_recent_date>
   </index>
 </anty_ds_indexes>

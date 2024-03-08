@@ -15,8 +15,8 @@ use App\Models\Index;
 use App\Models\AnalysisGuaranteedCache;
 
 class Quoting extends Controller {
-    const YEARS_DEFERRAL_MIN = 5;
-    const YEARS_DEFERRAL_MAX = 25;
+    const YEARS_DEFERRAL_MIN = 0;
+    const YEARS_DEFERRAL_MAX = 30;
     const PREMIUM_FAILSAFE = 10000;
     const INCOME_FAILSAFE = 100;
 
@@ -88,6 +88,8 @@ class Quoting extends Controller {
             // TODO: Do we even need to query the Guaranteed Cache?  Review and see
             // Update: We do since we are using this to sort by highest -> lowest income based on logged guaranteed incomes
             // Rank & Sort by S/10y/$100 for now
+            //
+            // We profile this using a default profile of age 65, 10 year deferral, $100 premium.
             $products = AnalysisGuaranteedCache::with(
                     [
                         'analysis.carrier_product',
@@ -206,6 +208,13 @@ class Quoting extends Controller {
         return $response;
     }
 
+    /**
+     * @param Request $request
+     * @return array|false
+     *
+     * NOTE:
+     * This method doesn't work as intended due to CANNEX's API not performing as described with regard to historical index data.
+     */
     public function query_fixed_backtested_return( Request $request ) {
         $response = [];
 

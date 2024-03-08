@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Notice;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -79,7 +81,58 @@ class IncomeBenefit extends Model
         return $this->hasMany( IncomeBenefitsStepUp::class, 'income_benefit_profile_id', 'income_benefit_profile_id' );
     }
 
+    // rules
+
     public function states() {
         return $this->hasMany( IncomeBenefitsState::class, 'income_benefit_profile_id', 'income_benefit_profile_id' );
+    }
+
+    // notices
+    public function notice_current_rider_fees() {
+        return $this->hasOne( Notice::class, 'text_id', 'interest_bonus_crediting_text_id' );
+    }
+    public function notice_rider_fees() {
+        return $this->hasOne( Notice::class, 'text_id', 'rider_fees_notice_text_id' );
+    }
+
+    public function notice_premium_multiplier() {
+        return $this->hasOne( Notice::class, 'text_id', 'interest_crediting_text_id' );
+    }
+    public function notice_premium_bonus() {
+        return $this->hasOne( Notice::class, 'text_id', 'premium_bonus_text_id' );
+    }
+    public function notice_premium() {
+        return $this->hasOne( Notice::class, 'text_id', 'premium_notice_text_id' );
+    }
+
+    public function notice_interest_crediting() {
+        return $this->hasOne( Notice::class, 'text_id', 'interest_bonus_crediting_text_id' );
+    }
+    public function notice_interest_multiplier() {
+        return $this->hasOne( Notice::class, 'text_id', 'interest_multiplier_crediting_text_id' );
+    }
+
+    public function notice_issue_age() {
+        return $this->hasOne( Notice::class, 'text_id', 'issue_age_notice_text_id' );
+    }
+
+    public function notice_step_ups() {
+        return $this->hasOne( Notice::class, 'text_id', 'step_ups_notice_text_id' );
+    }
+
+    public function notice_persistency_credit() {
+        return $this->hasOne( Notice::class, 'text_id', 'persistency_credit_text_id' );
+    }
+
+    public function notice_income_start() {
+        return $this->hasOne( Notice::class, 'text_id', 'income_start_age_text_id' );
+    }
+
+    public function notice_withdrawal_rates() {
+        return $this->hasOne( Notice::class, 'text_id', 'withdrawal_rates_text_id' );
+    }
+    public function notice_withdrawal_ruin_rates() {
+        return $this->hasOne( Notice::class, 'text_id', 'withdrawal_ruin_rates_text_id' );
+
     }
 }

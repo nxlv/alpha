@@ -15135,7 +15135,7 @@ main#alpha .alpha__prologue {
       display: block;
       top: 50px;
       left: 1rem;
-      z-index: 20;
+      z-index: 99;
       opacity: 1;
       transform: translateY(-50%);
       color: #fff;
@@ -15619,7 +15619,7 @@ main#alpha .alpha__prologue {
  * Needs refactoring to work with ALPHA themeing system and to not have variables in this file, but in data/* files
  */
 .bookshelf_wrapper {
-  margin: 5rem 0; }
+  margin: 5rem 0 2.5rem 0; }
 
 .books_status {
   padding: 1rem 0 0 0;

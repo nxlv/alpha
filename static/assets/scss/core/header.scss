@@ -45,7 +45,7 @@ main#alpha {
                 display: block;
                 top: #{$nav-secondary-height-xl * 0.5};
                 left: $standard-spacing-xl;
-                z-index: 20;
+                z-index: 99;
                 opacity: 1;
                 transform: translateY(-50%);
                 color: #fff;

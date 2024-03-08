@@ -39,12 +39,27 @@
             $strategies = ProductsInstancesStrategy::where( $params_strategy );
 
             // inventory
-            if ( !empty( $inventory ) ) {
-                // restrict to saved inventory
-                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', $inventory )->get()->pluck( 'product_instance_id' )->toArray() );
-            } else if ( !empty( $parameters[ 'carrier' ] ) ) {
+            if ( !empty( $parameters[ 'carrier' ] ) ) {
                 // restrict to carrier inventory
-                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', CarriersProduct::whereIn( 'carrier_id', $parameters[ 'carrier' ] )->get()->pluck( 'product_id' )->toArray() )->get()->pluck( 'product_instance_id' )->toArray() );
+                $strategies->whereIn(
+                    'product_instance_id',
+                    ProductsInstance::whereIn(
+                        'product_id',
+                        CarriersProduct::whereIn(
+                            'carrier_id',
+                            $parameters[ 'carrier' ]
+                        )->get()
+                         ->pluck( 'product_id' )
+                         ->toArray()
+                    )->get()
+                        ->pluck( 'product_instance_id' )
+                        ->toArray()
+                )->get()
+                 ->pluck( 'product_instance_id' )
+                 ->toArray();
+            } else if ( !empty( $inventory ) ) {
+                // restrict to saved inventory
+                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', $inventory )->get()->pluck( 'product_instance_id' ) )->get()->pluck( 'product_instance_id' )->toArray();
             }
 
             // index

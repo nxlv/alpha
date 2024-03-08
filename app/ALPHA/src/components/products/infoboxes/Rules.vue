@@ -4,7 +4,6 @@
 
         <div class="availability">
             <span class="availability__region" v-for="( row, row_index ) in profile.states" v-bind:key="row_index">{{ row.state_cd }}</span>
-            &mdash;
         </div>
 
         <h3>Premiums</h3>

@@ -12,7 +12,7 @@ return [
         'illustration' => env( 'CANNEX_WS_ENDPOINT_ILLUSTRATION' ),
         'illustration_zero_return' => env( 'CANNEX_WS_ENDPOINT_ILLUSTRATION_GUARANTEED' ),
         'income' => env( 'CANNEX_WS_ENDPOINT_INCOME' )
-    ], 
+    ],
     'lookup' => [
         'carriers' => 'anty_ds_crr_prds',
         'products' => 'anty_ds_anly_data',
@@ -21,7 +21,8 @@ return [
         'death-benefits' => 'anty_ds_db_prfl',
         'income-benefits' => 'anty_ds_ib_prfl',
         'indexes' => 'anty_ds_index',
-        'rules' => 'anty_ds_rules'
+        'notices' => 'anty_ds_text',
+        'rules' => 'anty_ds_rules',
+        'text' => 'anty_ds_text'
     ]
 ];
-

@@ -77,6 +77,12 @@
 
                 <ul class="report__products-data data-points-list">
                     @foreach ( $products as $product )
+                        <!-- loop through $illustrations[ guaranteed' ] and match up records to get guaranteed income -->
+                        @foreach ( $illustrations[ 'guaranteed' ] as $illustration )
+                            @if ( $product->analysis_data_id === $illustration->evaluate_request->analysis_data_id )
+                                <li><strong>Found</strong></li>
+                            @endif
+                        @endforeach
                         <li class="report__products-data-point data-point">
                             <div class="report__products-data-point-thumbnail" data-carrier-slug="{{ Str::slug( $product->carrier_product->carrier->name ) }}"></div>
 

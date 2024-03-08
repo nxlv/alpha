@@ -30,16 +30,6 @@ Route::post( '/products/details', [ App\Http\Controllers\API\V1\Products::class,
  */
 
 Route::get( '/carriers/all', [ App\Http\Controllers\API\V1\Carriers::class, 'get_all' ] );
-/**
- * TODO:
- *
- * /carriers/all/compact
- * /carriers/single/<ID>
- * /carriers/single/<ID>/compact
- * /carriers/single/<ID>/products
- *
- */
-
 Route::get( '/indexes/all', [ App\Http\Controllers\API\V1\Indexes::class, 'get_all' ] );
 
 /**

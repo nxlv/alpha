@@ -56,7 +56,7 @@
                 let settings = { settings: this.parameters, offset: this.selections.offset, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 if ( this.mode === 'comparison' ) {
-                    settings = { ...settings, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), offset: this.selections.offset, chunk_size: this.parameters.chunk_size, comparisons: this.selections.comparison };
+                    settings = { settings: this.parameters, offset: this.selections.offset, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), comparisons: this.selections.comparison };
                 } else {
                     this.selections.comparison = [];
                 }
@@ -149,12 +149,13 @@
 
                 this.sort_results();
 
-                // fetch backtested returns
-                //this.$emitter.emit( 'fetch_backtested', { products: this.quotes.slice( this.selections.offset, this.parameters.chunk_size ), parameters: this.parameters } );
-
                 this.loading = false;
 
                 this.selections.offset += this.parameters.chunk_size;
+
+                if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
+                    this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
+                }
             },
 
             async fetch_quote_backtested_return( inputs ) {
@@ -293,12 +294,14 @@
                 switch ( this.selections.method ) {
                     case 'premium' :
                         response.sort( ( left, right ) => {
-                            let income_left = parseFloat( left.quotes.income_data.initial_income );
-                            let income_right = parseFloat( right.quotes.income_data.initial_income );
+                            if ( ( left.quotes ) && ( right.quotes ) ) {
+                                let income_left = parseFloat( left.quotes.income_data.initial_income );
+                                let income_right = parseFloat( right.quotes.income_data.initial_income );
 
-                            console.log( income_left, income_right );
-
-                            return ( ( income_left > income_right ) ? -1 : 1 );
+                                return ( ( income_left > income_right ) ? -1 : 1 );
+                            } else {
+                                return 0;
+                            }
                         } );
                         break;
                 }
@@ -366,6 +369,24 @@
                             if ( key.indexOf( type + '_' ) > -1 ) {
                                 this.parameters.overrides.annuitant[ key ] = null;
                             }
+                        }
+                        break;
+
+                    case 'type' :
+                        switch ( this.parameters.overrides.annuitant.annuity_type ) {
+                            case 'S' :
+                                this.clear_client_overrides( 'joint' );
+                                break;
+
+                            case 'J' :
+                                break;
+
+                            default :
+                                this.clear_client_overrides( 'owner' );
+                                this.clear_client_overrides( 'joint' );
+
+                                this.parameters.overrides.annuitant.annuity_type = null;
+                                break;
                         }
                         break;
 
@@ -548,8 +569,8 @@
                                 <div class="notice"><p>You can override any of your clients' settings here.  This <u>will not</u> make permanent changes to your client records.</p></div>
 
                                 <label>Benefit Type</label>
-                                <select id="parameters__client-type" name="client-type" v-model="parameters.overrides.annuitant.annuity_type">
-                                    <option value="">&mdash;</option>
+                                <select id="parameters__client-type" name="client-type" v-on:change="clear_client_overrides( 'type' )" v-model="parameters.overrides.annuitant.annuity_type">
+                                    <option value="">Use current client (default)</option>
                                     <option v-for="( option, option_index ) in this.$globalUtils.get_dataset_as_kvp( 'single_joint' )" v-bind:key="option_index" v-bind:value="option.value">{{ option.label }}</option>
                                 </select>
                             </div>
@@ -800,7 +821,7 @@
                     <div class="form__row">
                         <div class="form__column form__column--full">
                             <label for="deferral">Defer Income for <strong>{{ parameters.deferral_selected }} years</strong></label>
-                            <input type="range" name="deferral" step="1" min="5" max="20" v-on:change="set_deferral_period" v-model="parameters.deferral_selected">
+                            <input type="range" name="deferral" step="1" min="0" max="25" v-on:change="set_deferral_period" v-model="parameters.deferral_selected">
                         </div>
                     </div>
 

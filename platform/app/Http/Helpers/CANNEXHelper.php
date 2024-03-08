@@ -9,8 +9,7 @@
     use App\Http\Helpers\WSSoapClient;
 
     class CANNEXHelper {
-        //const ANTY_ANLY_VERSION_ID = 'BY13MD';
-        const ANTY_ANLY_VERSION_ID = 'C8H47Y';
+        const ANTY_ANLY_VERSION_ID = 'CAM2B1';
         const MAX_POLL_RETRIES = 25;
 
         public static function analyze_fixed( $products ) {
@@ -193,7 +192,7 @@
                     'income_analysis_data_id'     => $product[ 'analysis_data_id' ],
                     'evaluate_time_horizon_years' => ( ( isset( $product[ 'analysis_time_horizon_years' ] ) ) ? ( intval( $product[ 'analysis_time_horizon_years' ] ) + 1 ) : ( $product[ 'index' ][ 'deferral' ] + 1 ) ),
                     'anty_ds_version_id'          => self::ANTY_ANLY_VERSION_ID,
-                    'sequence_id'                 => 10000,
+                    'sequence_id'                 => 10000, // TODO: increment? don't like using the same ID always
                     'is_test'                     => 'N'
                 ]
             ];
