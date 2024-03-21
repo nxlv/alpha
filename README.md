@@ -23,11 +23,17 @@ You will need to have SSH access to the server, and `sudo` access on your accoun
 > **IMPORTANT**
 > Make sure the server you are using is **not** pre-configured as a web server.  For best results, use a server that is a base Linux installation with no extraneous network services (i.e., http, ftp, etc) pre-configured.
 
-To make things easy, let's temporarily log in as root so that we do not have to worry about privileges or permissions issues.  To do this, issue the following command:
-> ```sudo su -```
+Make sure you are **NOT** logging in as ```root```.  You need to have your own user that does not have default superuser privileges that we will do most of the work on.  
 
-> **NOTE**
-> You may be prompted to enter a password.  It is asking for your password, for the account you're currently using.  Enter that password to continue.
+> **If you are logging in as root, you will need to create a user for yourself to use.**  To do this, issue the following command:
+> > ```sudo adduser --shell=/bin/bash --ingroup www-data your_username```
+> >
+> > Replace the ```your_username``` text with the username you wish to use (i.e., ```greg```).  Then, follow the on-screen instructions.
+> >
+> > We now need to add our user to the ```sudo``` user group so that you can execute commands as root when needed.  Issue the following command:
+> > ```sudo usermod –a –G sudo your_username```
+> >
+> > Now, you should be able to open a new terminal session and log-in as your newly created user, using the username you replaced the ```your_username``` text with, and with the password you specified during the on-screen instructions when creating your new user.
 
 Once you've done that, we need to prepare the environment for the platform.  Let's do a system update to get the latest package lists:
 > ```sudo apt update```
@@ -96,13 +102,13 @@ Now that we have a nice, clean, upgraded server, let's install the packages we n
 First, let's install ```git``` so that we can access a copy of the latest version of the ALPHA platform in a later step.
 
 Issue the following command:
-> ```apt install git```
+> ```sudo apt install git```
 
 That's it for now.
 
 ### Apache (Web Server)
 Next, let's install our web server, Apache.  Issue the following command:
-> ```apt install apache2```
+> ```sudo apt install apache2```
 
 That's all for now, we'll come back to this later after we have installed PHP and our database.
 
@@ -119,10 +125,10 @@ That's all for now, we'll come back to this later after we have installed PHP an
 The platform is also fully compatible with MariaDB (or Oracle's MySQL Community Edition).  If you choose to use this database engine, follow these instructions.
 
 First, install the server:
-> ```apt install mariadb-server```
+> ```sudo apt install mariadb-server```
 
 Next, enter the MariaDB console by issuing the following command:
-> ```mariadb```
+> ```sudo mariadb```
 
 You should see something resembling this:
 ```
@@ -146,10 +152,13 @@ Now that you have logged in to MariaDB, we need to create the ALPHA database.  T
 You should receive this message:
 > ```Query OK, 1 row affected (0.000 sec)```
 
-Next, import the staging database dump.  This is a quick-start, so that you do not need to rebuild all data from CANNEX from scratch, which takes many hours to accomplish.  In the future, a section on how to get up-and-running from scratch will be added.
+You can now exit the MariaDB console by issuing the following command:
+> ```QUIT```
 
-In the meantime, issue the following command:
-> ```wget https://alpha.staged.dev/_dumps/alpha--mysql--2024-03-01.sql.gz ```
+Next, import the staging database dump.  This is a quick-start, so that you do not need to rebuild all data from CANNEX from scratch, which takes many hours to accomplish.  In the future, a section on how to get up-and-running from scratch will be added.  
+
+Issue the following command:
+> ```wget https://alpha.staged.dev/_dumps/alpha--mysql--2024-03-01.sql.gz```
 
 You should see output like this:
 ```
@@ -165,12 +174,12 @@ Next, we need to decompress the SQL file.  Issue the following command:
 > ```gunzip alpha--mysql--2024-03-01.sql.gz```
 
 Now, we need to import this file into our newly created ```alpha``` database.  Issue the following command:
-> ```mariadb --verbose alpha < alpha--mysql--2024-03-01.sql```
+> ```sudo mariadb --verbose alpha < alpha--mysql--2024-03-01.sql```
 
 This should complete, and will display lots of raw table data to the console.  If you'd prefer not to see this, then you can remove the ```--verbose``` from the above command.  You will not see any "Success" or "OK" message after the import completes.  You will, however, see errors if there are any.  If you encounter an error, you may need to Google any specific error messages you're receiving for help.
 
 Let's make sure that our database imported correctly.  To take a cursory glance at this, issue the following command:
-> ```mariadb -e "SHOW TABLES" alpha | more```
+> ```sudo mariadb -e "SHOW TABLES" alpha | more```
 
 You should receive output that looks like this:
 ```
@@ -210,12 +219,12 @@ income_benefits_income_start_ages
 [...continued]
 ```
 This looks good, but we now need to create a user within MariaDB that the platform will use to access the database server.  To do this, first open the MariaDB console.  To do this, issue the following command:
-> ```mariadb```
+> ```sudo mariadb```
 
 Next, let's tell MariaDB that we want to create a new user.  To do this, issue the following command:
-> ```CREATE USER 'web'@'localhost' IDENTIFIED BY 'password';```
+> ```CREATE USER 'web'@'localhost' IDENTIFIED BY 'test1234';```
 
-In the above command, you can replace ```password``` with an actual password.  For the purposes of this guide, we'll just stick with ```password```.  Please don't do this in practice.
+In the above command, you can replace ```test1234``` with an [actual secure password](https://bitwarden.com/password-generator/).  For the purposes of this guide, we'll just stick with ```test1234```.  Please don't do this in practice.
 
 You should receive a response of ```Query OK, 0 rows affected (0.001 sec)```.  If you don't, you may have to check the password you entered, as it may need to have a single-quote ( ```'``` ) escaped with an escape character ( ```\'``` ).
 
@@ -236,7 +245,7 @@ We are now done setting up MariaDB.
 
 ### PHP 8.x (Interpreter)
 Next, we need to install PHP 8.x, or basically the latest stable version of PHP.  To do this, we need to do a few things.
-> ```apt install php```
+> ```sudo apt install php```
 
 This will ask you to confirm, and you should do so.  On modern Linux distributions, this will generally install PHP 8.2.  If this were a production server, we'd want to search for dedicated PHP package archive which we can get the latest version always.
 
@@ -253,7 +262,7 @@ Zend Engine v4.2.7, Copyright (c) Zend Technologies
 If you don't, something probably went wrong, and you should try to start over from the beginning of this section, restart, or search Google for any specific error messages you are receiving.
 
 Next, we need to install a series of extensions to expand the functionality of PHP, allowing the platform to operate properly.
-> ```apt install php-curl php-gd php-mbstring php-mysql php-pgsql php-soap php-xml```
+> ```sudo apt install php-curl php-gd php-mbstring php-mysql php-pgsql php-soap php-xml```
 
 This will install the following PHP modules:
 * CURL (for obtaining data from remote URL's)
@@ -276,7 +285,7 @@ Before we can do anything, we need to obtain the latest version of the ALPHA pla
 > If you receive an error, your webroot may be in a different place, depending on what distribution of Linux you decided to use.  Both Debian and Ubuntu use this path as the webroot, but other distributions may use home directories, or other directories entirely.
 
 Now, let's grab a copy of ALPHA.  Issue the following command:
-> ```git clone https://github.com/nxlv/alpha.git```
+> ```sudo git clone https://github.com/nxlv/alpha.git```
 
 You should see output like this:
 ```
@@ -298,7 +307,7 @@ To configure Laravel, change your directory to the Laravel root directory.  To d
 > ```cd /var/www/html/alpha/platform```
 
 Next, create a new file called ```.env```.  To do this, we'll use the ```Nano``` editor that is included in most Linux distributions.  To do this, issue the following command:
-> ```nano .env```
+> ```sudo nano .env```
 
 Next, copy and paste the configuration below.
 ```
@@ -400,7 +409,7 @@ drwxr-xr-x 8 root root 4.0K Mar 20 04:40 ..
 lrwxrwxrwx 1 root root   35 Mar 20 03:59 000-default.conf -> ../sites-available/000-default.conf
 ```
 Let's edit the default file to point to our platform directory.  To do this, issue the following command:
-> ```nano 000-default.conf```
+> ```sudo nano 000-default.conf```
 
 Next, locate the ```DocumentRoot``` configuration option.  It probably looks like this right now:
 > ```DocumentRoot /var/www/html```
@@ -410,11 +419,50 @@ We need to change it so that it reads as follows:
 
 That is the only change needed right now.  To save and exit, press ```CONTROL + X``` on your keyboard.  At the bottom of the screen, it will ask you if you truly wish to save.  Press ```Y``` on your keyboard and the editor will save the file and close itself.
 
-Lastly, we need to restart the Apache server so that the new configuration changes take place.  To do this, issue the following command:
-> ```service apache2 restart```
+## Permissions
+Before we can restart Apache and get the platform up-and-running, we have to apply file permissions that lock down access to the platform's files to only the user that Apache uses to operate.
 
+First, let's figure out what user the Apache service uses.  To do this, issue the following command:
+> ```sudo ps aux | grep apache```
+
+You should see output similar to this:
+```
+www-data  132442  0.0  0.1 271856 12780 ?        S    00:00   0:00 /usr/sbin/apache2 -k start
+www-data  132444  0.0  0.1 271856 12780 ?        S    00:00   0:00 /usr/sbin/apache2 -k start
+www-data  132445  0.0  0.1 271856 12780 ?        S    00:00   0:00 /usr/sbin/apache2 -k start
+www-data  132446  0.0  0.1 271856 12780 ?        S    00:00   0:00 /usr/sbin/apache2 -k start
+www-data  132447  0.0  0.1 271856 12740 ?        S    00:00   0:00 /usr/sbin/apache2 -k start
+www-data  132474  0.0  0.1 271856 12780 ?        S    00:05   0:00 /usr/sbin/apache2 -k start
+www-data  133476  0.0  0.1 271808 11208 ?        S    02:45   0:00 /usr/sbin/apache2 -k start
+```
+
+Here, we can see, on the first column of each line, that the Apache server is using the ```www-data``` user to run, so that is the user we will set ownership of the platform's files to.
+
+To do this, let's first assign ownership and group membership on all files in the ALPHA platform directory to the user that Apache is using (```www-data``` in this example, as determined in the step above)
+> ```sudo chown -R www-data:www-data /var/www/html/alpha```
+
+Next, we need to add our user to the ```www-data``` group so that it can access the files now owned by the Apache account (```www-data```).  Issue the following command:
+> ```sudo usermod –a –G www-data your_username```
+>
+> Remember to replace the ```your_username``` text with your username.
+
+Next, let's set permissions on all files in the ALPHA platform directory.  Issue the following command:
+> ```sudo find /var/www/html/alpha -type f -exec chmod 644 {} \;```
+
+Next, let's set permissions on all directories in the ALPHA platform directory.  Issue the following command:
+> ```sudo find /var/www/html/alpha -type d -exec chmod 755 {} \;```
+
+Finally, we need to give the web server **write** access to some of the caching and storage directories within Laravel.  Issue the following commands:
+> ```sudo chgrp -R www-data /var/www/html/alpha/platform/storage /var/www/html/alpha/platform/bootstrap/cache```
+> ```sudo chmod -R ug+rwx /var/www/html/alpha/platform/storage /var/www/html/alpha/platform/bootstrap/cache```
 
 ## Testing
+Before we can test, we need to restart the Apache server so that the new configuration changes we made earlier take place.  Issue the following command:
+> ```service apache2 restart```
+
+> **NOTE**
+> We're doing this here, because Apache would have failed to restart before we applied the proper file permissions on the platform's directories, since it wouldn't have access to read those files, as they were assigned to ```root```.
+
 You should now be able to access the application using the URL that you specified in the configuration file above.
 
 If it worked, you may log-in to the platform as ```admin@alpha.staged.dev``` and password ```test1234```.
