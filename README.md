@@ -454,6 +454,7 @@ Next, let's set permissions on all directories in the ALPHA platform directory. 
 
 Finally, we need to give the web server **write** access to some of the caching and storage directories within Laravel.  Issue the following commands:
 > ```sudo chgrp -R www-data /var/www/html/alpha/platform/storage /var/www/html/alpha/platform/bootstrap/cache```
+>
 > ```sudo chmod -R ug+rwx /var/www/html/alpha/platform/storage /var/www/html/alpha/platform/bootstrap/cache```
 
 ## Testing
