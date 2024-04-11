@@ -1,0 +1,49 @@
+version: '3'
+services:
+  database:
+    image: mariadb:latest
+    container_name: database
+    hostname: database
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: alpha
+      MARIADB_USER: alpha_web
+      MARIADB_PASSWORD: password
+    volumes:
+      - ./db-exports:/docker-entrypoint-initdb.d:rw
+    networks:
+      - alpha-docker
+  database_admin:
+    depends_on:
+      - database
+    image: phpmyadmin:latest
+    container_name: database_admin
+    hostname: database_admin
+    ports:
+      - 8001:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    networks:
+      - alpha-docker
+  webserver:
+    depends_on:
+      - database
+      - database_admin
+    image: php:8.2.17-apache-bullseye
+    container_name: webserver
+    hostname: webserver
+    volumes:
+      - ./apache-exports/sites-enabled:/etc/apache2/sites-enabled:rw
+      - ./platform-exports/.env:/var/www/html/platform/.env:rw
+      - ../static:/var/www/html/static:rw
+      - ../platform:/var/www/html/platform:rw
+      - ../app:/var/www/html/app:rw
+    ports:
+      - 80:80
+    networks:
+      - alpha-docker
+    command: bash -c 'a2enmod http2 rewrite ssl socache_shmcb && apache2-foreground'
+networks:
+  alpha-docker:
+    driver: bridge
