@@ -9,7 +9,7 @@
     use App\Http\Helpers\WSSoapClient;
 
     class CANNEXHelper {
-        const ANTY_ANLY_VERSION_ID = 'CAM2B1';
+        const ANTY_ANLY_VERSION_ID = 'C9AQBM';
         const MAX_POLL_RETRIES = 25;
 
         public static function analyze_fixed( $products ) {
