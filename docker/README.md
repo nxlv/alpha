@@ -18,7 +18,7 @@ Finally, run `docker-compose` to bring the container online.
 
 This will run Docker in an interactive session, where you will see system logs and activities happening.  To run Docker in the background, add a `-d` command to the command line:
 
-> 'sudo docker-compose up -d --build'
+> `sudo docker-compose up -d --build`
 
 ### Notes
 
