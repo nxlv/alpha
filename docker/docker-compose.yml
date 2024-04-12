@@ -4,6 +4,8 @@ services:
     image: mariadb:latest
     container_name: database
     hostname: database
+    ports:
+      - 3306:3306
     environment:
       MARIADB_ROOT_PASSWORD: password
       MARIADB_DATABASE: alpha
@@ -30,20 +32,20 @@ services:
     depends_on:
       - database
       - database_admin
-    image: php:8.2.17-apache-bullseye
+    image: webdevops/php-apache:8.3
     container_name: webserver
     hostname: webserver
+    ports:
+      - 80:80
     volumes:
-      - ./apache-exports/sites-enabled:/etc/apache2/sites-enabled:rw
-      - ./platform-exports/.env:/var/www/html/platform/.env:rw
       - ../static:/var/www/html/static:rw
       - ../platform:/var/www/html/platform:rw
       - ../app:/var/www/html/app:rw
-    ports:
-      - 80:80
+      - ./apache-exports/sites-enabled:/etc/apache2/sites-enabled:rw
+      - ./platform-exports/webserver/set-permissions.sh:/var/www/set-permissions.sh
+    # command: /bin/sh -c /var/www/set-permissions.sh
     networks:
       - alpha-docker
-    command: bash -c 'a2enmod http2 rewrite ssl socache_shmcb && apache2-foreground'
 networks:
   alpha-docker:
     driver: bridge
