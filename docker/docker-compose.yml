@@ -1,11 +1,27 @@
-version: '3'
+version: '3.7'
 services:
-  database:
+  platform:
+    build:
+      args:
+        user: web
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: php:8.3-fpm-alpine
+    container_name: platform
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ../static:/var/www/static:rw
+      - ../platform:/var/www/platform:rw
+      - ../app:/var/www/app:rw
+      - ./platform-exports/.env:/var/www/platform/.env
+    networks:
+      - alpha-mainnet
+  db:
     image: mariadb:latest
     container_name: database
-    hostname: database
-    ports:
-      - 3306:3306
+    restart: unless-stopped
     environment:
       MARIADB_ROOT_PASSWORD: password
       MARIADB_DATABASE: alpha
@@ -14,38 +30,20 @@ services:
     volumes:
       - ./db-exports:/docker-entrypoint-initdb.d:rw
     networks:
-      - alpha-docker
-  database_admin:
-    depends_on:
-      - database
-    image: phpmyadmin:latest
-    container_name: database_admin
-    hostname: database_admin
-    ports:
-      - 8001:80
-    environment:
-      - PMA_HOST=db
-      - PMA_PORT=3306
-    networks:
-      - alpha-docker
-  webserver:
-    depends_on:
-      - database
-      - database_admin
-    image: webdevops/php-apache:8.3
+      - alpha-mainnet
+  nginx:
+    image: nginx:alpine
     container_name: webserver
-    hostname: webserver
+    restart: unless-stopped
     ports:
       - 80:80
     volumes:
-      - ../static:/var/www/html/static:rw
-      - ../platform:/var/www/html/platform:rw
-      - ../app:/var/www/html/app:rw
-      - ./apache-exports/sites-enabled:/etc/apache2/sites-enabled:rw
-      - ./platform-exports/webserver/set-permissions.sh:/var/www/set-permissions.sh
-    # command: /bin/sh -c /var/www/set-permissions.sh
+      - ../static:/var/www/static:rw
+      - ../platform:/var/www/platform:rw
+      - ../app:/var/www/app:rw
+      - ./platform-exports/nginx:/etc/nginx/conf.d/
     networks:
-      - alpha-docker
+      - alpha-mainnet
 networks:
-  alpha-docker:
+  alpha-mainnet:
     driver: bridge
