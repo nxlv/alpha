@@ -7,8 +7,8 @@
         <title>Dashboard</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/theme.css' ) }}" media="all">
-        <link rel="stylesheet" type="text/css" href="{{ asset( 'app/assets/index.0d9e816b.css') }}" media="all">
-        <script type="module" crossorigin src="/app/assets/index.dacfc9f8.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset( 'app/dist/assets/index.29be68ac.css') }}" media="all">
+        <script type="module" crossorigin src="{{ asset( 'app/dist/assets/index.a6ff8183.js' ) }}"></script>
     </head>
     <body>
         @yield( 'content' )

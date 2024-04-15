@@ -63,7 +63,7 @@
 
                 clearTimeout( this.timers.populator );
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+                let request = await axios.post( '//' + window.location.host + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
@@ -93,7 +93,7 @@
                 let endpoint = '/api/quoting/get/fixed';
                 let settings = { settings: this.parameters, offset: this.selections.offset, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+                let request = await axios.post( '//' + window.location.host + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
@@ -124,7 +124,7 @@
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
                 }
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+                let request = await axios.post( '//' + window.location.host + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
@@ -168,7 +168,7 @@
                     settings.products.push( inputs.products[ counter ].analysis_data_id );
                 }
 
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+                let request = await axios.post( '//' + window.location.host + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
@@ -226,7 +226,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/get/fixed/illustration';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), signal: this.aborters.requests.signal } );
+                let request = await axios.post( '//' + window.location.host + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -255,7 +255,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/products/details';
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { ...client.settings, product: this.selections.product_id, signal: this.aborters.requests.signal } );
+                let request = await axios.post( '//' + window.location.host + endpoint, { ...client.settings, product: this.selections.product_id, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -275,7 +275,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/report'
-                let request = await axios.post( import.meta.env.VITE_API_BASE_URL + endpoint, { products: [ this.selections.product_id ], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
+                let request = await axios.post( '//' + window.location.host + endpoint, { products: [ this.selections.product_id ], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
