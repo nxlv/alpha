@@ -26,3 +26,10 @@ This will run Docker in an interactive session, where you will see system logs a
 
 > `sudo docker-compose up -d`
 
+# Logging In
+
+> Please read the information below for directions on how to be able to log-in to ALPHA once you get it up and running in Docker.
+
+Once you get up-and-running, you will arrive at the ALPHA login screen.
+
+By default, **no users are defined**.  You can create your own user to log-in with by using the **Register** link on the login page.
