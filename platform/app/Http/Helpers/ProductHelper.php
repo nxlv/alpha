@@ -59,7 +59,16 @@
                  ->toArray();
             } else if ( !empty( $inventory ) ) {
                 // restrict to saved inventory
-                $strategies->whereIn( 'product_instance_id', ProductsInstance::whereIn( 'product_id', $inventory )->get()->pluck( 'product_instance_id' ) )->get()->pluck( 'product_instance_id' )->toArray();
+                $strategies->whereIn(
+                    'product_instance_id',
+                    ProductsInstance::whereIn(
+                        'product_id',
+                        $inventory
+                    )->get()
+                        ->pluck( 'product_instance_id' )
+                )->get()
+                    ->pluck( 'product_instance_id' )
+                    ->toArray();
             }
 
             // index

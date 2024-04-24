@@ -12,6 +12,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Helpers\ProductHelper;
 
 use App\Models\Product;
+use App\Models\Index;
+use App\Models\Notice;
+
 use App\Models\AnalysisGuaranteedCache;
 use Illuminate\Support\Facades\Storage;
 
@@ -158,6 +161,20 @@ class Illustrating extends Controller {
         //return response()->json( [ 'error' => false, 'filename' => storage_path( 'app' . DIRECTORY_SEPARATOR . 'reports' . DIRECTORY_SEPARATOR . $filename ) ] );
         */
 
-        return view( 'reporting.illustration' )->with( 'annuitant', $annuitant )->with( 'settings', $settings )->with( 'products', $products_extended )->with( 'illustrations', [ 'guaranteed' => $guaranteed, 'hypothetical' => $hypothetical ] );
+        $dataset = [
+            'annuitant' => $annuitant,
+            'settings' => $settings,
+            'products' => $products_extended,
+            'datasets' => [
+                'indexes' => Index::all(),
+                'notices' => Notice::all()
+            ],
+            'illustrations' => [
+                'guaranteed' => $guaranteed,
+                'hypothetical' => $hypothetical
+            ]
+        ];
+
+        return view( 'reporting.illustration', $dataset );
     }
 }

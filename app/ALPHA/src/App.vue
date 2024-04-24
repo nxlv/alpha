@@ -42,7 +42,8 @@
 
             const preload = [
                 { 'identifier': 'carriers', 'endpoint': '/api/carriers/all', 'text': 'Loading carrier information' },
-                { 'identifier': 'indexes', 'endpoint': '/api/indexes/all', 'text': 'Loading financial index data' }
+                { 'identifier': 'indexes', 'endpoint': '/api/indexes/all', 'text': 'Loading financial index data' },
+                { 'identifier': 'notices', 'endpoint': '/api/notices/all', 'text': 'Loading product notices' },
             ];
 
             for ( let counter = 0; counter < preload.length; counter++ ) {
@@ -50,7 +51,7 @@
 
                 this.$emitter.emit( 'alpha__init-status', { stage: { current: ( counter + 1 ), total: preload.length, data: preload[ counter ] } } );
 
-                request = await axios.get( '//' + window.location.host + preload[ counter ].endpoint );
+                request = await axios.get( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + preload[ counter ].endpoint );
 
                 if ( ( request ) && ( request.data ) ) {
                     console.log( '[      END ]', 'Loading of dataset', preload[ counter ].identifier, 'complete!' );

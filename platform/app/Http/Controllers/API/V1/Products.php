@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Product;
+use App\Models\Notice;
 use App\Models\ProductsProfile;
 use App\Models\ProductsInstance;
 use App\Models\IncomeBenefit;
@@ -47,6 +48,12 @@ class Products extends Controller {
                 'strategies.rates.substrategies',
                 'strategies.rates.substrategies.rates'
             )->get()
+        );
+    }
+
+    public function get_all_notices() {
+        return response()->json(
+            Notice::all()
         );
     }
 

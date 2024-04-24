@@ -11,7 +11,7 @@
                 this.loading = true;
 
                 let endpoint = '/api/quoting/get/immediate';
-                let request = await axios.post( '//' + window.location.host + endpoint, this.parameters );
+                let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, this.parameters );
 
                 this.errors = null;
                 this.quotes = null;
