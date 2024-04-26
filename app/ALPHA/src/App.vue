@@ -42,8 +42,7 @@
 
             const preload = [
                 { 'identifier': 'carriers', 'endpoint': '/api/carriers/all', 'text': 'Loading carrier information' },
-                { 'identifier': 'indexes', 'endpoint': '/api/indexes/all', 'text': 'Loading financial index data' },
-                { 'identifier': 'notices', 'endpoint': '/api/notices/all', 'text': 'Loading product notices' },
+                { 'identifier': 'indexes', 'endpoint': '/api/indexes/all', 'text': 'Loading financial index data' }
             ];
 
             for ( let counter = 0; counter < preload.length; counter++ ) {
