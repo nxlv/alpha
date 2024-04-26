@@ -96,7 +96,7 @@
 
                                     @foreach ( $illustration->evaluate_data as $row )
                                         @if ( floatval( $row->income ) )
-                                            <div class="report__products-data-point-income">
+                                            <div class="report__products-data-point data-point-income">
                                                 ${{ number_format( $row->income, 2 ) }}
                                             </div>
                                             @break
@@ -155,7 +155,7 @@
                                 @endif
                             @endforeach
                         @endif
-                        
+
                         <li class="report__client-data-point data-point">
                             <label>Roll-up Rate</label>
                             <span>
