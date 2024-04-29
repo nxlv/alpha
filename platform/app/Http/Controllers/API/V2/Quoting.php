@@ -185,6 +185,8 @@ class Quoting extends Controller {
             unset( $parameters[ 'analysis_cd' ] );
         }
 
+	error_log( 'Products: ' . count( $products ) );
+
         if ( ( !empty( $products ) ) && ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) ) {
             error_log( 'Profile created, ID#' . $profile_id );
 
@@ -202,8 +204,6 @@ class Quoting extends Controller {
         } else {
             error_log( 'Failed to create annuitant profile' );
         }
-
-        error_log( print_r( $response, true ) );
 
         return $response;
     }

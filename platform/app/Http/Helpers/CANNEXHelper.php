@@ -242,6 +242,8 @@
                 try {
                     $result = $client->__call( $function_name, $arguments );
 
+		    error_log( 'Response: ' . print_r( $result, true ) );
+
                     if ( ( isset( $result->income_response1 ) ) && ( $result->income_response1->income_request_id ) ) {
                         $request_id = $result->income_response1->income_request_id;
                     }
