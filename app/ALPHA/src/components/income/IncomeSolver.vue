@@ -137,9 +137,15 @@
                 if ( ( request ) && ( request.data ) ) {
                     let index, index_inner;
 
+                    console.log( request );
+
                     for ( index = 0; index < request.data.length; index++ ) {
                         for ( index_inner = 0; index_inner < this.quotes.length; index_inner++ ) {
+                            console.log( this.quotes[ index_inner ].analysis_data_id, request.data[ index ].analysis_data_id );
+
                             if ( this.quotes[ index_inner ].analysis_data_id === request.data[ index ].analysis_data_id ) {
+                                console.log( 'found' );
+
                                 this.quotes[ index_inner ].quotes = request.data[ index ];
                                 break;
                             }
@@ -154,7 +160,7 @@
                 this.selections.offset += this.parameters.chunk_size;
 
                 if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
-                    this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
+                    //this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
                 }
             },
 
@@ -277,7 +283,7 @@
                 const client = useClientStore();
 
                 let endpoint = '/api/quoting/report'
-                let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { products: [ this.selections.product_id ], annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
+                let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { products: ( ( this.mode === 'comparison' ) ? this.selections.comparison : [ this.selections.product_id ] ), annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
 
                 this.errors = null;
                 this.loading = false;
@@ -828,10 +834,15 @@
                     </div>
 
                     <div class="form__row" v-if="selections.comparison.length && selections.comparison.length > 1">
-                        <div class="form__column form__column--full">
+                        <div class="form__column form__column--half">
                             <button type="button" v-on:click="toggle_comparison">
-                                <span v-if="mode === 'comparison'"><i class="fa-solid fa-angles-left"></i> Exit Comparison Mode</span>
+                                <span v-if="mode === 'comparison'"><i class="fa-solid fa-angles-left" aria-hidden="true"></i> Exit Comparison Mode</span>
                                 <span v-if="mode === 'normal'"><i class="fa-light fa-sitemap" aria-hidden="true"></i> Enter Comparison Mode</span>
+                            </button>
+                        </div>
+                        <div class="form__column form__column--half">
+                            <button type="button" v-on:click="fetch_report()" style="left: auto; right: 0;">
+                                <span><i class="fa fa-solid fa-file-pdf" aria-hidden="true"></i> Download Report</span>
                             </button>
                         </div>
                     </div>

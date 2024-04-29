@@ -43,13 +43,6 @@
                         <li><a href="#">Annuity Products Data</a></li>
                     </ol>
                 </li>
-                <li>
-                    <a href="#/reporting">Reporting</a>
-
-                    <ol>
-                        <li><a href="#">TBD</a></li>
-                    </ol>
-                </li>
             </ol>
         </nav>
     </section>
