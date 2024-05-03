@@ -14,7 +14,7 @@ Next, open a terminal and move to the `docker` directory from the repository.
 
 **On your first run ONLY**, build the `platform` image.
 
-> `sudo docker-compose build platform`
+> `sudo docker-compose build --force-rm --pull --no-cache`
 
 This will take a while as it will need to compile necessary PHP modules.
 

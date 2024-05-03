@@ -91,6 +91,8 @@
          * @return SoapHeader
          */
         private function generateWSSecurityHeader() {
+            error_log( 'Password Type = ' . $this->passwordType . PHP_EOL );
+
             if ( $this->passwordType === 'PasswordDigest' ) {
                 $password = $this->generatePasswordDigest();
             } elseif ( $this->passwordType === 'PasswordText' ) {
