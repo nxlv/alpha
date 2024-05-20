@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset( 'app/dist/assets/index.29be68ac.css') }}" media="all">
         <script type="module" crossorigin src="{{ asset( 'app/dist/assets/index.eed8250e.js' ) }}"></script>
     </head>
-    <body>
+    <body>  
         @yield( 'content' )
     </body>
 </html>

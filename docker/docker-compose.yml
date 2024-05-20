@@ -15,6 +15,7 @@ services:
       - ../static:/var/www/static:rw
       - ../platform:/var/www/platform:rw
       - ../app:/var/www/app:rw
+      - ./platform-exports/php.ini:/usr/local/etc/php/conf.d/overrides.ini
       - ./platform-exports/config.env:/var/www/platform/.env
     networks:
       - alpha-mainnet

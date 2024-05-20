@@ -16,7 +16,7 @@ gulp.task( 'sass:watch-reports',
 
 gulp.task( 'sass',
     function () {
-        return gulp.src( 'assets/scss/theme.scss' )
+        return gulp.src( 'assets/scss/v2/theme.scss' )
             .pipe( sass_glob() )
             .pipe( sourcemaps.init() )
             .pipe( sass().on( 'error', sass.logError ) )
@@ -25,7 +25,7 @@ gulp.task( 'sass',
 
 gulp.task( 'sass:reports',
     function () {
-        return gulp.src( 'assets/scss/theme-reporting.scss' )
+        return gulp.src( 'assets/scss/v2/theme-reporting.scss' )
             .pipe( sass_glob() )
             .pipe( sourcemaps.init() )
             .pipe( sass().on( 'error', sass.logError ) )

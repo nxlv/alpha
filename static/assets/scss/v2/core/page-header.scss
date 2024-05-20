@@ -1,0 +1,15 @@
+.alpha {
+    &__content {
+        & > header {
+            padding: 2rem 2rem 0 2rem;
+
+            h1 {
+                color: $brand-primary;
+            }
+        }
+
+        & > section {
+            padding: 0 2rem 0 2rem;
+        }
+    }
+}

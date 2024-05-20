@@ -1,0 +1,119 @@
+.result__card {
+    position: relative;
+    background-color: #fff;
+    padding: 1rem 0;
+    margin: 0 0 1rem 0;
+    border: 1px $color-grey-light solid;
+
+    &-title {
+        display: flex;
+        flex-direction: row;
+        background-color: $brand-quinary;
+        padding: 1rem 2rem 1rem 150px;
+        position: relative;
+        flex-wrap: nowrap;
+
+        &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: auto 60px;
+        }
+
+        &-text {
+            font-size: 2rem;
+            line-height: 2rem;
+            letter-spacing: -1px;
+            font-weight: normal;
+            width: 100%;
+
+            strong {
+                display: block;
+            }
+
+            span {
+                color: $color-money;
+                font-size: 1.375rem;
+                line-height: 1.25rem;
+                display: block;
+                font-weight: 400;
+            }
+        }
+
+        &-comparison {
+            display: none;
+        }
+
+        &-ratings {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            border-left: 1px $color-grey-light solid;
+            padding: 0 0 0 1rem;
+            margin: 0 0 0 1rem;
+
+            &-rating {
+                display: block;
+                text-align: center;
+                margin: 0 0.5rem;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                &:before {
+                    content: attr(data-rating-company);
+                    display: block;
+                    font-weight: normal;
+                    font-size: 1rem;
+                    line-height: 1rem;
+                }
+            }
+        }
+    }
+
+    &-strategy {
+        display: flex;
+        flex-wrap: nowrap;
+
+        &-meta {
+            position: absolute;
+            bottom: 0;
+            right: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            span {
+                background-color: $color-grey-bright;
+                color: #000;
+                display: block;
+                margin: 0 0.25rem;
+                padding: 0.25rem 0.5rem 0 0.5rem;
+                font-size: 0.875rem;
+                line-height: 0.875rem;
+                transform: translateY(50%);
+                border: 1px $color-grey-light solid;
+            }
+        }
+
+        &-data {
+            border: 1px $color-grey-light solid;
+            margin: 0 1rem 0 0;
+
+            &-points {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}

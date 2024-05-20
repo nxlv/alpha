@@ -1,0 +1,40 @@
+.income-solver {
+    &__fetch {
+        &-button {
+            display: none;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+        .results {
+            width: 100%;
+            max-width: 100%;
+
+            &__inner {
+                width: 100%;
+            }
+        }
+    }
+
+    &__results {
+        width: calc(75% - 2rem);
+        max-width: calc(75% - 2rem);
+        min-width: calc(75% - 2rem);
+        padding: 0 2rem;
+    }
+
+    &__parameters {
+        width: 20%;
+        min-width: 20%;
+        max-width: 20%;
+        margin: 0;
+        padding: 1rem;
+        position: relative;
+        background-color: #fff;
+    }
+}
