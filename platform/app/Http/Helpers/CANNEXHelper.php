@@ -26,7 +26,16 @@
                     'trace'         => true,
                     'keep_alive'    => false,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
-                    'exception'     => false
+                    'exception'     => false,
+                    'stream_context' => stream_context_create(
+                        [
+                            'ssl' => [
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                                'allow_self_signed' => true
+                            ]
+                        ]
+                    )
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
@@ -82,12 +91,21 @@
                     'trace'         => true,
                     'keep_alive'    => false,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
-                    'exception'     => false
+                    'exception'     => false,
+                    'stream_context' => stream_context_create(
+                        [
+                            'ssl' => [
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                                'allow_self_signed' => true
+                            ]
+                        ]
+                    )
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
             } catch ( \SoapFault $exception ) {
-                error_log( print_r( $exception, true ) );
+                error_log( $exception->getMessage() );
 
                 return false;
             }
@@ -201,6 +219,8 @@
         }
 
         public static function create_annuitant_profile( $transaction_id, $parameters, $sequence, $dataset ) {
+		error_log( 'Creating annuitant profile...' );
+
             $request_id = null;
 
             $endpoint_url = Config::get( 'canx.cannex.endpoints.income' );
@@ -211,12 +231,20 @@
 
             try {
                 $client = new WSSoapClient( storage_path( 'app/public/wsdl/quoting/canx_anty_inc1-1.0.wsdl' ), [
-                    'trace'         => true,
-                    'cache_wsdl'    => WSDL_CACHE_NONE,
-                    'keep_alive'    => false,
-                    'exception'     => true
+                    'trace'          => true,
+                    'cache_wsdl'     => WSDL_CACHE_NONE,
+                    'keep_alive'     => false,
+                    'exception'      => true,
+                    'stream_context' => stream_context_create(
+                        [
+                            'ssl' => [
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                                'allow_self_signed' => true
+                            ]
+                        ]
+                    )
                 ] );
-
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );
 
@@ -239,6 +267,8 @@
                     )
                 );
 
+error_log( 'Annuitant profile arguments: ' .  print_r( $arguments, true ) );
+
                 try {
                     $result = $client->__call( $function_name, $arguments );
 
@@ -248,10 +278,12 @@
                         $request_id = $result->income_response1->income_request_id;
                     }
                 } catch ( \SoapFault $exception ) {
-                    error_log( print_r( $exception, true ) );
+                    error_log( 'SOAP Error: ' . $exception->getMessage() );
+                    print_r( $client->__getLastRequest() );
                 }
             } catch ( \SoapFault $exception ) {
-                error_log( print_r( $exception, true ) );
+                error_log( 'SOAP Error: ' . $exception->getMessage() );
+                print_r( $client->__getLastRequest() );
             }
 
             return $request_id;
@@ -271,7 +303,16 @@
                     'trace'         => true,
                     'cache_wsdl'    => WSDL_CACHE_NONE,
                     'keep_alive'    => false,
-                    'exception'     => false
+                    'exception'     => false,
+                    'stream_context' => stream_context_create(
+                        [
+                            'ssl' => [
+                                'verify_peer' => false,
+                                'verify_peer_name' => false,
+                                'allow_self_signed' => true
+                            ]
+                        ]
+                    )
                 ] );
                 $client->__setLocation( $endpoint_url );
                 $client->__setUsernameToken( $username, $password, $token_type );

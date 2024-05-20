@@ -178,14 +178,15 @@ class Quoting extends Controller {
         }
 
         // TODO: hash only fields that matter, not entire arrays, for better accuracy
-         $hash = 'alpha__fia-guaranteed-' . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $settings ) ) . crc32( serialize( $products ) );
+        $hash = 'alpha__fia-guaranteed-' . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $settings ) ) . crc32( serialize( $products ) );
 
         // ANTY-WS01 1056: Analysis code cannot be used with fixed products.
         if ( isset( $parameters[ 'analysis_cd' ] ) ) {
             unset( $parameters[ 'analysis_cd' ] );
         }
 
-	error_log( 'Products: ' . count( $products ) );
+	    $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products );
+        error_log( 'Profile ID: ' . $profile_id );
 
         if ( ( !empty( $products ) ) && ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) ) {
             error_log( 'Profile created, ID#' . $profile_id );
