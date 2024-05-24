@@ -15209,7 +15209,21 @@ p {
       max-width: 200px;
       min-width: 200px;
       width: 200px;
-      padding: 0 1rem; }
+      padding: 0; }
+      .result__card-strategy-income-money {
+        font-size: 2.25rem;
+        line-height: 2.25rem;
+        text-align: center;
+        color: green;
+        font-weight: bold;
+        letter-spacing: -1px; }
+      .result__card-strategy-income-backtest .result__card-strategy-data-point {
+        width: 100%;
+        display: block;
+        min-width: 100%;
+        text-align: center; }
+      .result__card-strategy-income-backtest-results {
+        display: none; }
     .result__card-strategy-details, .result__card-strategy-data {
       border: 1px #c9c9c9 solid;
       margin: 0 1rem 0 0;
