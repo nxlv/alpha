@@ -1,0 +1,110 @@
+.page {
+    position: relative;
+    height: 100vh;
+    page-break-after: always;
+    padding: 2rem 2rem 140px 2rem;
+    border-top: 1px #000 dashed;
+}
+
+.data-points {
+    border: 5px $brand-quaternary solid;
+    margin: 0 0 2rem 0;
+    padding: 1rem 1rem;
+    position: relative;
+
+    h3 {
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%);
+        background-color: $brand-quinary;
+        padding: 0 1rem;
+        left: 0;
+        margin: 0;
+        color: $brand-quaternary;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        letter-spacing: -0.5px;
+    }
+
+    h4 {
+        margin: 1.5rem 0 0.5rem -1rem;
+        padding: 1rem;
+        background-color: $brand-quaternary;
+        color: #fff;
+        display: inline-block;
+    }
+
+    .data-points-list {
+        margin: 0.25rem -0.25rem 0 -0.25rem;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+
+        .data-point {
+            margin: 0.25rem 0.25rem;
+            list-style: none;
+            display: flex;
+            border: 1px #000 solid;
+            padding: 0.5rem 1rem;
+            flex-direction: column;
+            min-width: calc(25% - 0.5rem);
+            max-width: calc(25% - 0.5rem);
+
+            &-income {
+                color: green;
+                font-size: 1.75rem;
+                line-height: 1.75rem;
+                margin: 0 0 1rem 0;
+                text-align: center;
+                font-weight: 500;
+                letter-spacing: -1px;
+            }
+
+            label {
+                display: block;
+                margin: 0 0 0.5rem 0;
+                padding: 0;
+                border-bottom: 1px #000 solid;
+                font-size: 0.875rem;
+                line-height: 0.875rem;
+            }
+
+            span {
+                font-weight: bold;
+                font-size: 1.125rem;
+                line-height: 1.375rem;
+                letter-spacing: -1px;
+
+                span {
+                    margin-right: 0.75rem;
+                }
+
+                small {
+                    display: block;
+                    font-weight: normal;
+                    letter-spacing: normal;
+                    font-size: 0.9375rem;
+                    line-height: 0.9375rem;
+                    margin-top: 0.125rem;
+                }
+
+                em {
+                    display: inline-block;
+                    font-style: normal;
+                    font-weight: bold;
+                    background-color: #000;
+                    color: #fff;
+                    padding: 0.25rem 0.5rem 0.125rem 0.5rem;
+                    text-transform: uppercase;
+                    font-size: 0.75rem;
+                    letter-spacing: normal;
+                    line-height: 0.75rem;
+                    transform: translateY(-2px);
+                    margin-right: 0.125rem;
+                    border: 1px #000 solid;
+                }
+            }
+        }
+    }
+}

@@ -219,7 +219,7 @@
         }
 
         public static function create_annuitant_profile( $transaction_id, $parameters, $sequence, $dataset ) {
-		error_log( 'Creating annuitant profile...' );
+		    error_log( 'Creating annuitant profile...' );
 
             $request_id = null;
 
@@ -267,23 +267,21 @@
                     )
                 );
 
-error_log( 'Annuitant profile arguments: ' .  print_r( $arguments, true ) );
+                error_log( 'Annuitant profile arguments: ' .  print_r( $arguments, true ) );
 
                 try {
                     $result = $client->__call( $function_name, $arguments );
 
-		    error_log( 'Response: ' . print_r( $result, true ) );
+        		    error_log( 'Response: ' . print_r( $result, true ) );
 
                     if ( ( isset( $result->income_response1 ) ) && ( $result->income_response1->income_request_id ) ) {
                         $request_id = $result->income_response1->income_request_id;
                     }
                 } catch ( \SoapFault $exception ) {
                     error_log( 'SOAP Error: ' . $exception->getMessage() );
-                    print_r( $client->__getLastRequest() );
                 }
             } catch ( \SoapFault $exception ) {
                 error_log( 'SOAP Error: ' . $exception->getMessage() );
-                print_r( $client->__getLastRequest() );
             }
 
             return $request_id;

@@ -1,0 +1,96 @@
+.initialization {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $brand-secondary;
+  z-index: 1000;
+  transition: opacity 1s cubic-bezier(.19,1,.22,1) 0.5s, visibility 1s cubic-bezier(.19,1,.22,1) 0.5s;
+
+  &.initialization--complete {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &__inner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__logo {
+    @extend .alpha__prologue-primary-logo;
+
+    padding: 0;
+  }
+
+  &__stage {
+    margin: 2rem 0 0.5rem 0;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1rem;
+    padding: 0 0 0.25rem 0;
+    font-style: italic;
+
+    em {
+      background-color: $brand-secondary;
+      color: #fff;
+      display: inline-flex;
+      font-style: normal;
+      padding: 0.125rem 0 0 0;
+      width: 1.75rem;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      font-weight: normal;
+      margin: 0 0.25rem 0 0.25rem;
+      height: 2rem;
+      border: 1px rgba(255, 255, 255, 0.25) solid;
+    }
+  }
+
+  &__text {
+    color: $color-grey-mid;
+    font-size: 0.8175rem;
+    line-height: 0.8175rem;
+  }
+
+  &__indicator {
+    width: 100%;
+    height: 4.8px;
+    display: inline-block;
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+
+    &:after {
+      content: '';
+      width: 192px;
+      height: 4.8px;
+      background: $brand-primary;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      animation: initialization 2s cubic-bezier(.95,.05,.8,.04) infinite;
+    }
+  }
+}
+
+@keyframes initialization {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}
