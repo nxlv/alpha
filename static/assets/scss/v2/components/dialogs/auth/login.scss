@@ -45,9 +45,9 @@
         }
 
         &--buttons {
-            margin: 2rem -2rem 1rem 0;
+            margin: 2rem -2rem 0 0;
             position: relative;
-            text-align: right;
+            text-align: left;
             padding: 0;
         }
 
@@ -62,9 +62,10 @@
                 text-transform: none;
                 font-size: 0.875rem;
                 line-height: 0.875rem;
-                position: static;
                 padding: 0 0 0 0.5rem;
                 transform: none;
+                position: relative;
+                top: 2px;
             }
 
             input[type='checkbox'],

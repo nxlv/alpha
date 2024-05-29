@@ -1,240 +1,240 @@
 .carrier {
-  &__title {
-    width: 100%;
-    padding: 0 0 0 250px;
-    font-weight: 500;
-    position: relative;
-    letter-spacing: -2px;
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-
-    &:before {
-      content: '';
-      width: calc(250px - 2rem);
-      height: 100%;
-      border: 1px #000 solid;
-      position: absolute;
-      top: -3px;
-      left: 0;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
-    }
-
-    &[data-carrier-slug="aig"] {
-      &:before {
-        background-image: url(../images/logos/carriers/aig.png);
-      }
-    }
-
-    &[data-carrier-slug*="allianz"] {
-      &:before {
-        background-image: url(../images/logos/carriers/allianz.png);
-      }
-    }
-
-    &[data-carrier-slug*="american-equity"] {
-      &:before {
-        background-image: url(../images/logos/carriers/american-equity.png);
-      }
-    }
-
-    &[data-carrier-slug*="american-national"] {
-      &:before {
-        background-image: url(../images/logos/carriers/american-national.png);
-      }
-    }
-
-    &[data-carrier-slug*="athene"] {
-      &:before {
-        background-image: url(../images/logos/carriers/athene.png);
-      }
-    }
-
-    &[data-carrier-slug*="delaware-life"] {
-      &:before {
-        background-image: url(../images/logos/carriers/delaware-life.png);
-      }
-    }
-
-    &[data-carrier-slug="fidelity-and-guaranty"] {
-      &:before {
-        background-image: url(../images/logos/carriers/f-and-g.png);
-      }
-    }
-
-    &[data-carrier-slug*="global-atlantic"] {
-      &:before {
-        background-image: url(../images/logos/carriers/global-atlantic.png);
-      }
-    }
-
-    &[data-carrier-slug*="massmutual-ascend"] {
-      &:before {
-        background-image: url(../images/logos/carriers/massmutual-ascend.png);
-      }
-    }
-
-    &[data-carrier-slug*="midland-national"] {
-      &:before {
-        background-image: url(../images/logos/carriers/midland-national.png);
-      }
-    }
-
-    &[data-carrier-slug*="north-american"] {
-      &:before {
-        background-image: url(../images/logos/carriers/north-american.png);
-      }
-    }
-
-    &[data-carrier-slug*="protective"] {
-      &:before {
-        background-image: url(../images/logos/carriers/protective.png);
-      }
-    }
-
-    &[data-carrier-slug*="reliance-standard"] {
-      &:before {
-        background-image: url(../images/logos/carriers/reliance-standard.png);
-      }
-    }
-
-    &[data-carrier-slug*="securian"] {
-      &:before {
-        background-image: url(../images/logos/carriers/securian.png);
-      }
-    }
-
-    &[data-carrier-slug="the-standard"] {
-      &:before {
-        background-image: url(../images/logos/carriers/the-standard.png);
-      }
-    }
-  }
-
-  &__contact {
-    display: flex;
-    flex-direction: row;
-    background-color: $color-grey-bright;
-    border-top: 1px $color-grey-mid solid;
-    border-bottom: 1px $color-grey-mid solid;
-    padding: 1.5rem 1rem;
-    justify-content: center;
-
-    &-item {
-      position: relative;
-      padding: 0 2rem;
-      min-height: 24px;
-      display: flex;
-      align-items: center;
-
-      &:before {
-        position: absolute;
-        top: -2px;
-        left: 0;
-        content: '\f0d0';
-        font-family: 'Font Awesome 6 Pro', sans-serif;
-        display: flex;
-        height: 100%;
-        width: 1.5rem;
-        align-items: center;
-        justify-content: flex-start;
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        font-weight: bold;
-        color: $brand-quaternary;
-      }
-
-      &[data-type="address"] {
-        &:before {
-          content: '\f3c5';
-        }
-      }
-
-      &[data-type="phone"] {
-        &:before {
-          content: '\f2a0';
-        }
-      }
-
-      &[data-type="website"] {
-        &:before {
-          content: '\f245';
-        }
-      }
-
-      &[data-type="founded"] {
-        &:before {
-          content: '\f19c';
-        }
-      }
-
-      address {
-        font-style: normal;
-        white-space: pre-line;
-      }
-
-      a {
-        color: #000;
-      }
-    }
-  }
-
-  &__ratings {
-    &-items {
-      display: flex;
-      flex-direction: row;
-      margin: 0 -1rem;
-      padding: 0;
-      list-style: none;
-      justify-content: flex-start;
-
-      &-item {
-        width: 150px;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        margin: 0 1rem;
-        padding: 0;
-        border: 1px $color-money solid;
+    &__title {
+        font-weight:    500;
+        position:       relative;
+        display:        flex;
+        align-items:    center;
+        width:          100%;
+        min-height:     100px;
+        padding:        0 0 0 250px;
+        letter-spacing: -2px;
 
         &:before {
-          content: attr(data-item-label);
-          text-align: center;
-          font-size: 1rem;
-          font-weight: 300;
-          line-height: 1rem;
-          background-color: $color-money;
-          color: #fff;
-          padding: 0.5rem;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+            position:            absolute;
+            top:                 -3px;
+            left:                0;
+            width:               calc(250px - 2rem);
+            height:              100%;
+            content:             '';
+            border:              1px #000 solid;
+            background-repeat:   no-repeat;
+            background-position: center center;
+            background-size:     contain;
         }
 
-        &-rating {
-          font-size: 3rem;
-          line-height: 3rem;
-          font-weight: bold;
-          color: $color-money;
-          text-align: center;
-          display: block;
-          padding: 1rem 0 0 0;
+        &[data-carrier-slug='aig'] {
+            &:before {
+                background-image: url(../images/logos/carriers/aig.png);
+            }
         }
 
-        &-date {
-          color: #000;
-          text-align: center;
-          font-size: 0.875rem;
-          line-height: 0.875rem;
-          display: block;
-          padding: 0.25rem 0 1rem 0;
-          opacity: 0.5;
+        &[data-carrier-slug*='allianz'] {
+            &:before {
+                background-image: url(../images/logos/carriers/allianz.png);
+            }
         }
-      }
+
+        &[data-carrier-slug*='american-equity'] {
+            &:before {
+                background-image: url(../images/logos/carriers/american-equity.png);
+            }
+        }
+
+        &[data-carrier-slug*='american-national'] {
+            &:before {
+                background-image: url(../images/logos/carriers/american-national.png);
+            }
+        }
+
+        &[data-carrier-slug*='athene'] {
+            &:before {
+                background-image: url(../images/logos/carriers/athene.png);
+            }
+        }
+
+        &[data-carrier-slug*='delaware-life'] {
+            &:before {
+                background-image: url(../images/logos/carriers/delaware-life.png);
+            }
+        }
+
+        &[data-carrier-slug='fidelity-and-guaranty'] {
+            &:before {
+                background-image: url(../images/logos/carriers/f-and-g.png);
+            }
+        }
+
+        &[data-carrier-slug*='global-atlantic'] {
+            &:before {
+                background-image: url(../images/logos/carriers/global-atlantic.png);
+            }
+        }
+
+        &[data-carrier-slug*='massmutual-ascend'] {
+            &:before {
+                background-image: url(../images/logos/carriers/massmutual-ascend.png);
+            }
+        }
+
+        &[data-carrier-slug*='midland-national'] {
+            &:before {
+                background-image: url(../images/logos/carriers/midland-national.png);
+            }
+        }
+
+        &[data-carrier-slug*='north-american'] {
+            &:before {
+                background-image: url(../images/logos/carriers/north-american.png);
+            }
+        }
+
+        &[data-carrier-slug*='protective'] {
+            &:before {
+                background-image: url(../images/logos/carriers/protective.png);
+            }
+        }
+
+        &[data-carrier-slug*='reliance-standard'] {
+            &:before {
+                background-image: url(../images/logos/carriers/reliance-standard.png);
+            }
+        }
+
+        &[data-carrier-slug*='securian'] {
+            &:before {
+                background-image: url(../images/logos/carriers/securian.png);
+            }
+        }
+
+        &[data-carrier-slug='the-standard'] {
+            &:before {
+                background-image: url(../images/logos/carriers/the-standard.png);
+            }
+        }
     }
-  }
+
+    &__contact {
+        display:          flex;
+        flex-direction:   row;
+        justify-content:  center;
+        padding:          1.5rem 1rem;
+        border-top:       1px $color-grey-mid solid;
+        border-bottom:    1px $color-grey-mid solid;
+        background-color: $color-grey-bright;
+
+        &-item {
+            position:    relative;
+            display:     flex;
+            align-items: center;
+            min-height:  24px;
+            padding:     0 2rem;
+
+            &:before {
+                font-family:     'Font Awesome 6 Pro', sans-serif;
+                font-size:       1.5rem;
+                font-weight:     bold;
+                line-height:     1.5rem;
+                position:        absolute;
+                top:             -2px;
+                left:            0;
+                display:         flex;
+                align-items:     center;
+                justify-content: flex-start;
+                width:           1.5rem;
+                height:          100%;
+                content:         '\f0d0';
+                color:           $brand-quaternary;
+            }
+
+            &[data-type='address'] {
+                &:before {
+                    content: '\f3c5';
+                }
+            }
+
+            &[data-type='phone'] {
+                &:before {
+                    content: '\f2a0';
+                }
+            }
+
+            &[data-type='website'] {
+                &:before {
+                    content: '\f245';
+                }
+            }
+
+            &[data-type='founded'] {
+                &:before {
+                    content: '\f19c';
+                }
+            }
+
+            address {
+                font-style:  normal;
+                white-space: pre-line;
+            }
+
+            a {
+                color: #000;
+            }
+        }
+    }
+
+    &__ratings {
+        &-items {
+            display:         flex;
+            flex-direction:  row;
+            justify-content: flex-start;
+            margin:          0 -1rem;
+            padding:         0;
+            list-style:      none;
+
+            &-item {
+                display:        flex;
+                flex-direction: column;
+                width:          150px;
+                margin:         0 1rem;
+                padding:        0;
+                list-style:     none;
+                border:         1px $color-money solid;
+
+                &:before {
+                    font-size:        1rem;
+                    font-weight:      300;
+                    line-height:      1rem;
+                    display:          flex;
+                    align-items:      center;
+                    justify-content:  center;
+                    height:           30px;
+                    padding:          0.5rem;
+                    content:          attr(data-item-label);
+                    text-align:       center;
+                    color:            #fff;
+                    background-color: $color-money;
+                }
+
+                &-rating {
+                    font-size:   3rem;
+                    font-weight: bold;
+                    line-height: 3rem;
+                    display:     block;
+                    padding:     1rem 0 0 0;
+                    text-align:  center;
+                    color:       $color-money;
+                }
+
+                &-date {
+                    font-size:   0.875rem;
+                    line-height: 0.875rem;
+                    display:     block;
+                    padding:     0.25rem 0 1rem 0;
+                    text-align:  center;
+                    opacity:     0.5;
+                    color:       #000;
+                }
+            }
+        }
+    }
 }
 

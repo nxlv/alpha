@@ -1,8 +1,8 @@
 .form {
     &__row {
-        display: flex;
+        display:        flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap:      nowrap;
         padding-bottom: 1.5rem;
 
         &:last-child {
@@ -21,10 +21,10 @@
     }
 
     &__column {
-        width: 100%;
-        display: flex;
+        display:        flex;
         flex-direction: column;
-        padding-right: 1rem;
+        width:          100%;
+        padding-right:  1rem;
 
         &.form__column--full,
         &.form__column--large {
@@ -33,16 +33,16 @@
 
         &.form__column--large {
             & > label {
-                text-align: center;
-                font-size: 1.25rem;
-                line-height: 1.25rem;
+                font-size:           1.25rem;
+                line-height:         1.25rem;
+                text-align:          center;
                 border-bottom-width: 2px;
             }
         }
 
         &.form__column--checkbox {
-            width: 25%;
-            max-width: 25%;
+            width:         25%;
+            max-width:     25%;
             padding-right: 1rem;
 
             &:last-child {
@@ -55,77 +55,77 @@
                 &:checked {
                     + label {
                         &:before {
+                            border-color:     $color-money;
                             background-color: $color-grey-light;
-                            border-color: $color-money;
                         }
 
                         &:after {
-                            opacity: 1;
                             visibility: visible;
+                            opacity:    1;
                         }
                     }
                 }
             }
 
             label {
-                border: 1px $color-grey-mid solid;
                 padding: 1rem 1rem 0.75rem 2.75rem;
-                cursor: pointer;
+                cursor:  pointer;
+                border:  1px $color-grey-mid solid;
 
                 &:before,
                 &:after {
-                    content: '';
-                    width: 1.5rem;
-                    height: 1.5rem;
-                    position: absolute;
-                    top: 0.5rem;
-                    left: 0.5rem;
-                    display: flex;
-                    align-items: center;
+                    position:        absolute;
+                    top:             0.5rem;
+                    left:            0.5rem;
+                    display:         flex;
+                    align-items:     center;
                     justify-content: center;
+                    width:           1.5rem;
+                    height:          1.5rem;
+                    content:         '';
                 }
 
                 &:before {
-                    border: 1px $color-grey-mid solid;
+                    border:           1px $color-grey-mid solid;
                     background-color: $color-grey-bright;
                 }
 
                 &:after {
-                    content: '\f00c';
                     font-family: 'Font Awesome 6 Pro', sans-serif;
-                    color: $color-money;
+                    font-size:   1.25rem;
                     font-weight: bold;
-                    font-size: 1.25rem;
                     line-height: 1.25rem;
-                    opacity: 0;
-                    visibility: hidden;
-                    transition: opacity 0.25s cubic-bezier(.19,1,.22,1), visibility 0.25s cubic-bezier(.19,1,.22,1);
+                    visibility:  hidden;
+                    content:     '\f00c';
+                    transition:  opacity 0.25s cubic-bezier(.19, 1, .22, 1), visibility 0.25s cubic-bezier(.19, 1, .22, 1);
+                    opacity:     0;
+                    color:       $color-money;
                 }
             }
         }
 
         & > label {
-            font-weight: bold;
+            font-size:      1.125rem;
+            font-weight:    bold;
+            line-height:    1.125rem;
+            position:       relative;
+            margin:         0 0 0.375rem 0;
             letter-spacing: -1px;
-            font-size: 1.125rem;
-            line-height: 1.125rem;
-            margin: 0 0 0.375rem 0;
-            border-bottom: 1px #000 solid;
-            position: relative;
+            border-bottom:  1px #000 solid;
 
             .badge {
-                top: -3px;
-                position: absolute;
-                right: 0;
-                border-top-left-radius: 4px;
+                font-size:               0.75rem;
+                font-weight:             normal;
+                line-height:             0.75rem;
+                position:                absolute;
+                top:                     -3px;
+                right:                   0;
+                padding:                 0.25rem 0.5rem 0.25rem 0.5rem;
+                letter-spacing:          normal;
+                color:                   #fff;
+                border-top-left-radius:  4px;
                 border-top-right-radius: 4px;
-                background-color: $brand-secondary;
-                color: #fff;
-                font-weight: normal;
-                letter-spacing: normal;
-                font-size: 0.75rem;
-                line-height: 0.75rem;
-                padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                background-color:        $brand-secondary;
             }
         }
 
@@ -137,30 +137,30 @@
         input.money,
         select,
         textarea {
-            padding: 0.75rem 1rem 0.625rem 1rem;
+            font-family:      'Calibre', sans-serif;
+            font-size:        1.125rem;
+            font-weight:      normal;
+            line-height:      1.125rem;
+            padding:          0.75rem 1rem 0.625rem 1rem;
+            text-align:       left;
+            color:            #000;
+            border:           1px $color-grey-light solid;
+            border-radius:    4px;
             background-color: $brand-quinary;
-            font-family: 'Calibre', sans-serif;
-            font-size: 1.125rem;
-            line-height: 1.125rem;
-            font-weight: normal;
-            text-align: left;
-            border: 1px $color-grey-light solid;
-            border-radius: 4px;
-            color: #000;
 
             &:focus {
+                color:            #000;
                 background-color: #fff;
-                color: #000;
             }
         }
 
         input.money {
+            font-size:    1.5rem;
+            font-weight:  bold;
+            line-height:  1.5rem;
+            padding:      0.75rem 1rem 0.5rem 1rem;
+            color:        $color-money;
             border-color: $color-money;
-            color: $color-money;
-            font-weight: bold;
-            font-size: 1.5rem;
-            line-height: 1.5rem;
-            padding: 0.75rem 1rem 0.5rem 1rem;
         }
 
         input[type='number'] {
@@ -170,37 +170,37 @@
         .multiselect {
             .multiselect-wrapper {
                 .multiselect-tags-search {
-                    border: none;
-                    margin: 0;
+                    margin:  0;
                     padding: 0;
+                    border:  none;
                 }
 
                 .multiselect-tags {
-                    padding-top: 0.25rem;
+                    padding-top:    0.25rem;
+                    padding-right:  1rem;
                     padding-bottom: 0.25rem;
-                    padding-right: 1rem;
                 }
 
                 .multiselect-tag {
-                    white-space: normal;
-                    font-weight: 400;
-                    font-size: 0.9375rem;
-                    line-height: 1.25rem;
-                    padding: 0.5rem 0 0.25rem 0.5rem;
+                    font-size:        0.9375rem;
+                    font-weight:      400;
+                    line-height:      1.25rem;
+                    padding:          0.5rem 0 0.25rem 0.5rem;
+                    white-space:      normal;
                     background-color: $brand-secondary;
                 }
             }
 
             .multiselect-option {
-                border-top: 1px $color-grey-mid solid;
-                font-size: 0.875rem;
-                line-height: 1.25rem;
+                font-size:    0.875rem;
+                line-height:  1.25rem;
+                position:     relative;
                 padding-left: 2.25rem;
-                position: relative;
+                border-top:   1px $color-grey-mid solid;
 
                 &.is-selected {
+                    color:            inherit;
                     background-color: inherit;
-                    color: inherit;
 
                     &:after {
                         opacity: 1;
@@ -209,56 +209,56 @@
 
                 &:before,
                 &:after {
-                    content: '';
-                    position: absolute;
-                    top: 0.5rem;
-                    left: 0.5rem;
-                    width: 1rem;
-                    height: 1rem;
-                    margin-top: -1px;
+                    position:       absolute;
+                    top:            0.5rem;
+                    left:           0.5rem;
+                    width:          1rem;
+                    height:         1rem;
+                    margin-top:     -1px;
+                    content:        '';
                     pointer-events: none;
                 }
 
                 &:before {
-                    border: 1px $color-grey-mid solid;
+                    border:           1px $color-grey-mid solid;
                     background-color: $color-grey-bright;
                 }
 
                 &:after {
-                    content: '\f00c';
-                    display: flex;
+                    font-family:     'Font Awesome 6 Pro', sans-serif;
+                    font-size:       0.75rem;
+                    font-weight:     bold;
+                    line-height:     1.125rem;
+                    top:             0.5rem;
+                    display:         flex;
                     justify-content: center;
-                    top: 0.5rem;
-                    font-family: 'Font Awesome 6 Pro', sans-serif;
-                    font-weight: bold;
-                    font-size: 0.75rem;
-                    line-height: 1.125rem;
-                    text-indent: 1px;
-                    color: $color-money;
-                    opacity: 0;
+                    content:         '\f00c';
+                    text-indent:     1px;
+                    opacity:         0;
+                    color:           $color-money;
                 }
             }
         }
     }
 
     & > fieldset {
-        border: none;
-        margin: 0 0 1rem 0;
-        padding: 0 1rem 1rem 1rem;
+        margin:        0 0 1rem 0;
+        padding:       0 1rem 1rem 1rem;
+        border:        none;
         border-bottom: 1px $color-grey-light solid;
 
         & > legend {
-            color: $brand-tertiary;
-            font-size: 1.5rem;
-            line-height: 1.5rem;
-            font-weight: bold;
+            font-size:      1.5rem;
+            font-weight:    bold;
+            line-height:    1.5rem;
+            position:       relative;
+            display:        block;
+            width:          100%;
+            margin:         0 -1rem 1.125rem -1rem;
+            padding:        0 1rem;
             letter-spacing: -1px;
-            margin: 0 -1rem 1.125rem -1rem;
-            padding: 0 1rem;
-            border-bottom: 1px $brand-tertiary solid;
-            display: block;
-            width: 100%;
-            position: relative;
+            color:          $brand-tertiary;
+            border-bottom:  1px $brand-tertiary solid;
 
             i {
                 display: none;
@@ -266,53 +266,53 @@
         }
 
         p {
+            font-size:        1.125rem;
+            line-height:      1.5rem;
+            position:         relative;
+            padding:          1rem 1rem 1rem 4rem;
             background-color: $brand-quinary;
-            padding: 1rem 1rem 1rem 4rem;
-            font-size: 1.125rem;
-            line-height: 1.5rem;
-            position: relative;
 
             &:before {
-                content: '\f30f';
                 font-family: 'Font Awesome 6 Pro', sans-serif;
-                position: absolute;
-                left: 1rem;
-                font-size: 2.25rem;
-                line-height: 2.25rem;
-                color: $brand-tertiary;
+                font-size:   2.25rem;
                 font-weight: bold;
+                line-height: 2.25rem;
+                position:    absolute;
+                left:        1rem;
+                content:     '\f30f';
+                color:       $brand-tertiary;
             }
         }
 
         fieldset {
             position: relative;
-            border: 1px $color-grey-light solid;
+            border:   1px $color-grey-light solid;
 
             legend {
-                font-weight: bold;
-                font-size: 1.25rem;
-                line-height: 1.25rem;
+                font-size:        1.25rem;
+                font-weight:      bold;
+                line-height:      1.25rem;
+                margin:           0 0 0 -0.5rem;
+                padding:          0 0.5rem;
+                letter-spacing:   -1px;
                 background-color: #fff;
-                margin: 0 0 0 -0.5rem;
-                padding: 0 0.5rem;
-                letter-spacing: -1px;
 
                 .form__action--inline {
-                    position: absolute;
-                    right: 0.5rem;
-                    color: $brand-tertiary;
+                    font-size:        1rem;
+                    line-height:      1rem;
+                    position:         absolute;
+                    top:              1px;
+                    right:            0.5rem;
+                    display:          inline-block;
+                    padding:          0.375rem 0.5rem 0.125rem 0.5rem;
+                    cursor:           pointer;
+                    transform:        translateY(-100%);
+                    color:            $brand-tertiary;
                     background-color: #fff;
-                    padding: 0.375rem 0.5rem 0.125rem 0.5rem;
-                    cursor: pointer;
-                    display: inline-block;
-                    top: 1px;
-                    transform: translateY(-100%);
-                    font-size: 1rem;
-                    line-height: 1rem;
 
                     &:hover {
+                        color:            #fff;
                         background-color: $brand-tertiary;
-                        color: #fff;
                     }
                 }
             }
@@ -320,23 +320,23 @@
     }
 
     &__buttons {
-        display: flex;
+        display:        flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap:      nowrap;
 
         &-column {
             height: 36px;
 
             &:first-child {
                 label {
-                    border-top-left-radius: 4px;
+                    border-top-left-radius:    4px;
                     border-bottom-left-radius: 4px;
                 }
             }
 
             &:last-child {
                 label {
-                    border-top-right-radius: 4px;
+                    border-top-right-radius:    4px;
                     border-bottom-right-radius: 4px;
                 }
             }
@@ -347,200 +347,133 @@
 
                 &:checked {
                     & + label {
+                        color:            #fff;
                         background-color: $brand-tertiary;
-                        color: #fff;
                     }
                 }
             }
 
             label {
+                font-weight:      bold;
+                display:          flex;
+                flex-direction:   column;
+                flex-wrap:        wrap;
+                justify-content:  center;
+                height:           100%;
+                padding:          0.5rem 1rem 0.375rem 1rem;
+                cursor:           pointer;
+                text-align:       left;
+                border:           1px $color-grey-light solid;
                 background-color: #fff;
-                border: 1px $color-grey-light solid;
-                cursor: pointer;
-                text-align: left;
-                height: 100%;
-                font-weight: bold;
-                display: flex;
-                flex-direction: column;
-                flex-wrap: wrap;
-                justify-content: center;
-                padding: 0.5rem 1rem 0.375rem 1rem;
 
                 small {
-                    display: block;
-                    font-size: 0.8175rem;
-                    padding: 0.25rem 0 0 0;
-                    opacity: 0.75;
+                    font-size:   0.8175rem;
                     font-weight: normal;
+                    display:     block;
+                    padding:     0.25rem 0 0 0;
+                    opacity:     0.75;
                 }
             }
         }
     }
 
     &__action {
-        display: flex;
-        min-width: 200px;
-        height: auto;
+        font-family:      'Calibre', sans-serif;
+        font-size:        1.125rem;
+        font-weight:      700;
+        line-height:      1.125rem;
+        display:          flex;
+        align-items:      center;
+        justify-content:  center;
+        width:            100%;
+        min-width:        200px;
+        height:           auto;
+        margin:           0;
+        padding:          1rem 1rem 0.75rem 1rem;
+        cursor:           pointer;
+        letter-spacing:   -1px;
+        color:            #fff;
+        border:           2px $brand-secondary solid;
         background-color: $brand-secondary;
-        color: #fff;
-        border: 2px $brand-secondary solid;
-        font-family: 'Calibre', sans-serif;
-        font-size: 1.125rem;
-        line-height: 1.125rem;
-        font-weight: 700;
-        padding: 1rem 1rem 0.75rem 1rem;
-        margin: 0;
-        letter-spacing: -1px;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        cursor: pointer;
 
         &:hover,
         &:focus,
         &:active {
+            color:            $brand-secondary;
             background-color: #fff;
-            color: $brand-secondary;
         }
     }
 }
 
-.infotable {
-    .infotable__row {
-        display:        flex;
-        flex-direction: row;
-        flex-wrap:      nowrap;
+/*
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='date'],
+select,
+textarea {
+    padding: 0.5rem 0.75rem 0.25rem 0.75rem;
+    border: 1px $color-grey-light solid;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    font-family: 'Calibre', sans-serif;
+    line-height: 1.25rem;
+    font-weight: bold;
+}
 
-        .infotable {
-            &__label {
-                width:            250px;
-                min-height:       4rem;
-                display:          flex;
-                align-items:      center;
-                justify-content:  flex-start;
-                background-color: $color-grey-light;
-                font-size:        1.125rem;
-                line-height:      1.125rem;
-                padding:          1rem;
-                font-weight:      300;
-                border-bottom:    1px #fff solid;
-            }
+&__row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 0.75rem 0;
 
-            &__value {
-                width:            100%;
-                padding:          1rem;
-                display:          flex;
-                align-items:      center;
-                justify-content:  flex-start;
-                font-size:        1.25rem;
-                line-height:      1.25rem;
-                border-bottom:    1px #fff solid;
-                background-color: $brand-quinary;
-            }
-        }
+    &:last-child {
+        margin-bottom: 0;
     }
 
-    &--horizontal {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        position: relative;
-        margin: 0 -0.25rem;
-
-        .infotable__row {
-            flex-direction: column;
-            width: 100%;
-            border-left: 5px #fff solid;
-
-            .infotable {
-                &__label {
-                    width: 100%;
-                    justify-content: center;
-                    min-height: 0;
-                    padding: 0.75rem 0.5rem 0.5rem;
-                    text-transform: uppercase;
-                    font-size: 0.875rem;
-                    line-height: 0.875rem;
-                }
-
-                &__value {
-                    justify-content: center;
-                    font-weight: bold;
-                }
-            }
-        }
-    }
-    /*
-    input[type='text'],
-    input[type='email'],
-    input[type='password'],
-    input[type='number'],
-    input[type='date'],
-    select,
-    textarea {
-        padding: 0.5rem 0.75rem 0.25rem 0.75rem;
-        border: 1px $color-grey-light solid;
-        border-radius: 4px;
-        font-size: 1.25rem;
-        font-family: 'Calibre', sans-serif;
-        line-height: 1.25rem;
-        font-weight: bold;
-    }
-
-    &__row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 0 0.75rem 0;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        & > .form__column {
-            & > label {
-                display: block;
-                font-weight: 500;
-                font-size: 1rem;
-                line-height: 1rem;
-                letter-spacing: -0.5px;
-                color: $brand-tertiary;
-            }
-        }
-    }
-
-    &__column {
-        min-width: 50%;
-    }
-
-    fieldset {
-        border: none;
-        margin: 0 0 1rem 0;
-        padding: 0 1rem 1rem 1rem;
-        border-bottom: 1px $color-grey-light solid;
-
-        legend {
-            color: $brand-tertiary;
-            font-size: 1.5rem;
-            line-height: 1.5rem;
-            font-weight: bold;
-            letter-spacing: -1px;
-            margin: 0 -1rem 0.5rem -1rem;
-            padding: 0 1rem;
-            border-bottom: 1px $brand-tertiary solid;
+    & > .form__column {
+        & > label {
             display: block;
-            width: 100%;
-            position: relative;
-
-            i {
-                display: none;
-            }
-        }
-
-        p {
-            font-size: 1.25rem;
-            line-height: 1.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1rem;
+            letter-spacing: -0.5px;
+            color: $brand-tertiary;
         }
     }
-    */
 }
+
+&__column {
+    min-width: 50%;
+}
+
+fieldset {
+    border: none;
+    margin: 0 0 1rem 0;
+    padding: 0 1rem 1rem 1rem;
+    border-bottom: 1px $color-grey-light solid;
+
+    legend {
+        color: $brand-tertiary;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        font-weight: bold;
+        letter-spacing: -1px;
+        margin: 0 -1rem 0.5rem -1rem;
+        padding: 0 1rem;
+        border-bottom: 1px $brand-tertiary solid;
+        display: block;
+        width: 100%;
+        position: relative;
+
+        i {
+            display: none;
+        }
+    }
+
+    p {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+    }
+}
+*/

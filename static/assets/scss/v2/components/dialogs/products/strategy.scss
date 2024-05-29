@@ -1,0 +1,419 @@
+.strategy {
+    position: fixed;
+    z-index:  500;
+    top:      12.5%;
+    left:     12.5%;
+    width:    75vw;
+    height:   75vh;
+
+    &__inner {
+        position:         relative;
+        overflow-y:       auto;
+        width:            100%;
+        height:           100%;
+        padding:          2rem;
+        border:           1px #000 dotted;
+        background-color: #fff;
+        box-shadow:       0 0 10px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 0, 0, 0.15);
+
+        & > h3 {
+            font-weight:      bold;
+            max-width:        75%;
+            margin:           0 0 2rem -2rem;
+            padding:          1.125rem 2rem 0.5rem 2rem;
+            color:            #fff;
+            background-color: $brand-primary;
+
+            & > a {
+                font-size:        1.5rem;
+                font-weight:      bold;
+                line-height:      1.5rem;
+                position:         absolute;
+                top:              0.5rem;
+                right:            0.5rem;
+                display:          flex;
+                flex-direction:   row-reverse;
+                flex-wrap:        nowrap;
+                padding:          0.75rem 0.75rem 0.5rem 0.75rem;
+                text-decoration:  none;
+                letter-spacing:   normal;
+                text-transform:   uppercase;
+                color:            #000;
+                background-color: #fff;
+
+                i {
+                    font-size:   1.875rem;
+                    line-height: 1.5rem;
+                    position:    relative;
+                    top:         -2px;
+                    margin-left: 0.5rem;
+                }
+
+                span {
+                    position: relative;
+                    top:      1px;
+                }
+            }
+        }
+    }
+
+    &__header {
+        position: relative;
+        margin:   0 0 2rem 0;
+        padding:  0 0 0 calc(150px + 1rem);
+
+        &:before {
+            position:            absolute;
+            top:                 0;
+            left:                0;
+            width:               150px;
+            height:              100%;
+            content:             '';
+            border:              1px $color-grey-mid solid;
+            background-repeat:   no-repeat;
+            background-position: center center;
+            background-size:     contain;
+        }
+
+        &[data-carrier-slug='aig'] {
+            &:before {
+                background-image: url(../images/logos/carriers/aig.png);
+            }
+        }
+
+        &[data-carrier-slug*='allianz'] {
+            &:before {
+                background-image: url(../images/logos/carriers/allianz.png);
+            }
+        }
+
+        &[data-carrier-slug*='american-equity'] {
+            &:before {
+                background-image: url(../images/logos/carriers/american-equity.png);
+            }
+        }
+
+        &[data-carrier-slug*='american-national'] {
+            &:before {
+                background-image: url(../images/logos/carriers/american-national.png);
+            }
+        }
+
+        &[data-carrier-slug*='athene'] {
+            &:before {
+                background-image: url(../images/logos/carriers/athene.png);
+            }
+        }
+
+        &[data-carrier-slug*='delaware-life'] {
+            &:before {
+                background-image: url(../images/logos/carriers/delaware-life.png);
+            }
+        }
+
+        &[data-carrier-slug='fidelity-and-guaranty'] {
+            &:before {
+                background-image: url(../images/logos/carriers/f-and-g.png);
+            }
+        }
+
+        &[data-carrier-slug*='global-atlantic'] {
+            &:before {
+                background-image: url(../images/logos/carriers/global-atlantic.png);
+            }
+        }
+
+        &[data-carrier-slug*='massmutual-ascend'] {
+            &:before {
+                background-image: url(../images/logos/carriers/massmutual-ascend.png);
+            }
+        }
+
+        &[data-carrier-slug*='midland-national'] {
+            &:before {
+                background-image: url(../images/logos/carriers/midland-national.png);
+            }
+        }
+
+        &[data-carrier-slug*='north-american'] {
+            &:before {
+                background-image: url(../images/logos/carriers/north-american.png);
+            }
+        }
+
+        &[data-carrier-slug*='protective'] {
+            &:before {
+                background-image: url(../images/logos/carriers/protective.png);
+            }
+        }
+
+        &[data-carrier-slug*='reliance-standard'] {
+            &:before {
+                background-image: url(../images/logos/carriers/reliance-standard.png);
+            }
+        }
+
+        &[data-carrier-slug*='securian'] {
+            &:before {
+                background-image: url(../images/logos/carriers/securian.png);
+            }
+        }
+
+        &[data-carrier-slug='the-standard'] {
+            &:before {
+                background-image: url(../images/logos/carriers/the-standard.png);
+            }
+        }
+
+        h4 {
+            font-size:      3rem;
+            line-height:    3rem;
+            display:        flex;
+            align-items:    center;
+            margin:         0;
+            padding:        0;
+            letter-spacing: -2px;
+
+            span {
+                font-size:      1.375rem;
+                font-weight:    400;
+                line-height:    1.375rem;
+                position:       relative;
+                top:            -0.375rem;
+                display:        inline-block;
+                margin:         0 0 0 1rem;
+                padding:        0.75rem 1rem 0.5rem 1rem;
+                letter-spacing: -1px;
+                color:          $color-money;
+                border:         1px $color-money solid;
+            }
+        }
+
+        h5 {
+            font-size:      2rem;
+            font-weight:    normal;
+            line-height:    2rem;
+            margin:         0;
+            padding:        0;
+            letter-spacing: -2px;
+            color:          $color-grey-faded-darker;
+        }
+    }
+
+    &__information {
+        width:     35%;
+        min-width: 35%;
+    }
+
+    &__details {
+        position:       relative;
+        left:           calc(250px + 2rem);
+        display:        flex;
+        flex-direction: row;
+        flex-wrap:      nowrap;
+        width:          calc(100% - (250px + 2rem));
+
+        & > [data-type] {
+            width: 100%;
+        }
+
+        &-illustration {
+            .illustration {
+                padding: 0 1rem;
+                border:  1px #000 dotted;
+            }
+
+            &-notice {
+                &-loader {
+                    font-size:      2rem;
+                    font-weight:    bold;
+                    line-height:    2rem;
+                    position:       relative;
+                    display:        inline-block;
+                    margin:         0 0 0.75rem 0;
+                    letter-spacing: -2px;
+                    color:          #000;
+
+                    &:after {
+                        display:    block;
+                        width:      0%;
+                        height:     4px;
+                        content:    '';
+                        animation:  2s grow-line cubic-bezier(1, 0, 0, 1) infinite;
+                        background: $brand-primary;
+                    }
+
+                    i {
+                        margin-right: 0.25rem;
+                    }
+                }
+
+                &-text {
+                    font-size:   0.9375rem;
+                    font-weight: 300;
+                    line-height: 0.9375rem;
+                    opacity:     0.875;
+                }
+            }
+        }
+
+        .availability {
+            display:        flex;
+            flex-direction: row;
+            flex-wrap:      wrap;
+            margin-bottom:  1rem;
+
+            &__region {
+                font-size:       0.875rem;
+                display:         flex;
+                align-items:     center;
+                justify-content: center;
+                width:           calc(5% - 0.25rem);
+                height:          2rem;
+                margin:          0.125rem;
+                text-align:      center;
+                color:           $color-money;
+                border:          1px $color-money solid;
+            }
+        }
+    }
+
+    &__menu {
+        position:   absolute;
+        top:        auto;
+        left:       2rem;
+        width:      250px;
+        margin:     0;
+        padding:    0;
+        list-style: none;
+
+        &-item {
+            position:        relative;
+            display:         flex;
+            align-items:     center;
+            justify-content: flex-start;
+            min-height:      36px;
+            padding:         0.75rem 1rem 0.5rem 56px;
+            cursor:          pointer;
+            border-top:      1px $color-grey-faded solid;
+
+            &:hover {
+                color:            #fff;
+                border-color:     $brand-tertiary;
+                background-color: $brand-tertiary;
+
+                &:before {
+                    color: #fff;
+                }
+            }
+
+            &:before {
+                font-family:     'Font Awesome 6 Pro', sans-serif;
+                font-size:       1.625rem;
+                line-height:     1.625rem;
+                position:        absolute;
+                top:             -1px;
+                left:            0;
+                display:         flex;
+                align-items:     center;
+                justify-content: center;
+                width:           56px;
+                height:          100%;
+                content:         '';
+                color:           $brand-tertiary;
+            }
+
+            &--selected {
+                color:        $brand-tertiary;
+                border-color: $brand-tertiary;
+
+                &:before {
+                    color: $brand-tertiary;
+                }
+            }
+
+            &--disabled {
+                pointer-events: none;
+                opacity:        0.5;
+                filter:         grayscale(1);
+            }
+
+            &--special {
+                margin-bottom:    2rem;
+                color:            #fff;
+                border-color:     #fff;
+                background-color: $brand-tertiary;
+
+                &:before {
+                    color: #fff;
+                }
+
+                &:hover {
+                    color:            #fff;
+                    border-color:     #fff;
+                    background-color: $brand-tertiary;
+
+                    &:before {
+                        color: #fff;
+                    }
+                }
+            }
+
+            &[data-type='download'] {
+                &:before {
+                    content: '\f019';
+                }
+            }
+
+            &[data-type='options'] {
+                &:before {
+                    content: '\e4a2';
+                }
+            }
+
+            &[data-type='carrier'] {
+                &:before {
+                    content: '\f19c';
+                }
+            }
+
+            &[data-type='illustration'] {
+                &:before {
+                    content: '\f00b';
+                }
+            }
+
+            &[data-type='rules'] {
+                &:before {
+                    content: '\f02d';
+                }
+            }
+
+            &[data-type='withdrawals'] {
+                &:before {
+                    content: '\f53d';
+                }
+            }
+
+            &[data-type='highlights'] {
+                &:before {
+                    content: '\f762';
+                }
+            }
+
+            span {
+                font-size:      1.25rem;
+                font-weight:    500;
+                line-height:    1.25rem;
+                display:        block;
+                letter-spacing: -1px;
+            }
+        }
+    }
+}
+
+@keyframes grow-line {
+    to {
+        width: 100%;
+    }
+}

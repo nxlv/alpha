@@ -1,0 +1,71 @@
+.infotable {
+    margin-bottom: 2rem;
+
+    .infotable__row {
+        display:        flex;
+        flex-direction: row;
+        flex-wrap:      nowrap;
+
+        .infotable {
+            &__label {
+                font-size:        1.25rem;
+                font-weight:      bold;
+                line-height:      1.25rem;
+                display:          flex;
+                align-items:      center;
+                justify-content:  flex-start;
+                width:            25%;
+                min-height:       2rem;
+                padding:          1rem;
+                letter-spacing:   -0.5px;
+                border-bottom:    1px #fff solid;
+                background-color: $color-grey-light;
+            }
+
+            &__value {
+                font-size:        1.25rem;
+                line-height:      1.25rem;
+                display:          flex;
+                align-items:      center;
+                justify-content:  flex-start;
+                width:            100%;
+                padding:          1rem;
+                border-bottom:    1px #fff solid;
+                background-color: $brand-quinary;
+            }
+        }
+    }
+
+    &--horizontal {
+        position:        relative;
+        display:         flex;
+        flex-direction:  row;
+        flex-wrap:       nowrap;
+        justify-content: flex-start;
+        max-width:       100%;
+        margin:          0 -0.25rem;
+
+        .infotable__row {
+            flex-direction: column;
+            width:          100%;
+            border-left:    5px #fff solid;
+
+            .infotable {
+                &__label {
+                    font-size:       0.875rem;
+                    line-height:     0.875rem;
+                    justify-content: center;
+                    width:           100%;
+                    min-height:      0;
+                    padding:         0.75rem 0.5rem 0.5rem;
+                    text-transform:  uppercase;
+                }
+
+                &__value {
+                    font-weight:     bold;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
