@@ -1,59 +1,59 @@
 .table-default {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px #000 dotted;
+    width:           100%;
+    border-collapse: collapse;
+    border:          1px #000 dotted;
 
-  thead,
-  tfoot {
-    background-color: $brand-primary;
+    thead,
+    tfoot {
+        background-color: $brand-primary;
 
-    tr {
-      th {
-        border-right: 1px #000 dotted;
-        padding: 0.5rem 0.75rem;
-        font-size: 0.875rem;
-        line-height: 0.875rem;
-        font-weight: bold;
-        text-align: left;
-        color: #fff;
+        tr {
+            th {
+                font-size:    0.875rem;
+                font-weight:  bold;
+                line-height:  0.875rem;
+                padding:      0.5rem 0.75rem;
+                text-align:   left;
+                color:        #fff;
+                border-right: 1px #000 dotted;
 
-        &:last-child {
-          border-right: none;
+                &:last-child {
+                    border-right: none;
+                }
+            }
         }
-      }
     }
-  }
 
-  tbody {
-    tr {
-      background-color: $color-grey-bright;
+    tbody {
+        tr {
+            background-color: $color-grey-bright;
 
-      &:nth-child(even) {
-        background-color: #fff;
-      }
+            &:nth-child(even) {
+                background-color: #fff;
+            }
 
-      &.has-income {
-        td {
-          &.income {
-            color: #fff;
-            background-color: $color-money;
-            border-color: #fff;
-            font-weight: bold;
-          }
+            &.has-income {
+                td {
+                    &.income {
+                        font-weight:      bold;
+                        color:            #fff;
+                        border-color:     #fff;
+                        background-color: $color-money;
+                    }
+                }
+            }
+
+            td {
+                font-size:      0.9375rem;
+                padding:        0.75rem 0.75rem;
+                vertical-align: middle;
+                border-right:   1px #000 dotted;
+                border-bottom:  1px #000 dotted;
+
+                &:last-child {
+                    border-right: none;
+                }
+            }
         }
-      }
-
-      td {
-        padding: 0.75rem 0.75rem;
-        font-size: 0.9375rem;
-        vertical-align: middle;
-        border-right: 1px #000 dotted;
-        border-bottom: 1px #000 dotted;
-
-        &:last-child {
-          border-right: none;
-        }
-      }
     }
-  }
 }

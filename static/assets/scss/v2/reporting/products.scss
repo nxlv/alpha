@@ -1,40 +1,40 @@
 .report {
     &__header {
-        height: 100px;
-        margin: 0 0 2rem 0;
-        position: relative;
-        padding: 0 0 0 150px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        position:         relative;
+        display:          flex;
+        flex-direction:   column;
+        justify-content:  center;
+        height:           100px;
+        margin:           0 0 2rem 0;
+        padding:          0 0 0 150px;
+        border:           1px rgba(0, 0, 0, 0.25) solid;
         background-color: rgba(0, 0, 0, 0.05);
-        border: 1px rgba(0, 0, 0, 0.25) solid;
 
         &-carrier {
             &-name {
-                font-size: 1.25rem;
-                line-height: 1.25rem;
+                font-size:   1.25rem;
                 font-weight: 300;
-                margin-top: 0.25rem;
+                line-height: 1.25rem;
+                margin-top:  0.25rem;
             }
 
             &-logo {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 150px;
-                height: 100%;
-                background-repeat: no-repeat;
+                position:            absolute;
+                top:                 0;
+                left:                0;
+                width:               150px;
+                height:              100%;
+                background-repeat:   no-repeat;
                 background-position: center center;
-                background-size: contain;
+                background-size:     contain;
             }
         }
 
         &-product {
             &-name {
-                font-size: 1.75rem;
-                line-height: 1.75rem;
-                font-weight: bold;
+                font-size:      1.75rem;
+                font-weight:    bold;
+                line-height:    1.75rem;
                 letter-spacing: -1px;
             }
         }

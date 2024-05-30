@@ -6,14 +6,14 @@
     }
 
     &__content {
-        display: flex;
+        display:        flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
-        padding: 0.75rem 0 0 0;
+        flex-wrap:      nowrap;
+        width:          100%;
+        padding:        0.75rem 0 0 0;
 
         .results {
-            width: 100%;
+            width:     100%;
             max-width: 100%;
 
             &__inner {
@@ -23,121 +23,131 @@
     }
 
     &__results {
-        width: calc(80% - 2rem);
-        max-width: calc(80% - 2rem);
-        min-width: calc(80% - 2rem);
+        width:   100%;
         padding: 0 0 0 2rem;
 
         &-controls {
+            margin:           0 0 1rem 0;
+            padding:          1rem;
+            color:            #fff;
+            border-radius:    6px;
             background-color: $brand-primary;
-            color: #fff;
-            margin: 0 0 1rem 0;
-            padding: 1rem;
-            border-radius: 6px;
 
-            label[for="deferral"] {
-                display: block;
-                font-size: 2rem;
-                line-height: 2rem;
+            label[for='deferral'] {
+                font-size:      2rem;
+                line-height:    2rem;
+                display:        block;
                 letter-spacing: -1px;
             }
 
-            input[type="range"] {
-                width: 100%;
-                height: 34px;
+            input[type='range'] {
+                width:              100%;
+                height:             34px;
+                margin:             10px 0;
                 -webkit-appearance: none;
-                margin: 10px 0;
             }
 
             /* TODO: Refactor into SCSS */
-            input[type="range"] {
-                height: 46px;
+            input[type='range'] {
+                width:              100%;
+                height:             46px;
+                margin:             10px 0;
+                background-color:   transparent;
                 -webkit-appearance: none;
-                margin: 10px 0;
-                width: 100%;
-                background-color: transparent;
             }
-            input[type="range"]:focus {
+
+            input[type='range']:focus {
                 outline: none;
             }
-            input[type="range"]::-webkit-slider-runnable-track {
-                width: 100%;
-                height: 10px;
-                cursor: pointer;
-                animate: 0.2s;
-                box-shadow: 0 0 0 #000000;
-                background: $brand-secondary;
+
+            input[type='range']::-webkit-slider-runnable-track {
+                width:         100%;
+                height:        10px;
+                cursor:        pointer;
+                border:        0 solid $brand-secondary;
                 border-radius: 0;
-                border: 0 solid $brand-secondary;
+                background:    $brand-secondary;
+                box-shadow:    0 0 0 #000000;
+                animate:       0.2s;
             }
-            input[type="range"]::-webkit-slider-thumb {
-                box-shadow: 0 0 0 $brand-primary;
-                border: 4px solid $brand-quinary;
-                height: 36px;
-                width: 36px;
-                border-radius: 50px;
-                background: $brand-primary;
-                cursor: pointer;
+
+            input[type='range']::-webkit-slider-thumb {
+                width:              36px;
+                height:             36px;
+                margin-top:         -15px;
+                cursor:             pointer;
+                border:             4px solid $brand-quinary;
+                border-radius:      50px;
+                background:         $brand-primary;
+                box-shadow:         0 0 0 $brand-primary;
                 -webkit-appearance: none;
-                margin-top: -15px;
             }
-            input[type="range"]:focus::-webkit-slider-runnable-track {
+
+            input[type='range']:focus::-webkit-slider-runnable-track {
                 background: $brand-secondary;
             }
-            input[type="range"]::-moz-range-track {
-                width: 100%;
-                height: 10px;
-                cursor: pointer;
-                animate: 0.2s;
-                box-shadow: 0 0 0 #000000;
-                background: $brand-secondary;
+
+            input[type='range']::-moz-range-track {
+                width:         100%;
+                height:        10px;
+                cursor:        pointer;
+                border:        0 solid $brand-secondary;
                 border-radius: 0;
-                border: 0 solid $brand-secondary;
+                background:    $brand-secondary;
+                box-shadow:    0 0 0 #000000;
+                animate:       0.2s;
             }
-            input[type="range"]::-moz-range-thumb {
-                box-shadow: 0 0 0 $brand-primary;
-                border: 4px solid $brand-quinary;
-                height: 36px;
-                width: 36px;
+
+            input[type='range']::-moz-range-thumb {
+                width:         36px;
+                height:        36px;
+                cursor:        pointer;
+                border:        4px solid $brand-quinary;
                 border-radius: 50px;
-                background: $brand-primary;
-                cursor: pointer;
+                background:    $brand-primary;
+                box-shadow:    0 0 0 $brand-primary;
             }
-            input[type="range"]::-ms-track {
-                width: 100%;
-                height: 10px;
-                cursor: pointer;
-                animate: 0.2s;
-                background: transparent;
+
+            input[type='range']::-ms-track {
+                width:        100%;
+                height:       10px;
+                cursor:       pointer;
+                color:        transparent;
                 border-color: transparent;
-                color: transparent;
+                background:   transparent;
+                animate:      0.2s;
             }
-            input[type="range"]::-ms-fill-lower {
-                background: #017B8F;
-                border: 0 solid $brand-secondary;
+
+            input[type='range']::-ms-fill-lower {
+                border:        0 solid $brand-secondary;
                 border-radius: 0;
-                box-shadow: 0 0 0 #000000;
+                background:    #017B8F;
+                box-shadow:    0 0 0 #000000;
             }
-            input[type="range"]::-ms-fill-upper {
-                background: $brand-secondary;
-                border: 0 solid $brand-secondary;
+
+            input[type='range']::-ms-fill-upper {
+                border:        0 solid $brand-secondary;
                 border-radius: 0;
-                box-shadow: 0 0 0 #000000;
+                background:    $brand-secondary;
+                box-shadow:    0 0 0 #000000;
             }
-            input[type="range"]::-ms-thumb {
-                margin-top: 1px;
-                box-shadow: 0 0 0 $brand-primary;
-                border: 4px solid $brand-quinary;
-                height: 36px;
-                width: 36px;
+
+            input[type='range']::-ms-thumb {
+                width:         36px;
+                height:        36px;
+                margin-top:    1px;
+                cursor:        pointer;
+                border:        4px solid $brand-quinary;
                 border-radius: 50px;
-                background: $brand-primary;
-                cursor: pointer;
+                background:    $brand-primary;
+                box-shadow:    0 0 0 $brand-primary;
             }
-            input[type="range"]:focus::-ms-fill-lower {
+
+            input[type='range']:focus::-ms-fill-lower {
                 background: $brand-secondary;
             }
-            input[type="range"]:focus::-ms-fill-upper {
+
+            input[type='range']:focus::-ms-fill-upper {
                 background: $brand-secondary;
             }
 
@@ -145,13 +155,47 @@
     }
 
     &__parameters {
-        width: 20%;
-        min-width: 20%;
-        max-width: 20%;
-        margin: 0;
-        position: relative;
-        padding: 1rem 0;
-        border-radius: 6px;
+        position:         relative;
+        width:            25%;
+        min-width:        350px;
+        max-width:        25%;
+        margin:           0;
+        padding:          1rem 0;
+        border-radius:    6px;
         background-color: #fff;
+
+        & > fieldset {
+            fieldset {
+                .form__row {
+                    .form__column {
+                        width:         calc(50% - 1.5rem);
+                        margin-bottom: 0.5rem;
+                    }
+                }
+            }
+
+            .client__content {
+                fieldset {
+                    .form__row {
+                        .form__column {
+                            width: calc(50% - 1.5rem);
+
+                            &:nth-child(2) {
+                                width:         50%;
+                                padding-right: 0;
+
+                                input {
+                                    width: 100% !important;
+                                }
+                            }
+
+                            &:last-child {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

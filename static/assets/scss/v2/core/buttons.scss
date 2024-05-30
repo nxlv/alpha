@@ -1,18 +1,18 @@
 .btn {
     &.btn-primary {
-        width: auto;
-        border: none;
+        font-family:      'Calibre', sans-serif;
+        font-size:        1.25rem;
+        font-weight:      bold;
+        line-height:      1.25rem;
+        width:            auto;
+        padding:          0.75rem 2rem 0.675rem 2rem;
+        cursor:           pointer;
+        text-decoration:  none;
+        letter-spacing:   -1px;
+        color:            #fff;
+        border:           none;
+        border-radius:    6px;
         background-color: $brand-primary;
-        color: #fff;
-        cursor: pointer;
-        text-decoration: none;
-        font-family: 'Calibre', sans-serif;
-        border-radius: 6px;
-        font-size: 1.25rem;
-        line-height: 1.25rem;
-        letter-spacing: -1px;
-        font-weight: bold;
-        padding: 0.75rem 2rem 0.675rem 2rem;
     }
 
     &.btn-link {

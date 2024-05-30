@@ -1,0 +1,254 @@
+/**
+ * From: https://codepen.io/ikoshowa/pen/qOMvpy
+ * Needs refactoring to work with ALPHA themeing system and to not have variables in this file, but in data/* files
+ */
+
+$thickness: 5px;
+$duration:  2500;
+$delay:     $duration/6;
+
+@mixin polka($size, $dot, $base, $accent) {
+    background:          $base;
+    background-image:    radial-gradient($accent $dot, transparent 0);
+    background-size:     $size $size;
+    background-position: 0 -2.5px;
+}
+
+.bookshelf_wrapper {
+    margin: 5rem 0 2.5rem 0;
+}
+
+.books_status {
+    font-size:      1.5rem;
+    font-weight:    bold;
+    line-height:    1.5rem;
+    padding:        1rem 0 0 0;
+    letter-spacing: -1px;
+}
+
+.books_list {
+    width:            300px;
+    margin:           0 0 0 1.5rem;
+    padding:          0;
+    transform:        scale(0.5);
+    transform-origin: left center;
+}
+
+.book_item {
+    position:         absolute;
+    top:              -120px;
+    box-sizing:       border-box;
+    width:            40px;
+    height:           120px;
+    list-style:       none;
+    transform:        translateX(300px);
+    transform-origin: bottom left;
+    animation:        travel #{$duration}ms linear infinite;
+    opacity:          0;
+    border:           $thickness solid white;
+    background-color: $brand-secondary;
+
+    &.first {
+        top:    -140px;
+        height: 140px;
+
+        &:before,
+        &:after {
+            position:         absolute;
+            top:              10px;
+            left:             0;
+            width:            100%;
+            height:           $thickness;
+            content:          '';
+            background-color: white;
+        }
+
+        &:after {
+            top:    initial;
+            bottom: 10px;
+        }
+    }
+
+    &.second,
+    &.fifth {
+        &:before,
+        &:after {
+            position:      absolute;
+            top:           10px;
+            left:          0;
+            box-sizing:    border-box;
+            width:         100%;
+            height:        $thickness*3.5;
+            content:       '';
+            border-top:    $thickness solid white;
+            border-bottom: $thickness solid white;
+        }
+
+        &:after {
+            top:    initial;
+            bottom: 10px;
+        }
+    }
+
+    &.third {
+        &:before,
+        &:after {
+            position:      absolute;
+            top:           10px;
+            left:          9px;
+            box-sizing:    border-box;
+            width:         12px;
+            height:        12px;
+            content:       '';
+            border:        $thickness solid white;
+            border-radius: 50%;
+        }
+
+        &:after {
+            top:    initial;
+            bottom: 10px;
+        }
+    }
+
+    &.fourth {
+        top:    -130px;
+        height: 130px;
+
+        &:before {
+            position:      absolute;
+            top:           46px;
+            left:          0;
+            box-sizing:    border-box;
+            width:         100%;
+            height:        $thickness*3.5;
+            content:       '';
+            border-top:    $thickness solid white;
+            border-bottom: $thickness solid white;
+        }
+    }
+
+    &.fifth {
+        top:    -100px;
+        height: 100px;
+    }
+
+    &.sixth {
+        top:    -140px;
+        height: 140px;
+
+        &:before {
+            position:         absolute;
+            bottom:           31px;
+            left:             0px;
+            box-sizing:       border-box;
+            width:            100%;
+            height:           $thickness;
+            content:          '';
+            background-color: white;
+        }
+
+        &:after {
+            position:      absolute;
+            bottom:        10px;
+            left:          9px;
+            box-sizing:    border-box;
+            width:         12px;
+            height:        12px;
+            content:       '';
+            border:        $thickness solid white;
+            border-radius: 50%;
+        }
+    }
+
+    &:nth-child(2) {
+        animation-delay:  #{$delay*1}ms;
+        background-color: $brand-primary;
+    }
+
+    &:nth-child(3) {
+        animation-delay:  #{$delay*2}ms;
+        background-color: $brand-primary;
+    }
+
+    &:nth-child(4) {
+        animation-delay:  #{$delay*3}ms;
+        background-color: $brand-secondary;
+    }
+
+    &:nth-child(5) {
+        animation-delay:  #{$delay*4}ms;
+        background-color: $brand-primary;
+    }
+
+    &:nth-child(6) {
+        animation-delay:  #{$delay*5}ms;
+        background-color: $brand-secondary;
+    }
+
+}
+
+@keyframes move {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: 10px;
+    }
+
+}
+
+@keyframes travel {
+    0% {
+        opacity:   0;
+        transform: translateX(300px) rotateZ(0deg) scaleY(1);
+    }
+
+    6.5% {
+        transform: translateX(279.5px) rotateZ(0deg) scaleY(1.1);
+    }
+
+    8.8% {
+        transform: translateX(273.6px) rotateZ(0deg) scaleY(1);
+    }
+
+    10% {
+        opacity:   1;
+        transform: translateX(270px) rotateZ(0deg);
+    }
+
+    17.6% {
+        transform: translateX(247.2px) rotateZ(-30deg);
+    }
+
+    45% {
+        transform: translateX(165px) rotateZ(-30deg);
+    }
+
+    49.5% {
+        transform: translateX(151.5px) rotateZ(-45deg);
+    }
+
+    61.5% {
+        transform: translateX(115.5px) rotateZ(-45deg);
+    }
+
+    67% {
+        transform: translateX(99px) rotateZ(-60deg);
+    }
+
+    76% {
+        opacity:   1;
+        transform: translateX(72px) rotateZ(-60deg);
+    }
+
+    83.5% {
+        opacity:   0.75;
+        transform: translateX(49.5px) rotateZ(-90deg);
+    }
+
+    100% {
+        opacity:   0;
+        transform: translateX(0px) rotateZ(-90deg);
+    }
+}

@@ -1,7 +1,7 @@
 .table-default {
+    width:           100%;
     border-collapse: collapse;
-    width: 100%;
-    border: 1px #000 dotted;
+    border:          1px #000 dotted;
 
     thead,
     tfoot {
@@ -9,13 +9,13 @@
 
         tr {
             th {
+                font-size:    0.875rem;
+                font-weight:  bold;
+                line-height:  0.875rem;
+                padding:      0.5rem 0.75rem;
+                text-align:   left;
+                color:        #fff;
                 border-right: 1px #000 dotted;
-                padding: 0.5rem 0.75rem;
-                font-size: 0.875rem;
-                line-height: 0.875rem;
-                font-weight: bold;
-                text-align: left;
-                color: #fff;
 
                 &:last-child {
                     border-right: none;
@@ -33,9 +33,9 @@
             }
 
             &.has-income {
-                color: #fff;
+                color:            #fff;
+                border-color:     #fff;
                 background-color: $color-money;
-                border-color: #fff;
 
                 td {
                     &.income {
@@ -45,11 +45,11 @@
             }
 
             td {
-                padding: 0.75rem 0.75rem;
-                font-size: 0.9375rem;
+                font-size:      0.9375rem;
+                padding:        0.75rem 0.75rem;
                 vertical-align: middle;
-                border-right: 1px #000 dotted;
-                border-bottom: 1px #000 dotted;
+                border-right:   1px #000 dotted;
+                border-bottom:  1px #000 dotted;
 
                 &:last-child {
                     border-right: none;

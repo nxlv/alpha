@@ -1,63 +1,63 @@
 main#auth {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display:          flex;
+    align-items:      center;
+    flex-direction:   column;
+    justify-content:  center;
+    height:           100vh;
     background-color: $brand-quinary;
 
     & > header {
         a {
-            display: block;
-            width: 200px;
-            height: 80px;
-            background-image: url(../images/logos/logo-aa.png);
-            background-repeat: no-repeat;
+            font-size:           0;
+            line-height:         0;
+            display:             block;
+            width:               200px;
+            height:              80px;
+            background-image:    url(../images/logos/logo-aa.png);
+            background-repeat:   no-repeat;
             background-position: center center;
-            background-size: auto 90%;
-            font-size: 0;
-            line-height: 0;
+            background-size:     auto 90%;
         }
     }
 
     & > article {
-        border: 1px $color-grey-mid solid;
-        padding: 2rem;
-        margin: 2rem 0 0 0;
+        min-width:        450px;
+        max-width:        550px;
+        margin:           2rem 0 0 0;
+        padding:          2rem;
+        border:           1px $color-grey-mid solid;
         background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.375), 0 0 20px rgba(0, 0, 0, 0.15);
-        min-width: 450px;
-        max-width: 550px;
+        box-shadow:       0 0 10px rgba(0, 0, 0, 0.375), 0 0 20px rgba(0, 0, 0, 0.15);
 
         & > header {
-            margin-left: -2rem;
             margin-right: -2rem;
+            margin-left:  -2rem;
 
             h1, h2, h3, h4, h5, h6 {
-                margin: 0 0 2rem 0;
-                padding: 0.75rem 2rem 0.5rem 2rem;
+                font-size:        2.25rem;
+                line-height:      2.25rem;
+                margin:           0 0 2rem 0;
+                padding:          0.75rem 2rem 0.5rem 2rem;
+                letter-spacing:   -1px;
+                color:            #fff;
                 background-color: $brand-tertiary;
-                color: #fff;
-                font-size: 2.25rem;
-                line-height: 2.25rem;
-                letter-spacing: -1px;
             }
         }
 
         & > section {
             form {
                 footer {
-                    border-top: 1px $color-grey-faded-darker solid;
-                    margin: 1rem 0 0 0;
-                    padding: 1rem 0;
+                    margin:     1rem 0 0 0;
+                    padding:    1rem 0;
                     text-align: right;
+                    border-top: 1px $color-grey-faded-darker solid;
 
                     .btn.btn-link {
-                        color: #fff;
+                        font-size:       1rem;
+                        line-height:     1rem;
                         text-decoration: none;
-                        color: $color-grey-faded-darker;
-                        font-size: 1rem;
-                        line-height: 1rem;
+                        color:           #fff;
+                        color:           $color-grey-faded-darker;
 
                         &:hover {
                             color: $brand-primary;

@@ -1,79 +1,79 @@
 .page {
-    position: relative;
-    height: 100vh;
+    position:         relative;
+    height:           100vh;
+    padding:          2rem 2rem 140px 2rem;
+    border-top:       1px #000 dashed;
     page-break-after: always;
-    padding: 2rem 2rem 140px 2rem;
-    border-top: 1px #000 dashed;
 }
 
 .data-points {
-    border: 5px $brand-quaternary solid;
-    margin: 0 0 2rem 0;
-    padding: 1rem 1rem;
     position: relative;
+    margin:   0 0 2rem 0;
+    padding:  1rem 1rem;
+    border:   5px $brand-quaternary solid;
 
     h3 {
-        position: absolute;
-        top: 0;
-        transform: translateY(-50%);
+        font-size:        1.5rem;
+        line-height:      1.5rem;
+        position:         absolute;
+        top:              0;
+        left:             0;
+        margin:           0;
+        padding:          0 1rem;
+        transform:        translateY(-50%);
+        letter-spacing:   -0.5px;
+        color:            $brand-quaternary;
         background-color: $brand-quinary;
-        padding: 0 1rem;
-        left: 0;
-        margin: 0;
-        color: $brand-quaternary;
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        letter-spacing: -0.5px;
     }
 
     h4 {
-        margin: 1.5rem 0 0.5rem -1rem;
-        padding: 1rem;
+        display:          inline-block;
+        margin:           1.5rem 0 0.5rem -1rem;
+        padding:          1rem;
+        color:            #fff;
         background-color: $brand-quaternary;
-        color: #fff;
-        display: inline-block;
     }
 
     .data-points-list {
-        margin: 0.25rem -0.25rem 0 -0.25rem;
-        padding: 0;
+        display:    flex;
+        flex-wrap:  wrap;
+        margin:     0.25rem -0.25rem 0 -0.25rem;
+        padding:    0;
         list-style: none;
-        display: flex;
-        flex-wrap: wrap;
 
         .data-point {
-            margin: 0.25rem 0.25rem;
-            list-style: none;
-            display: flex;
-            border: 1px #000 solid;
-            padding: 0.5rem 1rem;
+            display:        flex;
             flex-direction: column;
-            min-width: calc(25% - 0.5rem);
-            max-width: calc(25% - 0.5rem);
+            min-width:      calc(25% - 0.5rem);
+            max-width:      calc(25% - 0.5rem);
+            margin:         0.25rem 0.25rem;
+            padding:        0.5rem 1rem;
+            list-style:     none;
+            border:         1px #000 solid;
 
             &-income {
-                color: green;
-                font-size: 1.75rem;
-                line-height: 1.75rem;
-                margin: 0 0 1rem 0;
-                text-align: center;
-                font-weight: 500;
+                font-size:      1.75rem;
+                font-weight:    500;
+                line-height:    1.75rem;
+                margin:         0 0 1rem 0;
+                text-align:     center;
                 letter-spacing: -1px;
+                color:          green;
             }
 
             label {
-                display: block;
-                margin: 0 0 0.5rem 0;
-                padding: 0;
+                font-size:     0.875rem;
+                line-height:   0.875rem;
+                display:       block;
+                margin:        0 0 0.5rem 0;
+                padding:       0;
                 border-bottom: 1px #000 solid;
-                font-size: 0.875rem;
-                line-height: 0.875rem;
             }
 
             span {
-                font-weight: bold;
-                font-size: 1.125rem;
-                line-height: 1.375rem;
+                font-size:      1.125rem;
+                font-weight:    bold;
+                line-height:    1.375rem;
                 letter-spacing: -1px;
 
                 span {
@@ -81,28 +81,28 @@
                 }
 
                 small {
-                    display: block;
-                    font-weight: normal;
+                    font-size:      0.9375rem;
+                    font-weight:    normal;
+                    line-height:    0.9375rem;
+                    display:        block;
+                    margin-top:     0.125rem;
                     letter-spacing: normal;
-                    font-size: 0.9375rem;
-                    line-height: 0.9375rem;
-                    margin-top: 0.125rem;
                 }
 
                 em {
-                    display: inline-block;
-                    font-style: normal;
-                    font-weight: bold;
+                    font-size:        0.75rem;
+                    font-weight:      bold;
+                    font-style:       normal;
+                    line-height:      0.75rem;
+                    display:          inline-block;
+                    margin-right:     0.125rem;
+                    padding:          0.25rem 0.5rem 0.125rem 0.5rem;
+                    transform:        translateY(-2px);
+                    letter-spacing:   normal;
+                    text-transform:   uppercase;
+                    color:            #fff;
+                    border:           1px #000 solid;
                     background-color: #000;
-                    color: #fff;
-                    padding: 0.25rem 0.5rem 0.125rem 0.5rem;
-                    text-transform: uppercase;
-                    font-size: 0.75rem;
-                    letter-spacing: normal;
-                    line-height: 0.75rem;
-                    transform: translateY(-2px);
-                    margin-right: 0.125rem;
-                    border: 1px #000 solid;
                 }
             }
         }
