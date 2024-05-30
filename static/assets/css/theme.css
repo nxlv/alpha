@@ -14406,6 +14406,9 @@ readers do not read off random characters that represent icons */
     color: #fff;
     background-color: #FEA82F; }
 
+* {
+  box-sizing: border-box; }
+
 #app {
   background-color: #e3e3e3; }
 
