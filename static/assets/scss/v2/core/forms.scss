@@ -16,12 +16,6 @@
         &.form__row--wrapped {
             flex-wrap: wrap;
         }
-
-        .form__column {
-            &:last-child {
-                padding-right: 0;
-            }
-        }
     }
 
     &__column {
@@ -29,10 +23,7 @@
         flex-direction: column;
         width:          100%;
         padding-right:  1rem;
-
-        @media screen and (max-width: $breakpoint-xl) {
-            margin-bottom: 0.5rem;
-        }
+        margin-bottom: 0.5rem;
 
         &.form__column--full,
         &.form__column--large {
