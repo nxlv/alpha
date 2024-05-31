@@ -10,7 +10,7 @@
     position: relative;
     margin:   0 0 2rem 0;
     padding:  1rem 1rem;
-    border:   5px $brand-quaternary solid;
+    border:   5px $brand-primary solid;
 
     h3 {
         font-size:        1.5rem;
@@ -22,7 +22,7 @@
         padding:          0 1rem;
         transform:        translateY(-50%);
         letter-spacing:   -0.5px;
-        color:            $brand-quaternary;
+        color:            $brand-primary;
         background-color: $brand-quinary;
     }
 
@@ -31,7 +31,7 @@
         margin:           1.5rem 0 0.5rem -1rem;
         padding:          1rem;
         color:            #fff;
-        background-color: $brand-quaternary;
+        background-color: $brand-primary;
     }
 
     .data-points-list {
@@ -58,7 +58,7 @@
                 margin:         0 0 1rem 0;
                 text-align:     center;
                 letter-spacing: -1px;
-                color:          green;
+                color:          $color-money;
             }
 
             label {
