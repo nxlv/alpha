@@ -4,6 +4,10 @@
     border-right: 1px $color-grey-light solid;
     border-left:  1px $color-grey-light solid;
 
+    @media screen and (max-width: $breakpoint-xl) {
+        margin: 0;
+    }
+
     &__prologue {
         background-color: #fff;
 

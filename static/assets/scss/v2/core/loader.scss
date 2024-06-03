@@ -1,3 +1,31 @@
+.loader {
+    &__details {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(2px);
+
+        &-inner {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            background-color: #fff;
+            border: 2px $brand-primary solid;
+            padding: 1rem;
+            color: $brand-primary;
+            transform: translateX(-50%) translateY(-50%);
+
+            &-message {
+                font-size: 2.5rem;
+                line-height: 2.5rem;
+            }
+        }
+    }
+}
+
 /**
  * From: https://codepen.io/ikoshowa/pen/qOMvpy
  * Needs refactoring to work with ALPHA themeing system and to not have variables in this file, but in data/* files

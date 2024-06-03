@@ -46,7 +46,8 @@
                 this.aborters.requests.abort();
 
                 this.nonce = this.$globalUtils.generate_nonce();
-                this.errors = null;
+                this.error = false;
+                this.error_message = null;
                 this.loading = true;
 
                 this.selections.method = this.parameters.method;
@@ -75,7 +76,7 @@
 
                 this.parameters.searched = true;
 
-                if ( ( request ) && ( request.data ) ) {
+                if ( ( request ) && ( request.data ) && ( request.data.length ) ) {
                     this.quotes = [];
 
                     for ( let counter = 0; counter < request.data.length; counter++ ) {
@@ -83,6 +84,10 @@
                     }
 
                     this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( 0, this.parameters.chunk_size ), parameters: this.parameters } );
+                } else {
+                    this.loading = false;
+                    this.error = true;
+                    this.error_message = 'No matching products were found for the search criteria specified.  You may try again, or try removing any search filters.';
                 }
             },
 
@@ -103,7 +108,7 @@
                 }
                 */
 
-                if ( ( request ) && ( request.data ) ) {
+                if ( ( request ) && ( request.data ) && ( request.data.length ) ) {
                     for ( let counter = 0; counter < request.data.length; counter++ ) {
                         console.log( 'adding', request.data[ counter ] );
 
@@ -111,6 +116,10 @@
                     }
 
                     this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( this.selections.offset, ( this.selections.offset + this.parameters.chunk_size ) ), parameters: this.parameters } );
+                } else {
+                    this.loading = false;
+                    this.error = true;
+                    this.error_message = 'Real-time quotes for these annuity products is not available right now.  CANNEX returned an empty response when requesting quotes.  You may try again by clicking the Fetch Quotes button.';
                 }
             },
 
@@ -134,7 +143,7 @@
                 }
                 */
 
-                if ( ( request ) && ( request.data ) ) {
+                if ( ( request ) && ( request.data ) && ( request.data.length ) ) {
                     let index, index_inner;
 
                     console.log( request );
@@ -151,6 +160,10 @@
                             }
                         }
                     }
+                } else {
+                    this.loading = false;
+                    this.error = true;
+                    this.error_message = 'Real-time quotes for these annuity products is not available right now.  CANNEX returned an empty response when requesting quotes.  You may try again by clicking the Fetch Quotes button.';
                 }
 
                 this.sort_results();
@@ -236,8 +249,9 @@
 
                 let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), signal: this.aborters.requests.signal } );
 
-                this.errors = null;
                 this.loading = false;
+                this.error = false;
+                this.error_message = null;
 
                 this.selections.illustration.valid = false;
                 this.selections.illustration.dataset = null;
@@ -258,41 +272,67 @@
             },
 
             async fetch_details() {
-                this.loading = true;
-
                 const client = useClientStore();
 
-                let endpoint = '/api/products/details';
-                let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...client.settings, product: this.selections.product_id, signal: this.aborters.requests.signal } );
+                this.loading = true;
+                this.error = false;
+                this.error_message = null;
 
-                this.errors = null;
-                this.loading = false;
+                try {
+                    let endpoint = '/api/products/details';
+                    let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...client.settings, product: this.selections.product_id, signal: this.aborters.requests.signal } );
 
-                if ( ( request ) && ( request.data ) && ( request.data.details ) ) {
-                    this.selections.product = request.data.details[ 0 ];
-                    this.selections.product.options = ( ( request.data.options ) ? request.data.options : null );
+                    if ( ( request ) && ( request.data ) && ( request.data.details ) ) {
+                        this.selections.product = request.data.details[ 0 ];
+                        this.selections.product.options = ( ( request.data.options ) ? request.data.options : null );
 
-                    // fetch illustration
-                    await this.fetch_illustration();
+                        // fetch illustration
+                        await this.fetch_illustration();
+
+                        this.loading = false;
+                    } else {
+                        this.loading = false;
+                        this.error = true;
+                        this.error_message = 'Details for this annuity product could not be loaded.  Please try again.';
+                    }
+                } catch( error ) {
+                    this.loading = false;
+                    this.error = true;
+                    this.error_message = 'Details for this annuity product could not be loaded.  Please try again.';
                 }
             },
 
             async fetch_report() {
                 this.loading = true;
+                this.error = false;
+                this.error_message = null;
 
                 const client = useClientStore();
 
-                let endpoint = '/api/quoting/report'
-                let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { products: ( ( this.mode === 'comparison' ) ? this.selections.comparison : [ this.selections.product_id ] ), annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
+                try {
+                    let endpoint = '/api/quoting/report'
+                    let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { products: ( ( this.mode === 'comparison' ) ? this.selections.comparison : [ this.selections.product_id ] ), annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: this.parameters, signal: this.aborters.requests.signal } );
 
-                this.errors = null;
-                this.loading = false;
+                    console.log( 'request =', request );
 
-                if ( ( request ) && ( request.data ) ) {
-                    let report_window = window.open();
+                    if ( ( request ) && ( request.data ) ) {
+                        let report_window = window.open();
 
-                    report_window.resizeTo( 612, 791 );
-                    report_window.document.write( request.data );
+                        report_window.resizeTo( 612, 791 );
+                        report_window.document.write( request.data );
+
+                        this.loading = false;
+                    } else {
+                        this.loading = false;
+                        this.error = true;
+                        this.error_message = 'Your report could not be generated.  You may try again, or, there may be a problem with one of the selected annuities.';
+                    }
+                } catch( error ) {
+                    this.close_details();
+
+                    this.loading = false;
+                    this.error = true;
+                    this.error_message = 'Your report could not be generated.  You may try again, or, there may be a problem with one of the selected annuities.';
                 }
             },
 
@@ -349,6 +389,9 @@
             },
 
             close_details() {
+                this.error = false;
+                this.error_message = null;
+
                 this.selections.product_id = null;
                 this.selections.product = null;
                 this.selections.illustration.valid = false;
@@ -429,7 +472,8 @@
                 mode: 'normal',
                 loading: false,
 
-                errors: null,
+                error: false,
+                error_message: '',
                 analysis_ids: null,
                 quotes: null,
                 nonce: null,
@@ -825,6 +869,13 @@
                     </div>
                 </div>
 
+                <div class="income-solver__error" v-if="error && error_message">
+                    <div class="alert alert-error">
+                        <h3>An error has occurred!</h3>
+                        <p>{{ error_message }}</p>
+                    </div>
+                </div>
+
                 <div class="income-solver__results-controls" v-if="quotes && !loading">
                     <div class="form__row">
                         <div class="form__column form__column--full">
@@ -862,14 +913,6 @@
                             Running the numbers, this might take a minute...
                         </div>
                     </div>
-                </div>
-
-                <div class="alert alert-error" v-if="errors">
-                    <h3>An error has occurred!</h3>
-                    <template v-for="( error, error_index ) in errors" v-bind:key="error_index">
-                        <p>{{ error.message }}</p>
-                        <p><small>{{ error.code }}</small></p>
-                    </template>
                 </div>
 
                 <div class="alert alert-info" v-if="parameters.searched && !loading && !quotes">

@@ -1,0 +1,32 @@
+.alert {
+  position: relative;
+  background-color: #fff;
+  color: $brand-primary;
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  border-radius: 6px;
+  border: 2px $brand-primary solid;
+
+  h3 {
+    font-size: 3rem;
+    line-height: 3rem;
+    margin: 0;
+    color: $brand-primary;
+  }
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.alert-error {
+    background-color: $brand-tertiary;
+    border-color: $brand-tertiary;
+    color: #fff;
+
+    h3 {
+      color: #fff;
+    }
+  }
+}

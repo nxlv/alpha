@@ -12,6 +12,10 @@
         width:          100%;
         padding:        0.75rem 0 0 0;
 
+        @media screen and (max-width: $breakpoint-lg) {
+            flex-wrap: wrap;
+        }
+
         .results {
             width:     100%;
             max-width: 100%;
@@ -163,6 +167,11 @@
         padding:          1rem 0;
         border-radius:    6px;
         background-color: #fff;
+
+        @media screen and (max-width: $breakpoint-lg) {
+            width: 100%;
+            max-width: 100%;
+        }
 
         & > fieldset {
             fieldset {
