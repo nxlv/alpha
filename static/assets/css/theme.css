@@ -14776,7 +14776,7 @@ html, body {
         padding: 0.25rem 0 0 0;
         opacity: 0.75; }
 
-.form__action {
+.form__action, .income-solver__fetch-button {
   font-family: 'Calibre', sans-serif;
   font-size: 1.125rem;
   font-weight: 700;
@@ -14794,7 +14794,7 @@ html, body {
   color: #fff;
   border: 2px #01203C solid;
   background-color: #01203C; }
-  .form__action:hover, .form__action:focus, .form__action:active {
+  .form__action:hover, .income-solver__fetch-button:hover, .form__action:focus, .income-solver__fetch-button:focus, .form__action:active, .income-solver__fetch-button:active {
     color: #01203C;
     background-color: #fff; }
 
@@ -16706,7 +16706,44 @@ main#auth {
         padding-left: 0.25rem; }
 
 .income-solver__fetch-button {
-  display: none; }
+  margin-bottom: 1rem;
+  font-size: 1.375rem;
+  line-height: 1.375rem;
+  background-color: #c20e00;
+  color: #fff;
+  border: none;
+  transition: background-color 0.125s ease-out, color 0.125s ease-out;
+  pointer-events: all;
+  position: relative;
+  z-index: 10;
+  transform: translateY(-1rem);
+  box-shadow: 0 0 10px #c20e00;
+  animation: 2s fetch-button infinite;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px; }
+  .income-solver__fetch-button:hover, .income-solver__fetch-button:focus, .income-solver__fetch-button:active {
+    background-color: #760800 !important;
+    color: #fff !important; }
+  .income-solver__fetch-button i {
+    position: relative;
+    top: -1px;
+    padding-left: 0.5rem; }
+
+@keyframes fetch-button {
+  0% {
+    box-shadow: 0 0 0 #c20e00; }
+  15% {
+    box-shadow: 0 0 10px #c20e00; }
+  35% {
+    box-shadow: 0 0 20px rgba(194, 14, 0, 0.75); }
+  50% {
+    box-shadow: 0 0 30px rgba(194, 14, 0, 0.65); }
+  65% {
+    box-shadow: 0 0 35px rgba(194, 14, 0, 0.5); }
+  85% {
+    box-shadow: 0 0 35px rgba(194, 14, 0, 0.35); }
+  100% {
+    box-shadow: 0 0 35px rgba(194, 14, 0, 0); } }
 
 .income-solver__content {
   display: flex;

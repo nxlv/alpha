@@ -288,6 +288,7 @@
 
                         // fetch illustration
                         await this.fetch_illustration();
+                        await this.fetch_illustration();
 
                         this.loading = false;
                     } else {
@@ -570,9 +571,9 @@
             </label>
             -->
 
-            <button type="submit" class="income-solver__fetch-button" v-on:click="fetch_quote">Fetch Quotes <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-
             <aside class="income-solver__parameters form">
+                <button type="submit" class="income-solver__fetch-button" v-on:click="fetch_quote">Fetch Quotes <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+
                 <fieldset data-filter-type="income">
                     <legend><i class="fa-duotone fa-money-check-dollar-pen"></i> Investment</legend>
 
