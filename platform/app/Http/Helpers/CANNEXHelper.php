@@ -9,7 +9,6 @@
     use App\Http\Helpers\WSSoapClient;
 
     class CANNEXHelper {
-        const ANTY_ANLY_VERSION_ID = 'CD6D3M';
         const MAX_POLL_RETRIES = 25;
 
         public static function analyze_fixed( $products ) {
@@ -184,7 +183,7 @@
                     'end_month' => $product[ 'index' ][ 'index_date_start' ]->format( 'n' ),
                     'end_year' => $product[ 'index' ][ 'index_date_start' ]->format( 'Y' )
                 ],
-                'anty_ds_version_id'          => self::ANTY_ANLY_VERSION_ID,
+                'anty_ds_version_id'          => Config::get( 'cannex.version' ),
                 'analysis_cd'                 => $product[ 'analysis_cd' ],
                 'analysis_data_id'            => $product[ 'analysis_data_id' ],
                 'analysis_time_horizon_years' => ( ( isset( $product[ 'analysis_time_horizon_years' ] ) ) ? ( intval( $product[ 'analysis_time_horizon_years' ] ) + 1 ) : ( $product[ 'index' ][ 'deferral' ] + 1 ) ),
@@ -209,7 +208,7 @@
                     'income_start_age_joint'      => ( ( !empty( $annuitant[ 'joint_age' ] ) ) ? ( $annuitant[ 'joint_age' ] + $product[ 'index' ][ 'deferral' ] ) : null ),
                     'income_analysis_data_id'     => $product[ 'analysis_data_id' ],
                     'evaluate_time_horizon_years' => ( ( isset( $product[ 'analysis_time_horizon_years' ] ) ) ? ( intval( $product[ 'analysis_time_horizon_years' ] ) + 1 ) : ( $product[ 'index' ][ 'deferral' ] + 1 ) ),
-                    'anty_ds_version_id'          => self::ANTY_ANLY_VERSION_ID,
+                    'anty_ds_version_id'          => Config::get( 'cannex.version' ),
                     'sequence_id'                 => 10000, // TODO: increment? don't like using the same ID always
                     'is_test'                     => 'N'
                 ]
@@ -258,7 +257,7 @@
                             'logon_id' => $username,
                             'user_id' => '',
                             'transaction_id' => $transaction_id,
-                            'anty_ds_version_id' => self::ANTY_ANLY_VERSION_ID,
+                            'anty_ds_version_id' => Config::get( 'cannex.version' ),
                             'analysis_data_id' => $dataset,
                             'cnx_sequence_id' => [ $sequence ], // [ 0, 1 ]
                             'income_request_data' => $parameters,

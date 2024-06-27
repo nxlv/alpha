@@ -6,63 +6,14 @@
   <canx_info>
     <info key="DIST-CODE">AALLC</info>
     <info key="DIST-NAME"><![CDATA[Annuity Association]]></info>
-    <info key="REQUEST-NO">CD6D3M</info>
-    <info key="RUN-DATE">2024-04-15T06:00:09</info>
+    <info key="REQUEST-NO">CFJ37C</info>
+    <info key="RUN-DATE">2024-06-24T06:00:07</info>
     <info key="PRODUCT-TYPE">FIAX</info>
     <info key="CUSTOMER">22933</info>
     <info key="CUSTOMER-NAME"><![CDATA[Annuity Association, LLC]]></info>
     <info key="LOGON-ID"></info>
   </canx_info>
   <product_type cd="FIAX">Fixed Indexed Annuities</product_type>
-  <carrier_products>
-    <canx_info>
-      <info key="IPNO">1098</info>
-      <info key="CO-CODE">RSIC</info>
-      <info key="CO-NAME-L"><![CDATA[Reliance Standard Life Insurance Company]]></info>
-      <info key="SET-NO">0001935519</info>
-      <info key="UPDATE-DATE">2024-02-06T00:00:05</info>
-    </canx_info>
-    <version_id>0001935519</version_id>
-    <carrier_name><![CDATA[Reliance Standard Life Insurance Company]]></carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A++">Superior</rating>
-      <effective_date>2020-11-01</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="A+">Strong</rating>
-      <effective_date>2020-03-01</effective_date>
-    </carrier_rating>
-    <product product_id="A000FR">
-      <canx_info>
-        <info key="UNIQUE">0002257224</info>
-        <info key="DESCRIPTION"><![CDATA[Keystone Index Annuity]]></info>
-      </canx_info>
-      <product_name><![CDATA[Keystone Index Annuity]]></product_name>
-    </product>
-    <product product_id="A000XH">
-      <canx_info>
-        <info key="UNIQUE">0002339571</info>
-        <info key="DESCRIPTION"><![CDATA[Reliance Accumulator 5]]></info>
-      </canx_info>
-      <product_name><![CDATA[Reliance Accumulator 5]]></product_name>
-    </product>
-    <product product_id="A000XJ">
-      <canx_info>
-        <info key="UNIQUE">0002339604</info>
-        <info key="DESCRIPTION"><![CDATA[Reliance Accumulator 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[Reliance Accumulator 7]]></product_name>
-    </product>
-    <product product_id="A000XL">
-      <canx_info>
-        <info key="UNIQUE">0002339633</info>
-        <info key="DESCRIPTION"><![CDATA[Reliance Accumulator 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[Reliance Accumulator 10]]></product_name>
-    </product>
-  </carrier_products>
   <carrier_products>
     <canx_info>
       <info key="IPNO">1049</info>
@@ -85,8 +36,8 @@
     </carrier_rating>
     <carrier_rating>
       <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="A-">Strong</rating>
-      <effective_date>2017-08-31</effective_date>
+      <rating cd="A">Strong</rating>
+      <effective_date>2024-05-07</effective_date>
     </carrier_rating>
     <product product_id="A000PH">
       <canx_info>
@@ -161,252 +112,138 @@
   </carrier_products>
   <carrier_products>
     <canx_info>
-      <info key="IPNO">0817</info>
-      <info key="CO-CODE">CORE</info>
-      <info key="CO-NAME-L"><![CDATA[Corebridge Financial]]></info>
-      <info key="SET-NO">0001946073</info>
-      <info key="UPDATE-DATE">2024-04-01T00:00:06</info>
+      <info key="IPNO">0924</info>
+      <info key="CO-CODE">ATHN</info>
+      <info key="CO-NAME-L"><![CDATA[Athene Annuity & Life Assurance Company]]></info>
+      <info key="SET-NO">0001953202</info>
+      <info key="UPDATE-DATE">2024-04-30T11:31:27</info>
     </canx_info>
-    <version_id>0001946073</version_id>
-    <carrier_name><![CDATA[Corebridge Financial]]></carrier_name>
-    <state_cd_carrier_name state_cd="NY"><![CDATA[The United States Life Insurance Company of NY]]></state_cd_carrier_name>
+    <version_id>0001953202</version_id>
+    <carrier_name><![CDATA[Athene Annuity & Life Assurance Company]]></carrier_name>
     <carrier_rating>
       <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
       <rating cd="A">Excellent</rating>
-      <effective_date>2008-11-10</effective_date>
+      <effective_date>2018-03-19</effective_date>
     </carrier_rating>
     <carrier_rating>
       <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
       <rating cd="A+">Strong</rating>
-      <effective_date>2013-02-14</effective_date>
+      <effective_date>2018-03-19</effective_date>
     </carrier_rating>
     <carrier_rating>
       <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
-      <rating cd="A2">Good</rating>
-      <effective_date>2011-01-13</effective_date>
+      <rating cd="A1">Good</rating>
+      <effective_date>2022-07-22</effective_date>
     </carrier_rating>
     <carrier_rating>
       <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
       <rating cd="A+">Strong</rating>
-      <effective_date>2008-11-10</effective_date>
+      <effective_date>2018-08-16</effective_date>
     </carrier_rating>
-    <product product_id="A000C3">
+    <product product_id="A000HL">
       <canx_info>
-        <info key="UNIQUE">0002253955</info>
-        <info key="DESCRIPTION"><![CDATA[AG Choice Index 10]]></info>
+        <info key="UNIQUE">0002263917</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 7]]></info>
       </canx_info>
-      <product_name><![CDATA[AG Choice Index 10]]></product_name>
+      <product_name><![CDATA[Athene Performance Elite 7]]></product_name>
     </product>
-    <product product_id="A000CU">
+    <product product_id="A000HR">
       <canx_info>
-        <info key="UNIQUE">0002254446</info>
-        <info key="DESCRIPTION"><![CDATA[Power Index Advisory]]></info>
+        <info key="UNIQUE">0002264135</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 7 Plus]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Index Advisory]]></product_name>
+      <product_name><![CDATA[Athene Performance Elite 7 Plus]]></product_name>
     </product>
-    <product product_id="A000D2">
+    <product product_id="A000HY">
       <canx_info>
-        <info key="UNIQUE">0002254812</info>
-        <info key="DESCRIPTION"><![CDATA[Power 7 Protector]]></info>
+        <info key="UNIQUE">0002264287</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 10]]></info>
       </canx_info>
-      <product_name><![CDATA[Power 7 Protector]]></product_name>
+      <product_name><![CDATA[Athene Performance Elite 10]]></product_name>
     </product>
-    <product product_id="A000D4">
+    <product product_id="A000I1">
       <canx_info>
-        <info key="UNIQUE">0002254868</info>
-        <info key="DESCRIPTION"><![CDATA[Power 7 Protector Plus Income]]></info>
+        <info key="UNIQUE">0002264382</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 10 Plus]]></info>
       </canx_info>
-      <product_name><![CDATA[Power 7 Protector Plus Income]]></product_name>
+      <product_name><![CDATA[Athene Performance Elite 10 Plus]]></product_name>
     </product>
-    <product product_id="A000D6">
+    <product product_id="A000YE">
       <canx_info>
-        <info key="UNIQUE">0002254924</info>
-        <info key="DESCRIPTION"><![CDATA[Power 10 Protector]]></info>
+        <info key="UNIQUE">0002345869</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Ascent Pro 10 Bonus]]></info>
       </canx_info>
-      <product_name><![CDATA[Power 10 Protector]]></product_name>
+      <product_name><![CDATA[Athene Ascent Pro 10 Bonus]]></product_name>
     </product>
-    <product product_id="A000D8">
+    <product product_id="A000ZL">
       <canx_info>
-        <info key="UNIQUE">0002254980</info>
-        <info key="DESCRIPTION"><![CDATA[Power 10 Protector Plus Income]]></info>
+        <info key="UNIQUE">0002347017</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Agility 7]]></info>
       </canx_info>
-      <product_name><![CDATA[Power 10 Protector Plus Income]]></product_name>
+      <product_name><![CDATA[Athene Agility 7]]></product_name>
     </product>
-    <product product_id="A000DA">
+    <product product_id="A000ZP">
       <canx_info>
-        <info key="UNIQUE">0002255038</info>
-        <info key="DESCRIPTION"><![CDATA[Power Select Plus Income]]></info>
+        <info key="UNIQUE">0002347197</info>
+        <info key="DESCRIPTION"><![CDATA[Athene AccuMax 7]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Select Plus Income]]></product_name>
+      <product_name><![CDATA[Athene AccuMax 7]]></product_name>
     </product>
-    <product product_id="A000DW">
+    <product product_id="A000ZX">
       <canx_info>
-        <info key="UNIQUE">0002255494</info>
-        <info key="DESCRIPTION"><![CDATA[Power Index Premier NY]]></info>
+        <info key="UNIQUE">0002347735</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Agility 10]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Index Premier NY]]></product_name>
+      <product_name><![CDATA[Athene Agility 10]]></product_name>
     </product>
-    <product product_id="A000DY">
+    <product product_id="A00104">
       <canx_info>
-        <info key="UNIQUE">0002255543</info>
-        <info key="DESCRIPTION"><![CDATA[Power Index Plus]]></info>
+        <info key="UNIQUE">0002348262</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 15]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Index Plus]]></product_name>
+      <product_name><![CDATA[Athene Performance Elite 15]]></product_name>
     </product>
-    <product product_id="A000EB">
+    <product product_id="A00106">
       <canx_info>
-        <info key="UNIQUE">0002256109</info>
-        <info key="DESCRIPTION"><![CDATA[Power Index Plus Income]]></info>
+        <info key="UNIQUE">0002348343</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 15 Plus]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Index Plus Income]]></product_name>
+      <product_name><![CDATA[Athene Performance Elite 15 Plus]]></product_name>
     </product>
-    <product product_id="A000LZ">
+    <product product_id="A0010E">
       <canx_info>
-        <info key="UNIQUE">0002307220</info>
-        <info key="DESCRIPTION"><![CDATA[Power 5 Protector]]></info>
+        <info key="UNIQUE">0002350576</info>
+        <info key="DESCRIPTION"><![CDATA[Athene BCA 6 2.0]]></info>
       </canx_info>
-      <product_name><![CDATA[Power 5 Protector]]></product_name>
+      <product_name><![CDATA[Athene BCA 6 2.0]]></product_name>
     </product>
-    <product product_id="A000MF">
+    <product product_id="A0010G">
       <canx_info>
-        <info key="UNIQUE">0002307837</info>
-        <info key="DESCRIPTION"><![CDATA[Power Select Builder]]></info>
+        <info key="UNIQUE">0002350611</info>
+        <info key="DESCRIPTION"><![CDATA[Athene BCA 8 2.0]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Select Builder]]></product_name>
+      <product_name><![CDATA[Athene BCA 8 2.0]]></product_name>
     </product>
-    <product product_id="A000MH">
+    <product product_id="A0010P">
       <canx_info>
-        <info key="UNIQUE">0002307952</info>
-        <info key="DESCRIPTION"><![CDATA[Power Select Builder 8]]></info>
+        <info key="UNIQUE">0002352285</info>
+        <info key="DESCRIPTION"><![CDATA[Athene BCA 10 2.0]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Select Builder 8]]></product_name>
+      <product_name><![CDATA[Athene BCA 10 2.0]]></product_name>
     </product>
-    <product product_id="A000Y3">
+    <product product_id="A0010R">
       <canx_info>
-        <info key="UNIQUE">0002342042</info>
-        <info key="DESCRIPTION"><![CDATA[Power Index 5 NY]]></info>
+        <info key="UNIQUE">0002352859</info>
+        <info key="DESCRIPTION"><![CDATA[Athene BCA 12 2.0]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Index 5 NY]]></product_name>
+      <product_name><![CDATA[Athene BCA 12 2.0]]></product_name>
     </product>
-    <product product_id="A001JW">
+    <product product_id="A0011C">
       <canx_info>
-        <info key="UNIQUE">0002606256</info>
-        <info key="DESCRIPTION"><![CDATA[Power Index 5 Plus - National]]></info>
+        <info key="UNIQUE">0002356822</info>
+        <info key="DESCRIPTION"><![CDATA[Athene Velocity]]></info>
       </canx_info>
-      <product_name><![CDATA[Power Index 5 Plus]]></product_name>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
-      <info key="IPNO">0823</info>
-      <info key="CO-CODE">MINN</info>
-      <info key="CO-NAME-L"><![CDATA[Minnesota Life Insurance Company - A Securian Co.]]></info>
-      <info key="SET-NO">0001946086</info>
-      <info key="UPDATE-DATE">2024-04-01T00:00:03</info>
-    </canx_info>
-    <version_id>0001946086</version_id>
-    <carrier_name><![CDATA[Minnesota Life Insurance Company - A Securian Co.]]></carrier_name>
-    <state_cd_carrier_name state_cd="NY"><![CDATA[Securian Life]]></state_cd_carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A+">Superior</rating>
-      <effective_date>2009-07-27</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
-      <rating cd="AA">Very strong</rating>
-      <effective_date>2015-06-29</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
-      <rating cd="Aa3">Excellent</rating>
-      <effective_date>2009-07-27</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="AA-">Very strong</rating>
-      <effective_date>2018-05-11</effective_date>
-    </carrier_rating>
-    <product product_id="A000A0">
-      <canx_info>
-        <info key="UNIQUE">0002247974</info>
-        <info key="DESCRIPTION"><![CDATA[SecureLink Future]]></info>
-      </canx_info>
-      <product_name><![CDATA[SecureLink Future]]></product_name>
-    </product>
-    <product product_id="A000A1">
-      <canx_info>
-        <info key="UNIQUE">0002247978</info>
-        <info key="DESCRIPTION"><![CDATA[SecureLink Ultra]]></info>
-      </canx_info>
-      <product_name><![CDATA[SecureLink Ultra]]></product_name>
-    </product>
-    <product product_id="A000A2">
-      <canx_info>
-        <info key="UNIQUE">0002247982</info>
-        <info key="DESCRIPTION"><![CDATA[SecureLink Chronic Illness Access]]></info>
-      </canx_info>
-      <product_name><![CDATA[SecureLink Chronic Illness Access]]></product_name>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
-      <info key="IPNO">0619</info>
-      <info key="CO-CODE">PL</info>
-      <info key="CO-NAME-L"><![CDATA[Pacific Life Insurance Company]]></info>
-      <info key="SET-NO">0001946401</info>
-      <info key="UPDATE-DATE">2024-04-01T00:00:07</info>
-    </canx_info>
-    <version_id>0001946401</version_id>
-    <carrier_name><![CDATA[Pacific Life Insurance Company]]></carrier_name>
-    <state_cd_carrier_name state_cd="NY"><![CDATA[Pacific Life & Annuity Company]]></state_cd_carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A+">Superior</rating>
-      <effective_date>2009-03-19</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
-      <rating cd="AA-">Very strong</rating>
-      <effective_date>2019-06-26</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
-      <rating cd="Aa3">Excellent</rating>
-      <effective_date>2022-04-28</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="AA-">Very strong</rating>
-      <effective_date>2016-07-19</effective_date>
-    </carrier_rating>
-    <product product_id="A0008L">
-      <canx_info>
-        <info key="UNIQUE">0002245497</info>
-        <info key="DESCRIPTION"><![CDATA[Index Edge]]></info>
-      </canx_info>
-      <product_name><![CDATA[Index Edge]]></product_name>
-    </product>
-    <product product_id="A0008N">
-      <canx_info>
-        <info key="UNIQUE">0002245503</info>
-        <info key="DESCRIPTION"><![CDATA[Pacific Index Foundation]]></info>
-      </canx_info>
-      <product_name><![CDATA[Pacific Index Foundation]]></product_name>
-    </product>
-    <product product_id="A0008P">
-      <canx_info>
-        <info key="UNIQUE">0002245514</info>
-        <info key="DESCRIPTION"><![CDATA[Index Advisory]]></info>
-      </canx_info>
-      <product_name><![CDATA[Index Advisory]]></product_name>
-    </product>
-    <product product_id="A000XU">
-      <canx_info>
-        <info key="UNIQUE">0002341282</info>
-        <info key="DESCRIPTION"><![CDATA[Pacific Index Dimensions]]></info>
-      </canx_info>
-      <product_name><![CDATA[Pacific Index Dimensions]]></product_name>
+      <product_name><![CDATA[Athene Velocity]]></product_name>
     </product>
   </carrier_products>
   <carrier_products>
@@ -414,10 +251,10 @@
       <info key="IPNO">0725</info>
       <info key="CO-CODE">ALI</info>
       <info key="CO-NAME-L"><![CDATA[Allianz Life Insurance Company of North America]]></info>
-      <info key="SET-NO">0001946416</info>
-      <info key="UPDATE-DATE">2024-04-02T10:56:52</info>
+      <info key="SET-NO">0001954656</info>
+      <info key="UPDATE-DATE">2024-06-04T00:00:00</info>
     </canx_info>
-    <version_id>0001946416</version_id>
+    <version_id>0001954656</version_id>
     <carrier_name><![CDATA[Allianz Life Insurance Company of North America]]></carrier_name>
     <carrier_rating>
       <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
@@ -486,13 +323,109 @@
   </carrier_products>
   <carrier_products>
     <canx_info>
+      <info key="IPNO">1058</info>
+      <info key="CO-CODE">NALI</info>
+      <info key="CO-NAME-L"><![CDATA[North American Company for Life and Health Insurance]]></info>
+      <info key="SET-NO">0001957254</info>
+      <info key="UPDATE-DATE">2024-05-21T00:00:11</info>
+    </canx_info>
+    <version_id>0001957254</version_id>
+    <carrier_name><![CDATA[North American Company for Life and Health Insurance]]></carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A+">Superior</rating>
+      <effective_date>2018-03-19</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
+      <rating cd="A+">Strong</rating>
+      <effective_date>2018-03-19</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="A+">Strong</rating>
+      <effective_date>2018-03-19</effective_date>
+    </carrier_rating>
+    <product product_id="A00141">
+      <canx_info>
+        <info key="UNIQUE">0002378098</info>
+        <info key="DESCRIPTION"><![CDATA[North American Secure Horizon]]></info>
+      </canx_info>
+      <product_name><![CDATA[North American Secure Horizon]]></product_name>
+    </product>
+    <product product_id="A0014D">
+      <canx_info>
+        <info key="UNIQUE">0002379451</info>
+        <info key="DESCRIPTION"><![CDATA[North American Secure Horizon Plus]]></info>
+      </canx_info>
+      <product_name><![CDATA[North American Secure Horizon Plus]]></product_name>
+    </product>
+    <product product_id="A00167">
+      <canx_info>
+        <info key="UNIQUE">0002387150</info>
+        <info key="DESCRIPTION"><![CDATA[NAC VersaChoice 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[NAC VersaChoice 10]]></product_name>
+    </product>
+    <product product_id="A0016M">
+      <canx_info>
+        <info key="UNIQUE">0002402271</info>
+        <info key="DESCRIPTION"><![CDATA[PrimePath Pro 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[PrimePath Pro 10]]></product_name>
+    </product>
+    <product product_id="A0017G">
+      <canx_info>
+        <info key="UNIQUE">0002404937</info>
+        <info key="DESCRIPTION"><![CDATA[PrimePath Pro 12]]></info>
+      </canx_info>
+      <product_name><![CDATA[PrimePath Pro 12]]></product_name>
+    </product>
+    <product product_id="A0017N">
+      <canx_info>
+        <info key="UNIQUE">0002405836</info>
+        <info key="DESCRIPTION"><![CDATA[North American Charter Plus 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[North American Charter Plus 10]]></product_name>
+    </product>
+    <product product_id="A0017P">
+      <canx_info>
+        <info key="UNIQUE">0002406442</info>
+        <info key="DESCRIPTION"><![CDATA[North American Charter Plus 14]]></info>
+      </canx_info>
+      <product_name><![CDATA[North American Charter Plus 14]]></product_name>
+    </product>
+    <product product_id="A0017Q">
+      <canx_info>
+        <info key="UNIQUE">0002407279</info>
+        <info key="DESCRIPTION"><![CDATA[NAC BenefitSolutions 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[NAC BenefitSolutions 10]]></product_name>
+    </product>
+    <product product_id="A0017Z">
+      <canx_info>
+        <info key="UNIQUE">0002407397</info>
+        <info key="DESCRIPTION"><![CDATA[Performance Choice 8]]></info>
+      </canx_info>
+      <product_name><![CDATA[Performance Choice 8]]></product_name>
+    </product>
+    <product product_id="A001BQ">
+      <canx_info>
+        <info key="UNIQUE">0002426434</info>
+        <info key="DESCRIPTION"><![CDATA[Income Pay Pro]]></info>
+      </canx_info>
+      <product_name><![CDATA[Income Pay Pro]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
       <info key="IPNO">1115</info>
       <info key="CO-CODE">STND</info>
       <info key="CO-NAME-L"><![CDATA[The Standard]]></info>
-      <info key="SET-NO">0001946665</info>
-      <info key="UPDATE-DATE">2024-03-28T12:13:30</info>
+      <info key="SET-NO">0001958098</info>
+      <info key="UPDATE-DATE">2024-05-24T10:00:01</info>
     </canx_info>
-    <version_id>0001946665</version_id>
+    <version_id>0001958098</version_id>
     <carrier_name><![CDATA[The Standard]]></carrier_name>
     <carrier_rating>
       <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
@@ -557,13 +490,349 @@
   </carrier_products>
   <carrier_products>
     <canx_info>
+      <info key="IPNO">0823</info>
+      <info key="CO-CODE">MINN</info>
+      <info key="CO-NAME-L"><![CDATA[Minnesota Life Insurance Company - A Securian Co.]]></info>
+      <info key="SET-NO">0001958651</info>
+      <info key="UPDATE-DATE">2024-06-01T00:00:07</info>
+    </canx_info>
+    <version_id>0001958651</version_id>
+    <carrier_name><![CDATA[Minnesota Life Insurance Company - A Securian Co.]]></carrier_name>
+    <state_cd_carrier_name state_cd="NY"><![CDATA[Securian Life]]></state_cd_carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A+">Superior</rating>
+      <effective_date>2009-07-27</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
+      <rating cd="AA">Very strong</rating>
+      <effective_date>2015-06-29</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
+      <rating cd="Aa3">Excellent</rating>
+      <effective_date>2009-07-27</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="AA-">Very strong</rating>
+      <effective_date>2018-05-11</effective_date>
+    </carrier_rating>
+    <product product_id="A000A0">
+      <canx_info>
+        <info key="UNIQUE">0002247974</info>
+        <info key="DESCRIPTION"><![CDATA[SecureLink Future]]></info>
+      </canx_info>
+      <product_name><![CDATA[SecureLink Future]]></product_name>
+    </product>
+    <product product_id="A000A1">
+      <canx_info>
+        <info key="UNIQUE">0002247978</info>
+        <info key="DESCRIPTION"><![CDATA[SecureLink Ultra]]></info>
+      </canx_info>
+      <product_name><![CDATA[SecureLink Ultra]]></product_name>
+    </product>
+    <product product_id="A000A2">
+      <canx_info>
+        <info key="UNIQUE">0002247982</info>
+        <info key="DESCRIPTION"><![CDATA[SecureLink Chronic Illness Access]]></info>
+      </canx_info>
+      <product_name><![CDATA[SecureLink Chronic Illness Access]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
+      <info key="IPNO">0619</info>
+      <info key="CO-CODE">PL</info>
+      <info key="CO-NAME-L"><![CDATA[Pacific Life Insurance Company]]></info>
+      <info key="SET-NO">0001958655</info>
+      <info key="UPDATE-DATE">2024-06-01T00:00:10</info>
+    </canx_info>
+    <version_id>0001958655</version_id>
+    <carrier_name><![CDATA[Pacific Life Insurance Company]]></carrier_name>
+    <state_cd_carrier_name state_cd="NY"><![CDATA[Pacific Life & Annuity Company]]></state_cd_carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A+">Superior</rating>
+      <effective_date>2009-03-19</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
+      <rating cd="AA-">Very strong</rating>
+      <effective_date>2019-06-26</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
+      <rating cd="Aa3">Excellent</rating>
+      <effective_date>2022-04-28</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="AA-">Very strong</rating>
+      <effective_date>2016-07-19</effective_date>
+    </carrier_rating>
+    <product product_id="A0008L">
+      <canx_info>
+        <info key="UNIQUE">0002245497</info>
+        <info key="DESCRIPTION"><![CDATA[Index Edge]]></info>
+      </canx_info>
+      <product_name><![CDATA[Index Edge]]></product_name>
+    </product>
+    <product product_id="A0008N">
+      <canx_info>
+        <info key="UNIQUE">0002245503</info>
+        <info key="DESCRIPTION"><![CDATA[Pacific Index Foundation]]></info>
+      </canx_info>
+      <product_name><![CDATA[Pacific Index Foundation]]></product_name>
+    </product>
+    <product product_id="A0008P">
+      <canx_info>
+        <info key="UNIQUE">0002245514</info>
+        <info key="DESCRIPTION"><![CDATA[Index Advisory]]></info>
+      </canx_info>
+      <product_name><![CDATA[Index Advisory]]></product_name>
+    </product>
+    <product product_id="A000XU">
+      <canx_info>
+        <info key="UNIQUE">0002341282</info>
+        <info key="DESCRIPTION"><![CDATA[Pacific Index Dimensions]]></info>
+      </canx_info>
+      <product_name><![CDATA[Pacific Index Dimensions]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
+      <info key="IPNO">1057</info>
+      <info key="CO-CODE">DELA</info>
+      <info key="CO-NAME-L"><![CDATA[Delaware Life]]></info>
+      <info key="SET-NO">0001960736</info>
+      <info key="UPDATE-DATE">2024-06-06T13:52:02</info>
+    </canx_info>
+    <version_id>0001960736</version_id>
+    <carrier_name><![CDATA[Delaware Life]]></carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A-">Excellent</rating>
+      <effective_date>2018-03-19</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="BBB+">Good</rating>
+      <effective_date>2018-03-19</effective_date>
+    </carrier_rating>
+    <product product_id="A000FD">
+      <canx_info>
+        <info key="UNIQUE">0002257098</info>
+        <info key="DESCRIPTION"><![CDATA[Target Growth 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[Target Growth 10]]></product_name>
+    </product>
+    <product product_id="A000FF">
+      <canx_info>
+        <info key="UNIQUE">0002257132</info>
+        <info key="DESCRIPTION"><![CDATA[Target Income 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[Target Income 10]]></product_name>
+    </product>
+    <product product_id="A001EW">
+      <canx_info>
+        <info key="UNIQUE">0002509199</info>
+        <info key="DESCRIPTION"><![CDATA[Retirement Stages Select]]></info>
+      </canx_info>
+      <product_name><![CDATA[Retirement Stages Select]]></product_name>
+      <open_date>2023-04-24</open_date>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
+      <info key="IPNO">0780</info>
+      <info key="CO-CODE">ANIC</info>
+      <info key="CO-NAME-L"><![CDATA[American National Insurance Company]]></info>
+      <info key="SET-NO">0001961318</info>
+      <info key="UPDATE-DATE">2024-06-10T12:43:08</info>
+    </canx_info>
+    <version_id>0001961318</version_id>
+    <carrier_name><![CDATA[American National Insurance Company]]></carrier_name>
+    <state_cd_carrier_name state_cd="NY"><![CDATA[American National Life Insurance Co. of NY]]></state_cd_carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A">Excellent</rating>
+      <effective_date>2009-06-10</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
+      <rating cd="A">Strong</rating>
+      <effective_date>2023-01-10</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="A">Strong</rating>
+      <effective_date>2011-11-22</effective_date>
+    </carrier_rating>
+    <product product_id="A000ES">
+      <canx_info>
+        <info key="UNIQUE">0002256878</info>
+        <info key="DESCRIPTION"><![CDATA[Strategy Indexed Plus 7]]></info>
+      </canx_info>
+      <product_name><![CDATA[Strategy Indexed Plus 7]]></product_name>
+    </product>
+    <product product_id="A000EW">
+      <canx_info>
+        <info key="UNIQUE">0002256900</info>
+        <info key="DESCRIPTION"><![CDATA[Strategy Indexed Plus 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[Strategy Indexed Plus 10]]></product_name>
+    </product>
+    <product product_id="A000KB">
+      <canx_info>
+        <info key="UNIQUE">0002297382</info>
+        <info key="DESCRIPTION"><![CDATA[ASIA Plus]]></info>
+      </canx_info>
+      <product_name><![CDATA[ASIA Plus]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
+      <info key="IPNO">0914</info>
+      <info key="CO-CODE">GLOB</info>
+      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
+      <info key="SET-NO">0001962627</info>
+      <info key="UPDATE-DATE">2024-06-14T14:17:57</info>
+    </canx_info>
+    <version_id>0001962627</version_id>
+    <carrier_name><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A">Excellent</rating>
+      <effective_date>2018-02-01</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
+      <rating cd="A">Strong</rating>
+      <effective_date>2017-11-01</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
+      <rating cd="A2">Good</rating>
+      <effective_date>2022-03-11</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="A-">Strong</rating>
+      <effective_date>2013-11-06</effective_date>
+    </carrier_rating>
+    <product product_id="A001SC">
+      <canx_info>
+        <info key="UNIQUE">0002644322</info>
+        <info key="DESCRIPTION"><![CDATA[Income 150+ SE - Q1 2024 Launch]]></info>
+      </canx_info>
+      <product_name><![CDATA[Income 150+ SE]]></product_name>
+    </product>
+    <product product_id="A001SG">
+      <canx_info>
+        <info key="UNIQUE">0002644994</info>
+        <info key="DESCRIPTION"><![CDATA[ForeIncome II - Q1 2024 Launch]]></info>
+      </canx_info>
+      <product_name><![CDATA[ForeIncome II]]></product_name>
+    </product>
+    <product product_id="A001T1">
+      <canx_info>
+        <info key="UNIQUE">0002647909</info>
+        <info key="DESCRIPTION"><![CDATA[ForeIncome II Advisory - Q1 2024 Launch]]></info>
+      </canx_info>
+      <product_name><![CDATA[ForeIncome II Advisory]]></product_name>
+    </product>
+    <product product_id="A001TB">
+      <canx_info>
+        <info key="UNIQUE">0002651204</info>
+        <info key="DESCRIPTION"><![CDATA[ForeAccumulation II - Q1 2024 Launch]]></info>
+      </canx_info>
+      <product_name><![CDATA[ForeAccumulation II]]></product_name>
+    </product>
+    <product product_id="A001TF">
+      <canx_info>
+        <info key="UNIQUE">0002652322</info>
+        <info key="DESCRIPTION"><![CDATA[ForeAccumulation II Advisory - Q1 2024 Launch]]></info>
+      </canx_info>
+      <product_name><![CDATA[ForeAccumulation II Advisory]]></product_name>
+    </product>
+    <product product_id="A001UK">
+      <canx_info>
+        <info key="UNIQUE">0002657645</info>
+        <info key="DESCRIPTION"><![CDATA[ForeAccumulation II Premium Bonus - Q1 2024 Launch]]></info>
+      </canx_info>
+      <product_name><![CDATA[ForeAccumulation II with Premium Enhancement]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
+      <info key="IPNO">0230</info>
+      <info key="CO-CODE">PROT</info>
+      <info key="CO-NAME-L"><![CDATA[Protective Life Insurance Company]]></info>
+      <info key="SET-NO">0001962886</info>
+      <info key="UPDATE-DATE">2024-06-16T23:20:05</info>
+    </canx_info>
+    <version_id>0001962886</version_id>
+    <carrier_name><![CDATA[Protective Life Insurance Company]]></carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A+">Superior</rating>
+      <effective_date>2021-03-31</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
+      <rating cd="AA-">Very strong</rating>
+      <effective_date>2022-03-08</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
+      <rating cd="A1">Good</rating>
+      <effective_date>2021-03-31</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="AA-">Very strong</rating>
+      <effective_date>2021-03-31</effective_date>
+    </carrier_rating>
+    <product product_id="A000B4">
+      <canx_info>
+        <info key="UNIQUE">0002253368</info>
+        <info key="DESCRIPTION"><![CDATA[Protective Asset Builder II]]></info>
+      </canx_info>
+      <product_name><![CDATA[Protective Asset Builder II]]></product_name>
+    </product>
+    <product product_id="A000B7">
+      <canx_info>
+        <info key="UNIQUE">0002253522</info>
+        <info key="DESCRIPTION"><![CDATA[Protective Guaranteed Income]]></info>
+      </canx_info>
+      <product_name><![CDATA[Protective Guaranteed Income]]></product_name>
+    </product>
+    <product product_id="A000BC">
+      <canx_info>
+        <info key="UNIQUE">0002253683</info>
+        <info key="DESCRIPTION"><![CDATA[Protective Income Builder]]></info>
+      </canx_info>
+      <product_name><![CDATA[Protective Income Builder]]></product_name>
+    </product>
+    <product product_id="A000UN">
+      <canx_info>
+        <info key="UNIQUE">0002330144</info>
+        <info key="DESCRIPTION"><![CDATA[Protective Indexed Annuity NY]]></info>
+      </canx_info>
+      <product_name><![CDATA[Protective Indexed Annuity NY]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
       <info key="IPNO">1138</info>
       <info key="CO-CODE">SILA</info>
       <info key="CO-NAME-L"><![CDATA[SILAC Insurance Company]]></info>
-      <info key="SET-NO">0001946970</info>
-      <info key="UPDATE-DATE">2024-04-01T11:10:47</info>
+      <info key="SET-NO">0001963258</info>
+      <info key="UPDATE-DATE">2024-06-18T16:09:45</info>
     </canx_info>
-    <version_id>0001946970</version_id>
+    <version_id>0001963258</version_id>
     <carrier_name><![CDATA[SILAC Insurance Company]]></carrier_name>
     <carrier_rating>
       <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
@@ -699,425 +968,13 @@
   </carrier_products>
   <carrier_products>
     <canx_info>
-      <info key="IPNO">1057</info>
-      <info key="CO-CODE">DELA</info>
-      <info key="CO-NAME-L"><![CDATA[Delaware Life]]></info>
-      <info key="SET-NO">0001948178</info>
-      <info key="UPDATE-DATE">2024-04-05T12:02:48</info>
-    </canx_info>
-    <version_id>0001948178</version_id>
-    <carrier_name><![CDATA[Delaware Life]]></carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A-">Excellent</rating>
-      <effective_date>2018-03-19</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="BBB+">Good</rating>
-      <effective_date>2018-03-19</effective_date>
-    </carrier_rating>
-    <product product_id="A000FD">
-      <canx_info>
-        <info key="UNIQUE">0002257098</info>
-        <info key="DESCRIPTION"><![CDATA[Target Growth 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[Target Growth 10]]></product_name>
-    </product>
-    <product product_id="A000FF">
-      <canx_info>
-        <info key="UNIQUE">0002257132</info>
-        <info key="DESCRIPTION"><![CDATA[Target Income 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[Target Income 10]]></product_name>
-    </product>
-    <product product_id="A001EW">
-      <canx_info>
-        <info key="UNIQUE">0002509199</info>
-        <info key="DESCRIPTION"><![CDATA[Retirement Stages Select]]></info>
-      </canx_info>
-      <product_name><![CDATA[Retirement Stages Select]]></product_name>
-      <open_date>2023-04-24</open_date>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
-      <info key="IPNO">1043</info>
-      <info key="CO-CODE">MMAS</info>
-      <info key="CO-NAME-L"><![CDATA[MassMutual Ascend Life Insurance Company]]></info>
-      <info key="SET-NO">0001948180</info>
-      <info key="UPDATE-DATE">2024-04-05T12:11:22</info>
-    </canx_info>
-    <version_id>0001948180</version_id>
-    <carrier_name><![CDATA[MassMutual Ascend Life Insurance Company]]></carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A++">Superior</rating>
-      <effective_date>2023-09-11</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="A+">Strong</rating>
-      <effective_date>2020-03-05</effective_date>
-    </carrier_rating>
-    <product product_id="A0006B">
-      <canx_info>
-        <info key="UNIQUE">0002243493</info>
-        <info key="DESCRIPTION"><![CDATA[American Landmark 5]]></info>
-      </canx_info>
-      <product_name><![CDATA[American Landmark 5]]></product_name>
-    </product>
-    <product product_id="A0006D">
-      <canx_info>
-        <info key="UNIQUE">0002243524</info>
-        <info key="DESCRIPTION"><![CDATA[American Legend 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[American Legend 7]]></product_name>
-    </product>
-    <product product_id="A0006J">
-      <canx_info>
-        <info key="UNIQUE">0002243657</info>
-        <info key="DESCRIPTION"><![CDATA[American Landmark 3]]></info>
-      </canx_info>
-      <product_name><![CDATA[American Landmark 3]]></product_name>
-    </product>
-    <product product_id="A0006S">
-      <canx_info>
-        <info key="UNIQUE">0002243770</info>
-        <info key="DESCRIPTION"><![CDATA[Index Protector 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[Index Protector 7]]></product_name>
-    </product>
-    <product product_id="A0006X">
-      <canx_info>
-        <info key="UNIQUE">0002243847</info>
-        <info key="DESCRIPTION"><![CDATA[Index Protector 5 MVA]]></info>
-      </canx_info>
-      <product_name><![CDATA[Index Protector 5 MVA]]></product_name>
-    </product>
-    <product product_id="A0006Z">
-      <canx_info>
-        <info key="UNIQUE">0002243957</info>
-        <info key="DESCRIPTION"><![CDATA[Safe Return]]></info>
-      </canx_info>
-      <product_name><![CDATA[Safe Return]]></product_name>
-    </product>
-    <product product_id="A00071">
-      <canx_info>
-        <info key="UNIQUE">0002243977</info>
-        <info key="DESCRIPTION"><![CDATA[Index Protector 4]]></info>
-      </canx_info>
-      <product_name><![CDATA[Index Protector 4]]></product_name>
-    </product>
-    <product product_id="A00073">
-      <canx_info>
-        <info key="UNIQUE">0002244088</info>
-        <info key="DESCRIPTION"><![CDATA[Premier Income Bonus]]></info>
-      </canx_info>
-      <product_name><![CDATA[Premier Income Bonus]]></product_name>
-    </product>
-    <product product_id="A0007Y">
-      <canx_info>
-        <info key="UNIQUE">0002244753</info>
-        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 5 Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[AssuranceSelect 5 Plus]]></product_name>
-    </product>
-    <product product_id="A00082">
-      <canx_info>
-        <info key="UNIQUE">0002244783</info>
-        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 7 Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[AssuranceSelect 7 Plus]]></product_name>
-    </product>
-    <product product_id="A0008H">
-      <canx_info>
-        <info key="UNIQUE">0002245434</info>
-        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 3 Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[AssuranceSelect 3 Plus]]></product_name>
-    </product>
-    <product product_id="A0009S">
-      <canx_info>
-        <info key="UNIQUE">0002247809</info>
-        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 5]]></info>
-      </canx_info>
-      <product_name><![CDATA[AssuranceSelect 5]]></product_name>
-    </product>
-    <product product_id="A0009U">
-      <canx_info>
-        <info key="UNIQUE">0002247859</info>
-        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[AssuranceSelect 7]]></product_name>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
-      <info key="IPNO">0914</info>
-      <info key="CO-CODE">GLOB</info>
-      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
-      <info key="SET-NO">0001948444</info>
-      <info key="UPDATE-DATE">2024-04-08T10:33:20</info>
-    </canx_info>
-    <version_id>0001948444</version_id>
-    <carrier_name><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A">Excellent</rating>
-      <effective_date>2018-02-01</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
-      <rating cd="A">Strong</rating>
-      <effective_date>2017-11-01</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
-      <rating cd="A2">Good</rating>
-      <effective_date>2022-03-11</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="A-">Strong</rating>
-      <effective_date>2013-11-06</effective_date>
-    </carrier_rating>
-    <product product_id="A001SC">
-      <canx_info>
-        <info key="UNIQUE">0002644322</info>
-        <info key="DESCRIPTION"><![CDATA[Income 150+ SE - Q1 2024 Launch]]></info>
-      </canx_info>
-      <product_name><![CDATA[Income 150+ SE]]></product_name>
-    </product>
-    <product product_id="A001SG">
-      <canx_info>
-        <info key="UNIQUE">0002644994</info>
-        <info key="DESCRIPTION"><![CDATA[ForeIncome II - Q1 2024 Launch]]></info>
-      </canx_info>
-      <product_name><![CDATA[ForeIncome II]]></product_name>
-    </product>
-    <product product_id="A001T1">
-      <canx_info>
-        <info key="UNIQUE">0002647909</info>
-        <info key="DESCRIPTION"><![CDATA[ForeIncome II Advisory - Q1 2024 Launch]]></info>
-      </canx_info>
-      <product_name><![CDATA[ForeIncome II Advisory]]></product_name>
-    </product>
-    <product product_id="A001TB">
-      <canx_info>
-        <info key="UNIQUE">0002651204</info>
-        <info key="DESCRIPTION"><![CDATA[ForeAccumulation II - Q1 2024 Launch]]></info>
-      </canx_info>
-      <product_name><![CDATA[ForeAccumulation II]]></product_name>
-    </product>
-    <product product_id="A001TF">
-      <canx_info>
-        <info key="UNIQUE">0002652322</info>
-        <info key="DESCRIPTION"><![CDATA[ForeAccumulation II Advisory - Q1 2024 Launch]]></info>
-      </canx_info>
-      <product_name><![CDATA[ForeAccumulation II Advisory]]></product_name>
-    </product>
-    <product product_id="A001UK">
-      <canx_info>
-        <info key="UNIQUE">0002657645</info>
-        <info key="DESCRIPTION"><![CDATA[ForeAccumulation II Premium Bonus - Q1 2024 Launch]]></info>
-      </canx_info>
-      <product_name><![CDATA[ForeAccumulation II with Premium Enhancement]]></product_name>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
-      <info key="IPNO">0780</info>
-      <info key="CO-CODE">ANIC</info>
-      <info key="CO-NAME-L"><![CDATA[American National Insurance Company]]></info>
-      <info key="SET-NO">0001948738</info>
-      <info key="UPDATE-DATE">2024-04-09T09:27:49</info>
-    </canx_info>
-    <version_id>0001948738</version_id>
-    <carrier_name><![CDATA[American National Insurance Company]]></carrier_name>
-    <state_cd_carrier_name state_cd="NY"><![CDATA[American National Life Insurance Co. of NY]]></state_cd_carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A">Excellent</rating>
-      <effective_date>2009-06-10</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
-      <rating cd="A">Strong</rating>
-      <effective_date>2023-01-10</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="A">Strong</rating>
-      <effective_date>2011-11-22</effective_date>
-    </carrier_rating>
-    <product product_id="A000ES">
-      <canx_info>
-        <info key="UNIQUE">0002256878</info>
-        <info key="DESCRIPTION"><![CDATA[Strategy Indexed Plus 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[Strategy Indexed Plus 7]]></product_name>
-    </product>
-    <product product_id="A000EW">
-      <canx_info>
-        <info key="UNIQUE">0002256900</info>
-        <info key="DESCRIPTION"><![CDATA[Strategy Indexed Plus 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[Strategy Indexed Plus 10]]></product_name>
-    </product>
-    <product product_id="A000KB">
-      <canx_info>
-        <info key="UNIQUE">0002297382</info>
-        <info key="DESCRIPTION"><![CDATA[ASIA Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[ASIA Plus]]></product_name>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
-      <info key="IPNO">0924</info>
-      <info key="CO-CODE">ATHN</info>
-      <info key="CO-NAME-L"><![CDATA[Athene Annuity & Life Assurance Company]]></info>
-      <info key="SET-NO">0001948757</info>
-      <info key="UPDATE-DATE">2024-04-09T14:35:45</info>
-    </canx_info>
-    <version_id>0001948757</version_id>
-    <carrier_name><![CDATA[Athene Annuity & Life Assurance Company]]></carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A">Excellent</rating>
-      <effective_date>2018-03-19</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
-      <rating cd="A+">Strong</rating>
-      <effective_date>2018-03-19</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
-      <rating cd="A1">Good</rating>
-      <effective_date>2022-07-22</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="A+">Strong</rating>
-      <effective_date>2018-08-16</effective_date>
-    </carrier_rating>
-    <product product_id="A000HL">
-      <canx_info>
-        <info key="UNIQUE">0002263917</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Performance Elite 7]]></product_name>
-    </product>
-    <product product_id="A000HR">
-      <canx_info>
-        <info key="UNIQUE">0002264135</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 7 Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Performance Elite 7 Plus]]></product_name>
-    </product>
-    <product product_id="A000HY">
-      <canx_info>
-        <info key="UNIQUE">0002264287</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Performance Elite 10]]></product_name>
-    </product>
-    <product product_id="A000I1">
-      <canx_info>
-        <info key="UNIQUE">0002264382</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 10 Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Performance Elite 10 Plus]]></product_name>
-    </product>
-    <product product_id="A000YE">
-      <canx_info>
-        <info key="UNIQUE">0002345869</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Ascent Pro 10 Bonus]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Ascent Pro 10 Bonus]]></product_name>
-    </product>
-    <product product_id="A000ZL">
-      <canx_info>
-        <info key="UNIQUE">0002347017</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Agility 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Agility 7]]></product_name>
-    </product>
-    <product product_id="A000ZP">
-      <canx_info>
-        <info key="UNIQUE">0002347197</info>
-        <info key="DESCRIPTION"><![CDATA[Athene AccuMax 7]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene AccuMax 7]]></product_name>
-    </product>
-    <product product_id="A000ZX">
-      <canx_info>
-        <info key="UNIQUE">0002347735</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Agility 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Agility 10]]></product_name>
-    </product>
-    <product product_id="A00104">
-      <canx_info>
-        <info key="UNIQUE">0002348262</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 15]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Performance Elite 15]]></product_name>
-    </product>
-    <product product_id="A00106">
-      <canx_info>
-        <info key="UNIQUE">0002348343</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Performance Elite 15 Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Performance Elite 15 Plus]]></product_name>
-    </product>
-    <product product_id="A0010E">
-      <canx_info>
-        <info key="UNIQUE">0002350576</info>
-        <info key="DESCRIPTION"><![CDATA[Athene BCA 6 2.0]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene BCA 6 2.0]]></product_name>
-    </product>
-    <product product_id="A0010G">
-      <canx_info>
-        <info key="UNIQUE">0002350611</info>
-        <info key="DESCRIPTION"><![CDATA[Athene BCA 8 2.0]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene BCA 8 2.0]]></product_name>
-    </product>
-    <product product_id="A0010P">
-      <canx_info>
-        <info key="UNIQUE">0002352285</info>
-        <info key="DESCRIPTION"><![CDATA[Athene BCA 10 2.0]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene BCA 10 2.0]]></product_name>
-    </product>
-    <product product_id="A0010R">
-      <canx_info>
-        <info key="UNIQUE">0002352859</info>
-        <info key="DESCRIPTION"><![CDATA[Athene BCA 12 2.0]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene BCA 12 2.0]]></product_name>
-    </product>
-    <product product_id="A0011C">
-      <canx_info>
-        <info key="UNIQUE">0002356822</info>
-        <info key="DESCRIPTION"><![CDATA[Athene Velocity]]></info>
-      </canx_info>
-      <product_name><![CDATA[Athene Velocity]]></product_name>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
       <info key="IPNO">0964</info>
       <info key="CO-CODE">MIDL</info>
       <info key="CO-NAME-L"><![CDATA[Midland National Life Insurance Company]]></info>
-      <info key="SET-NO">0001949318</info>
-      <info key="UPDATE-DATE">2024-04-11T13:00:47</info>
+      <info key="SET-NO">0001963266</info>
+      <info key="UPDATE-DATE">2024-06-18T16:26:48</info>
     </canx_info>
-    <version_id>0001949318</version_id>
+    <version_id>0001963266</version_id>
     <carrier_name><![CDATA[Midland National Life Insurance Company]]></carrier_name>
     <carrier_rating>
       <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
@@ -1165,109 +1022,13 @@
   </carrier_products>
   <carrier_products>
     <canx_info>
-      <info key="IPNO">1058</info>
-      <info key="CO-CODE">NALI</info>
-      <info key="CO-NAME-L"><![CDATA[North American Company for Life and Health Insurance]]></info>
-      <info key="SET-NO">0001949322</info>
-      <info key="UPDATE-DATE">2024-04-11T13:09:53</info>
-    </canx_info>
-    <version_id>0001949322</version_id>
-    <carrier_name><![CDATA[North American Company for Life and Health Insurance]]></carrier_name>
-    <carrier_rating>
-      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A+">Superior</rating>
-      <effective_date>2018-03-19</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
-      <rating cd="A+">Strong</rating>
-      <effective_date>2018-03-19</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="A+">Strong</rating>
-      <effective_date>2018-03-19</effective_date>
-    </carrier_rating>
-    <product product_id="A00141">
-      <canx_info>
-        <info key="UNIQUE">0002378098</info>
-        <info key="DESCRIPTION"><![CDATA[North American Secure Horizon]]></info>
-      </canx_info>
-      <product_name><![CDATA[North American Secure Horizon]]></product_name>
-    </product>
-    <product product_id="A0014D">
-      <canx_info>
-        <info key="UNIQUE">0002379451</info>
-        <info key="DESCRIPTION"><![CDATA[North American Secure Horizon Plus]]></info>
-      </canx_info>
-      <product_name><![CDATA[North American Secure Horizon Plus]]></product_name>
-    </product>
-    <product product_id="A00167">
-      <canx_info>
-        <info key="UNIQUE">0002387150</info>
-        <info key="DESCRIPTION"><![CDATA[NAC VersaChoice 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[NAC VersaChoice 10]]></product_name>
-    </product>
-    <product product_id="A0016M">
-      <canx_info>
-        <info key="UNIQUE">0002402271</info>
-        <info key="DESCRIPTION"><![CDATA[PrimePath Pro 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[PrimePath Pro 10]]></product_name>
-    </product>
-    <product product_id="A0017G">
-      <canx_info>
-        <info key="UNIQUE">0002404937</info>
-        <info key="DESCRIPTION"><![CDATA[PrimePath Pro 12]]></info>
-      </canx_info>
-      <product_name><![CDATA[PrimePath Pro 12]]></product_name>
-    </product>
-    <product product_id="A0017N">
-      <canx_info>
-        <info key="UNIQUE">0002405836</info>
-        <info key="DESCRIPTION"><![CDATA[North American Charter Plus 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[North American Charter Plus 10]]></product_name>
-    </product>
-    <product product_id="A0017P">
-      <canx_info>
-        <info key="UNIQUE">0002406442</info>
-        <info key="DESCRIPTION"><![CDATA[North American Charter Plus 14]]></info>
-      </canx_info>
-      <product_name><![CDATA[North American Charter Plus 14]]></product_name>
-    </product>
-    <product product_id="A0017Q">
-      <canx_info>
-        <info key="UNIQUE">0002407279</info>
-        <info key="DESCRIPTION"><![CDATA[NAC BenefitSolutions 10]]></info>
-      </canx_info>
-      <product_name><![CDATA[NAC BenefitSolutions 10]]></product_name>
-    </product>
-    <product product_id="A0017Z">
-      <canx_info>
-        <info key="UNIQUE">0002407397</info>
-        <info key="DESCRIPTION"><![CDATA[Performance Choice 8]]></info>
-      </canx_info>
-      <product_name><![CDATA[Performance Choice 8]]></product_name>
-    </product>
-    <product product_id="A001BQ">
-      <canx_info>
-        <info key="UNIQUE">0002426434</info>
-        <info key="DESCRIPTION"><![CDATA[Income Pay Pro]]></info>
-      </canx_info>
-      <product_name><![CDATA[Income Pay Pro]]></product_name>
-    </product>
-  </carrier_products>
-  <carrier_products>
-    <canx_info>
       <info key="IPNO">0261</info>
       <info key="CO-CODE">FIDG</info>
       <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
-      <info key="SET-NO">0001949589</info>
-      <info key="UPDATE-DATE">2024-04-13T00:00:01</info>
+      <info key="SET-NO">0001963269</info>
+      <info key="UPDATE-DATE">2024-06-18T16:29:30</info>
     </canx_info>
-    <version_id>0001949589</version_id>
+    <version_id>0001963269</version_id>
     <carrier_name><![CDATA[Fidelity and Guaranty]]></carrier_name>
     <carrier_rating>
       <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
@@ -1383,61 +1144,300 @@
   </carrier_products>
   <carrier_products>
     <canx_info>
-      <info key="IPNO">0230</info>
-      <info key="CO-CODE">PROT</info>
-      <info key="CO-NAME-L"><![CDATA[Protective Life Insurance Company]]></info>
-      <info key="SET-NO">0001949759</info>
-      <info key="UPDATE-DATE">2024-04-12T19:38:00</info>
+      <info key="IPNO">1043</info>
+      <info key="CO-CODE">MMAS</info>
+      <info key="CO-NAME-L"><![CDATA[MassMutual Ascend Life Insurance Company]]></info>
+      <info key="SET-NO">0001963800</info>
+      <info key="UPDATE-DATE">2024-06-21T00:00:11</info>
     </canx_info>
-    <version_id>0001949759</version_id>
-    <carrier_name><![CDATA[Protective Life Insurance Company]]></carrier_name>
+    <version_id>0001963800</version_id>
+    <carrier_name><![CDATA[MassMutual Ascend Life Insurance Company]]></carrier_name>
     <carrier_rating>
       <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
-      <rating cd="A+">Superior</rating>
-      <effective_date>2021-03-31</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
-      <rating cd="AA-">Very strong</rating>
-      <effective_date>2022-03-08</effective_date>
-    </carrier_rating>
-    <carrier_rating>
-      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
-      <rating cd="A1">Good</rating>
-      <effective_date>2021-03-31</effective_date>
+      <rating cd="A++">Superior</rating>
+      <effective_date>2023-09-11</effective_date>
     </carrier_rating>
     <carrier_rating>
       <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
-      <rating cd="AA-">Very strong</rating>
-      <effective_date>2021-03-31</effective_date>
+      <rating cd="A+">Strong</rating>
+      <effective_date>2020-03-05</effective_date>
     </carrier_rating>
-    <product product_id="A000B4">
+    <product product_id="A0006B">
       <canx_info>
-        <info key="UNIQUE">0002253368</info>
-        <info key="DESCRIPTION"><![CDATA[Protective Asset Builder II]]></info>
+        <info key="UNIQUE">0002243493</info>
+        <info key="DESCRIPTION"><![CDATA[American Landmark 5]]></info>
       </canx_info>
-      <product_name><![CDATA[Protective Asset Builder II]]></product_name>
+      <product_name><![CDATA[American Landmark 5]]></product_name>
     </product>
-    <product product_id="A000B7">
+    <product product_id="A0006D">
       <canx_info>
-        <info key="UNIQUE">0002253522</info>
-        <info key="DESCRIPTION"><![CDATA[Protective Guaranteed Income]]></info>
+        <info key="UNIQUE">0002243524</info>
+        <info key="DESCRIPTION"><![CDATA[American Legend 7]]></info>
       </canx_info>
-      <product_name><![CDATA[Protective Guaranteed Income]]></product_name>
+      <product_name><![CDATA[American Legend 7]]></product_name>
     </product>
-    <product product_id="A000BC">
+    <product product_id="A0006J">
       <canx_info>
-        <info key="UNIQUE">0002253683</info>
-        <info key="DESCRIPTION"><![CDATA[Protective Income Builder]]></info>
+        <info key="UNIQUE">0002243657</info>
+        <info key="DESCRIPTION"><![CDATA[American Landmark 3]]></info>
       </canx_info>
-      <product_name><![CDATA[Protective Income Builder]]></product_name>
+      <product_name><![CDATA[American Landmark 3]]></product_name>
     </product>
-    <product product_id="A000UN">
+    <product product_id="A0006S">
       <canx_info>
-        <info key="UNIQUE">0002330144</info>
-        <info key="DESCRIPTION"><![CDATA[Protective Indexed Annuity NY]]></info>
+        <info key="UNIQUE">0002243770</info>
+        <info key="DESCRIPTION"><![CDATA[Index Protector 7]]></info>
       </canx_info>
-      <product_name><![CDATA[Protective Indexed Annuity NY]]></product_name>
+      <product_name><![CDATA[Index Protector 7]]></product_name>
+    </product>
+    <product product_id="A0006X">
+      <canx_info>
+        <info key="UNIQUE">0002243847</info>
+        <info key="DESCRIPTION"><![CDATA[Index Protector 5 MVA]]></info>
+      </canx_info>
+      <product_name><![CDATA[Index Protector 5 MVA]]></product_name>
+    </product>
+    <product product_id="A0006Z">
+      <canx_info>
+        <info key="UNIQUE">0002243957</info>
+        <info key="DESCRIPTION"><![CDATA[Safe Return]]></info>
+      </canx_info>
+      <product_name><![CDATA[Safe Return]]></product_name>
+    </product>
+    <product product_id="A00071">
+      <canx_info>
+        <info key="UNIQUE">0002243977</info>
+        <info key="DESCRIPTION"><![CDATA[Index Protector 4]]></info>
+      </canx_info>
+      <product_name><![CDATA[Index Protector 4]]></product_name>
+    </product>
+    <product product_id="A00073">
+      <canx_info>
+        <info key="UNIQUE">0002244088</info>
+        <info key="DESCRIPTION"><![CDATA[Premier Income Bonus]]></info>
+      </canx_info>
+      <product_name><![CDATA[Premier Income Bonus]]></product_name>
+    </product>
+    <product product_id="A0007Y">
+      <canx_info>
+        <info key="UNIQUE">0002244753</info>
+        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 5 Plus]]></info>
+      </canx_info>
+      <product_name><![CDATA[AssuranceSelect 5 Plus]]></product_name>
+    </product>
+    <product product_id="A00082">
+      <canx_info>
+        <info key="UNIQUE">0002244783</info>
+        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 7 Plus]]></info>
+      </canx_info>
+      <product_name><![CDATA[AssuranceSelect 7 Plus]]></product_name>
+    </product>
+    <product product_id="A0008H">
+      <canx_info>
+        <info key="UNIQUE">0002245434</info>
+        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 3 Plus]]></info>
+      </canx_info>
+      <product_name><![CDATA[AssuranceSelect 3 Plus]]></product_name>
+    </product>
+    <product product_id="A0009S">
+      <canx_info>
+        <info key="UNIQUE">0002247809</info>
+        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 5]]></info>
+      </canx_info>
+      <product_name><![CDATA[AssuranceSelect 5]]></product_name>
+    </product>
+    <product product_id="A0009U">
+      <canx_info>
+        <info key="UNIQUE">0002247859</info>
+        <info key="DESCRIPTION"><![CDATA[AssuranceSelect 7]]></info>
+      </canx_info>
+      <product_name><![CDATA[AssuranceSelect 7]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
+      <info key="IPNO">1098</info>
+      <info key="CO-CODE">RSIC</info>
+      <info key="CO-NAME-L"><![CDATA[Reliance Standard Life Insurance Company]]></info>
+      <info key="SET-NO">0001963822</info>
+      <info key="UPDATE-DATE">2024-06-21T00:00:14</info>
+    </canx_info>
+    <version_id>0001963822</version_id>
+    <carrier_name><![CDATA[Reliance Standard Life Insurance Company]]></carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A++">Superior</rating>
+      <effective_date>2020-11-01</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="A+">Strong</rating>
+      <effective_date>2020-03-01</effective_date>
+    </carrier_rating>
+    <product product_id="A000FR">
+      <canx_info>
+        <info key="UNIQUE">0002257224</info>
+        <info key="DESCRIPTION"><![CDATA[Keystone Index Annuity]]></info>
+      </canx_info>
+      <product_name><![CDATA[Keystone Index Annuity]]></product_name>
+    </product>
+    <product product_id="A000XH">
+      <canx_info>
+        <info key="UNIQUE">0002339571</info>
+        <info key="DESCRIPTION"><![CDATA[Reliance Accumulator 5]]></info>
+      </canx_info>
+      <product_name><![CDATA[Reliance Accumulator 5]]></product_name>
+    </product>
+    <product product_id="A000XJ">
+      <canx_info>
+        <info key="UNIQUE">0002339604</info>
+        <info key="DESCRIPTION"><![CDATA[Reliance Accumulator 7]]></info>
+      </canx_info>
+      <product_name><![CDATA[Reliance Accumulator 7]]></product_name>
+    </product>
+    <product product_id="A000XL">
+      <canx_info>
+        <info key="UNIQUE">0002339633</info>
+        <info key="DESCRIPTION"><![CDATA[Reliance Accumulator 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[Reliance Accumulator 10]]></product_name>
+    </product>
+  </carrier_products>
+  <carrier_products>
+    <canx_info>
+      <info key="IPNO">0817</info>
+      <info key="CO-CODE">CORE</info>
+      <info key="CO-NAME-L"><![CDATA[Corebridge Financial]]></info>
+      <info key="SET-NO">0001964073</info>
+      <info key="UPDATE-DATE">2024-06-21T10:20:30</info>
+    </canx_info>
+    <version_id>0001964073</version_id>
+    <carrier_name><![CDATA[Corebridge Financial]]></carrier_name>
+    <state_cd_carrier_name state_cd="NY"><![CDATA[The United States Life Insurance Company of NY]]></state_cd_carrier_name>
+    <carrier_rating>
+      <rating_company cd="AMB"><![CDATA[A.M. Best]]></rating_company>
+      <rating cd="A">Excellent</rating>
+      <effective_date>2008-11-10</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="FTCH"><![CDATA[Fitch]]></rating_company>
+      <rating cd="A+">Strong</rating>
+      <effective_date>2013-02-14</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="MOOD"><![CDATA[Moody's]]></rating_company>
+      <rating cd="A2">Good</rating>
+      <effective_date>2011-01-13</effective_date>
+    </carrier_rating>
+    <carrier_rating>
+      <rating_company cd="SP"><![CDATA[Standard & Poor's]]></rating_company>
+      <rating cd="A+">Strong</rating>
+      <effective_date>2008-11-10</effective_date>
+    </carrier_rating>
+    <product product_id="A000C3">
+      <canx_info>
+        <info key="UNIQUE">0002253955</info>
+        <info key="DESCRIPTION"><![CDATA[AG Choice Index 10]]></info>
+      </canx_info>
+      <product_name><![CDATA[AG Choice Index 10]]></product_name>
+    </product>
+    <product product_id="A000CU">
+      <canx_info>
+        <info key="UNIQUE">0002254446</info>
+        <info key="DESCRIPTION"><![CDATA[Power Index Advisory]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Index Advisory]]></product_name>
+    </product>
+    <product product_id="A000D2">
+      <canx_info>
+        <info key="UNIQUE">0002254812</info>
+        <info key="DESCRIPTION"><![CDATA[Power 7 Protector]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power 7 Protector]]></product_name>
+    </product>
+    <product product_id="A000D4">
+      <canx_info>
+        <info key="UNIQUE">0002254868</info>
+        <info key="DESCRIPTION"><![CDATA[Power 7 Protector Plus Income]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power 7 Protector Plus Income]]></product_name>
+    </product>
+    <product product_id="A000D6">
+      <canx_info>
+        <info key="UNIQUE">0002254924</info>
+        <info key="DESCRIPTION"><![CDATA[Power 10 Protector]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power 10 Protector]]></product_name>
+    </product>
+    <product product_id="A000D8">
+      <canx_info>
+        <info key="UNIQUE">0002254980</info>
+        <info key="DESCRIPTION"><![CDATA[Power 10 Protector Plus Income]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power 10 Protector Plus Income]]></product_name>
+    </product>
+    <product product_id="A000DA">
+      <canx_info>
+        <info key="UNIQUE">0002255038</info>
+        <info key="DESCRIPTION"><![CDATA[Power Select Plus Income]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Select Plus Income]]></product_name>
+    </product>
+    <product product_id="A000DW">
+      <canx_info>
+        <info key="UNIQUE">0002255494</info>
+        <info key="DESCRIPTION"><![CDATA[Power Index Premier NY]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Index Premier NY]]></product_name>
+    </product>
+    <product product_id="A000DY">
+      <canx_info>
+        <info key="UNIQUE">0002255543</info>
+        <info key="DESCRIPTION"><![CDATA[Power Index Plus]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Index Plus]]></product_name>
+    </product>
+    <product product_id="A000EB">
+      <canx_info>
+        <info key="UNIQUE">0002256109</info>
+        <info key="DESCRIPTION"><![CDATA[Power Index Plus Income]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Index Plus Income]]></product_name>
+    </product>
+    <product product_id="A000LZ">
+      <canx_info>
+        <info key="UNIQUE">0002307220</info>
+        <info key="DESCRIPTION"><![CDATA[Power 5 Protector]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power 5 Protector]]></product_name>
+    </product>
+    <product product_id="A000MF">
+      <canx_info>
+        <info key="UNIQUE">0002307837</info>
+        <info key="DESCRIPTION"><![CDATA[Power Select Builder]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Select Builder]]></product_name>
+    </product>
+    <product product_id="A000MH">
+      <canx_info>
+        <info key="UNIQUE">0002307952</info>
+        <info key="DESCRIPTION"><![CDATA[Power Select Builder 8]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Select Builder 8]]></product_name>
+    </product>
+    <product product_id="A000Y3">
+      <canx_info>
+        <info key="UNIQUE">0002342042</info>
+        <info key="DESCRIPTION"><![CDATA[Power Index 5 NY]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Index 5 NY]]></product_name>
+    </product>
+    <product product_id="A001JW">
+      <canx_info>
+        <info key="UNIQUE">0002606256</info>
+        <info key="DESCRIPTION"><![CDATA[Power Index 5 Plus - National]]></info>
+      </canx_info>
+      <product_name><![CDATA[Power Index 5 Plus]]></product_name>
     </product>
   </carrier_products>
 </anty_ds_carrier_products>

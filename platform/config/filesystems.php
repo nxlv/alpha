@@ -33,7 +33,13 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
-            'throw' => false,
+            'throw' => true,
+        ],
+
+        'config' => [
+            'driver' => 'local',
+            'root' => config_path(),
+            'throw' => true,
         ],
 
         'public' => [
@@ -54,6 +60,15 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
+        ],
+
+        'cannex' => [
+            'driver' => 'sftp',
+            'host' => env('CANNEX_SFTP_HOST'),
+
+            // Settings for basic authentication...
+            'username' => env('CANNEX_SFTP_USER'),
+            'password' => env('CANNEX_SFTP_PASS')
         ],
 
     ],

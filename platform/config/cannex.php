@@ -1,0 +1,1 @@
+<?php return [ 'version' => 'CFJ37C' ];

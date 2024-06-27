@@ -291,7 +291,7 @@ class Quoting extends Controller {
                                 'end_month' => $index_data_limits[ 'index_date_start' ]->format( 'n' ),
                                 'end_year' => $index_data_limits[ 'index_date_start' ]->format( 'Y' )
                             ),
-                            'anty_ds_version_id'          => CANNEXHelper::ANTY_ANLY_VERSION_ID,
+                            'anty_ds_version_id'          => Config::get( 'cannex.version' ),
                             'analysis_cd'                 => 'B',
                             'analysis_data_id'            => $product,
                             'analysis_time_horizon_years' => $index_data_limits[ 'deferral' ] + 1,

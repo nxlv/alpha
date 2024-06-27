@@ -6,8 +6,8 @@
   <canx_info>
     <info key="DIST-CODE">AALLC</info>
     <info key="DIST-NAME"><![CDATA[Annuity Association]]></info>
-    <info key="REQUEST-NO">CD6D3M</info>
-    <info key="RUN-DATE">2024-04-15T06:00:09</info>
+    <info key="REQUEST-NO">CFJ37C</info>
+    <info key="RUN-DATE">2024-06-24T06:00:07</info>
     <info key="PRODUCT-TYPE">FIAX</info>
     <info key="CUSTOMER">22933</info>
     <info key="CUSTOMER-NAME"><![CDATA[Annuity Association, LLC]]></info>
@@ -2288,27 +2288,6 @@
         </canx_info>
         <custom_data custom_data_id="0002533037" datatype="percentage" key="INCOME-ENHANCEMENT-BENEFIT" text_id=""><![CDATA[150.0000]]></custom_data>
         <custom_data_label><![CDATA[Wellness Benefit Joint]]></custom_data_label>
-      </custom_info_data>
-    </custom_info_data_set>
-  </custom_info_instance>
-  <custom_info_instance custom_info_instance_id="38590732" reference_id="0002644314" reference_name="income_benefit_profile_id" text_id="" >
-    <custom_info_data_set custom_info_data_set_id="38590732" rule_id="" text_id="">
-      <custom_info_data>
-        <canx_info>
-          <info key="PARM-LEVEL">LB-PARMS</info>
-          <info key="PARM-NAME">INCOME-ENHANCEMENT-BENEFIT</info>
-          <info key="PARM-LABEL"><![CDATA[Income Enhancement Benefit]]></info>
-          <info key="PARM-METHOD">01</info>
-          <info key="PARM-TYPE">P</info>
-          <info key="PARM-SIZE-1">3</info>
-          <info key="PARM-SIZE-2">4</info>
-          <info key="AIU-FLAG">N</info>
-          <info key="PUBLISH-FLAGS-1">Y</info>
-          <info key="PUBLISH-FLAGS-2">N</info>
-          <info key="PARM-VALUE"><![CDATA[200.0000]]></info>
-        </canx_info>
-        <custom_data custom_data_id="0002644320" datatype="percentage" key="INCOME-ENHANCEMENT-BENEFIT" text_id="38590733"><![CDATA[200.0000]]></custom_data>
-        <custom_data_label><![CDATA[Income Enhancement Benefit]]></custom_data_label>
       </custom_info_data>
     </custom_info_data_set>
   </custom_info_instance>
@@ -13106,45 +13085,24 @@
       </custom_info_data>
     </custom_info_data_set>
   </custom_info_instance>
-  <custom_info_instance custom_info_instance_id="42830149" reference_id="0002668953" reference_name="strategy_rate_instance_id" text_id="" >
-    <custom_info_data_set custom_info_data_set_id="42830150" rule_id="" text_id="">
+  <custom_info_instance custom_info_instance_id="43363909" reference_id="0002671802" reference_name="income_benefit_profile_id" text_id="" >
+    <custom_info_data_set custom_info_data_set_id="43363909" rule_id="" text_id="">
       <custom_info_data>
         <canx_info>
-          <info key="PARM-LEVEL">RATES-FIA</info>
-          <info key="PARM-NAME">RATE-KNOCKOUT-BARRIER</info>
-          <info key="PARM-LABEL"><![CDATA[Knockout Barrier]]></info>
+          <info key="PARM-LEVEL">LB-PARMS</info>
+          <info key="PARM-NAME">INCOME-ENHANCEMENT-BENEFIT</info>
+          <info key="PARM-LABEL"><![CDATA[Income Enhancement Benefit]]></info>
           <info key="PARM-METHOD">01</info>
           <info key="PARM-TYPE">P</info>
           <info key="PARM-SIZE-1">3</info>
           <info key="PARM-SIZE-2">4</info>
-          <info key="AIU-FLAG">Y</info>
+          <info key="AIU-FLAG">N</info>
           <info key="PUBLISH-FLAGS-1">Y</info>
-          <info key="PUBLISH-FLAGS-2">Y</info>
-          <info key="PARM-VALUE"><![CDATA[98.0000]]></info>
+          <info key="PUBLISH-FLAGS-2">N</info>
+          <info key="PARM-VALUE"><![CDATA[200.0000]]></info>
         </canx_info>
-        <custom_data custom_data_id="0002669085" datatype="percentage" key="RATE-KNOCKOUT-BARRIER" text_id=""><![CDATA[98.0000]]></custom_data>
-        <custom_data_label><![CDATA[Knockout Barrier]]></custom_data_label>
-      </custom_info_data>
-    </custom_info_data_set>
-  </custom_info_instance>
-  <custom_info_instance custom_info_instance_id="42830151" reference_id="0002668955" reference_name="strategy_rate_instance_id" text_id="" >
-    <custom_info_data_set custom_info_data_set_id="42830152" rule_id="" text_id="">
-      <custom_info_data>
-        <canx_info>
-          <info key="PARM-LEVEL">RATES-FIA</info>
-          <info key="PARM-NAME">RATE-KNOCKOUT-BARRIER</info>
-          <info key="PARM-LABEL"><![CDATA[Knockout Barrier]]></info>
-          <info key="PARM-METHOD">01</info>
-          <info key="PARM-TYPE">P</info>
-          <info key="PARM-SIZE-1">3</info>
-          <info key="PARM-SIZE-2">4</info>
-          <info key="AIU-FLAG">Y</info>
-          <info key="PUBLISH-FLAGS-1">Y</info>
-          <info key="PUBLISH-FLAGS-2">Y</info>
-          <info key="PARM-VALUE"><![CDATA[98.0000]]></info>
-        </canx_info>
-        <custom_data custom_data_id="0002669086" datatype="percentage" key="RATE-KNOCKOUT-BARRIER" text_id=""><![CDATA[98.0000]]></custom_data>
-        <custom_data_label><![CDATA[Knockout Barrier]]></custom_data_label>
+        <custom_data custom_data_id="0002671808" datatype="percentage" key="INCOME-ENHANCEMENT-BENEFIT" text_id="43363910"><![CDATA[200.0000]]></custom_data>
+        <custom_data_label><![CDATA[Income Enhancement Benefit]]></custom_data_label>
       </custom_info_data>
     </custom_info_data_set>
   </custom_info_instance>

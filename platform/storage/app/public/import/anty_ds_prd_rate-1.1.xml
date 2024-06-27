@@ -6,8 +6,8 @@
   <canx_info>
     <info key="DIST-CODE">AALLC</info>
     <info key="DIST-NAME"><![CDATA[Annuity Association]]></info>
-    <info key="REQUEST-NO">CD6D3M</info>
-    <info key="RUN-DATE">2024-04-15T06:00:09</info>
+    <info key="REQUEST-NO">CFJ37C</info>
+    <info key="RUN-DATE">2024-06-24T06:00:07</info>
     <info key="PRODUCT-TYPE">FIAX</info>
     <info key="CUSTOMER">22933</info>
     <info key="CUSTOMER-NAME"><![CDATA[Annuity Association, LLC]]></info>
@@ -61,6 +61,30 @@
   </product_rate_info>
   <product_rate_info reference_id="15485951" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06R" rate_name="minimum_replacement_rate" tier_no="1">0.1000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="0002669027" reference_name="strategy_rate_instance">
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="42740622" reference_name="min_max_rate_instance">
+    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="0002669029" reference_name="strategy_rate_instance">
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="42740624" reference_name="min_max_rate_instance">
+    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="0002669032" reference_name="strategy_rate_instance">
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="42740626" reference_name="min_max_rate_instance">
+    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="0002669034" reference_name="strategy_rate_instance">
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+  </product_rate_info>
+  <product_rate_info reference_id="42740628" reference_name="min_max_rate_instance">
+    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002530383" reference_name="strategy_rate_instance">
     <product_rate rate_cd="BC06B" rate_name="current_boost_rate">4.5000</product_rate>
@@ -417,25 +441,25 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535216" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">4.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34348000" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535222" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">4.0000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">4.2500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34348020" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535253" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.5000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34348126" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535259" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">4.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34348146" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
@@ -453,13 +477,13 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535387" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.5000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34363670" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535393" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">4.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34363690" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
@@ -489,49 +513,49 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535557" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372081" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535563" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.2500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372101" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535594" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">1.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.2500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372207" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535600" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.2500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372227" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535640" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.2500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372381" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535646" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372401" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535677" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.2500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372507" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535683" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.5000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372527" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
@@ -543,7 +567,7 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535727" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.0000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.2500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372705" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
@@ -555,7 +579,7 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002535764" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34372831" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
@@ -723,13 +747,13 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">0.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536238" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">4.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401102" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536241" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.5000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401104" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
@@ -741,7 +765,7 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536247" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.5000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401108" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
@@ -759,75 +783,39 @@
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536256" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401114" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536259" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.5000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401116" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536262" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.5000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401118" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536265" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.2500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.5000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401120" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536268" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">3.0000</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401122" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="0002536271" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.5000</product_rate>
+    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.7500</product_rate>
   </product_rate_info>
   <product_rate_info reference_id="34401124" reference_name="min_max_rate_instance">
     <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.7500</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="0002668953" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="42714044" reference_name="min_max_rate_instance">
-    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="0002668955" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="42714206" reference_name="min_max_rate_instance">
-    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="0002669027" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="42740622" reference_name="min_max_rate_instance">
-    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="0002669029" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="42740624" reference_name="min_max_rate_instance">
-    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="0002669032" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="42740626" reference_name="min_max_rate_instance">
-    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="0002669034" reference_name="strategy_rate_instance">
-    <product_rate rate_cd="BC06B" rate_name="current_boost_rate">2.0000</product_rate>
-  </product_rate_info>
-  <product_rate_info reference_id="42740628" reference_name="min_max_rate_instance">
-    <product_rate rate_cd="MC06B" rate_name="minimum_boost_rate" tier_no="1">1.0000</product_rate>
   </product_rate_info>
 </anty_ds_product_rates>
