@@ -63,6 +63,14 @@
                         list-style:  none;
                         border-left: 1px $color-grey-light solid;
 
+                        &:hover {
+                            ol {
+                                opacity: 1;
+                                visibility: visible;
+                                pointer-events: all;
+                            }
+                        }
+
                         & > a {
                             font-size:       1.5rem;
                             font-weight:     bold;
@@ -88,15 +96,37 @@
                             bottom:           0;
                             visibility:       hidden;
                             margin:           0;
-                            padding:          0 2rem 2rem 2rem;
                             list-style:       none;
                             transform:        translateY(100%);
                             pointer-events:   none;
                             opacity:          0;
                             background-color: #fff;
+                            z-index: 101;
+                            padding: 0;
+                            border: 1px $color-grey-light solid;
+                            width: calc(100% + 2px);
+                            left: -1px;
+
+                            li {
+                                &:hover {
+                                    a {
+                                        background-color: $brand-primary;
+                                        color: #fff;
+                                    }
+                                }
+
+                                a {
+                                    font-size: 1.25rem;
+                                    line-height: 1.25rem;
+                                    font-weight: 300;
+                                    text-decoration: none;
+                                    display: block;
+                                    padding: 0.75rem 2rem 0.5rem 2rem;
+                                    color: $brand-primary;
+                                }
+                            }
                         }
                     }
-
                 }
             }
         }

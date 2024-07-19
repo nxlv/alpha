@@ -39,7 +39,7 @@
                     <a href="#/research">Research</a>
 
                     <ol>
-                        <li><a href="#">Index Tracker & History</a></li>
+                        <li><router-link :to="{ name: 'indexes__tracker' }">Index Tracker & History</router-link></li>
                         <li><a href="#">Annuity Products Data</a></li>
                     </ol>
                 </li>

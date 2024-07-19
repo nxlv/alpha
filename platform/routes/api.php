@@ -31,6 +31,7 @@ Route::post( '/products/details', [ App\Http\Controllers\API\V1\Products::class,
 
 Route::get( '/carriers/all', [ App\Http\Controllers\API\V1\Carriers::class, 'get_all' ] );
 Route::get( '/indexes/all', [ App\Http\Controllers\API\V1\Indexes::class, 'get_all' ] );
+Route::get( '/indexes/reports/all', [ App\Http\Controllers\API\V2\Indexes::class, 'get_reports' ] );
 Route::get( '/notices/all', [ App\Http\Controllers\API\V1\Products::class, 'get_all_notices' ] );
 
 /**

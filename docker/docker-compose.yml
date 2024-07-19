@@ -18,10 +18,7 @@ services:
       - ../static:/var/www/static:rw
       - ../platform:/var/www/platform:rw
       - ../app:/var/www/app:rw
-<<<<<<< HEAD
-=======
       - ./platform-exports/webserver/sites:/etc/apache2/sites-enabled
->>>>>>> f7a0f5f60dabed9848e241974d6062b0cf10864c
       - ./platform-exports/php.ini:/usr/local/etc/php/conf.d/overrides.ini
       - ./platform-exports/config.env:/var/www/platform/.env
     networks:

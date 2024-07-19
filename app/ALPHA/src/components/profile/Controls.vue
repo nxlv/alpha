@@ -15,7 +15,7 @@
     <aside class="alpha__prologue-secondary-user">
         <h3>Logged In! <i class="fal fa-hand-wave" aria-hidden="true"></i> </h3>
         <ol>
-            <li><a href="#/profile">Profile</a></li>
+            <li><a href="#/settings">Settings</a></li>
             <li><a href="#/logout">Logout</a></li>
         </ol>
     </aside>
