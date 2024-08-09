@@ -18,13 +18,13 @@
             return $response;
         }
 
-        public static function get_all_reports() {
-            $response = self::consume_endpoint( 'reports' );
+        public static function get_all_reports( $endpoint ) {
+            $response = self::consume_endpoint( $endpoint );
 
             if ( !empty( $response ) ) {
                 $response = json_decode( $response );
 
-                if ( ( isset( $response->data ) ) && ( count( $response->data ) ) ) {
+                if ( ( isset( $response->data ) ) && ( !empty( $response->data ) ) ) {
                     $response = $response->data;
                 } else {
                     $response = [];

@@ -100,7 +100,7 @@ class CANNEXUpdate extends Command {
 
                 Storage::disk( 'local' )->put( sprintf( 'versions/%s.zip', $top[ 'version' ] ), $contents );
 
-                if ( Storage::disk( 'local' )->exists( storage_path( sprintf( 'versions/%s.zip', $top[ 'version' ] ) ) ) ) {
+                //if ( Storage::disk( 'local' )->exists( storage_path( sprintf( 'versions/%s.zip', $top[ 'version' ] ) ) ) ) {
                     $this->line( sprintf( '  <fg=white;bg=green> SAVED </> File version %s has been saved to disk.', $top[ 'version' ] ) );
 
                     $zip = Zip::open( storage_path( sprintf( 'app/versions/%s.zip', $top[ 'version' ] ) ) );
@@ -118,9 +118,9 @@ class CANNEXUpdate extends Command {
                     } else {
                         $this->line( sprintf( '  <fg=white;bg=red> ERROR </> File version %s could not be extracted to the import directory..', $top[ 'version' ] ) );
                     }
-                } else {
-                    $this->line( sprintf( '  <fg=white;bg=red> ERROR </> File version %s could not be saved to disk.', $top[ 'version' ] ) );
-                }
+                //} else {
+                    //$this->line( sprintf( '  <fg=white;bg=red> ERROR </> File version %s could not be saved to disk.', $top[ 'version' ] ) );
+                //}
             } else {
                 $this->line( sprintf( '  <fg=white;bg=red> ERROR </> File version %s could not be downloaded.', $top[ 'version' ] ) );
             }

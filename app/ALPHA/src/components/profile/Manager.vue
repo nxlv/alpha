@@ -4,8 +4,6 @@
     import { useProfileStore } from '@/stores/profile';
     import { useCommonStore } from '@/stores/common';
 
-    import { v4 as uuidv4 } from 'uuid';
-
     export default {
         components: {
             RouterLink,
@@ -16,22 +14,13 @@
             },
 
             save() {
-                const profile = useProfileStore();
-
-                /*
-                if ( !this.inputs.id ) {
-                    this.inputs.id = this.generate_client_id();
-                }
-                */
-
                 this.save_to_storage();
             },
 
             save_to_storage() {
-                let found = false;
-                let storage = this.storage_control( 'get', false );
-
                 this.storage_control( 'set', this.inputs );
+
+                this.$globalUtils.modal_close();
             },
 
             load_from_storage( id, should_close ) {
@@ -52,23 +41,12 @@
                         break;
 
                     case 'set' :
+                        console.log( 'saving...', data );
                         localStorage.setItem( this.storage_key, JSON.stringify( data ) );
                         break;
                 }
 
                 return true;
-            },
-
-            clear_fields() {
-                let key = null;
-
-                for ( key in this.template ) {
-                    this.inputs[ key ] = this.template[ key ];
-                }
-            },
-
-            generate_client_id() {
-                return uuidv4();
             }
         },
         created() {
@@ -87,14 +65,6 @@
             this.profile = this.storage_control( 'get', false );
 
             console.log( 'view', common.state.view );
-
-            if ( common.state.view ) {
-                switch ( common.state.view ) {
-                    case 'new' :
-                        this.clear_fields();
-                        break;
-                }
-            }
         },
         data() {
             return {
@@ -149,7 +119,7 @@
                             <div class="form__column">
                                 <div class="form__buttons">
                                     <div class="form__buttons-column">
-                                        <input type="radio" id="data__access-local" name="method" value="local" checked v-model="inputs.data_access_type">
+                                        <input type="radio" id="data__access-local" name="method" value="local" v-model="inputs.data_access_type">
                                         <label for="data__access-local">Local</label>
                                     </div>
                                     <div class="form__buttons-column">
@@ -165,7 +135,6 @@
             <footer class="alpha__modal-footer">
                 <button type="button" v-on:click="save">Save and Close</button>
                 <button type="button" class="btn-small btn-grayscale" v-on:click="this.$globalUtils.modal_close()">Close</button>
-                <button type="button" class="btn-small btn-warn" v-on:click="this.clear_fields()">Clear</button>
             </footer>
         </div>
    </dialog>

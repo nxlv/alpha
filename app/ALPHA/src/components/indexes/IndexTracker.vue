@@ -19,16 +19,24 @@
 
                 if ( ( request ) && ( !request.data.error ) && ( request.data.result ) ) {
                     this.reports = request.data.result;
-
-                    console.log( this.reports );
                 } else {
-                    // error
+                    this.$toast.error( 'Index information could not be loaded.  Please try again.', { position: 'top-left' } );
                 }
+            },
+
+            format_percentage( percentage ) {
+                let value = parseFloat( percentage );
+
+                value = value * 100;
+
+                return value.toFixed( 2 );
             }
         },
 
         created() {
             this.fetch_reports();
+
+            //this.$toast.success( 'Loading...', { position: 'top-left' } );
         },
 
         data() {
@@ -48,8 +56,8 @@
             <thead>
               <tr>
                   <th>Index</th>
-                  <th>YTD</th>
-                  <th><span>6</span> month</th>
+                  <th><span>YTD</span></th>
+                  <th><span>6</span> months</th>
                   <th><span>1</span> year</th>
                   <th><span>3</span> years</th>
                   <th><span>5</span> years</th>
@@ -59,15 +67,19 @@
             <tbody>
               <tr v-for="( report, report_index ) in reports" v-bind:key="report_index">
                   <td class="index">
-                      <strong>{{ report.ticker }}</strong>
-                      <span>{{ report.display_name }}</span>
+                      <strong>{{ report.display_name }}</strong>
+                      <span data-type="ticker">{{ report.ticker }}</span>
+                      <span data-type="accounts">
+                          X accounts
+                      </span>
+                      <span data-type="date">{{ report.computation_date }}</span>
                   </td>
-                  <td class="percentage" v-bind:data-amount="report.index_returns_ytd">{{ report.index_returns_ytd.toFixed(2) }}%</td>
-                  <td class="percentage" v-bind:data-amount="report.index_returns_6month">{{ report.index_returns_6month.toFixed(2) }}%</td>
-                  <td class="percentage" v-bind:data-amount="report.index_returns_1year">{{ report.index_returns_1year.toFixed(2) }}%</td>
-                  <td class="percentage" v-bind:data-amount="report.index_returns_3year">{{ report.index_returns_3year.toFixed(2) }}%</td>
-                  <td class="percentage" v-bind:data-amount="report.index_returns_5year">{{ report.index_returns_5year.toFixed(2) }}%</td>
-                  <td class="percentage" v-bind:data-amount="report.index_returns_10year">{{ report.index_returns_10year.toFixed(2) }}%</td>
+                  <td class="percentage" v-bind:data-amount="report.index_returns_ytd" v-bind:class="{'percentage--gain': report.index_returns_ytd > 0, 'percentage--loss': report.index_returns_ytd < 0}">{{ format_percentage( report.index_returns_ytd ) }}%</td>
+                  <td class="percentage" v-bind:data-amount="report.index_returns_6month" v-bind:class="{'percentage--gain': report.index_returns_6month > 0, 'percentage--loss': report.index_returns_6month < 0}">{{ format_percentage( report.index_returns_6month ) }}%</td>
+                  <td class="percentage" v-bind:data-amount="report.index_returns_1year" v-bind:class="{'percentage--gain': report.index_returns_1year > 0, 'percentage--loss': report.index_returns_1year < 0}">{{ format_percentage( report.index_returns_1year ) }}%</td>
+                  <td class="percentage" v-bind:data-amount="report.index_returns_3year" v-bind:class="{'percentage--gain': report.index_returns_3year > 0, 'percentage--loss': report.index_returns_3year < 0}">{{ format_percentage( report.index_returns_3year ) }}%</td>
+                  <td class="percentage" v-bind:data-amount="report.index_returns_5year" v-bind:class="{'percentage--gain': report.index_returns_5year > 0, 'percentage--loss': report.index_returns_5year < 0}">{{ format_percentage( report.index_returns_5year ) }}%</td>
+                  <td class="percentage" v-bind:data-amount="report.index_returns_10year" v-bind:class="{'percentage--gain': report.index_returns_10year > 0, 'percentage--loss': report.index_returns_10year < 0}">{{ format_percentage( report.index_returns_10year ) }}%</td>
               </tr>
             </tbody>
         </table>

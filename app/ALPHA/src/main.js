@@ -1,13 +1,16 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import mitt from 'mitt'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import mitt from 'mitt';
 import moment from 'moment';
+import ToastPlugin from 'vue-toast-notification';
 
 import globalUtils from './utilities/global.js';
 import financeUtils from './utilities/financials.js';
 import clientUtils from './utilities/client.js';
 import inventoryUtils from './utilities/inventory.js';
 import productUtils from './utilities/products.js';
+
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 import App from './App.vue'
 import router from './router'
@@ -26,6 +29,7 @@ app.config.globalProperties.$moment = moment;
 
 app.use( router )
 app.use( pinia );
+app.use( ToastPlugin );
 
 app.mount( '#app' )
 

@@ -28,6 +28,12 @@
 
     tbody {
       tr {
+        &:hover {
+          td {
+
+          }
+        }
+
         td {
           border-bottom: 1px $color-grey-light solid;
           border-left: 1px $color-grey-light solid;
@@ -44,6 +50,14 @@
             font-size: 2rem;
             line-height: 2rem;
             font-weight: bold;
+
+            &--gain {
+              color: $color-money;
+            }
+
+            &--loss {
+              color: $brand-tertiary;
+            }
           }
 
           strong {

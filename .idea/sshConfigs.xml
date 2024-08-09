@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="ftp.cannex.com" id="278354f9-660d-4b93-9ccd-1cc4e3b52f3a" port="22" nameFormat="DESCRIPTIVE" username="AALLC01" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

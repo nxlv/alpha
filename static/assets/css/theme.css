@@ -14776,7 +14776,7 @@ html, body {
         padding: 0.25rem 0 0 0;
         opacity: 0.75; }
 
-.form__action, .income-solver__fetch-button {
+.form__action, .analyzer__filtering-button, .income-solver__fetch-button {
   font-family: 'Calibre', sans-serif;
   font-size: 1.125rem;
   font-weight: 700;
@@ -14794,7 +14794,7 @@ html, body {
   color: #fff;
   border: 2px #01203C solid;
   background-color: #01203C; }
-  .form__action:hover, .income-solver__fetch-button:hover, .form__action:focus, .income-solver__fetch-button:focus, .form__action:active, .income-solver__fetch-button:active {
+  .form__action:hover, .analyzer__filtering-button:hover, .income-solver__fetch-button:hover, .form__action:focus, .analyzer__filtering-button:focus, .income-solver__fetch-button:focus, .form__action:active, .analyzer__filtering-button:active, .income-solver__fetch-button:active {
     color: #01203C;
     background-color: #fff; }
 
@@ -16542,6 +16542,155 @@ main#auth {
   to {
     width: 100%; } }
 
+.analyzer__results {
+  width: 100%; }
+
+.analyzer__result table {
+  padding: 0;
+  border-collapse: collapse;
+  width: 100%; }
+
+.analyzer__result table thead tr th {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  padding-top: 0.5rem; }
+
+.analyzer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; }
+
+.analyzer__filtering {
+  padding: 0 2rem 0 0;
+  margin: 0 2rem 0 0;
+  white-space: nowrap;
+  border-right: 1px #000 solid;
+  min-width: 350px; }
+
+.analyzer__filtering h3 {
+  font-size: 2.5rem;
+  line-height: 2.5rem; }
+
+.analyzer__result table thead tr th.heading {
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  font-weight: normal;
+  background-color: #034787;
+  color: #fff;
+  padding-top: 0.25rem; }
+
+.analyzer__result table tbody tr td {
+  background-color: #fff;
+  border: 1px #000 solid;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  padding: 1rem 1rem 0 1rem; }
+
+.analyzer__result table tbody tr td:first-child {
+  text-align: left;
+  width: 100%; }
+
+.analyzer__result table tbody tr td.percentage {
+  min-width: 200px;
+  padding-top: 0.5rem;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 2rem; }
+  .analyzer__result table tbody tr td.percentage.percentage--gain {
+    color: #60992D; }
+  .analyzer__result table tbody tr td.percentage.percentage--loss {
+    color: #c20e00; }
+
+.analyzer__result table tbody tr td h4 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: normal; }
+
+.analyzer__result table tbody tr td h4 span {
+  display: block;
+  font-weight: bold; }
+
+.analyzer__result-configuration {
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 0.75rem 0; }
+
+.analyzer__result-configuration span {
+  display: block;
+  margin: 0 0.75rem 0 0; }
+
+.analyzer__result table tbody tr:nth-child(2n) td {
+  background-color: #f0f0f0; }
+
+.analyzer__result h3 strong {
+  display: block;
+  font-size: 3.5rem;
+  line-height: 3.5rem;
+  margin: 0 0 -0.5rem 0; }
+
+.analyzer__result h3 span {
+  display: block;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: normal; }
+
+.analyzer__result {
+  margin-bottom: 2rem; }
+
+.analyzer__result table thead tr th.reporting {
+  text-align: left; }
+
+.analyzer__result table thead tr th.reporting a {
+  text-decoration: none;
+  color: #c20e00; }
+
+.analyzer__result table thead tr th.reporting a i {
+  padding-right: 0.25rem; }
+
+.analyzer__filtering-button {
+  margin-bottom: 1rem;
+  font-size: 1.375rem;
+  line-height: 1.375rem;
+  background-color: #c20e00;
+  color: #fff;
+  border: none;
+  transition: background-color 0.125s ease-out, color 0.125s ease-out;
+  pointer-events: all;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 10px #c20e00;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px; }
+  .analyzer__filtering-button:hover, .analyzer__filtering-button:focus, .analyzer__filtering-button:active {
+    background-color: #760800 !important;
+    color: #fff !important; }
+  .analyzer__filtering-button i {
+    position: relative;
+    top: -3px;
+    padding-left: 0.5rem; }
+
+.analyzer__result:before {
+  content: '';
+  width: 150px;
+  height: 80px;
+  display: block;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: auto 60px;
+  border: 1px #000 solid; }
+
+.analyzer__result {
+  position: relative; }
+
+.analyzer__result h3 {
+  margin-left: calc(150px + 1rem);
+  padding-top: 0.25rem; }
+
 .tracker table {
   width: 100%;
   border-collapse: collapse;
@@ -16573,6 +16722,10 @@ main#auth {
       font-size: 2rem;
       line-height: 2rem;
       font-weight: bold; }
+      .tracker table tbody tr td.percentage--gain {
+        color: #60992D; }
+      .tracker table tbody tr td.percentage--loss {
+        color: #c20e00; }
     .tracker table tbody tr td strong {
       display: block;
       font-size: 1.5rem;

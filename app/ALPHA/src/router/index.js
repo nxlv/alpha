@@ -3,6 +3,7 @@ import View_Dashboard from '../views/Dashboard.vue';
 import View_Income_Fixed from '../views/income/Fixed.vue';
 import View_Income_Immediate from '../views/income/Immediate.vue';
 import View_Indexes_Tracker from '../views/indexes/IndexTracker.vue';
+import View_Performance_Analyzer from '../views/performance/PerformanceAnalyzer.vue';
 import View_Products_All from '../views/products/AllProducts.vue';
 
 const router = createRouter( {
@@ -22,6 +23,11 @@ const router = createRouter( {
                                          path: '/income/solver/immediate',
                                          name: 'income__immediate',
                                          component: View_Income_Immediate
+                                     },
+                                     {
+                                         path: '/performance/analyzer',
+                                         name: 'performance__analyzer',
+                                         component: View_Performance_Analyzer
                                      },
                                      {
                                          path: '/indexes/tracker',

@@ -30,7 +30,7 @@
                     <a href="#/performance">Performance</a>
 
                     <ol>
-                        <li><a href="#">Annuity Analyzer</a></li>
+                        <li><router-link :to="{ name: 'performance__analyzer' }">Annuity Analyzer</router-link></li>
                         <li><a href="#">Backtesting</a></li>
                         <li><a href="#">Top Products</a></li>
                     </ol>

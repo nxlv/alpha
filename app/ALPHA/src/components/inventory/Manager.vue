@@ -154,7 +154,13 @@
                 inputs: {
                     id: '',
                     title: '',
-                    inventory: []
+                    inventory: [
+                        {
+                            id: '__default',
+                            title: 'All - Showing filtered products',
+                            inventory: ['A000PH','A000PT','A00155','A001BH','A000RE','A000PN','A000RH','A000PP','A000PR','A000RO','A000BH','A000CP','A000CT','A000BU','A000CH','A000DC','A000CJ','A000HL','A000YE','A00104','A0010P','A0010R','A00106','A000ZL','A000HR','A000HY','A000ZP','A0010E','A0011C','A0010G','A000ZX','A000I1','A000ZJ','A0010L','A00112','A00153','A0010T','A0010B','A0010D','A0010Y','A00163','A00165','A00110','A0010J','A001BQ','A000D2','A000D6','A000D8','A000D4','A000LZ','A000MF','A000MH','A000DA','A0016A']
+                        }
+                    ]
                 }
             };
         }

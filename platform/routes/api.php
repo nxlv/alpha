@@ -5,42 +5,29 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Product endpoints
 |--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-/*
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 */
 Route::get( '/products/all', [ App\Http\Controllers\API\V1\Products::class, 'get_all' ] );
 Route::get( '/products/instances/all', [ App\Http\Controllers\API\V1\Products::class, 'get_all_instances' ] );
 Route::post( '/products/details', [ App\Http\Controllers\API\V1\Products::class, 'get_product_details' ] );
-/**
- * TODO:
- *
- * /products/all/compact
- *
- */
 
+/*
+|--------------------------------------------------------------------------
+| Carriers/Indices endpoints
+|--------------------------------------------------------------------------
+*/
 Route::get( '/carriers/all', [ App\Http\Controllers\API\V1\Carriers::class, 'get_all' ] );
 Route::get( '/indexes/all', [ App\Http\Controllers\API\V1\Indexes::class, 'get_all' ] );
 Route::get( '/indexes/reports/all', [ App\Http\Controllers\API\V2\Indexes::class, 'get_reports' ] );
+Route::get( '/indexes/reports/annuities/all', [ App\Http\Controllers\API\V2\Indexes::class, 'get_annuities' ] );
 Route::get( '/notices/all', [ App\Http\Controllers\API\V1\Products::class, 'get_all_notices' ] );
 
-/**
- * TODO:
- *
- * Income Benefits endpoint
- * Death Benefits endpoint
- * Rules endpoint
- */
+/*
+|--------------------------------------------------------------------------
+| Quoting endpoints
+|--------------------------------------------------------------------------
+*/
 Route::post( '/quoting/get/immediate', [ App\Http\Controllers\API\V1\Quoting::class, 'query_spia_dia' ] );
 
 Route::post( '/quoting/get/fixed', [ App\Http\Controllers\API\V2\Quoting::class, 'query_fixed' ] );
@@ -50,3 +37,10 @@ Route::post( '/quoting/get/fixed/illustration', [ App\Http\Controllers\API\V2\Qu
 
 Route::post( '/quoting/report', [ App\Http\Controllers\API\V2\Illustrating::class, 'fetch_report' ] );
 
+/**
+ * TODO:
+ *
+ * Income Benefits endpoint
+ * Death Benefits endpoint
+ * Rules endpoint
+ */

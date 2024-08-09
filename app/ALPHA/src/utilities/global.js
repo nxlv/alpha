@@ -225,6 +225,13 @@ const globalUtils = {
                 value = 'index_id';
                 break;
 
+            case 'indexes_tickers' :
+                dataset = sets.sets.indexes;
+
+                label = 'index_name';
+                value = 'universal_ticker';
+                break;
+
             case 'carriers' :
                 dataset = sets.sets.carriers;
 
@@ -353,6 +360,8 @@ const globalUtils = {
         let dataset = {};
         let placeholder = '—';
 
+        const sets = useSetsStore();
+
         switch (type) {
             case 'yesno' :
                 placeholder = 'No';
@@ -371,10 +380,16 @@ const globalUtils = {
                 break;
 
             case 'index' :
-                const sets = useSetsStore();
-
                 for (let counter = 0; counter < sets.sets.indexes.length; counter++) {
                     if (sets.sets.indexes[counter].index_id === value) {
+                        return sets.sets.indexes[counter].index_name;
+                    }
+                }
+                break;
+
+            case 'index_ticker' :
+                for (let counter = 0; counter < sets.sets.indexes.length; counter++) {
+                    if (sets.sets.indexes[counter].universal_ticker === value) {
                         return sets.sets.indexes[counter].index_name;
                     }
                 }

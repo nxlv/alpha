@@ -4,12 +4,14 @@
 
     import ClientManager from '@/components/clients/Manager.vue';
     import InventoryManager from '@/components/inventory/Manager.vue';
+    import ProfileManager from '@/components/profile/Manager.vue';
 
     export default {
         components: {
             RouterLink,
             ClientManager,
-            InventoryManager
+            InventoryManager,
+            ProfileManager
         },
         methods: {
             modal_visible() {
@@ -47,5 +49,6 @@
     <section class="modals" v-if="is_any_modal_visible()">
         <ClientManager v-if="is_modal_visible( 'client_manager' )" />
         <InventoryManager v-if="is_modal_visible( 'inventory_manager' )" />
+        <ProfileManager v-if="is_modal_visible( 'profile_manager' )" />
     </section>
 </template>
