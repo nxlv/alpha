@@ -23,7 +23,7 @@
                     <ol>
                         <li><router-link :to="{ name: 'income__fixed' }">FIA with Income Rider</router-link></li>
                         <li><router-link :to="{ name: 'income__immediate' }">SPIA / DIA Solver</router-link></li>
-                        <li><a href="#">Illustrations</a></li>
+                        <li class="disabled"><a href="#">Illustrations</a></li>
                     </ol>
                 </li>
                 <li>
@@ -31,8 +31,8 @@
 
                     <ol>
                         <li><router-link :to="{ name: 'performance__analyzer' }">Annuity Analyzer</router-link></li>
-                        <li><a href="#">Backtesting</a></li>
-                        <li><a href="#">Top Products</a></li>
+                        <li class="disabled"><a href="#">Backtesting</a></li>
+                        <li class="disabled"><a href="#">Top Products</a></li>
                     </ol>
                 </li>
                 <li>
@@ -40,7 +40,7 @@
 
                     <ol>
                         <li><router-link :to="{ name: 'indexes__tracker' }">Index Tracker & History</router-link></li>
-                        <li><a href="#">Annuity Products Data</a></li>
+                        <li class="disabled"><a href="#">Annuity Products Data</a></li>
                     </ol>
                 </li>
             </ol>

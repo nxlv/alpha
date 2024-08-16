@@ -108,6 +108,16 @@
                             left: -1px;
 
                             li {
+                                &.disabled {
+                                    pointer-events: none;
+                                    filter: grayscale(1);
+                                    opacity: 0.75;
+
+                                    a {
+                                        pointer-events: none;
+                                    }
+                                }
+
                                 &:hover {
                                     a {
                                         background-color: $brand-primary;
