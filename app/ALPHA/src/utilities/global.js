@@ -166,6 +166,36 @@ const globalUtils = {
                 };
                 break;
 
+            case 'cap_rate' :
+                dataset = {
+                    '': 'Any',
+                    'yes': 'Yes',
+                    'none': 'None',
+                    '5': '> 5%',
+                    '10': '> 10%',
+                    '15': '> 15%'
+                }
+                break;
+
+            case 'premium_bonus' :
+                dataset = {
+                    '': 'Any',
+                    'yes': 'Yes',
+                    'no': 'No',
+                    '5': '> 5%',
+                    '10': '> 10%'
+                }
+                break;
+
+            case 'premium_additional' :
+                dataset = {
+                    '': 'Any',
+                    'single': 'Single Premium',
+                    'product': 'Product Life',
+                    'first': 'First Year (or less)'
+                }
+                break;
+
             case 'yesno' :
                 dataset = {
                     'Y': 'Yes',
@@ -184,6 +214,21 @@ const globalUtils = {
                 dataset = {
                     'M': 'Male',
                     'F': 'Female'
+                }
+                break;
+
+            case 'any_or_none' :
+                dataset = {
+                    '': 'Any',
+                    'none': 'None'
+                }
+                break;
+
+            case 'any_yes_or_none' :
+                dataset = {
+                    '': 'Any',
+                    'yes': 'Yes',
+                    'none': 'None'
                 }
                 break;
         }

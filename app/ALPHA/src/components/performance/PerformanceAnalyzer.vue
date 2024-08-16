@@ -79,10 +79,7 @@
                         }
 
                         if ( element.allocations.length ) {
-                            console.log( 'adding', element );
                             this.reports_filtered.push( element );
-                        } else {
-                            console.log( 'skipping', element );
                         }
                     }
                 }
@@ -128,12 +125,112 @@
 
             <div class="form__row">
                 <div class="form__column">
+                    <label for="indexes">Carrier</label>
+                    <multiselect v-model="parameters.carrier"
+                                 mode="multiple"
+                                 label="label"
+                                 track-by="label"
+                                 :options="this.$globalUtils.get_set_as_kvp( 'carriers' )"
+                                 :hide-selected="false"
+                                 :close-on-select="false"
+                                 :searchable="true"
+                                 :create-option="false">
+                    </multiselect>
+                </div>
+            </div>
+
+            <div class="form__row">
+                <div class="form__column">
                     <label for="indexes">Index</label>
                     <multiselect v-model="parameters.index"
                                  mode="multiple"
                                  label="label"
                                  track-by="label"
                                  :options="this.$globalUtils.get_set_as_kvp( 'indexes_tickers' )"
+                                 :hide-selected="false"
+                                 :close-on-select="false"
+                                 :searchable="true"
+                                 :create-option="false">
+                    </multiselect>
+                </div>
+            </div>
+
+            <div class="form__row">
+                <div class="form__column form__column--half">
+                    <label for="indexes">Account Fees</label>
+                    <multiselect v-model="parameters.fees_account"
+                                 label="label"
+                                 track-by="label"
+                                 :options="this.$globalUtils.get_dataset( 'any_or_none' )"
+                                 :hide-selected="false"
+                                 :close-on-select="false"
+                                 :searchable="true"
+                                 :create-option="false">
+                    </multiselect>
+                </div>
+                <div class="form__column form__column--half">
+                    <label for="indexes">Product Fees</label>
+                    <multiselect v-model="parameters.fees_product"
+                                 label="label"
+                                 track-by="label"
+                                 :options="this.$globalUtils.get_dataset( 'any_or_none' )"
+                                 :hide-selected="false"
+                                 :close-on-select="false"
+                                 :searchable="true"
+                                 :create-option="false">
+                    </multiselect>
+                </div>
+            </div>
+
+            <div class="form__row">
+                <div class="form__column form__column--half">
+                    <label for="indexes">Spread</label>
+                    <multiselect v-model="parameters.spread"
+                                 label="label"
+                                 track-by="label"
+                                 :options="this.$globalUtils.get_dataset( 'any_yes_or_none' )"
+                                 :hide-selected="false"
+                                 :close-on-select="false"
+                                 :searchable="true"
+                                 :create-option="false">
+                    </multiselect>
+                </div>
+                <div class="form__column form__column--half">
+                    <label for="indexes">Cap</label>
+                    <multiselect v-model="parameters.cap"
+                                 label="label"
+                                 track-by="label"
+                                 :options="this.$globalUtils.get_dataset( 'cap_rate' )"
+                                 :hide-selected="false"
+                                 :close-on-select="false"
+                                 :searchable="true"
+                                 :create-option="false">
+                    </multiselect>
+                </div>
+            </div>
+
+            <div class="form__row">
+                <div class="form__column">
+                    <label for="indexes">Premium Bonus</label>
+                    <multiselect v-model="parameters.premium_bonus"
+                                 label="label"
+                                 track-by="label"
+                                 :options="this.$globalUtils.get_dataset( 'premium_bonus' )"
+                                 :hide-selected="false"
+                                 :close-on-select="false"
+                                 :searchable="true"
+                                 :create-option="false">
+                    </multiselect>
+                </div>
+            </div>
+
+            <div class="form__row">
+                <div class="form__column">
+                    <label for="indexes">Additional Premium</label>
+                    <multiselect v-model="parameters.premium_additional"
+                                 label="label"
+                                 track-by="label"
+                                 :options="this.$globalUtils.get_dataset( 'premium_additional' )"
                                  :hide-selected="false"
                                  :close-on-select="false"
                                  :searchable="true"
@@ -175,14 +272,14 @@
                                         <span data-type="reset">
                                             <strong>Reset</strong> <span>Annual</span>
                                         </span>
-                                        <span data-type="fee">
-                                            <strong>Account Fee</strong> <span>0.0%</span>
+                                        <span data-type="participation" v-if="allocation.vendor_strategy_rate_instance">
+                                            <strong>Cap Rate</strong> <span>{{ allocation.vendor_strategy_rate_instance.current_cap_rate }}%</span>
                                         </span>
-                                        <span data-type="participation">
-                                            <strong>Participation Rate</strong> <span>0%</span>
+                                        <span data-type="participation" v-if="allocation.vendor_strategy_rate_instance">
+                                            <strong>Participation Rate</strong> <span>{{ allocation.vendor_strategy_rate_instance.current_participation_rate }}%</span>
                                         </span>
-                                        <span data-type="surrender">
-                                            <strong>Surrender Years</strong> <span>0</span>
+                                        <span data-type="surrender" v-if="allocation.vendor_strategy_rate_instance">
+                                            <strong>Premium Range</strong> <span>${{ this.$financeUtils.format_currency_compact( allocation.vendor_strategy_rate_instance.premium_range_min, 'USD' ) }}&mdash;${{ this.$financeUtils.format_currency_compact( allocation.vendor_strategy_rate_instance.premium_range_max, 'USD' ) }}</span>
                                         </span>
                                     </div>
                                 </td>
