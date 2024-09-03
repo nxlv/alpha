@@ -296,7 +296,7 @@
     &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;Q:/development/alpha.universe.local/app/ALPHA/src/views/performance&quot;,
+    &quot;last_opened_file_path&quot;: &quot;Q:/development/atlantis.universe.local&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -323,11 +323,11 @@
       <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="Q:\development\alpha.universe.local\docker\platform-exports\webserver" />
+      <recent name="Q:\development\alpha.universe.local\docker\entrypoint-exports" />
       <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\components" />
       <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\components\dialogs\products" />
       <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\fonts" />
-      <recent name="Q:\development\alpha.universe.local\docker\apache-exports\sites-disabled" />
-      <recent name="Q:\development\alpha.universe.local\docker\apache-exports\sites-enabled" />
     </key>
   </component>
   <component name="RunManager">
@@ -544,7 +544,9 @@
       <workItem from="1721715402076" duration="5802000" />
       <workItem from="1722290439543" duration="8185000" />
       <workItem from="1723102328648" duration="19465000" />
-      <workItem from="1723765270648" duration="9310000" />
+      <workItem from="1723765270648" duration="12380000" />
+      <workItem from="1724461658525" duration="9000" />
+      <workItem from="1725318870518" duration="12905000" />
     </task>
     <servers />
   </component>

@@ -27,7 +27,7 @@ class CANNEXUpdate extends Command {
      *
      * @var string
      */
-    protected $signature = 'cannex:update {--dry-run}';
+    protected $signature = 'cannex:update';
 
     /**
      * The console command description.
@@ -42,7 +42,7 @@ class CANNEXUpdate extends Command {
      * @return int
      */
     public function handle() {
-        $_param_dry_run = $this->option( 'dry-run' );
+        //$_param_dry_run = $this->option( 'dry-run' );
 
         if ( Storage::exists( 'banner-cannex.asc' ) ) {
             $this->line( '<fg=blue>' . Storage::get( 'banner-cannex.asc' ) . '</>' );
