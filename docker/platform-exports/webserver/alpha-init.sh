@@ -9,15 +9,15 @@ sudo chmod -R ug+rwx /var/www/platform/storage /var/www/platform/bootstrap/cache
 echo '# Granting execute access on Artisan...'
 sudo chmod +x /var/www/platform/artisan
 
-echo '# Clearing application cache...'
-sudo /var/www/platform/artisan cache:clear
-
 echo '* Updating Laravel packages...'
 cd /var/www/platform
 composer update
 
 echo '* Regenerating autoload cache...'
 composer dump-autoload
+
+echo '# Clearing application cache...'
+sudo /var/www/platform/artisan cache:clear
 
 echo '* Starting CANNEX data update...'
 /var/www/platform/artisan cannex:update
