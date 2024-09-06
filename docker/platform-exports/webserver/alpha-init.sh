@@ -12,8 +12,11 @@ sudo chmod +x /var/www/platform/artisan
 echo '# Clearing application cache...'
 sudo /var/www/platform/artisan cache:clear
 
-echo '* Regenerating autoload cache...'
+echo '* Updating Laravel packages...'
 cd /var/www/platform
+composer update
+
+echo '* Regenerating autoload cache...'
 composer dump-autoload
 
 echo '* Starting CANNEX data update...'
