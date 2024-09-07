@@ -11,6 +11,11 @@ sudo chmod +x /var/www/platform/artisan
 
 echo '* Updating Laravel packages...'
 cd /var/www/platform
+
+if [ -d /var/www/platform/vendor ]; then
+  sudo rm -fR vendor
+fi
+
 composer update
 
 echo '* Regenerating autoload cache...'
