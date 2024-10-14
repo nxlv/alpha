@@ -350,6 +350,8 @@
                         }
                     } catch ( \SoapFault $exception ) {
                         error_log( print_r( $exception, true ) );
+
+                        $result = [ 'exception' => $exception, 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ];
                     }
 
                     $retry_count++;
@@ -360,7 +362,8 @@
                 }
             } catch ( \SoapFault $exception ) {
                 error_log( print_r( $exception, true ) );
-                return false;
+
+                $result = [ 'exception' => $exception, 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ];
             }
 
             return $result;

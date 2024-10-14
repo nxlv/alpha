@@ -153,7 +153,9 @@ class Quoting extends Controller {
     }
 
     public function query_fixed_guaranteed( Request $request ) {
+        $messages = [];
         $response = [];
+        $validity = true;
 
         $products = $request->get( 'products' );
         $settings = $request->get( 'settings' );
@@ -193,20 +195,28 @@ class Quoting extends Controller {
 
             $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
 
-            if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
-                if ( !is_array( $results->income_response_data ) ) {
-                    // TODO
-                } else {
-                    foreach ( $results->income_response_data as $result ) {
-                        $response[] = $result;
+            if ( ( is_array( $results ) ) && ( isset( $results[ 'exception' ] ) ) ) {
+                $validity = false;
+                $response = $results;
+            } else {
+                if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
+                    if ( !is_array( $results->income_response_data ) ) {
+                        // TODO
+                    } else {
+                        foreach ( $results->income_response_data as $result ) {
+                            $response[] = $result;
+                        }
                     }
                 }
             }
         } else {
             error_log( 'Failed to create annuitant profile' );
+
+            $validity = false;
+            $messages[] = 'Failed to create annuitant profile.';
         }
 
-        return $response;
+        return response()->json( [ 'error' => !$validity, 'messages' => $messages, 'result' => $response ] );
     }
 
     /**

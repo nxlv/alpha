@@ -66,6 +66,8 @@
 
                 let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
+                this.last_request = request;
+
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
                     this.loading = false;
@@ -99,6 +101,8 @@
                 let settings = { settings: this.parameters, offset: this.selections.offset, nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), inventory: inventory.settings.inventory };
 
                 let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+
+                this.last_request = request;
 
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
@@ -135,6 +139,8 @@
 
                 let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
+                this.last_request = request;
+
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
                     this.loading = false;
@@ -163,7 +169,7 @@
                 } else {
                     this.loading = false;
                     this.error = true;
-                    this.error_message = 'Real-time quotes for these annuity products is not available right now.  CANNEX returned an empty response when requesting quotes.  You may try again by clicking the Fetch Quotes button.';
+                    this.error_message = null;
                 }
 
                 this.sort_results();
@@ -188,6 +194,8 @@
                 }
 
                 let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...settings, signal: this.aborters.requests.signal } );
+
+                this.last_request = request;
 
                 /*
                 if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
@@ -248,6 +256,8 @@
                 console.log( 'illustration URL: ' + ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) );
 
                 let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { product: this.selections.product_id, settings: this.parameters, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), signal: this.aborters.requests.signal } );
+
+                this.last_request = request;
 
                 this.loading = false;
                 this.error = false;
@@ -475,6 +485,7 @@
 
                 error: false,
                 error_message: '',
+                last_request: null,
                 analysis_ids: null,
                 quotes: null,
                 nonce: null,
