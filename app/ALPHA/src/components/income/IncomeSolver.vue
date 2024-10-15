@@ -149,19 +149,19 @@
                 }
                 */
 
-                if ( ( request ) && ( request.data ) && ( request.data.length ) ) {
+                if ( ( request ) && ( request.data ) && ( !request.data.error ) && (request.data.result ) && ( request.data.result.length ) ) {
                     let index, index_inner;
 
                     console.log( request );
 
-                    for ( index = 0; index < request.data.length; index++ ) {
+                    for ( index = 0; index < request.data.result.length; index++ ) {
                         for ( index_inner = 0; index_inner < this.quotes.length; index_inner++ ) {
-                            console.log( this.quotes[ index_inner ].analysis_data_id, request.data[ index ].analysis_data_id );
+                            console.log( this.quotes[ index_inner ].analysis_data_id, request.data.result[ index ].analysis_data_id );
 
-                            if ( this.quotes[ index_inner ].analysis_data_id === request.data[ index ].analysis_data_id ) {
+                            if ( this.quotes[ index_inner ].analysis_data_id === request.data.result[ index ].analysis_data_id ) {
                                 console.log( 'found' );
 
-                                this.quotes[ index_inner ].quotes = request.data[ index ];
+                                this.quotes[ index_inner ].quotes = request.data.result[ index ];
                                 break;
                             }
                         }
@@ -169,7 +169,10 @@
                 } else {
                     this.loading = false;
                     this.error = true;
-                    this.error_message = null;
+                    this.error_message = 'Guaranteed rates could not be loaded from CANNEX.  This could be due to a number of connectivity issues.  Please try again.';
+                    this.error_data = request.data.result;
+
+                    console.log( this.error_data );
                 }
 
                 this.sort_results();
@@ -180,70 +183,6 @@
 
                 if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
                     //this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
-                }
-            },
-
-            async fetch_quote_backtested_return( inputs ) {
-                const client = useClientStore();
-
-                let endpoint = '/api/quoting/get/fixed/chunk/backtested';
-                let settings = { products: [], nonce: this.nonce, annuitant: this.$globalUtils.merge_with_defaults( client.settings, this.parameters.overrides.annuitant ), settings: inputs.parameters };
-
-                for ( let counter = 0; counter < inputs.products.length; counter++ ) {
-                    settings.products.push( inputs.products[ counter ].analysis_data_id );
-                }
-
-                let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...settings, signal: this.aborters.requests.signal } );
-
-                this.last_request = request;
-
-                /*
-                if ( !this.$globalUtils.verify_nonce( this.nonce, request ) ) {
-                    this.loading = false;
-
-                    return;
-                }
-                */
-
-                if ( ( request ) && ( request.data ) ) {
-                    let index, index_inner, index_income;
-
-                    for ( index = 0; index < request.data.length; index++ ) {
-                        for ( index_inner = 0; index_inner < this.quotes.length; index_inner++ ) {
-                            if ( ( request.data[ index ].analysis_request ) && ( request.data[ index ].analysis_data ) ) {
-                                if ( this.quotes[ index_inner ].analysis_data_id === request.data[ index ].analysis_request.analysis_data_id ) {
-                                    console.log( 'found backtested match for analysis id# ', this.quotes[ index_inner ].analysis_data_id );
-
-                                    this.quotes[ index_inner ].historical = {
-                                        request: request.data[ index ].analysis_request,
-                                        income: 0,
-                                        account_value: 0,
-                                        account_return: 0
-                                    };
-
-                                    for ( index_income = 0; index_income < request.data[ index ].analysis_data.length; index_income++ ) {
-                                        if ( request.data[ index ].analysis_data[ index_income ].income ) {
-                                            this.quotes[ index_inner ].historical.income = request.data[ index ].analysis_data[ index_income ].income;
-                                            this.quotes[ index_inner ].historical.account_value = request.data[ index ].analysis_data[ index_income - 1 ].account_value;
-                                            this.quotes[ index_inner ].historical.account_return = ( ( request.data[ index ].analysis_data[ index_income - 1 ].account_value / request.data[ index ].analysis_request.premium ) - 1 ) * 100;
-
-                                            console.log( 'account value', request.data[ index ].analysis_data[ index_income - 1 ].account_value, 'premium', request.data[ index ].analysis_request.premium );
-                                            break;
-                                        }
-                                    }
-
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                    // auto fetch the first 100 results
-                    /*
-                    if ( this.selections.offset < ( this.parameters.chunk_size * this.parameters.chunk_prefetch ) ) {
-                        this.timers.populator = setTimeout( this.fetch_chunk, 1000 );
-                    }
-                    */
                 }
             },
 
@@ -287,6 +226,7 @@
                 this.loading = true;
                 this.error = false;
                 this.error_message = null;
+                this.error_data = null;
 
                 try {
                     let endpoint = '/api/products/details';
@@ -317,6 +257,7 @@
                 this.loading = true;
                 this.error = false;
                 this.error_message = null;
+                this.error_data = null;
 
                 const client = useClientStore();
 
@@ -402,6 +343,7 @@
             close_details() {
                 this.error = false;
                 this.error_message = null;
+                this.error_data = null;
 
                 this.selections.product_id = null;
                 this.selections.product = null;
@@ -465,7 +407,6 @@
 
             this.$emitter.on( 'set_product_id', this.replace_product );
             this.$emitter.on( 'fetch_guaranteed', this.fetch_quote_guaranteed );
-            this.$emitter.on( 'fetch_backtested', this.fetch_quote_backtested_return );
 
             this.aborters.requests = new AbortController();
 
@@ -484,7 +425,8 @@
                 loading: false,
 
                 error: false,
-                error_message: '',
+                error_message: null,
+                error_data: null,
                 last_request: null,
                 analysis_ids: null,
                 quotes: null,
@@ -881,10 +823,10 @@
                     </div>
                 </div>
 
-                <div class="income-solver__error" v-if="error && error_message">
+                <div class="income-solver__error" v-if="error && ( ( error_message ) || ( error_data ) )">
                     <div class="alert alert-error">
                         <h3>An error has occurred!</h3>
-                        <p>{{ error_message }}</p>
+                        <p v-if="error_message">{{ error_message }}</p>
                     </div>
                 </div>
 

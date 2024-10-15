@@ -283,7 +283,7 @@
                 error_log( 'SOAP Error: ' . $exception->getMessage() );
             }
 
-            return $request_id;
+            return [ 'profile_id' => $request_id, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
         }
 
         public static function get_guaranteed_rates( $profile_id, $transaction_id ) {
@@ -351,7 +351,8 @@
                     } catch ( \SoapFault $exception ) {
                         error_log( print_r( $exception, true ) );
 
-                        $result = [ 'exception' => $exception, 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ];
+                        $result = [ 'exception' => $exception, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
+                        break;
                     }
 
                     $retry_count++;
@@ -363,7 +364,7 @@
             } catch ( \SoapFault $exception ) {
                 error_log( print_r( $exception, true ) );
 
-                $result = [ 'exception' => $exception, 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ];
+                $result = [ 'exception' => $exception, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
             }
 
             return $result;

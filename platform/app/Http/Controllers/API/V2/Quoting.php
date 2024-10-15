@@ -153,7 +153,7 @@ class Quoting extends Controller {
     }
 
     public function query_fixed_guaranteed( Request $request ) {
-        $messages = [];
+        $requests = [];
         $response = [];
         $validity = true;
 
@@ -190,7 +190,9 @@ class Quoting extends Controller {
 	    $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products );
         error_log( 'Profile ID: ' . $profile_id );
 
-        if ( ( !empty( $products ) ) && ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) ) {
+        if ( ( !empty( $products ) ) && ( $profile = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) && ( !empty( $profile[ 'profile_id' ] ) ) ) {
+            $profile_id = $profile[ 'profile_id' ];
+
             error_log( 'Profile created, ID#' . $profile_id );
 
             $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
@@ -213,10 +215,10 @@ class Quoting extends Controller {
             error_log( 'Failed to create annuitant profile' );
 
             $validity = false;
-            $messages[] = 'Failed to create annuitant profile.';
+            $response = $profile[ '__' ];
         }
 
-        return response()->json( [ 'error' => !$validity, 'messages' => $messages, 'result' => $response ] );
+        return response()->json( [ 'error' => !$validity, 'result' => $response ] );
     }
 
     /**
