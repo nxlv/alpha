@@ -6,13 +6,13 @@
   <canx_info>
     <info key="DIST-CODE">AALLC</info>
     <info key="DIST-NAME"><![CDATA[Annuity Association]]></info>
-    <info key="REQUEST-NO">CHOTX2</info>
-    <info key="RUN-DATE">2024-09-02T06:00:07</info>
+    <info key="REQUEST-NO">CIV8ZW</info>
+    <info key="RUN-DATE">2024-10-14T06:00:07</info>
     <info key="PRODUCT-TYPE">FIAX</info>
     <info key="CUSTOMER">22933</info>
     <info key="CUSTOMER-NAME"><![CDATA[Annuity Association, LLC]]></info>
     <info key="LOGON-ID"></info>
   </canx_info>
   <product_type cd="FIAX">Fixed Indexed Annuities</product_type>
-  <version_id>CHOTX2</version_id>
+  <version_id>CIV8ZW</version_id>
 </anty_ds>

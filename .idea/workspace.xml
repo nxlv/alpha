@@ -254,6 +254,28 @@
       <path value="$PROJECT_DIR$/platform/vendor/league/flysystem-local" />
       <path value="$PROJECT_DIR$/platform/vendor/carbonphp/carbon-doctrine-types" />
       <path value="$PROJECT_DIR$/platform/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/platform/vendor/composer" />
+      <path value="$PROJECT_DIR$/platform/vendor/fruitcake/laravel-cors" />
+      <path value="$PROJECT_DIR$/platform/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/platform/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/platform/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/platform/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/platform/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/platform/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/platform/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/platform/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/platform/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/platform/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/platform/vendor/php-ai/php-ml" />
+      <path value="$PROJECT_DIR$/platform/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/platform/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/platform/vendor/league/config" />
+      <path value="$PROJECT_DIR$/platform/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/platform/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/platform/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/platform/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/platform/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/platform/vendor/phpunit/php-file-iterator" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -532,7 +554,8 @@
       <workItem from="1725318870518" duration="13537000" />
       <workItem from="1725662686059" duration="2666000" />
       <workItem from="1726210900427" duration="425000" />
-      <workItem from="1728608783279" duration="9687000" />
+      <workItem from="1728608783279" duration="12147000" />
+      <workItem from="1729151445445" duration="5534000" />
     </task>
     <servers />
   </component>

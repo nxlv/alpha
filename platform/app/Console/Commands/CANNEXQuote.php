@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
 class CANNEXQuote extends Command {
-    protected $version = '1.0';
+    protected $version = '1.1';
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'cannex:quote {analysis_id} {premium} {deferral} {age} {gender} {type} {state?}';
+    protected $signature = 'cannex:quote {analysis_id} {premium} {deferral} {age} {gender} {type} {state}';
 
     /**
      * The console command description.
@@ -67,17 +67,22 @@ class CANNEXQuote extends Command {
                 $annuitant[ 'income_start_age_joint' ] = ( $age - 3 ) + $deferral;
             }
 
-            if ( $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $annuitant, 0, $targets ) ) {
+            if ( ( $profile = CANNEXHelper::create_annuitant_profile( $transaction_id, $annuitant, 0, $targets ) ) && ( !empty( $profile[ 'profile_id' ] ) ) ) {
+                $profile_id = $profile[ 'profile_id' ];
+
                 $this->line( sprintf( '  <fg=black;bg=blue> NOTICE </> Profile ID created (%s / %s), marital status: %s.', $profile_id, $transaction_id, $type ) . PHP_EOL );
                 $this->line( sprintf( '[+] Analysis IDs: %s', implode( ', ', $targets ) ) . PHP_EOL );
 
                 $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
 
-                if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
-                    if ( isset( $results->income_response_data->income_data ) ) {
-                        $this->line( sprintf( PHP_EOL . '  <fg=black;bg=green> INCOME </> Guaranteed (Init/Low/High): %f/%f/%f', floatval( $results->income_response_data->income_data->initial_income ), floatval( $results->income_response_data->income_data->lowest_income ), floatval( $results->income_response_data->income_data->highest_income ) ) . PHP_EOL );
+                if ( ( isset( $results[ 'result' ]->income_request_data ) ) && ( isset( $results[ 'result' ]->income_response_data ) ) ) {
+                    if ( isset( $results[ 'result' ]->income_response_data->income_data ) ) {
+                        $this->line( sprintf( PHP_EOL . '  <fg=black;bg=green> INCOME </> Guaranteed (Init/Low/High): %f/%f/%f', floatval( $results[ 'result' ]->income_response_data->income_data->initial_income ), floatval( $results[ 'result' ]->income_response_data->income_data->lowest_income ), floatval( $results[ 'result' ]->income_response_data->income_data->highest_income ) ) . PHP_EOL );
                     }
                 }
+            } else {
+                $this->line( PHP_EOL . '  <bg=red;fg=black> ERROR! </> Failed to create annuitant profile.' . PHP_EOL );
+                $this->line( print_r( $profile[ '__' ], true ) );
             }
 
             $this->line( PHP_EOL . '  <bg=cyan;fg=black> DONE! </>' . PHP_EOL );

@@ -6,16 +6,16 @@
   <canx_info>
     <info key="DIST-CODE">AALLC</info>
     <info key="DIST-NAME"><![CDATA[Annuity Association]]></info>
-    <info key="REQUEST-NO">CHOTX2</info>
-    <info key="RUN-DATE">2024-09-02T06:00:07</info>
+    <info key="REQUEST-NO">CIV8ZW</info>
+    <info key="RUN-DATE">2024-10-14T06:00:07</info>
     <info key="PRODUCT-TYPE">FIAX</info>
     <info key="CUSTOMER">22933</info>
     <info key="CUSTOMER-NAME"><![CDATA[Annuity Association, LLC]]></info>
     <info key="LOGON-ID"></info>
   </canx_info>
-  <version_id>0001978202</version_id>
+  <version_id>0001985833</version_id>
   <index index_id="A0000001">
-    <index_name><![CDATA[AB All Market 5% ER Index]]></index_name>
+    <index_name><![CDATA[AB All Market Index]]></index_name>
     <universal_ticker>ABALLMKT</universal_ticker>
     <live_date>2019-12-12</live_date>
     <oldest_date>2003-12-31</oldest_date>
@@ -71,7 +71,7 @@
     <most_recent_date>2023-12-29</most_recent_date>
   </index>
   <index index_id="A000000C">
-    <index_name><![CDATA[BlackRock iBLD Claria Excess Return Index]]></index_name>
+    <index_name><![CDATA[BlackRock iBLD Claria II Excess Return Index]]></index_name>
     <universal_ticker>IBLDCLRE</universal_ticker>
     <live_date>2018-09-10</live_date>
     <oldest_date>2018-09-30</oldest_date>
@@ -104,13 +104,6 @@
     <live_date>2016-01-25</live_date>
     <oldest_date>2002-12-31</oldest_date>
     <most_recent_date>2023-12-29</most_recent_date>
-  </index>
-  <index index_id="A000000I">
-    <index_name><![CDATA[BofA Destinations Daily Risk Control 5% Index Excess Return]]></index_name>
-    <universal_ticker>BOFADST5</universal_ticker>
-    <live_date>2020-06-04</live_date>
-    <oldest_date>2003-12-31</oldest_date>
-    <most_recent_date>2024-03-28</most_recent_date>
   </index>
   <index index_id="A000000J">
     <index_name><![CDATA[Citi Flexible Allocation 6 Index]]></index_name>
@@ -176,7 +169,7 @@
     <most_recent_date>2024-03-28</most_recent_date>
   </index>
   <index index_id="A000001C">
-    <index_name><![CDATA[Franklin Quality Dividend Total Retrun 5% Index]]></index_name>
+    <index_name><![CDATA[Franklin Quality Dividend Total Return 5% Index]]></index_name>
     <universal_ticker>LMQDTR5</universal_ticker>
     <live_date>2019-12-20</live_date>
     <oldest_date>1997-12-31</oldest_date>
@@ -240,7 +233,7 @@
   </index>
   <index index_id="A000001V">
     <index_name><![CDATA[Russell 2000 Index]]></index_name>
-    <universal_ticker>RTY</universal_ticker>
+    <universal_ticker>RUT</universal_ticker>
     <live_date>1984-01-01</live_date>
     <oldest_date>1978-12-31</oldest_date>
     <most_recent_date>2024-03-28</most_recent_date>
@@ -348,20 +341,6 @@
     <universal_ticker>BESGUVCX</universal_ticker>
     <live_date>2021-01-25</live_date>
     <oldest_date>2006-09-29</oldest_date>
-    <most_recent_date>2024-03-28</most_recent_date>
-  </index>
-  <index index_id="A000003B">
-    <index_name><![CDATA[UBS Tech Edge Index]]></index_name>
-    <universal_ticker>CSEATEDG</universal_ticker>
-    <live_date>2021-01-14</live_date>
-    <oldest_date>2002-12-31</oldest_date>
-    <most_recent_date>2024-03-28</most_recent_date>
-  </index>
-  <index index_id="A000003C">
-    <index_name><![CDATA[SG Global Sentiment Index]]></index_name>
-    <universal_ticker>SGIXSENT</universal_ticker>
-    <live_date>2020-12-24</live_date>
-    <oldest_date>2002-03-31</oldest_date>
     <most_recent_date>2024-03-28</most_recent_date>
   </index>
   <index index_id="A000003U">
@@ -622,5 +601,33 @@
     <live_date>2024-06-18</live_date>
     <oldest_date>2006-09-29</oldest_date>
     <most_recent_date>2024-07-31</most_recent_date>
+  </index>
+  <index index_id="A000006X">
+    <index_name><![CDATA[SG Columbia Adaptive Risk Allocation Index]]></index_name>
+    <universal_ticker>SGIXCARA</universal_ticker>
+    <live_date>2018-09-07</live_date>
+    <oldest_date>2001-10-31</oldest_date>
+    <most_recent_date>2024-08-30</most_recent_date>
+  </index>
+  <index index_id="A000006Y">
+    <index_name><![CDATA[S&P 500 IQ 0.5% Decrement Index]]></index_name>
+    <universal_ticker>SPFEVCID</universal_ticker>
+    <live_date>2023-07-12</live_date>
+    <oldest_date>2009-09-30</oldest_date>
+    <most_recent_date>2024-08-30</most_recent_date>
+  </index>
+  <index index_id="A000006Z">
+    <index_name><![CDATA[SG Lead Asset Select Exposure Rotation Index]]></index_name>
+    <universal_ticker>SGIXUSB</universal_ticker>
+    <live_date>2021-09-01</live_date>
+    <oldest_date>2002-03-28</oldest_date>
+    <most_recent_date>2024-08-30</most_recent_date>
+  </index>
+  <index index_id="A0000074">
+    <index_name><![CDATA[Morgan Stanley US Equity Allocator Index]]></index_name>
+    <universal_ticker>MSUSMSUA</universal_ticker>
+    <live_date>2023-11-22</live_date>
+    <oldest_date>2003-07-31</oldest_date>
+    <most_recent_date>2024-09-27</most_recent_date>
   </index>
 </anty_ds_indexes>

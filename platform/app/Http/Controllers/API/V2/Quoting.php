@@ -153,8 +153,7 @@ class Quoting extends Controller {
     }
 
     public function query_fixed_guaranteed( Request $request ) {
-        $requests = [];
-        $response = [];
+        $result = [];
         $validity = true;
 
         $products = $request->get( 'products' );
@@ -187,9 +186,6 @@ class Quoting extends Controller {
             unset( $parameters[ 'analysis_cd' ] );
         }
 
-	    $profile_id = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products );
-        error_log( 'Profile ID: ' . $profile_id );
-
         if ( ( !empty( $products ) ) && ( $profile = CANNEXHelper::create_annuitant_profile( $transaction_id, $parameters, 0, $products ) ) && ( !empty( $profile[ 'profile_id' ] ) ) ) {
             $profile_id = $profile[ 'profile_id' ];
 
@@ -199,14 +195,14 @@ class Quoting extends Controller {
 
             if ( ( is_array( $results ) ) && ( isset( $results[ 'exception' ] ) ) ) {
                 $validity = false;
-                $response = $results;
+                $result = $results;
             } else {
-                if ( ( isset( $results->income_request_data ) ) && ( isset( $results->income_response_data ) ) ) {
-                    if ( !is_array( $results->income_response_data ) ) {
+                if ( ( isset( $results[ 'result' ]->income_request_data ) ) && ( isset( $results[ 'result' ]->income_response_data ) ) ) {
+                    if ( !is_array( $results[ 'result' ]->income_response_data ) ) {
                         // TODO
                     } else {
-                        foreach ( $results->income_response_data as $result ) {
-                            $response[] = $result;
+                        foreach ( $results[ 'result' ]->income_response_data as $result ) {
+                            $result[] = $result;
                         }
                     }
                 }
@@ -215,10 +211,10 @@ class Quoting extends Controller {
             error_log( 'Failed to create annuitant profile' );
 
             $validity = false;
-            $response = $profile[ '__' ];
+            $result = $profile[ '__' ];
         }
 
-        return response()->json( [ 'error' => !$validity, 'result' => $response ] );
+        return response()->json( [ 'error' => !$validity, 'result' => $result ] );
     }
 
     /**

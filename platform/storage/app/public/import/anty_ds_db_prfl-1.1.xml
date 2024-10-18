@@ -6,183 +6,14 @@
   <canx_info>
     <info key="DIST-CODE">AALLC</info>
     <info key="DIST-NAME"><![CDATA[Annuity Association]]></info>
-    <info key="REQUEST-NO">CHOTX2</info>
-    <info key="RUN-DATE">2024-09-02T06:00:07</info>
+    <info key="REQUEST-NO">CIV8ZW</info>
+    <info key="RUN-DATE">2024-10-14T06:00:07</info>
     <info key="PRODUCT-TYPE">FIAX</info>
     <info key="CUSTOMER">22933</info>
     <info key="CUSTOMER-NAME"><![CDATA[Annuity Association, LLC]]></info>
     <info key="LOGON-ID"></info>
   </canx_info>
   <product_type cd="FIAX">Fixed Indexed Annuities</product_type>
-  <death_benefit_profile death_benefit_profile_id="0002254375" rule_id="29625206">
-    <canx_info>
-      <info key="IPNO">0817</info>
-      <info key="CO-CODE">CORE</info>
-      <info key="CO-NAME-L"><![CDATA[Corebridge Financial]]></info>
-      <info key="SET-NO">0001973288</info>
-      <info key="UPDATE-DATE">2024-08-12T00:00:03</info>
-      <info key="EXTERNAL-CODE">A000CQ</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A000C3" rule_id="29625323">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000D2" rule_id="29625327">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000D4" rule_id="29625331">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000D6" rule_id="29625335">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000D8" rule_id="29625339">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000DA" rule_id="29625343">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000DW" rule_id="29625350">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000DY" rule_id="29625354">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000EB" rule_id="29625358">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000ED" rule_id="29625362">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000EJ" rule_id="29625366">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000LZ" rule_id="29625370">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000MF" rule_id="29625374">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000MH" rule_id="29625387">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000UX" rule_id="29625394">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000CU" rule_id="29625420">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000Y3" rule_id="29625424">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00181" rule_id="29625428">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001DH" rule_id="29625454">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001JW" rule_id="35732632">Standard</product_association_type>
-    <name><![CDATA[Standard Death Benefit]]></name>
-    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002350219" rule_id="29706358">
-    <canx_info>
-      <info key="IPNO">0261</info>
-      <info key="CO-CODE">FIDG</info>
-      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
-      <info key="SET-NO">0001974656</info>
-      <info key="UPDATE-DATE">2024-08-13T10:55:36</info>
-      <info key="EXTERNAL-CODE">A00108</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A000ZJ" rule_id="29706866">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0010B" rule_id="29706891">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0010D" rule_id="29706932">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0010J" rule_id="29706957">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0010L" rule_id="29707007">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0010T" rule_id="29707060">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0010Y" rule_id="29707124">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00110" rule_id="29707163">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00112" rule_id="29707263">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0016A" rule_id="29707658">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0016C" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001FA" rule_id="31996224">Standard</product_association_type>
-    <name><![CDATA[Standard AV Death Benefit]]></name>
-    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002354803" rule_id="29706343">
-    <canx_info>
-      <info key="IPNO">0261</info>
-      <info key="CO-CODE">FIDG</info>
-      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
-      <info key="SET-NO">0001974656</info>
-      <info key="UPDATE-DATE">2024-08-13T10:55:36</info>
-      <info key="EXTERNAL-CODE">A00111</info>
-    </canx_info>
-    <product_association_type cd="O" instance_id="A00110" rule_id="29707216">Optional</product_association_type>
-    <name><![CDATA[Enhanced Death Benefit]]></name>
-    <death_benefit_type cd="CSV" text_id="07207141">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-    <roll_ups_instance instance_id="12706279" rule_id="" text_id="">
-      <interest_type cd="C">Compound interest</interest_type>
-      <period years="15" />
-      <tier_rate_frequency tier_no="1">
-        <rate>0.0000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-        <crediting_frequency cd="A">Annual</crediting_frequency>
-      </tier_rate_frequency>
-    </roll_ups_instance>
-    <premium_multiplier_instance instance_id="12706281" rule_id="" text_id="">
-      <tier_rate tier_no="1" rate="100.0000" />
-    </premium_multiplier_instance>
-     <interest_multiplier_crediting text_id="12706270" />
-    <interest_multiplier_crediting_instance instance_id="12706277" rule_id="13674438" text_id="">
-      <frequency_inheritance cd="S">Same as account crediting</frequency_inheritance>
-      <tier_rate_frequency tier_no="1">
-        <rate>200.0000</rate>
-        <crediting_frequency cd=""></crediting_frequency>
-      </tier_rate_frequency>
-    </interest_multiplier_crediting_instance>
-    <interest_multiplier_crediting_instance instance_id="13674439" rule_id="13674440" text_id="">
-      <frequency_inheritance cd="S">Same as account crediting</frequency_inheritance>
-      <tier_rate_frequency tier_no="1">
-        <rate>150.0000</rate>
-        <crediting_frequency cd=""></crediting_frequency>
-      </tier_rate_frequency>
-    </interest_multiplier_crediting_instance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002385705" rule_id="29706346">
-    <canx_info>
-      <info key="IPNO">0261</info>
-      <info key="CO-CODE">FIDG</info>
-      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
-      <info key="SET-NO">0001974656</info>
-      <info key="UPDATE-DATE">2024-08-13T10:55:36</info>
-      <info key="EXTERNAL-CODE">A0015M</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A00153" rule_id="29707324">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00163" rule_id="29707458">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00165" rule_id="29707592">Standard</product_association_type>
-    <name><![CDATA[GMDB - Enhancement Package]]></name>
-    <death_benefit_type cd="CSV" text_id="12379001">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-    <current_rider_fees_instance instance_id="12378990" rule_id="" text_id="">
-      <tier_rate_frequency tier_no="1">
-        <rate>0.6000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-      </tier_rate_frequency>
-    </current_rider_fees_instance>
-    <roll_ups_instance instance_id="12378992" rule_id="" text_id="">
-      <interest_type cd="S">Simple interest</interest_type>
-      <period years="10" />
-      <tier_rate_frequency tier_no="1">
-        <rate>5.0000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-        <crediting_frequency cd="A">Annual</crediting_frequency>
-      </tier_rate_frequency>
-    </roll_ups_instance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002385706" rule_id="29706340">
-    <canx_info>
-      <info key="IPNO">0261</info>
-      <info key="CO-CODE">FIDG</info>
-      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
-      <info key="SET-NO">0001974656</info>
-      <info key="UPDATE-DATE">2024-08-13T10:55:36</info>
-      <info key="EXTERNAL-CODE">A0015N</info>
-    </canx_info>
-    <product_association_type cd="O" instance_id="A00153" rule_id="29707388">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A00163" rule_id="29707528">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A00165" rule_id="29707625">Optional</product_association_type>
-    <name><![CDATA[EDMDB]]></name>
-    <death_benefit_type cd="CSV" text_id="12379000">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-    <current_rider_fees_instance instance_id="12378994" rule_id="" text_id="">
-      <tier_rate_frequency tier_no="1">
-        <rate>0.6000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-      </tier_rate_frequency>
-    </current_rider_fees_instance>
-    <roll_ups_instance instance_id="12378998" rule_id="" text_id="">
-      <interest_type cd="C">Compound interest</interest_type>
-      <period years="10" />
-      <tier_rate_frequency tier_no="1">
-        <rate>7.0000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-        <crediting_frequency cd="A">Annual</crediting_frequency>
-      </tier_rate_frequency>
-    </roll_ups_instance>
-    <premium_bonus_instance instance_id="12378996" rule_id="" text_id="">
-      <tier_rate tier_no="1" rate="18.0000" />
-    </premium_bonus_instance>
-  </death_benefit_profile>
   <death_benefit_profile death_benefit_profile_id="0002244395" rule_id="29723663">
     <canx_info>
       <info key="IPNO">1043</info>
@@ -337,267 +168,13 @@
     <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
     <premium_inheritance cd="S">Same as product</premium_inheritance>
   </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002257015" rule_id="29667483">
-    <canx_info>
-      <info key="IPNO">1057</info>
-      <info key="CO-CODE">DELA</info>
-      <info key="CO-NAME-L"><![CDATA[Delaware Life]]></info>
-      <info key="SET-NO">0001976193</info>
-      <info key="UPDATE-DATE">2024-08-29T00:00:11</info>
-      <info key="EXTERNAL-CODE">A000F9</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A000F8" rule_id="29667496">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000FB" rule_id="29667500">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000FD" rule_id="29667507">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000FF" rule_id="29667517">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000N9" rule_id="29667527">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001EW" rule_id="31300921">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001YJ" rule_id="42513526">Standard</product_association_type>
-    <name><![CDATA[Standard Death Benefit]]></name>
-    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002257271" rule_id="29747967">
-    <canx_info>
-      <info key="IPNO">1098</info>
-      <info key="CO-CODE">RSIC</info>
-      <info key="CO-NAME-L"><![CDATA[Reliance Standard Life Insurance Company]]></info>
-      <info key="SET-NO">0001976197</info>
-      <info key="UPDATE-DATE">2024-08-21T00:00:00</info>
-      <info key="EXTERNAL-CODE">A000FS</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A000FR" rule_id="29747970">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000XH" rule_id="29747974">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000XJ" rule_id="29747981">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000XL" rule_id="29747988">Standard</product_association_type>
-    <name><![CDATA[Death Benefit]]></name>
-    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002342295" rule_id="29714674">
-    <canx_info>
-      <info key="IPNO">0914</info>
-      <info key="CO-CODE">GLOB</info>
-      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
-      <info key="SET-NO">0001976487</info>
-      <info key="UPDATE-DATE">2024-08-26T00:00:13</info>
-      <info key="EXTERNAL-CODE">A000Y6</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A0006V" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000XR" rule_id="29714865">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001RN" rule_id="38348461">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001SC" rule_id="38590883">Standard</product_association_type>
-    <name><![CDATA[Contract Value Death Benefit]]></name>
-    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002243651" rule_id="29714671">
-    <canx_info>
-      <info key="IPNO">0914</info>
-      <info key="CO-CODE">GLOB</info>
-      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
-      <info key="SET-NO">0001976487</info>
-      <info key="UPDATE-DATE">2024-08-26T00:00:13</info>
-      <info key="EXTERNAL-CODE">A0006F</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A0006C" rule_id="29714776">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0006G" rule_id="29714789">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0006P" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0006O" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001SG" rule_id="38643342">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001T1" rule_id="39034508">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001TB" rule_id="39342193">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001TF" rule_id="39412114">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001UK" rule_id="40472983">Standard</product_association_type>
-    <name><![CDATA[Standard Death Benefit]]></name>
-    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002652320" rule_id="39412060">
-    <canx_info>
-      <info key="IPNO">0914</info>
-      <info key="CO-CODE">GLOB</info>
-      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
-      <info key="SET-NO">0001976487</info>
-      <info key="UPDATE-DATE">2024-08-26T00:00:13</info>
-      <info key="EXTERNAL-CODE">A001TD</info>
-    </canx_info>
-    <product_association_type cd="O" instance_id="A001TB" rule_id="39413659">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A001TF" rule_id="39464058">Optional</product_association_type>
-    <state_availability list_cd="I">
-      <state_cd_name state_cd="NJ">New Jersey</state_cd_name>
-    </state_availability>
-    <name><![CDATA[Enhanced Death Benefit]]></name>
-    <death_benefit_type cd="CV" text_id="39412063">Contract value</death_benefit_type>
-    <age_rule_basis cd="O">Owner</age_rule_basis>
-    <issue_age_inheritance cd="D">Different than product</issue_age_inheritance>
-    <issue_age_owner_instance instance_id="39412055">
-      <age_range min_years="0" min_months="0" max_years="75" max_months="0" rule_id="" />
-    </issue_age_owner_instance>
-    <issue_age_annuitant_instance instance_id="39412055">
-      <age_range min_years="0" min_months="0" max_years="75" max_months="0" rule_id="" />
-    </issue_age_annuitant_instance>
-    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
-    <issue_age_joint_owner_rules>
-      <min_age_basis cd="Y">Youngest</min_age_basis>
-      <max_age_basis cd="O">Oldest</max_age_basis>
-    </issue_age_joint_owner_rules>
-    <issue_age_joint_annuitant_rules>
-      <min_age_basis cd="Y">Youngest</min_age_basis>
-      <max_age_basis cd="O">Oldest</max_age_basis>
-    </issue_age_joint_annuitant_rules>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-    <current_rider_fees_instance instance_id="39412057" rule_id="" text_id="">
-      <tier_rate_frequency tier_no="1">
-        <rate>0.5000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-      </tier_rate_frequency>
-    </current_rider_fees_instance>
-    <roll_ups_instance instance_id="39412059" rule_id="" text_id="">
-      <interest_type cd="S">Simple interest</interest_type>
-      <period years="15" />
-      <tier_rate_frequency tier_no="1">
-        <rate>7.0000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-        <crediting_frequency cd="A">Annual</crediting_frequency>
-      </tier_rate_frequency>
-    </roll_ups_instance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002665000" rule_id="41896924">
-    <canx_info>
-      <info key="IPNO">0914</info>
-      <info key="CO-CODE">GLOB</info>
-      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
-      <info key="SET-NO">0001976487</info>
-      <info key="UPDATE-DATE">2024-08-26T00:00:13</info>
-      <info key="EXTERNAL-CODE">A001WF</info>
-    </canx_info>
-    <product_association_type cd="O" instance_id="A001TF" rule_id="41904807">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A001TB" rule_id="43670707">Optional</product_association_type>
-    <state_availability list_cd="I">
-      <state_cd_name state_cd="AL">Alabama</state_cd_name>
-      <state_cd_name state_cd="AK">Alaska</state_cd_name>
-      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
-      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
-      <state_cd_name state_cd="CA">California</state_cd_name>
-      <state_cd_name state_cd="CO">Colorado</state_cd_name>
-      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
-      <state_cd_name state_cd="DE">Delaware</state_cd_name>
-      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
-      <state_cd_name state_cd="FL">Florida</state_cd_name>
-      <state_cd_name state_cd="GA">Georgia</state_cd_name>
-      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
-      <state_cd_name state_cd="ID">Idaho</state_cd_name>
-      <state_cd_name state_cd="IL">Illinois</state_cd_name>
-      <state_cd_name state_cd="IN">Indiana</state_cd_name>
-      <state_cd_name state_cd="IA">Iowa</state_cd_name>
-      <state_cd_name state_cd="KS">Kansas</state_cd_name>
-      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
-      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
-      <state_cd_name state_cd="ME">Maine</state_cd_name>
-      <state_cd_name state_cd="MD">Maryland</state_cd_name>
-      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
-      <state_cd_name state_cd="MI">Michigan</state_cd_name>
-      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
-      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
-      <state_cd_name state_cd="MO">Missouri</state_cd_name>
-      <state_cd_name state_cd="MT">Montana</state_cd_name>
-      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
-      <state_cd_name state_cd="NV">Nevada</state_cd_name>
-      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
-      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
-      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
-      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
-      <state_cd_name state_cd="OH">Ohio</state_cd_name>
-      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
-      <state_cd_name state_cd="OR">Oregon</state_cd_name>
-      <state_cd_name state_cd="PA">Pennsylvania</state_cd_name>
-      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
-      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
-      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
-      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
-      <state_cd_name state_cd="TX">Texas</state_cd_name>
-      <state_cd_name state_cd="UT">Utah</state_cd_name>
-      <state_cd_name state_cd="VT">Vermont</state_cd_name>
-      <state_cd_name state_cd="VA">Virginia</state_cd_name>
-      <state_cd_name state_cd="WA">Washington</state_cd_name>
-      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
-      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
-      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
-    </state_availability>
-    <name><![CDATA[Enhanced Death Benefit]]></name>
-    <death_benefit_type cd="CV" text_id="41896918">Contract value</death_benefit_type>
-    <age_rule_basis cd="O">Owner</age_rule_basis>
-    <issue_age_inheritance cd="D">Different than product</issue_age_inheritance>
-    <issue_age_owner_instance instance_id="41896919">
-      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
-    </issue_age_owner_instance>
-    <issue_age_annuitant_instance instance_id="41896919">
-      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
-    </issue_age_annuitant_instance>
-    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
-    <issue_age_joint_owner_rules>
-      <min_age_basis cd="Y">Youngest</min_age_basis>
-      <max_age_basis cd="O">Oldest</max_age_basis>
-    </issue_age_joint_owner_rules>
-    <issue_age_joint_annuitant_rules>
-      <min_age_basis cd="Y">Youngest</min_age_basis>
-      <max_age_basis cd="O">Oldest</max_age_basis>
-    </issue_age_joint_annuitant_rules>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-    <current_rider_fees_instance instance_id="41896921" rule_id="41896927" text_id="">
-      <tier_rate_frequency tier_no="1">
-        <rate>0.5000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-      </tier_rate_frequency>
-    </current_rider_fees_instance>
-    <current_rider_fees_instance instance_id="41896928" rule_id="41896929" text_id="">
-      <tier_rate_frequency tier_no="1">
-        <rate>0.9500</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-      </tier_rate_frequency>
-    </current_rider_fees_instance>
-    <roll_ups_instance instance_id="41896923" rule_id="" text_id="41896930">
-      <interest_type cd="S">Simple interest</interest_type>
-      <period years="15" />
-      <tier_rate_frequency tier_no="1">
-        <rate>7.0000</rate>
-        <calculation_frequency cd="A">Annual</calculation_frequency>
-        <crediting_frequency cd="A">Annual</crediting_frequency>
-      </tier_rate_frequency>
-    </roll_ups_instance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002253463" rule_id="29743641">
-    <canx_info>
-      <info key="IPNO">0230</info>
-      <info key="CO-CODE">PROT</info>
-      <info key="CO-NAME-L"><![CDATA[Protective Life Insurance Company]]></info>
-      <info key="SET-NO">0001977067</info>
-      <info key="UPDATE-DATE">2024-08-23T10:29:37</info>
-      <info key="EXTERNAL-CODE">A000B5</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A000B4" rule_id="29743666">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000B7" rule_id="29743691">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000BC" rule_id="29743698">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000I6" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000I9" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000UN" rule_id="29743702">Standard</product_association_type>
-    <name><![CDATA[Standard Death Benefit]]></name>
-    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
   <death_benefit_profile death_benefit_profile_id="0002257311" rule_id="29755482">
     <canx_info>
       <info key="IPNO">1115</info>
       <info key="CO-CODE">STND</info>
       <info key="CO-NAME-L"><![CDATA[The Standard]]></info>
-      <info key="SET-NO">0001977107</info>
-      <info key="UPDATE-DATE">2024-08-24T00:00:00</info>
+      <info key="SET-NO">0001981005</info>
+      <info key="UPDATE-DATE">2024-09-12T12:00:09</info>
       <info key="EXTERNAL-CODE">A000FW</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000FV" rule_id="29755485">Standard</product_association_type>
@@ -622,8 +199,8 @@
       <info key="IPNO">1115</info>
       <info key="CO-CODE">STND</info>
       <info key="CO-NAME-L"><![CDATA[The Standard]]></info>
-      <info key="SET-NO">0001977107</info>
-      <info key="UPDATE-DATE">2024-08-24T00:00:00</info>
+      <info key="SET-NO">0001981005</info>
+      <info key="UPDATE-DATE">2024-09-12T12:00:09</info>
       <info key="EXTERNAL-CODE">A001JL</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A001JK" rule_id="35319525">Optional</product_association_type>
@@ -740,116 +317,207 @@
       </tier_rate_frequency>
     </interest_multiplier_crediting_instance>
   </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002318599" rule_id="29619489">
+  <death_benefit_profile death_benefit_profile_id="0002257271" rule_id="29747967">
     <canx_info>
-      <info key="IPNO">1049</info>
-      <info key="CO-CODE">AEIL</info>
-      <info key="CO-NAME-L"><![CDATA[American Equity Investment Life Insurance Company]]></info>
-      <info key="SET-NO">0001977322</info>
-      <info key="UPDATE-DATE">2024-08-29T00:00:03</info>
-      <info key="EXTERNAL-CODE">A000P1</info>
+      <info key="IPNO">1098</info>
+      <info key="CO-CODE">RSIC</info>
+      <info key="CO-NAME-L"><![CDATA[Reliance Standard Life Insurance Company]]></info>
+      <info key="SET-NO">0001981629</info>
+      <info key="UPDATE-DATE">2024-09-17T00:00:05</info>
+      <info key="EXTERNAL-CODE">A000FS</info>
     </canx_info>
-    <product_association_type cd="S" instance_id="A000PH" rule_id="29619666">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000PN" rule_id="29619676">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000PP" rule_id="29619701">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000PR" rule_id="29619726">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000PT" rule_id="29619736">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000RE" rule_id="29619746">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000RH" rule_id="29619765">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000S1" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000S3" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000RO" rule_id="29619788">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001BH" rule_id="29619795">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001E7" rule_id="33208518">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001E9" rule_id="33208528">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000FR" rule_id="29747970">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000XH" rule_id="29747974">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000XJ" rule_id="29747981">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000XL" rule_id="29747988">Standard</product_association_type>
+    <name><![CDATA[Death Benefit]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002253160" rule_id="29729434">
+    <canx_info>
+      <info key="IPNO">0964</info>
+      <info key="CO-CODE">MIDL</info>
+      <info key="CO-NAME-L"><![CDATA[Midland National Life Insurance Company]]></info>
+      <info key="SET-NO">0001982139</info>
+      <info key="UPDATE-DATE">2024-09-18T10:23:21</info>
+      <info key="EXTERNAL-CODE">A000B1</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A000B0" rule_id="29729535">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000H7" rule_id="29729548">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000MU" rule_id="29729578">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000TE" rule_id="29729588">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000TI" rule_id="29729598">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000TP" rule_id="29729608">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000TR" rule_id="29729625">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000TT" rule_id="29729642">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001XY" rule_id="42432685">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0020M" rule_id="44025286">Standard</product_association_type>
     <name><![CDATA[Standard Death Benefit]]></name>
     <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
     <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
     <premium_inheritance cd="S">Same as product</premium_inheritance>
   </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002385772" rule_id="29619492">
+  <death_benefit_profile death_benefit_profile_id="0002312347" rule_id="29729440">
     <canx_info>
-      <info key="IPNO">1049</info>
-      <info key="CO-CODE">AEIL</info>
-      <info key="CO-NAME-L"><![CDATA[American Equity Investment Life Insurance Company]]></info>
-      <info key="SET-NO">0001977322</info>
-      <info key="UPDATE-DATE">2024-08-29T00:00:03</info>
-      <info key="EXTERNAL-CODE">A0015O</info>
+      <info key="IPNO">0964</info>
+      <info key="CO-CODE">MIDL</info>
+      <info key="CO-NAME-L"><![CDATA[Midland National Life Insurance Company]]></info>
+      <info key="SET-NO">0001982139</info>
+      <info key="UPDATE-DATE">2024-09-18T10:23:21</info>
+      <info key="EXTERNAL-CODE">A000N5</info>
     </canx_info>
-    <product_association_type cd="S" instance_id="A00155" rule_id="29619775">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00247" rule_id="46163253">Standard</product_association_type>
-    <name><![CDATA[Death Benefit]]></name>
-    <death_benefit_type cd="CV" text_id="12414686">Contract value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002525441" rule_id="33468715">
-    <canx_info>
-      <info key="IPNO">1138</info>
-      <info key="CO-CODE">SILA</info>
-      <info key="CO-NAME-L"><![CDATA[SILAC Insurance Company]]></info>
-      <info key="SET-NO">0001977609</info>
-      <info key="UPDATE-DATE">2024-08-27T11:01:30</info>
-      <info key="EXTERNAL-CODE">A001GJ</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A001GI" rule_id="33468718">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001GQ" rule_id="33622947">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001GS" rule_id="33623383">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001GU" rule_id="33632480">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001H0" rule_id="33647679">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001H2" rule_id="33650285">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001HQ" rule_id="34243942">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001HX" rule_id="34254167">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001HZ" rule_id="34254592">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001II" rule_id="34275336">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001IL" rule_id="34290174">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001IT" rule_id="34297090">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001IZ" rule_id="34347915">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001J1" rule_id="34363459">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001J3" rule_id="34363758">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001J5" rule_id="34371996">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001J7" rule_id="34372296">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001J9" rule_id="34372597">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0021T" rule_id="44840641">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0021V" rule_id="44841029">Standard</product_association_type>
-    <name><![CDATA[Account Value DB]]></name>
-    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002531991" rule_id="34275959">
-    <canx_info>
-      <info key="IPNO">1138</info>
-      <info key="CO-CODE">SILA</info>
-      <info key="CO-NAME-L"><![CDATA[SILAC Insurance Company]]></info>
-      <info key="SET-NO">0001977609</info>
-      <info key="UPDATE-DATE">2024-08-27T11:01:30</info>
-      <info key="EXTERNAL-CODE">A001IJ</info>
-    </canx_info>
-    <product_association_type cd="O" instance_id="A001HQ" rule_id="34276006">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A001HX" rule_id="34276010">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A001HZ" rule_id="34276014">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A001II" rule_id="34276021">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A001IL" rule_id="34290178">Optional</product_association_type>
-    <product_association_type cd="O" instance_id="A001IT" rule_id="34297094">Optional</product_association_type>
+    <product_association_type cd="S" instance_id="A000N1" rule_id="29729568">Standard</product_association_type>
     <name><![CDATA[Enhanced Death Benefit]]></name>
+    <death_benefit_type cd="ROP" text_id="02708843">Return of premium</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002378316" rule_id="29729437">
+    <canx_info>
+      <info key="IPNO">0964</info>
+      <info key="CO-CODE">MIDL</info>
+      <info key="CO-NAME-L"><![CDATA[Midland National Life Insurance Company]]></info>
+      <info key="SET-NO">0001982139</info>
+      <info key="UPDATE-DATE">2024-09-18T10:23:21</info>
+      <info key="EXTERNAL-CODE">A00143</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A0013S" rule_id="29729659">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0013T" rule_id="29729663">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00140" rule_id="29729667">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0018T" rule_id="29729674">Standard</product_association_type>
+    <name><![CDATA[Accumulation Value Death Benefit]]></name>
     <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
     <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
     <premium_inheritance cd="S">Same as product</premium_inheritance>
-    <premium_bonus_instance instance_id="34275719" rule_id="34275720" text_id="">
-      <tier_rate tier_no="1" rate="50.0000" />
-    </premium_bonus_instance>
-    <premium_bonus_instance instance_id="34275721" rule_id="34275722" text_id="">
-      <tier_rate tier_no="1" rate="10.0000" />
-    </premium_bonus_instance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002726929" rule_id="47568024">
+    <canx_info>
+      <info key="IPNO">1150</info>
+      <info key="CO-CODE">AMCO</info>
+      <info key="CO-NAME-L"><![CDATA[Americo Financial Life and Annuity Insurance Company]]></info>
+      <info key="SET-NO">0001982733</info>
+      <info key="UPDATE-DATE">2024-09-26T00:00:03</info>
+      <info key="EXTERNAL-CODE">A0026P</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A0026O" rule_id="47568027">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027H" rule_id="47937862">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027J" rule_id="47938014">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027L" rule_id="47962973">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027P" rule_id="47999051">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027R" rule_id="47999221">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027T" rule_id="47999524">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027V" rule_id="47999697">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027X" rule_id="48000084">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0027Z" rule_id="48001273">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00281" rule_id="48001437">Standard</product_association_type>
+    <name><![CDATA[Standard Death Benefit]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002728634" rule_id="47938430">
+    <canx_info>
+      <info key="IPNO">1150</info>
+      <info key="CO-CODE">AMCO</info>
+      <info key="CO-NAME-L"><![CDATA[Americo Financial Life and Annuity Insurance Company]]></info>
+      <info key="SET-NO">0001982733</info>
+      <info key="UPDATE-DATE">2024-09-26T00:00:03</info>
+      <info key="EXTERNAL-CODE">A0027F</info>
+    </canx_info>
+    <product_association_type cd="O" instance_id="A0026O" rule_id="47938433">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027H" rule_id="47938440">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027J" rule_id="47938453">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027L" rule_id="47962983">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027P" rule_id="47999055">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027R" rule_id="47999231">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027T" rule_id="47999528">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027V" rule_id="47999710">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A0027X" rule_id="48000088">Optional</product_association_type>
+    <state_availability list_cd="I">
+      <state_cd_name state_cd="AL">Alabama</state_cd_name>
+      <state_cd_name state_cd="AK">Alaska</state_cd_name>
+      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
+      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
+      <state_cd_name state_cd="CA">California</state_cd_name>
+      <state_cd_name state_cd="CO">Colorado</state_cd_name>
+      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
+      <state_cd_name state_cd="DE">Delaware</state_cd_name>
+      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
+      <state_cd_name state_cd="FL">Florida</state_cd_name>
+      <state_cd_name state_cd="GA">Georgia</state_cd_name>
+      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
+      <state_cd_name state_cd="ID">Idaho</state_cd_name>
+      <state_cd_name state_cd="IL">Illinois</state_cd_name>
+      <state_cd_name state_cd="IN">Indiana</state_cd_name>
+      <state_cd_name state_cd="IA">Iowa</state_cd_name>
+      <state_cd_name state_cd="KS">Kansas</state_cd_name>
+      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
+      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
+      <state_cd_name state_cd="ME">Maine</state_cd_name>
+      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
+      <state_cd_name state_cd="MI">Michigan</state_cd_name>
+      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
+      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
+      <state_cd_name state_cd="MT">Montana</state_cd_name>
+      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
+      <state_cd_name state_cd="NV">Nevada</state_cd_name>
+      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
+      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
+      <state_cd_name state_cd="NY">New York</state_cd_name>
+      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
+      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
+      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
+      <state_cd_name state_cd="OR">Oregon</state_cd_name>
+      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
+      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
+      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
+      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
+      <state_cd_name state_cd="TX">Texas</state_cd_name>
+      <state_cd_name state_cd="VT">Vermont</state_cd_name>
+      <state_cd_name state_cd="VA">Virginia</state_cd_name>
+      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
+      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
+      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
+    </state_availability>
+    <name><![CDATA[Heritage Maximizer Enhanced Death Benefit]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <age_rule_basis cd="O">Owner</age_rule_basis>
+    <issue_age_inheritance cd="D">Different than product</issue_age_inheritance>
+    <issue_age_owner_instance instance_id="47937827">
+      <age_range min_years="0" min_months="0" max_years="75" max_months="0" rule_id="" />
+    </issue_age_owner_instance>
+    <issue_age_annuitant_instance instance_id="47937827">
+      <age_range min_years="0" min_months="0" max_years="75" max_months="0" rule_id="" />
+    </issue_age_annuitant_instance>
+    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
+    <issue_age_joint_owner_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_owner_rules>
+    <issue_age_joint_annuitant_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_annuitant_rules>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+    <current_rider_fees_instance instance_id="47937829" rule_id="" text_id="">
+      <tier_rate_frequency tier_no="1">
+        <rate>0.3000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+      </tier_rate_frequency>
+    </current_rider_fees_instance>
+    <death_benefit_enhancement_instance instance_id="47937831" rule_id="" text_id="47937832">
+      <tier_rate tier_no="1" rate="130.0000" />
+    </death_benefit_enhancement_instance>
   </death_benefit_profile>
   <death_benefit_profile death_benefit_profile_id="0002247986" rule_id="29730463">
     <canx_info>
       <info key="IPNO">0823</info>
       <info key="CO-CODE">MINN</info>
       <info key="CO-NAME-L"><![CDATA[Minnesota Life Insurance Company - A Securian Co.]]></info>
-      <info key="SET-NO">0001977614</info>
-      <info key="UPDATE-DATE">2024-09-01T00:00:04</info>
+      <info key="SET-NO">0001983520</info>
+      <info key="UPDATE-DATE">2024-10-01T00:00:10</info>
       <info key="EXTERNAL-CODE">A000A3</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000A0" rule_id="29730470">Standard</product_association_type>
@@ -864,8 +532,8 @@
       <info key="IPNO">0823</info>
       <info key="CO-CODE">MINN</info>
       <info key="CO-NAME-L"><![CDATA[Minnesota Life Insurance Company - A Securian Co.]]></info>
-      <info key="SET-NO">0001977614</info>
-      <info key="UPDATE-DATE">2024-09-01T00:00:04</info>
+      <info key="SET-NO">0001983520</info>
+      <info key="UPDATE-DATE">2024-10-01T00:00:10</info>
       <info key="EXTERNAL-CODE">A000A5</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000A2" rule_id="29730481">Standard</product_association_type>
@@ -894,88 +562,24 @@
       </tier_rate_frequency>
     </roll_ups_instance>
   </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002378161" rule_id="29735992">
+  <death_benefit_profile death_benefit_profile_id="0002257015" rule_id="29667483">
     <canx_info>
-      <info key="IPNO">1058</info>
-      <info key="CO-CODE">NALI</info>
-      <info key="CO-NAME-L"><![CDATA[North American Company for Life and Health Insurance]]></info>
-      <info key="SET-NO">0001978187</info>
-      <info key="UPDATE-DATE">2024-08-29T07:08:37</info>
-      <info key="EXTERNAL-CODE">A00142</info>
+      <info key="IPNO">1057</info>
+      <info key="CO-CODE">DELA</info>
+      <info key="CO-NAME-L"><![CDATA[Delaware Life]]></info>
+      <info key="SET-NO">0001983544</info>
+      <info key="UPDATE-DATE">2024-09-26T00:00:03</info>
+      <info key="EXTERNAL-CODE">A000F9</info>
     </canx_info>
-    <product_association_type cd="S" instance_id="A00141" rule_id="29736059">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0014D" rule_id="29736069">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00167" rule_id="29736079">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0016M" rule_id="29736089">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0017G" rule_id="29736099">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0017N" rule_id="29736106">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0017P" rule_id="29736116">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0017Q" rule_id="29736126">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0017T" rule_id="">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0017Z" rule_id="29736136">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001BQ" rule_id="29736146">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001CI" rule_id="29736156">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001EZ" rule_id="31864856">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001ZN" rule_id="43440653">Standard</product_association_type>
-    <name><![CDATA[Accumulation Value DB]]></name>
-    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002253160" rule_id="29729434">
-    <canx_info>
-      <info key="IPNO">0964</info>
-      <info key="CO-CODE">MIDL</info>
-      <info key="CO-NAME-L"><![CDATA[Midland National Life Insurance Company]]></info>
-      <info key="SET-NO">0001978218</info>
-      <info key="UPDATE-DATE">2024-08-29T12:12:02</info>
-      <info key="EXTERNAL-CODE">A000B1</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A000B0" rule_id="29729535">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000H7" rule_id="29729548">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000MU" rule_id="29729578">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000TE" rule_id="29729588">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000TI" rule_id="29729598">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000TP" rule_id="29729608">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000TR" rule_id="29729625">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A000TT" rule_id="29729642">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A001XY" rule_id="42432685">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0020M" rule_id="44025286">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000F8" rule_id="29667496">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000FB" rule_id="29667500">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000FD" rule_id="29667507">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000FF" rule_id="29667517">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000N9" rule_id="29667527">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001EW" rule_id="31300921">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001YJ" rule_id="42513526">Standard</product_association_type>
     <name><![CDATA[Standard Death Benefit]]></name>
     <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002312347" rule_id="29729440">
-    <canx_info>
-      <info key="IPNO">0964</info>
-      <info key="CO-CODE">MIDL</info>
-      <info key="CO-NAME-L"><![CDATA[Midland National Life Insurance Company]]></info>
-      <info key="SET-NO">0001978218</info>
-      <info key="UPDATE-DATE">2024-08-29T12:12:02</info>
-      <info key="EXTERNAL-CODE">A000N5</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A000N1" rule_id="29729568">Standard</product_association_type>
-    <name><![CDATA[Enhanced Death Benefit]]></name>
-    <death_benefit_type cd="ROP" text_id="02708843">Return of premium</death_benefit_type>
-    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
-    <premium_inheritance cd="S">Same as product</premium_inheritance>
-  </death_benefit_profile>
-  <death_benefit_profile death_benefit_profile_id="0002378316" rule_id="29729437">
-    <canx_info>
-      <info key="IPNO">0964</info>
-      <info key="CO-CODE">MIDL</info>
-      <info key="CO-NAME-L"><![CDATA[Midland National Life Insurance Company]]></info>
-      <info key="SET-NO">0001978218</info>
-      <info key="UPDATE-DATE">2024-08-29T12:12:02</info>
-      <info key="EXTERNAL-CODE">A00143</info>
-    </canx_info>
-    <product_association_type cd="S" instance_id="A0013S" rule_id="29729659">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0013T" rule_id="29729663">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A00140" rule_id="29729667">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0018T" rule_id="29729674">Standard</product_association_type>
-    <name><![CDATA[Accumulation Value Death Benefit]]></name>
-    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
     <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
     <premium_inheritance cd="S">Same as product</premium_inheritance>
   </death_benefit_profile>
@@ -984,8 +588,8 @@
       <info key="IPNO">0725</info>
       <info key="CO-CODE">ALI</info>
       <info key="CO-NAME-L"><![CDATA[Allianz Life Insurance Company of North America]]></info>
-      <info key="SET-NO">0001978233</info>
-      <info key="UPDATE-DATE">2024-08-29T13:51:18</info>
+      <info key="SET-NO">0001983589</info>
+      <info key="UPDATE-DATE">2024-09-27T00:00:16</info>
       <info key="EXTERNAL-CODE">A000BI</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000BH" rule_id="29607648">Standard</product_association_type>
@@ -1007,8 +611,8 @@
       <info key="IPNO">0780</info>
       <info key="CO-CODE">ANIC</info>
       <info key="CO-NAME-L"><![CDATA[American National Insurance Company]]></info>
-      <info key="SET-NO">0001978499</info>
-      <info key="UPDATE-DATE">2024-09-01T00:00:14</info>
+      <info key="SET-NO">0001984644</info>
+      <info key="UPDATE-DATE">2024-10-01T09:19:46</info>
       <info key="EXTERNAL-CODE">A000EX</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000EW" rule_id="29626932">Standard</product_association_type>
@@ -1020,13 +624,209 @@
     <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
     <premium_inheritance cd="S">Same as product</premium_inheritance>
   </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002318599" rule_id="29619489">
+    <canx_info>
+      <info key="IPNO">1049</info>
+      <info key="CO-CODE">AEIL</info>
+      <info key="CO-NAME-L"><![CDATA[American Equity Investment Life Insurance Company]]></info>
+      <info key="SET-NO">0001984646</info>
+      <info key="UPDATE-DATE">2024-10-03T00:00:01</info>
+      <info key="EXTERNAL-CODE">A000P1</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A000PH" rule_id="29619666">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000PN" rule_id="29619676">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000PP" rule_id="29619701">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000PR" rule_id="29619726">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000PT" rule_id="29619736">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000RE" rule_id="29619746">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000RH" rule_id="29619765">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000S1" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000S3" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000RO" rule_id="29619788">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001BH" rule_id="29619795">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001E7" rule_id="33208518">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001E9" rule_id="33208528">Standard</product_association_type>
+    <name><![CDATA[Standard Death Benefit]]></name>
+    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002254375" rule_id="29625206">
+    <canx_info>
+      <info key="IPNO">0817</info>
+      <info key="CO-CODE">CORE</info>
+      <info key="CO-NAME-L"><![CDATA[Corebridge Financial]]></info>
+      <info key="SET-NO">0001985801</info>
+      <info key="UPDATE-DATE">2024-10-14T00:00:00</info>
+      <info key="EXTERNAL-CODE">A000CQ</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A000C3" rule_id="29625323">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000D2" rule_id="29625327">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000D4" rule_id="29625331">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000D6" rule_id="29625335">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000D8" rule_id="29625339">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000DA" rule_id="29625343">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000DW" rule_id="29625350">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000DY" rule_id="29625354">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000EB" rule_id="29625358">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000ED" rule_id="29625362">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000EJ" rule_id="29625366">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000LZ" rule_id="29625370">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000MF" rule_id="29625374">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000MH" rule_id="29625387">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000UX" rule_id="29625394">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000CU" rule_id="29625420">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000Y3" rule_id="29625424">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00181" rule_id="29625428">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001DH" rule_id="29625454">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001JW" rule_id="35732632">Standard</product_association_type>
+    <name><![CDATA[Standard Death Benefit]]></name>
+    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002350219" rule_id="29706358">
+    <canx_info>
+      <info key="IPNO">0261</info>
+      <info key="CO-CODE">FIDG</info>
+      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
+      <info key="SET-NO">0001985845</info>
+      <info key="UPDATE-DATE">2024-10-10T00:00:10</info>
+      <info key="EXTERNAL-CODE">A00108</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A000ZJ" rule_id="29706866">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0010B" rule_id="29706891">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0010D" rule_id="29706932">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0010J" rule_id="29706957">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0010L" rule_id="29707007">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0010T" rule_id="29707060">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0010Y" rule_id="29707124">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00110" rule_id="29707163">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00112" rule_id="29707263">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0016A" rule_id="29707658">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0016C" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001FA" rule_id="31996224">Standard</product_association_type>
+    <name><![CDATA[Standard AV Death Benefit]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002354803" rule_id="29706343">
+    <canx_info>
+      <info key="IPNO">0261</info>
+      <info key="CO-CODE">FIDG</info>
+      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
+      <info key="SET-NO">0001985845</info>
+      <info key="UPDATE-DATE">2024-10-10T00:00:10</info>
+      <info key="EXTERNAL-CODE">A00111</info>
+    </canx_info>
+    <product_association_type cd="O" instance_id="A00110" rule_id="29707216">Optional</product_association_type>
+    <name><![CDATA[Enhanced Death Benefit]]></name>
+    <death_benefit_type cd="CSV" text_id="07207141">Cash surrender value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+    <roll_ups_instance instance_id="12706279" rule_id="" text_id="">
+      <interest_type cd="C">Compound interest</interest_type>
+      <period years="15" />
+      <tier_rate_frequency tier_no="1">
+        <rate>0.0000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+        <crediting_frequency cd="A">Annual</crediting_frequency>
+      </tier_rate_frequency>
+    </roll_ups_instance>
+    <premium_multiplier_instance instance_id="12706281" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="100.0000" />
+    </premium_multiplier_instance>
+     <interest_multiplier_crediting text_id="12706270" />
+    <interest_multiplier_crediting_instance instance_id="12706277" rule_id="13674438" text_id="">
+      <frequency_inheritance cd="S">Same as account crediting</frequency_inheritance>
+      <tier_rate_frequency tier_no="1">
+        <rate>200.0000</rate>
+        <crediting_frequency cd=""></crediting_frequency>
+      </tier_rate_frequency>
+    </interest_multiplier_crediting_instance>
+    <interest_multiplier_crediting_instance instance_id="13674439" rule_id="13674440" text_id="">
+      <frequency_inheritance cd="S">Same as account crediting</frequency_inheritance>
+      <tier_rate_frequency tier_no="1">
+        <rate>150.0000</rate>
+        <crediting_frequency cd=""></crediting_frequency>
+      </tier_rate_frequency>
+    </interest_multiplier_crediting_instance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002385705" rule_id="29706346">
+    <canx_info>
+      <info key="IPNO">0261</info>
+      <info key="CO-CODE">FIDG</info>
+      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
+      <info key="SET-NO">0001985845</info>
+      <info key="UPDATE-DATE">2024-10-10T00:00:10</info>
+      <info key="EXTERNAL-CODE">A0015M</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A00153" rule_id="29707324">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00163" rule_id="29707458">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00165" rule_id="29707592">Standard</product_association_type>
+    <name><![CDATA[GMDB - Enhancement Package]]></name>
+    <death_benefit_type cd="CSV" text_id="12379001">Cash surrender value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+    <current_rider_fees_instance instance_id="12378990" rule_id="" text_id="">
+      <tier_rate_frequency tier_no="1">
+        <rate>0.6000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+      </tier_rate_frequency>
+    </current_rider_fees_instance>
+    <roll_ups_instance instance_id="12378992" rule_id="" text_id="">
+      <interest_type cd="S">Simple interest</interest_type>
+      <period years="10" />
+      <tier_rate_frequency tier_no="1">
+        <rate>5.0000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+        <crediting_frequency cd="A">Annual</crediting_frequency>
+      </tier_rate_frequency>
+    </roll_ups_instance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002385706" rule_id="29706340">
+    <canx_info>
+      <info key="IPNO">0261</info>
+      <info key="CO-CODE">FIDG</info>
+      <info key="CO-NAME-L"><![CDATA[Fidelity and Guaranty]]></info>
+      <info key="SET-NO">0001985845</info>
+      <info key="UPDATE-DATE">2024-10-10T00:00:10</info>
+      <info key="EXTERNAL-CODE">A0015N</info>
+    </canx_info>
+    <product_association_type cd="O" instance_id="A00153" rule_id="29707388">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A00163" rule_id="29707528">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A00165" rule_id="29707625">Optional</product_association_type>
+    <name><![CDATA[EDMDB]]></name>
+    <death_benefit_type cd="CSV" text_id="12379000">Cash surrender value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+    <current_rider_fees_instance instance_id="12378994" rule_id="" text_id="">
+      <tier_rate_frequency tier_no="1">
+        <rate>0.6000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+      </tier_rate_frequency>
+    </current_rider_fees_instance>
+    <roll_ups_instance instance_id="12378998" rule_id="" text_id="">
+      <interest_type cd="C">Compound interest</interest_type>
+      <period years="10" />
+      <tier_rate_frequency tier_no="1">
+        <rate>7.0000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+        <crediting_frequency cd="A">Annual</crediting_frequency>
+      </tier_rate_frequency>
+    </roll_ups_instance>
+    <premium_bonus_instance instance_id="12378996" rule_id="" text_id="">
+      <tier_rate tier_no="1" rate="18.0000" />
+    </premium_bonus_instance>
+  </death_benefit_profile>
   <death_benefit_profile death_benefit_profile_id="0002256108" rule_id="29635087">
     <canx_info>
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A000E9</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000E8" rule_id="29635544">Standard</product_association_type>
@@ -1051,8 +851,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A000EP</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000ZL" rule_id="29635736">Standard</product_association_type>
@@ -1061,10 +861,10 @@
     <product_association_type cd="S" instance_id="A0010G" rule_id="29635823">Standard</product_association_type>
     <product_association_type cd="S" instance_id="A0010P" rule_id="29635833">Standard</product_association_type>
     <product_association_type cd="S" instance_id="A0010R" rule_id="29635843">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0026R" rule_id="47789403">Standard</product_association_type>
     <product_association_type cd="S" instance_id="A0026Y" rule_id="47827558">Standard</product_association_type>
     <product_association_type cd="S" instance_id="A00270" rule_id="47827660">Standard</product_association_type>
     <product_association_type cd="S" instance_id="A00272" rule_id="47827769">Standard</product_association_type>
-    <product_association_type cd="S" instance_id="A0026R" rule_id="47789403">Standard</product_association_type>
     <product_association_type cd="S" instance_id="A00275" rule_id="47827872">Standard</product_association_type>
     <product_association_type cd="S" instance_id="A00279" rule_id="47827957">Standard</product_association_type>
     <name><![CDATA[Death Benefit - CV]]></name>
@@ -1077,8 +877,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A0011J</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A000ZM" rule_id="29635798">Standard</product_association_type>
@@ -1145,8 +945,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A00121</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A0010E" rule_id="29635813">Standard</product_association_type>
@@ -1212,8 +1012,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A00126</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0010G" rule_id="29635853">Optional</product_association_type>
@@ -1324,8 +1124,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A00129</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0010G" rule_id="29635863">Optional</product_association_type>
@@ -1429,8 +1229,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A0012Z</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0010P" rule_id="29635873">Optional</product_association_type>
@@ -1534,8 +1334,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A00131</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0010P" rule_id="29635883">Optional</product_association_type>
@@ -1646,8 +1446,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A0013H</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0010R" rule_id="29635893">Optional</product_association_type>
@@ -1729,8 +1529,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A0013J</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0010R" rule_id="29635903">Optional</product_association_type>
@@ -1819,8 +1619,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A0013K</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0011C" rule_id="29635913">Optional</product_association_type>
@@ -1903,8 +1703,8 @@
       <info key="IPNO">0924</info>
       <info key="CO-CODE">ATHN</info>
       <info key="CO-NAME-L"><![CDATA[Athene Annuity and Life Company]]></info>
-      <info key="SET-NO">0001978507</info>
-      <info key="UPDATE-DATE">2024-08-30T16:14:58</info>
+      <info key="SET-NO">0001986117</info>
+      <info key="UPDATE-DATE">2024-10-08T10:39:39</info>
       <info key="EXTERNAL-CODE">A0013M</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0011C" rule_id="29635920">Optional</product_association_type>
@@ -1995,8 +1795,8 @@
       <info key="IPNO">0619</info>
       <info key="CO-CODE">PL</info>
       <info key="CO-NAME-L"><![CDATA[Pacific Life Insurance Company]]></info>
-      <info key="SET-NO">0001978533</info>
-      <info key="UPDATE-DATE">2024-09-01T00:01:06</info>
+      <info key="SET-NO">0001986147</info>
+      <info key="UPDATE-DATE">2024-10-10T10:23:28</info>
       <info key="EXTERNAL-CODE">A0008M</info>
     </canx_info>
     <product_association_type cd="S" instance_id="A0008L" rule_id="29739472">Standard</product_association_type>
@@ -2014,8 +1814,8 @@
       <info key="IPNO">0619</info>
       <info key="CO-CODE">PL</info>
       <info key="CO-NAME-L"><![CDATA[Pacific Life Insurance Company]]></info>
-      <info key="SET-NO">0001978533</info>
-      <info key="UPDATE-DATE">2024-09-01T00:01:06</info>
+      <info key="SET-NO">0001986147</info>
+      <info key="UPDATE-DATE">2024-10-10T10:23:28</info>
       <info key="EXTERNAL-CODE">A0008O</info>
     </canx_info>
     <product_association_type cd="O" instance_id="A0008L" rule_id="29739479">Optional</product_association_type>
@@ -2107,5 +1907,262 @@
         <crediting_frequency cd="A">Annual</crediting_frequency>
       </tier_rate_frequency>
     </roll_ups_instance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002378161" rule_id="29735992">
+    <canx_info>
+      <info key="IPNO">1058</info>
+      <info key="CO-CODE">NALI</info>
+      <info key="CO-NAME-L"><![CDATA[North American Company for Life and Health Insurance]]></info>
+      <info key="SET-NO">0001986368</info>
+      <info key="UPDATE-DATE">2024-10-09T10:29:32</info>
+      <info key="EXTERNAL-CODE">A00142</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A00141" rule_id="29736059">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0014D" rule_id="29736069">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A00167" rule_id="29736079">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0016M" rule_id="29736089">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0017G" rule_id="29736099">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0017N" rule_id="29736106">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0017P" rule_id="29736116">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0017Q" rule_id="29736126">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0017T" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0017Z" rule_id="29736136">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001BQ" rule_id="29736146">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001CI" rule_id="29736156">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001EZ" rule_id="31864856">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001ZN" rule_id="43440653">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A002A8" rule_id="48940554">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A002A4" rule_id="48940558">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A002A6" rule_id="48940562">Standard</product_association_type>
+    <name><![CDATA[Accumulation Value DB]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002342295" rule_id="29714674">
+    <canx_info>
+      <info key="IPNO">0914</info>
+      <info key="CO-CODE">GLOB</info>
+      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
+      <info key="SET-NO">0001986374</info>
+      <info key="UPDATE-DATE">2024-10-14T00:00:01</info>
+      <info key="EXTERNAL-CODE">A000Y6</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A0006V" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000XR" rule_id="29714865">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001RN" rule_id="38348461">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001SC" rule_id="38590883">Standard</product_association_type>
+    <name><![CDATA[Contract Value Death Benefit]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002243651" rule_id="29714671">
+    <canx_info>
+      <info key="IPNO">0914</info>
+      <info key="CO-CODE">GLOB</info>
+      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
+      <info key="SET-NO">0001986374</info>
+      <info key="UPDATE-DATE">2024-10-14T00:00:01</info>
+      <info key="EXTERNAL-CODE">A0006F</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A0006C" rule_id="29714776">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0006G" rule_id="29714789">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0006P" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0006O" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001SG" rule_id="38643342">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001T1" rule_id="39034508">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001TB" rule_id="39342193">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001TF" rule_id="39412114">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001UK" rule_id="40472983">Standard</product_association_type>
+    <name><![CDATA[Standard Death Benefit]]></name>
+    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002665000" rule_id="41896924">
+    <canx_info>
+      <info key="IPNO">0914</info>
+      <info key="CO-CODE">GLOB</info>
+      <info key="CO-NAME-L"><![CDATA[Global Atlantic - Forethought Life Insurance Company]]></info>
+      <info key="SET-NO">0001986374</info>
+      <info key="UPDATE-DATE">2024-10-14T00:00:01</info>
+      <info key="EXTERNAL-CODE">A001WF</info>
+    </canx_info>
+    <product_association_type cd="O" instance_id="A001TF" rule_id="41904807">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A001TB" rule_id="43670707">Optional</product_association_type>
+    <state_availability list_cd="I">
+      <state_cd_name state_cd="AL">Alabama</state_cd_name>
+      <state_cd_name state_cd="AK">Alaska</state_cd_name>
+      <state_cd_name state_cd="AZ">Arizona</state_cd_name>
+      <state_cd_name state_cd="AR">Arkansas</state_cd_name>
+      <state_cd_name state_cd="CA">California</state_cd_name>
+      <state_cd_name state_cd="CO">Colorado</state_cd_name>
+      <state_cd_name state_cd="CT">Connecticut</state_cd_name>
+      <state_cd_name state_cd="DE">Delaware</state_cd_name>
+      <state_cd_name state_cd="DC">District of Columbia</state_cd_name>
+      <state_cd_name state_cd="FL">Florida</state_cd_name>
+      <state_cd_name state_cd="GA">Georgia</state_cd_name>
+      <state_cd_name state_cd="HI">Hawaii</state_cd_name>
+      <state_cd_name state_cd="ID">Idaho</state_cd_name>
+      <state_cd_name state_cd="IL">Illinois</state_cd_name>
+      <state_cd_name state_cd="IN">Indiana</state_cd_name>
+      <state_cd_name state_cd="IA">Iowa</state_cd_name>
+      <state_cd_name state_cd="KS">Kansas</state_cd_name>
+      <state_cd_name state_cd="KY">Kentucky</state_cd_name>
+      <state_cd_name state_cd="LA">Louisiana</state_cd_name>
+      <state_cd_name state_cd="ME">Maine</state_cd_name>
+      <state_cd_name state_cd="MD">Maryland</state_cd_name>
+      <state_cd_name state_cd="MA">Massachusetts</state_cd_name>
+      <state_cd_name state_cd="MI">Michigan</state_cd_name>
+      <state_cd_name state_cd="MN">Minnesota</state_cd_name>
+      <state_cd_name state_cd="MS">Mississippi</state_cd_name>
+      <state_cd_name state_cd="MO">Missouri</state_cd_name>
+      <state_cd_name state_cd="MT">Montana</state_cd_name>
+      <state_cd_name state_cd="NE">Nebraska</state_cd_name>
+      <state_cd_name state_cd="NV">Nevada</state_cd_name>
+      <state_cd_name state_cd="NH">New Hampshire</state_cd_name>
+      <state_cd_name state_cd="NJ">New Jersey</state_cd_name>
+      <state_cd_name state_cd="NM">New Mexico</state_cd_name>
+      <state_cd_name state_cd="NC">North Carolina</state_cd_name>
+      <state_cd_name state_cd="ND">North Dakota</state_cd_name>
+      <state_cd_name state_cd="OH">Ohio</state_cd_name>
+      <state_cd_name state_cd="OK">Oklahoma</state_cd_name>
+      <state_cd_name state_cd="OR">Oregon</state_cd_name>
+      <state_cd_name state_cd="PA">Pennsylvania</state_cd_name>
+      <state_cd_name state_cd="RI">Rhode Island</state_cd_name>
+      <state_cd_name state_cd="SC">South Carolina</state_cd_name>
+      <state_cd_name state_cd="SD">South Dakota</state_cd_name>
+      <state_cd_name state_cd="TN">Tennessee</state_cd_name>
+      <state_cd_name state_cd="TX">Texas</state_cd_name>
+      <state_cd_name state_cd="UT">Utah</state_cd_name>
+      <state_cd_name state_cd="VT">Vermont</state_cd_name>
+      <state_cd_name state_cd="VA">Virginia</state_cd_name>
+      <state_cd_name state_cd="WA">Washington</state_cd_name>
+      <state_cd_name state_cd="WV">West Virginia</state_cd_name>
+      <state_cd_name state_cd="WI">Wisconsin</state_cd_name>
+      <state_cd_name state_cd="WY">Wyoming</state_cd_name>
+    </state_availability>
+    <name><![CDATA[Enhanced Death Benefit]]></name>
+    <death_benefit_type cd="CV" text_id="41896918">Contract value</death_benefit_type>
+    <age_rule_basis cd="O">Owner</age_rule_basis>
+    <issue_age_inheritance cd="D">Different than product</issue_age_inheritance>
+    <issue_age_owner_instance instance_id="41896919">
+      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
+    </issue_age_owner_instance>
+    <issue_age_annuitant_instance instance_id="41896919">
+      <age_range min_years="0" min_months="0" max_years="80" max_months="0" rule_id="" />
+    </issue_age_annuitant_instance>
+    <issue_age_joint_availability cd="Y">Yes</issue_age_joint_availability>
+    <issue_age_joint_owner_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_owner_rules>
+    <issue_age_joint_annuitant_rules>
+      <min_age_basis cd="Y">Youngest</min_age_basis>
+      <max_age_basis cd="O">Oldest</max_age_basis>
+    </issue_age_joint_annuitant_rules>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+    <current_rider_fees_instance instance_id="41896921" rule_id="41896927" text_id="">
+      <tier_rate_frequency tier_no="1">
+        <rate>0.5000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+      </tier_rate_frequency>
+    </current_rider_fees_instance>
+    <current_rider_fees_instance instance_id="41896928" rule_id="41896929" text_id="">
+      <tier_rate_frequency tier_no="1">
+        <rate>0.9500</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+      </tier_rate_frequency>
+    </current_rider_fees_instance>
+    <roll_ups_instance instance_id="41896923" rule_id="" text_id="41896930">
+      <interest_type cd="S">Simple interest</interest_type>
+      <period years="15" />
+      <tier_rate_frequency tier_no="1">
+        <rate>7.0000</rate>
+        <calculation_frequency cd="A">Annual</calculation_frequency>
+        <crediting_frequency cd="A">Annual</crediting_frequency>
+      </tier_rate_frequency>
+    </roll_ups_instance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002525441" rule_id="33468715">
+    <canx_info>
+      <info key="IPNO">1138</info>
+      <info key="CO-CODE">SILA</info>
+      <info key="CO-NAME-L"><![CDATA[SILAC Insurance Company]]></info>
+      <info key="SET-NO">0001986664</info>
+      <info key="UPDATE-DATE">2024-10-14T00:00:15</info>
+      <info key="EXTERNAL-CODE">A001GJ</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A001GI" rule_id="33468718">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001GQ" rule_id="33622947">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001GS" rule_id="33623383">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001GU" rule_id="33632480">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001H0" rule_id="33647679">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001H2" rule_id="33650285">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001HQ" rule_id="34243942">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001HX" rule_id="34254167">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001HZ" rule_id="34254592">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001II" rule_id="34275336">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001IL" rule_id="34290174">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001IT" rule_id="34297090">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001IZ" rule_id="34347915">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001J1" rule_id="34363459">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001J3" rule_id="34363758">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001J5" rule_id="34371996">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001J7" rule_id="34372296">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A001J9" rule_id="34372597">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0021T" rule_id="44840641">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A0021V" rule_id="44841029">Standard</product_association_type>
+    <name><![CDATA[Account Value DB]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002531991" rule_id="34275959">
+    <canx_info>
+      <info key="IPNO">1138</info>
+      <info key="CO-CODE">SILA</info>
+      <info key="CO-NAME-L"><![CDATA[SILAC Insurance Company]]></info>
+      <info key="SET-NO">0001986664</info>
+      <info key="UPDATE-DATE">2024-10-14T00:00:15</info>
+      <info key="EXTERNAL-CODE">A001IJ</info>
+    </canx_info>
+    <product_association_type cd="O" instance_id="A001HQ" rule_id="34276006">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A001HX" rule_id="34276010">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A001HZ" rule_id="34276014">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A001II" rule_id="34276021">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A001IL" rule_id="34290178">Optional</product_association_type>
+    <product_association_type cd="O" instance_id="A001IT" rule_id="34297094">Optional</product_association_type>
+    <name><![CDATA[Enhanced Death Benefit]]></name>
+    <death_benefit_type cd="CV" text_id="">Contract value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
+    <premium_bonus_instance instance_id="34275719" rule_id="34275720" text_id="">
+      <tier_rate tier_no="1" rate="50.0000" />
+    </premium_bonus_instance>
+    <premium_bonus_instance instance_id="34275721" rule_id="34275722" text_id="">
+      <tier_rate tier_no="1" rate="10.0000" />
+    </premium_bonus_instance>
+  </death_benefit_profile>
+  <death_benefit_profile death_benefit_profile_id="0002253463" rule_id="29743641">
+    <canx_info>
+      <info key="IPNO">0230</info>
+      <info key="CO-CODE">PROT</info>
+      <info key="CO-NAME-L"><![CDATA[Protective Life Insurance Company]]></info>
+      <info key="SET-NO">0001987136</info>
+      <info key="UPDATE-DATE">2024-10-13T23:47:08</info>
+      <info key="EXTERNAL-CODE">A000B5</info>
+    </canx_info>
+    <product_association_type cd="S" instance_id="A000B4" rule_id="29743666">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000B7" rule_id="29743691">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000BC" rule_id="29743698">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000I6" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000I9" rule_id="">Standard</product_association_type>
+    <product_association_type cd="S" instance_id="A000UN" rule_id="29743702">Standard</product_association_type>
+    <name><![CDATA[Standard Death Benefit]]></name>
+    <death_benefit_type cd="CSV" text_id="">Cash surrender value</death_benefit_type>
+    <issue_age_inheritance cd="S">Same as product</issue_age_inheritance>
+    <premium_inheritance cd="S">Same as product</premium_inheritance>
   </death_benefit_profile>
 </anty_ds_death_benefit_profiles>

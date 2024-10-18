@@ -345,13 +345,14 @@
                         } else {
                             error_log( print_r( $client->__getLastRequest(), true ) );
                             error_log( print_r( $client->__getLastResponse(), true ) );
-                            $result = $analysis->income_response1_set;
+
+                            $result = [ 'result' => $analysis->income_response1_set, 'exception' => null, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
                             break;
                         }
                     } catch ( \SoapFault $exception ) {
                         error_log( print_r( $exception, true ) );
 
-                        $result = [ 'exception' => $exception, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
+                        $result = [ 'result' => null, 'exception' => $exception, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
                         break;
                     }
 
@@ -364,7 +365,7 @@
             } catch ( \SoapFault $exception ) {
                 error_log( print_r( $exception, true ) );
 
-                $result = [ 'exception' => $exception, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
+                $result = [ 'result' => null, 'exception' => $exception, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
             }
 
             return $result;
