@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 echo '* Setting Apache configuration...'
-sudo cat /var/www/docker/platform-exports/webserver/sites/001-alpha.conf
-
 sudo a2dissite 000-default default-ssl
 sudo a2ensite 001-alpha
 

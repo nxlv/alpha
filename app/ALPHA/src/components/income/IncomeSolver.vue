@@ -19,6 +19,7 @@
     import axios from 'axios';
     import { VMoney } from 'v-money';
     import Multiselect from '@vueform/multiselect';
+    import SshPre from 'simple-syntax-highlighter';
 
     export default {
         components: {
@@ -34,7 +35,8 @@
             Infobox_Carrier,
             Infobox_Options,
 
-            Multiselect
+            Multiselect,
+            SshPre
         },
         methods: {
             async fetch_quote() {
@@ -513,8 +515,6 @@
     };
 </script>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
-
 <template>
     <section class="income-solver" v-bind:data-mode="mode">
         <div class="income-solver__content">
@@ -827,6 +827,23 @@
                     <div class="alert alert-error">
                         <h3>An error has occurred!</h3>
                         <p v-if="error_message">{{ error_message }}</p>
+
+                        <div class="alert__error-panel" v-if="error_data && error_data.request && error_data.response">
+                            <label class="alert__error-debug-toggler" for="error-debug-toggle"><i class="fal fa-debug" aria-hidden="true"></i> <strong>Debug Information</strong> (click to toggle)</label>
+                            <input type="checkbox" id="error-debug-toggle" class="alert__error-debug-toggle hidden" value="1" checked>
+                            <div class="alert__error-details alert__two-up">
+                                <div class="alert__two-up-item">
+                                    <h5><i class="fal fa-arrow-right" aria-hidden="true"></i> CANNEX Request</h5>
+
+                                    <ssh-pre reactive="true" language="xml">{{ this.$globalUtils.pretty_print_xml( error_data.request, null ).replace( '<', '&lt;' ).replace( '>', '&gt;' ) }}</ssh-pre>
+                                </div>
+                                <div class="alert__two-up-item">
+                                    <h5><i class="fal fa-arrow-left" aria-hidden="true"></i> CANNEX Response</h5>
+
+                                    <ssh-pre reactive="true" language="xml">{{ this.$globalUtils.pretty_print_xml( error_data.response, null ).replace( '<', '&lt;' ).replace( '>', '&gt;' ) }}</ssh-pre>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

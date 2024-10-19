@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@vueform/multiselect": "^2.6.2",
+    "@wdns/vue-code-block": "^2.3.3",
     "maska": "^2.1.9",
     "mitt": "^3.0.0",
     "moment": "^2.29.4",
     "pinia": "^2.0.23",
+    "simple-syntax-highlighter": "^3.0.10",
     "uuid": "^9.0.0",
     "v-money": "^0.8.1",
     "vue": "^3.2.41",

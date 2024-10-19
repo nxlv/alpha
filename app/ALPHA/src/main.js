@@ -11,6 +11,8 @@ import inventoryUtils from './utilities/inventory.js';
 import productUtils from './utilities/products.js';
 
 import 'vue-toast-notification/dist/theme-sugar.css';
+import '@vueform/multiselect/themes/default.css';
+import 'simple-syntax-highlighter/dist/sshpre.css';
 
 import App from './App.vue'
 import router from './router'

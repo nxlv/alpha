@@ -18,7 +18,8 @@ services:
       - ../static:/var/www/static:rw
       - ../platform:/var/www/platform:rw
       - ../app:/var/www/app:rw
-      - ./:/var/www/docker:rw
+      - ../docker:/var/www/docker:rw
+      - ./platform-exports/webserver/sites/001-alpha.conf:/etc/apache2/sites-available/001-alpha.conf
       - ./platform-exports/webserver/alpha-init.sh:/opt/alpha-init.sh
       - ./platform-exports/php.ini:/usr/local/etc/php/conf.d/overrides.ini
       - ./platform-exports/config.env:/var/www/platform/.env
