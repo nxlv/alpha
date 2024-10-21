@@ -346,7 +346,15 @@
                             error_log( print_r( $client->__getLastRequest(), true ) );
                             error_log( print_r( $client->__getLastResponse(), true ) );
 
-                            $result = [ 'result' => $analysis->income_response1_set, 'exception' => null, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
+                            if ( isset( $analysis->income_response1_set ) ) {
+                                if ( ( isset( $analysis->income_response1_set->income_response_data ) ) && ( isset( $analysis->income_response1_set->income_response_data->income_error ) ) ) {
+                                    $result = [ 'result' => null, 'exception' => true, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
+                                } else {
+                                    $result = [ 'result' => $analysis->income_response1_set, 'exception' => null, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
+                                }
+                            } else {
+                                $result = [ 'result' => null, 'exception' => true, '__' => [ 'request' => $client->__getLastRequest(), 'response' => $client->__getLastResponse() ] ];
+                            }
                             break;
                         }
                     } catch ( \SoapFault $exception ) {

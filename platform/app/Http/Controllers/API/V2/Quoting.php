@@ -193,16 +193,16 @@ class Quoting extends Controller {
 
             $results = CANNEXHelper::get_guaranteed_rates( $profile_id, $transaction_id );
 
-            if ( ( is_array( $results ) ) && ( isset( $results[ 'exception' ] ) ) ) {
+            if ( ( is_array( $results ) ) && ( isset( $results[ 'exception' ] ) ) && ( isset( $results[ '__' ] ) ) ) {
                 $validity = false;
-                $result = $results;
+                $result = $results[ '__' ];
             } else {
                 if ( ( isset( $results[ 'result' ]->income_request_data ) ) && ( isset( $results[ 'result' ]->income_response_data ) ) ) {
                     if ( !is_array( $results[ 'result' ]->income_response_data ) ) {
                         // TODO
                     } else {
-                        foreach ( $results[ 'result' ]->income_response_data as $result ) {
-                            $result[] = $result;
+                        foreach ( $results[ 'result' ]->income_response_data as $row ) {
+                            $result[] = $row;
                         }
                     }
                 }
