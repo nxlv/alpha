@@ -153,6 +153,60 @@ const globalUtils = {
                 }
                 break;
 
+            case 'ratings_ambest' :
+                dataset = {
+                    'A++': 'A++',
+                    'A+': 'A+',
+                    'A': 'A',
+                    'A-': 'A-',
+                    'B++': 'B++',
+                    'B+': 'B+',
+                    'B': 'B',
+                    'B-': 'B-',
+                    'C++': 'C++',
+                    'C+': 'C+',
+                    'C': 'C',
+                    'C-': 'C-',
+                    'D': 'D'
+                };
+                break;
+
+            case 'bonus_strategy' :
+                dataset = {
+                    'income': 'Income Base',
+                    'premium': 'Premium Base'
+                };
+                break;
+
+            case 'rider_types' :
+                dataset = {
+                    'premium_additional': 'Additional Premium (Flexible)',
+                    'performance': 'Performance Driven',
+                    'income_increasing': 'Increasing Income',
+                    'enhanced_payments': 'Enhanced Payments',
+                    'no_rider_fees': 'No Rider Fees',
+                    'income_no_reduction': 'No Income Reduction'
+                };
+                break;
+
+            case 'rate_guarantee_types' :
+                dataset = {
+                    'participation_lock_in': 'Participation Rate Lock-In',
+                    'index_performance_lock_in': 'Index Performance Lock-In',
+                    'minimum_participation': 'Minimum Participation'
+                };
+                break;
+
+            case 'performance_trigger_types' :
+                dataset = {
+                    'average_none': 'No Average',
+                    'average_daily': 'Daily Average',
+                    'average_monthly': 'Monthly Average',
+                    'sum_monthly': 'Monthly Sum',
+                    'sum_annual': 'Annual Sum'
+                };
+                break;
+
             case 'frequency' :
                 dataset = {
                     'A': 'Annual',

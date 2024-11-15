@@ -474,6 +474,7 @@
                     deferral_selected: 10,
                     method: 'premium',
                     index: [],
+                    product: [],
                     carrier: [],
                     strategy_type: [],
                     strategy_configuration: [],
@@ -482,6 +483,12 @@
                     guarantee_period_years: 1,
                     guarantee_period_months: 0,
                     participation_rate: 100,
+
+                    index_age: 0,
+                    surrender_years: 0,
+                    reset_period: 0,
+                    free_withdrawal: 0,
+
                     overrides: {
                         annuitant: {
                             annuity_type: null,
@@ -643,12 +650,44 @@
                 </fieldset>
 
                 <fieldset data-filter-type="filtering">
-                    <legend><i class="fa-duotone fa-filter-list"></i> Filtering</legend>
+                    <legend><i class="fa-duotone fa-filter-list"></i> General Filters</legend>
 
                     <input type="checkbox" class="hidden" id="filtering__toggler" value="1">
                     <label for="filtering__toggler"></label>
 
                     <div class="filtering__content">
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="carrier">Carrier</label>
+                                <multiselect v-model="parameters.carrier"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_set_as_kvp( 'carriers' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column">
+                                <label for="product">Product</label>
+                                <multiselect v-model="parameters.product"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_set_as_kvp( 'products' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                        </div>
+
                         <div class="form__row">
                             <div class="form__column">
                                 <label for="indexes">Index</label>
@@ -666,13 +705,48 @@
                         </div>
 
                         <div class="form__row">
-                            <div class="form__column">
-                                <label for="indexes">Carrier</label>
-                                <multiselect v-model="parameters.carrier"
+                            <div class="form__column form__column--half">
+                                <label for="rating_ambest">AM Best Rating</label>
+                                <multiselect v-model="parameters.rating_ambest"
                                              mode="multiple"
                                              label="label"
                                              track-by="label"
-                                             :options="this.$globalUtils.get_set_as_kvp( 'carriers' )"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'ratings_ambest' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+                            <div class="form__column form__column--half">
+                                <label for="surrender_years">Surrender Years</label>
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.surrender_years == 0 ) ? 'Any' : parameters.surrender_years ) }}</div>
+                                <input type="range" name="surrender_years" min="0" max="20" step="1" v-model="parameters.surrender_years">
+                            </div>
+                        </div>
+
+                        <div class="form__row">
+                            <div class="form__column form__column--half">
+                                <label for="bonus">Bonus</label>
+                                <multiselect v-model="parameters.bonus"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'bonus_strategy' )"
+                                             :hide-selected="false"
+                                             :close-on-select="false"
+                                             :searchable="true"
+                                             :create-option="false">
+                                </multiselect>
+                            </div>
+
+                            <div class="form__column form__column--half">
+                                <label for="rider_type">Rider Type</label>
+                                <multiselect v-model="parameters.rider_type"
+                                             mode="multiple"
+                                             label="label"
+                                             track-by="label"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'rider_types' )"
                                              :hide-selected="false"
                                              :close-on-select="false"
                                              :searchable="true"
@@ -680,63 +754,97 @@
                                 </multiselect>
                             </div>
                         </div>
+                    </div>
+                </fieldset>
 
+                <fieldset data-filter-type="growth">
+                    <legend><i class="fa-duotone fa-filter-list"></i> Growth Annuities</legend>
+
+                    <input type="checkbox" class="hidden" id="growth__toggler" value="1">
+                    <label for="growth__toggler"></label>
+
+                    <div class="growth__content">
                         <div class="form__row">
-                            <div class="form__column">
-                                <label for="strategy_configuration">Strategy</label>
-                                <multiselect v-model="parameters.strategy_configuration"
+                            <div class="form__column form__column--half">
+                                <label for="indexes">Spread</label>
+                                <div class="form__buttons">
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__spread-yes" name="spread" value="1" v-model="parameters.spread">
+                                        <label for="parameters__spread-yes">Yes</label>
+                                    </div>
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__spread-no" name="spread" value="0" v-model="parameters.spread" checked>
+                                        <label for="parameters__spread-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__column form__column--half">
+                                <label for="indexes">Cap</label>
+                                <div class="form__buttons">
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__cap-yes" name="cap" value="1" v-model="parameters.cap">
+                                        <label for="parameters__cap-yes">Yes</label>
+                                    </div>
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__cap-no" name="cap" value="0" v-model="parameters.cap" checked>
+                                        <label for="parameters__cap-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__column form__column--half">
+                                <label for="indexes">Participation</label>
+                                <div class="form__buttons">
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__participation-yes" name="participation" value="1" v-model="parameters.participation">
+                                        <label for="parameters__participation-yes">Yes</label>
+                                    </div>
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__participation-no" name="participation" value="0" v-model="parameters.participation" checked>
+                                        <label for="parameters__participation-no">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__column form__column--half">
+                                <label for="surrender_years">Reset Period</label>
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.reset_period == 0 ) ? 'Any' : parameters.reset_period ) }}</div>
+                                <input type="range" name="reset_period" min="0" max="20" step="1" v-model="parameters.reset_period">
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__column form__column--half">
+                                <label for="free_withdrawal">Free Withdrawal</label>
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.free_withdrawal == 0 ) ? 'Any' : parameters.free_withdrawal ) }}</div>
+                                <input type="range" name="free_withdrawal" min="0" max="20" step="1" v-model="parameters.free_withdrawal">
+                            </div>
+                            <div class="form__column form__column--half">
+                                <label for="index_age">Index Age</label>
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.index_age == 0 ) ? 'Any' : parameters.index_age ) }}</div>
+                                <input type="range" name="index_age" min="0" max="50" step="1" v-model="parameters.index_age">
+                            </div>
+                        </div>
+                        <div class="form__row">
+                            <div class="form__column form__column--half">
+                                <label for="rate_guarantee_type">Rate Guarantees</label>
+                                <multiselect v-model="parameters.rate_guarantee_type"
                                              mode="multiple"
                                              label="label"
                                              track-by="label"
-                                             :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_configuration' )"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'rate_guarantee_types' )"
                                              :hide-selected="false"
                                              :close-on-select="false"
                                              :searchable="true"
                                              :create-option="false">
                                 </multiselect>
                             </div>
-                        </div>
-
-                        <div class="form__row">
-                            <div class="form__column">
-                                <label for="strategy_type">Type</label>
-                                <multiselect v-model="parameters.strategy_type"
+                            <div class="form__column form__column--half">
+                                <label for="performance_trigger_type">Performance Trigger</label>
+                                <multiselect v-model="parameters.performance_trigger_type"
                                              mode="multiple"
                                              label="label"
                                              track-by="label"
-                                             :options="this.$globalUtils.get_dataset_as_kvp( 'strategy_type' )"
-                                             :hide-selected="false"
-                                             :close-on-select="false"
-                                             :searchable="true"
-                                             :create-option="false">
-                                </multiselect>
-                            </div>
-                        </div>
-
-                        <div class="form__row">
-                            <div class="form__column">
-                                <label for="calculation_frequency">Calculation Frequency</label>
-                                <multiselect v-model="parameters.calculation_frequency"
-                                             mode="multiple"
-                                             label="label"
-                                             track-by="label"
-                                             :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
-                                             :hide-selected="false"
-                                             :close-on-select="false"
-                                             :searchable="true"
-                                             :create-option="false">
-                                </multiselect>
-                            </div>
-                        </div>
-
-                        <div class="form__row">
-                            <div class="form__column">
-                                <label for="crediting_frequency">Crediting Frequency</label>
-                                <multiselect v-model="parameters.crediting_frequency"
-                                             mode="multiple"
-                                             label="label"
-                                             track-by="label"
-                                             :options="this.$globalUtils.get_dataset_as_kvp( 'frequency' )"
+                                             :options="this.$globalUtils.get_dataset_as_kvp( 'performance_trigger_types' )"
                                              :hide-selected="false"
                                              :close-on-select="false"
                                              :searchable="true"

@@ -8,7 +8,7 @@
 
         <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/theme.css' ) }}" media="all">
         <link rel="stylesheet" type="text/css" href="{{ asset( 'app/dist/assets/index.3538b5c3.css') }}" media="all">
-        <script type="module" crossorigin src="{{ asset( 'app/dist/assets/index.fda38fd2.js' ) }}"></script>
+        <script type="module" crossorigin src="{{ asset( 'app/dist/assets/index.85f5c769.js' ) }}"></script>
     </head>
     <body>
         @yield( 'content' )

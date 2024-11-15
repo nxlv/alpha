@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="8db37f8e-fc32-4bf5-a4ec-88e4b0ccf58e" name="Staging">
-        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="alpha.staged.dev" port="22" sshConfigId="38c07757-b4b5-4109-bd93-66a37afeb54f" sshConfig="admin@alpha.staged.dev:22 key" keyPair="true">
+        <fileTransfer rootFolder="/home3/zomqpite" accessType="SFTP" host="50.6.160.109" port="22" sshConfigId="38c07757-b4b5-4109-bd93-66a37afeb54f" sshConfig="Staging (New)" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
