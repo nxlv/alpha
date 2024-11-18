@@ -476,18 +476,16 @@
                     index: [],
                     product: [],
                     carrier: [],
-                    strategy_type: [],
-                    strategy_configuration: [],
-                    calculation_frequency: [],
-                    crediting_frequency: [],
-                    guarantee_period_years: 1,
-                    guarantee_period_months: 0,
-                    participation_rate: 100,
 
-                    index_age: 0,
-                    surrender_years: 0,
-                    reset_period: 0,
-                    free_withdrawal: 0,
+                    rating_ambest: [],
+
+                    bonus: [],
+                    rider_type: '',
+
+                    index_age: -1,
+                    surrender_years: -1,
+                    reset_period: -1,
+                    free_withdrawal: -1,
 
                     overrides: {
                         annuitant: {
@@ -720,8 +718,8 @@
                             </div>
                             <div class="form__column form__column--half">
                                 <label for="surrender_years">Surrender Years</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.surrender_years == 0 ) ? 'Any' : parameters.surrender_years ) }}</div>
-                                <input type="range" name="surrender_years" min="0" max="20" step="1" v-model="parameters.surrender_years">
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.surrender_years == -1 ) ? 'Any' : parameters.surrender_years ) }}</div>
+                                <input type="range" name="surrender_years" min="-1" max="20" step="1" v-model="parameters.surrender_years">
                             </div>
                         </div>
 
@@ -743,7 +741,7 @@
                             <div class="form__column form__column--half">
                                 <label for="rider_type">Rider Type</label>
                                 <multiselect v-model="parameters.rider_type"
-                                             mode="multiple"
+                                             mode="single"
                                              label="label"
                                              track-by="label"
                                              :options="this.$globalUtils.get_dataset_as_kvp( 'rider_types' )"
@@ -808,20 +806,20 @@
                             </div>
                             <div class="form__column form__column--half">
                                 <label for="surrender_years">Reset Period</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.reset_period == 0 ) ? 'Any' : parameters.reset_period ) }}</div>
-                                <input type="range" name="reset_period" min="0" max="20" step="1" v-model="parameters.reset_period">
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.reset_period == -1 ) ? 'Any' : parameters.reset_period ) }}</div>
+                                <input type="range" name="reset_period" min="-1" max="20" step="1" v-model="parameters.reset_period">
                             </div>
                         </div>
                         <div class="form__row">
                             <div class="form__column form__column--half">
                                 <label for="free_withdrawal">Free Withdrawal</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.free_withdrawal == 0 ) ? 'Any' : parameters.free_withdrawal ) }}</div>
-                                <input type="range" name="free_withdrawal" min="0" max="20" step="1" v-model="parameters.free_withdrawal">
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.free_withdrawal == -1 ) ? 'Any' : parameters.free_withdrawal ) }}</div>
+                                <input type="range" name="free_withdrawal" min="-1" max="20" step="1" v-model="parameters.free_withdrawal">
                             </div>
                             <div class="form__column form__column--half">
                                 <label for="index_age">Index Age</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.index_age == 0 ) ? 'Any' : parameters.index_age ) }}</div>
-                                <input type="range" name="index_age" min="0" max="50" step="1" v-model="parameters.index_age">
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.index_age == -1 ) ? 'Any' : parameters.index_age ) }}</div>
+                                <input type="range" name="index_age" min="-1" max="50" step="1" v-model="parameters.index_age">
                             </div>
                         </div>
                         <div class="form__row">

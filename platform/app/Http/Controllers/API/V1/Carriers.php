@@ -15,7 +15,7 @@ class Carriers extends Controller {
                 'products',
                 'products.meta',
                 'ratings'
-            )->get()
+            )->orderBy( 'name', 'asc' )->get()
         );
     }
 }

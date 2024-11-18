@@ -300,7 +300,7 @@
     "WebServerToolWindowPanel.toolwindow.show.date": "false",
     "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
     "WebServerToolWindowPanel.toolwindow.show.size": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "filtering-v2",
     "last_opened_file_path": "Q:/development/rwa.universe.local",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -565,7 +565,8 @@
       <workItem from="1730326106727" duration="602000" />
       <workItem from="1730673373702" duration="1209000" />
       <workItem from="1731293632293" duration="606000" />
-      <workItem from="1731654130490" duration="4447000" />
+      <workItem from="1731654130490" duration="5043000" />
+      <workItem from="1731887751662" duration="9805000" />
     </task>
     <servers />
   </component>

@@ -10,7 +10,7 @@ use App\Models\Index;
 class Indexes extends Controller {
     public function get_all() {
         return response()->json(
-            Index::get()
+            Index::orderBy( 'index_name', 'asc' )->get()
         );
     }
 }

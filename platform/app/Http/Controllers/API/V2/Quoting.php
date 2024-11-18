@@ -46,15 +46,16 @@ class Quoting extends Controller {
             $income = self::INCOME_FAILSAFE;
         }
 
-        $parameters = [
-            'method' => $method,
-            'premium' => $premium,
-            'income' => $income,
-            'index' => $settings[ 'index' ],
-            'carrier' => $settings[ 'carrier' ]
-        ];
+        $parameters = $settings;
 
-        $hash = null;
+        $parameters = array_merge(
+            $settings,
+            [
+                'method' => $method,
+                'premium' => $premium,
+                'income' => $income,
+            ]
+        );
 
         /*
          * Identify products
@@ -66,15 +67,19 @@ class Quoting extends Controller {
 
             $matches = ProductHelper::identify_products(
                 [
+                    /*
                     'strategy_type' => $settings[ 'strategy_type' ],
                     'strategy_configuration' => $settings[ 'strategy_configuration' ],
                     'calculation_frequency' => $settings[ 'calculation_frequency' ],
                     'crediting_frequency' => $settings[ 'crediting_frequency' ],
                     'guarantee_period_years' => $settings[ 'guarantee_period_years' ],
                     'guarantee_period_months' => $settings[ 'guarantee_period_months' ]
+                    */
                 ],
                 [
+                    /*
                     'current_participation_rate' => $settings[ 'participation_rate' ],
+                    */
                 ],
                 $annuitant,
                 $parameters,

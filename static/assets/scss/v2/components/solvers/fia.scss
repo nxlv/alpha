@@ -11,7 +11,8 @@
             border: none;
             transition: background-color 0.125s ease-out, color 0.125s ease-out;
             pointer-events: all;
-            position: relative;
+            position: sticky;
+            top: 3rem;
             z-index: 10;
             transform: translateY(-1rem);
             box-shadow: 0 0 10px rgba(red($brand-tertiary), green($brand-tertiary), blue($brand-tertiary), 1);

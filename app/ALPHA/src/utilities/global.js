@@ -183,6 +183,7 @@ const globalUtils = {
                     'premium_additional': 'Additional Premium (Flexible)',
                     'performance': 'Performance Driven',
                     'income_increasing': 'Increasing Income',
+                    'income_decreasing': 'Decreasing Income',
                     'enhanced_payments': 'Enhanced Payments',
                     'no_rider_fees': 'No Rider Fees',
                     'income_no_reduction': 'No Income Reduction'
