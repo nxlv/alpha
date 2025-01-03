@@ -7,7 +7,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 USER root
 
-RUN apt-get update && apt-get install -y apt-utils && apt-get install -y sudo
+RUN apt-get update && apt-get install -y apt-utils && apt-get install -y sudo && apt-get install -y mariadb-client
 
 RUN a2enmod rewrite
 
