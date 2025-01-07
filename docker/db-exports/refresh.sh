@@ -31,7 +31,9 @@ echo -e "\r\n===================================================================
 #
 
 # Dump SQL file
-mysqldump -v -u alpha_web -ppassword -h db -r /var/www/docker/db-exports/alpha-mysql-export-latest.sql alpha
+maria-dump -v -u alpha_web -ppassword -h db -r /var/www/docker/db-exports/alpha-mysql-export-latest.sql.temp alpha
+tail +2 /var/www/docker/db-exports/alpha-mysql-export-latest.sql.temp > /var/www/docker/db-exports/alpha-mysql-export-latest.sql
+rm -f /var/www/docker/db-exports/alpha-mysql-export-latest.sql.temp
 
 # Done
 echo -e "\r\n\r\n"
