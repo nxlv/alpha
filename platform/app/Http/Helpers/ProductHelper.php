@@ -7,20 +7,143 @@
     use App\Models\CarriersRating;
     use App\Models\IncomeBenefit;
     use App\Models\Index;
+    use App\Models\Notice;
     use App\Models\Product;
     use App\Models\ProductsInstance;
+    use App\Models\ProductsInstancesStrategiesFeesCurrent;
     use App\Models\ProductsInstancesStrategy;
     use App\Models\ProductsInstancesStrategiesRate;
     use App\Models\Rule;
     use App\Models\RulesState;
 
     use Illuminate\Support\Facades\Cache;
+    use Illuminate\Support\Carbon;
     use Illuminate\Support\Facades\DB;
 
     class ProductHelper {
+        public static $filters = [ 'index', 'carrier', 'rating_ambest', 'surrender_years', 'rider_type', 'spread', 'cap', 'participation', 'free_withdrawal', 'index_age', 'rate_guarantee_type', 'performance_trigger_type' ];
         public static $indexes = [];
 
+        public static function find_text_id_by_keywords( $keywords ) {
+            if ( !empty( $keywords ) ) {
+                if ( !is_array( $keywords ) ) {
+                    $keywords = [ $keywords ];
+                }
+
+                $keyword_counter = 0;
+                $results = null;
+
+                foreach ( $keywords as $keyword ) {
+                    if ( $keyword_counter === 0 ) {
+                        $results = \App\Models\Notice::where( 'notice', 'LIKE', sprintf( '%%%s%%', $keyword ) );
+                    } else {
+                        $results = $results->orWhere( 'notice', 'LIKE', sprintf( '%%%s%%', $keyword ) );
+                    }
+                }
+
+                $results = $results->get();
+            }
+
+            return $results;
+        }
+
+        public static function get_products_with_filter( $filter_key, $filter_value ) {
+            $results = [];
+
+            switch ( $filter_key ) {
+                case 'index' :
+                    $results = ProductsInstancesStrategy::whereIn( 'index_id', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    break;
+
+                case 'carrier' :
+                    $results = ProductsInstancesStrategy::whereIn( 'product_instance_id',
+                        ProductsInstance::whereIn( 'product_id',
+                            CarriersProduct::whereIn( 'carrier_id', $filter_value )->get()->pluck( 'product_id' )->toArray()
+                        )->get()->pluck( 'product_instance_id' )->toArray()
+                    )->get()->pluck( 'product_instance_id' )->toArray();
+                    break;
+
+                case 'rating_ambest' :
+                    $results = Product::whereIn( 'product_id',
+                        CarriersProduct::whereIn( 'carrier_id',
+                            CarriersRating::where( 'company', '=', 'AMB' )->whereIn( 'rating', $filter_value )->get()->pluck( 'carrier_id' )->toArray()
+                        )->get()->pluck( 'product_id' )->toArray()
+                    )->get()->pluck( 'product_instance_id' )->toArray();
+                    break;
+
+                case 'surrender_years' :
+                    if ( intval( $filter_value ) >= 0 ) {
+                        $results = Product::where( 'surrender_period_years', '>=', intval( $filter_value ) )->get()->pluck( 'product_instance_id' )->toArray();
+                    }
+                    break;
+
+                case 'bonus' :
+                    // bonus
+                    $results = Product::whereIn( 'income_benefit_profile_id',
+                        IncomeBenefit::where( 'premium_bonus_text_id', ( ( $filter_value === 'income' ) ? '=' : '!=' ), '' )->get()->pluck( 'income_benefit_profile_id' )->toArray()
+                    )->get()->pluck( 'product_instance_id' )->toArray();
+                    break;
+
+                case 'cap' :
+                    $results = ProductsInstancesStrategiesRate::where( 'current_cap_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    break;
+
+                case 'spread' :
+                    $results = ProductsInstancesStrategiesRate::where( 'current_spread_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    break;
+
+                case 'participation' :
+                    $results = ProductsInstancesStrategiesRate::where( 'current_participation_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    break;
+
+                case 'free_withdrawal' :
+                    // TODO: no matter what we do here, CANNEX data shows all products have free withdrawals, which can't be true, so this needs to be revisited
+                    break;
+
+                case 'rider_type' :
+                    switch ( $filter_value ) {
+                        case 'income_increasing' :
+                            $results = Product::whereIn( 'income_benefit_profile_id',
+                                IncomeBenefit::where( 'name', 'LIKE', '%increas%' )->get()->pluck( 'income_benefit_profile_id' )->toArray()
+                            )->get()->pluck( 'product_instance_id' )->toArray();
+                            break;
+
+                        case 'income_decreasing' :
+                            $results = Product::whereIn( 'analysis_data_id',
+                                AnalysisGuaranteedCache::where( 'income_low', '!=', \DB::raw( 'analysis_guaranteed_cache.income_initial' ) )->get()->pluck( 'analysis_data_id' )->toArray()
+                            )->get()->pluck( 'product_instance_id' )->toArray();
+                            break;
+
+                        case 'income_no_reduction' :
+                            $results = Product::whereIn( 'analysis_data_id',
+                                AnalysisGuaranteedCache::where( 'income_high', '=', \DB::raw( 'analysis_guaranteed_cache.income_low' ) )->get()->pluck( 'analysis_data_id' )->toArray()
+                            )->get()->pluck( 'product_instance_id' )->toArray();
+                            break;
+
+                        case 'no_rider_fees' :
+                            $results = Product::whereNotIn( 'product_instance_id',
+                                ProductsInstancesStrategiesFeesCurrent::all()->pluck( 'product_instance_id' )->toArray()
+                            )->get()->pluck( 'product_instance_id' )->toArray();
+                            break;
+                    }
+                    break;
+
+                case 'index_age' :
+                    if ( intval( $filter_value ) > 0 ) {
+                        $target_date = Carbon::now();
+
+                        ProductsInstancesStrategy::whereIn( 'index_id',
+                            Index::where( 'oldest_date', '<=', Carbon::now()->subtract( '30', 'years' )->format( 'Y-m-d' ) )->get()->pluck( 'index_id' )->toArray()
+                        )->get()->pluck( 'product_instance_id' )->toArray();
+                    }
+                    break;
+            }
+
+            return $results;
+        }
+
         public static function identify_products( $params_strategy = [], $params_rate = [], $annuitant = [], $parameters = [], $inventory = [] ) {
+            $counts = [];
             $products = false;
 
             foreach ( $params_strategy as $param_key => $param_value ) {
@@ -40,204 +163,69 @@
             }
 
             $strategies = ProductsInstancesStrategy::where( $params_strategy );
+            $instances = [];
 
-            // inventory
-            if ( !empty( $parameters[ 'carrier' ] ) ) {
-                // restrict to carrier inventory
-                $strategies->whereIn(
-                    'product_instance_id',
-                    ProductsInstance::whereIn(
-                        'product_id',
-                        CarriersProduct::whereIn(
-                            'carrier_id',
-                            $parameters[ 'carrier' ]
-                        )->get()
-                         ->pluck( 'product_id' )
-                         ->toArray()
-                    )->get()
-                        ->pluck( 'product_instance_id' )
-                        ->toArray()
-                )->get()
-                 ->pluck( 'product_instance_id' )
-                 ->toArray();
-            } else if ( !empty( $inventory ) ) {
+            //if ( ( !empty( $inventory ) ) && ( empty( $parameters[ 'carrier' ] ) ) ) {
+            if ( !empty( $inventory ) ) {
                 // restrict to saved inventory
-                $strategies->whereIn(
-                    'product_instance_id',
-                    ProductsInstance::whereIn(
-                        'product_id',
-                        $inventory
-                    )->get()
-                        ->pluck( 'product_instance_id' )
-                )->get()
-                    ->pluck( 'product_instance_id' )
-                    ->toArray();
+                $instances = ProductsInstance::whereIn( 'product_id', $inventory )->get()->pluck( 'product_instance_id' )->toArray();
+            } else {
+                $instances = ProductsInstance::all()->pluck( 'product_instance_id' )->toArray();
             }
 
-            // products
-            // TODO: do we override inventory or do we just show that one annuity?
+            foreach ( self::$filters as $filter ) {
+                if ( !empty( $parameters[ $filter ] ) ) {
+                    $filter_results = self::get_products_with_filter( $filter, $parameters[ $filter ] );
 
-            // AM Best rating
-            // TODO: further optimize -- maybe some kind of distinct/indexed solution
-            if ( !empty( $parameters[ 'rating_ambest' ] ) ) {
-                $strategies->whereIn(
-                    'product_instance_id',
-                    Product::whereIn(
-                        'product_id',
-                        CarriersProduct::whereIn(
-                            'carrier_id',
-                            CarriersRating::where(
-                                'company', '=', 'AMB'
-                            )->whereIn(
-                                'rating',
-                                $parameters[ 'rating_ambest' ]
-                            )->get()
-                                ->pluck( 'carrier_id' )
-                        )->get()
-                            ->pluck( 'product_id' )
-                    )->get()
-                        ->pluck( 'product_instance_id' )
-                );
-            }
+                    $counts[ $filter ] = count( $filter_results );
 
-            // surrender years
-            if ( ( !empty( $parameters[ 'surrender_years' ] ) ) && ( floatval( $parameters[ 'surrender_years' ] ) > -1 ) ) {
-                $strategies->whereIn(
-                    'product_instance_id',
-                    Product::where(
-                        'surrender_period_years', '=', intval( $parameters[ 'surrender_years' ] )
-                    )->get()
-                        ->pluck( 'product_instance_id' )
-                );
-            }
-
-            // bonus
-            if ( !empty( $parameters[ 'bonus' ] ) ) {
-                $strategies->whereIn(
-                    'product_instance_id',
-                    Product::whereIn(
-                        'income_benefit_profile_id',
-                        IncomeBenefit::where(
-                            'premium_bonus_text_id', ( ( $parameters[ 'bonus' ] === 'income' ) ? '=' : '!=' ), ''
-                        )->get()
-                            ->pluck( 'income_benefit_profile_id' )
-                    )->get()
-                        ->pluck( 'product_instance_id' )
-                );
-            }
-
-            // rider type
-            if ( !empty( $parameters[ 'rider_type' ] ) ) {
-                switch ( $parameters[ 'rider_type' ] ) {
-                    case 'income_increasing' :
-                        $strategies->whereIn(
-                            'product_instance_id',
-                            Product::whereIn(
-                                'income_benefit_profile_id',
-                                IncomeBenefit::where(
-                                    'name', 'LIKE', '%increas%'
-                                )->get()
-                                    ->pluck( 'income_benefit_profile_id' )
-                            )->get()
-                                ->pluck( 'product_instance_id' )
-                        );
-                        break;
-
-                    case 'income_decreasing' :
-                        $strategies->whereIn(
-                            'product_instance_id',
-                            Product::whereIn(
-                                'analysis_data_id',
-                                AnalysisGuaranteedCache::where(
-                                    // TODO: must be a better way to do this
-                                    'income_low', '!=', \DB::raw( 'analysis_guaranteed_cache.income_initial' )
-                                )->get()
-                                    ->pluck( 'analysis_data_id' )
-                            )->get()
-                                ->pluck( 'product_instance_id' )
-                        );
-                        break;
-
-                    case 'income_no_reduction' :
-                        $strategies->whereIn(
-                            'product_instance_id',
-                            Product::whereIn(
-                                'analysis_data_id',
-                                AnalysisGuaranteedCache::where(
-                                    // TODO: must be a better way to do this
-                                    'income_high', '=', \DB::raw( 'analysis_guaranteed_cache.income_low' )
-                                )->get()
-                                    ->pluck( 'analysis_data_id' )
-                            )->get()
-                                ->pluck( 'product_instance_id' )
-                        );
-                        break;
-
-                    case 'premium_additional' :
-                        // TODO: removed
-                        // Checking with CANNEX on proper date points, previous ones didn't seem to work
-                        break;
-
-                    case 'performance' :
-                        // TODO: removed
-                        // Checking with CANNEX on proper date points, previous ones didn't seem to work
-                        break;
-
-                    case 'enhanced_payments' :
-                        // TODO: removed
-                        // Checking with CANNEX on proper date points, previous ones didn't seem to work
-                        break;
-
-                    case 'no_rider_fees' :
-                        break;
+                    // reduce
+                    $instances = array_intersect( $instances, $filter_results );
                 }
             }
 
-            // index
-            if ( !empty( $parameters[ 'index' ] ) ) {
-                // restrict to index
-                $strategies->whereIn( 'index_id', $parameters[ 'index' ] );
-            }
+            if ( !empty( $instances ) ) {
+                $strategies = $strategies->whereIn( 'product_instance_id', $instances )->get();
 
-            $strategies = $strategies->get();
+                error_log( 'count = ' . $strategies->count() );
 
-            error_log( 'count = ' . $strategies->count() );
+                if ( $strategies->count() ) {
+                    $matches = ProductsInstancesStrategiesRate::whereIn( 'product_strategy_instance_id', $strategies->pluck( 'instance_id' )->toArray() )
+                        ->where( $params_rate );
 
-            if ( $strategies->count() ) {
-                $matches = ProductsInstancesStrategiesRate::whereIn( 'product_strategy_instance_id', $strategies->pluck( 'instance_id' ) )
-                    ->where( $params_rate );
+                    if ( !empty( $parameters[ 'premium' ] ) ) {
+                        $matches->where( 'premium_range_min', '<=', $parameters[ 'premium' ] )->where( 'premium_range_max', '>=', $parameters[ 'premium' ] );
+                    }
 
-                if ( !empty( $parameters[ 'premium' ] ) ) {
-                    $matches->where( 'premium_range_min', '<=', $parameters[ 'premium' ] )->where( 'premium_range_max', '>=', $parameters[ 'premium' ] );
-                }
+                    $matches = $matches->get();
 
-                $matches = $matches->get();
+                    error_log( 'identify_products: ' . $matches->count() . ' matches found.' );
 
-                error_log( 'identify_products: ' . $matches->count() . ' matches found.' );
+                    if ( $matches->count() ) {
+                        // TODO: how do we handle age ranges for joint accounts? what if the joint person is outside the age range, but the owner is?
+                        $rule_ids = Rule::whereIn( 'rule_id', RulesState::where( 'state_cd', $annuitant[ 'owner_state' ] )->get()->pluck( 'rule_id' )->toArray() )
+                            ->where( 'age_range_min_years', '<=', $annuitant[ 'owner_age' ] )
+                            ->where( 'age_range_max_years', '>=', $annuitant[ 'owner_age' ] )
+                            ->where( 'premium_max', '>=', $parameters[ 'premium' ] )
+                            ->where( 'contract', $annuitant[ 'annuity_type' ] )
+                            ->get()->pluck( 'rule_id' )->toArray();
 
-                if ( $matches->count() ) {
-                    // TODO: how do we handle age ranges for joint accounts? what if the joint person is outside the age range, but the owner is?
-                    $rule_ids = Rule::whereIn( 'rule_id', RulesState::where( 'state_cd', $annuitant[ 'owner_state' ] )->get()->pluck( 'rule_id' )->toArray() )
-                        ->where( 'age_range_min_years', '<=', $annuitant[ 'owner_age' ] )
-                        ->where( 'age_range_max_years', '>=', $annuitant[ 'owner_age' ] )
-                        //->where( 'premium_min', '<=', $parameters[ 'premium' ] )
-                        ->where( 'premium_max', '>=', $parameters[ 'premium' ] )
-                        ->where( 'contract', $annuitant[ 'annuity_type' ] )
-                        ->get()->pluck( 'rule_id' )->toArray();
+                        error_log( 'premium: ' . $parameters[ 'premium' ] );
+                        error_log( 'identify_products: ' . count( $rule_ids ) . ' rulesets found' );
 
-                    error_log( 'premium: ' . $parameters[ 'premium' ] );
-                    error_log( 'identify_products: ' . count( $rule_ids ) . ' rulesets found' );
+                        $products = Product::whereIn( 'rule_id', $rule_ids )
+                            ->where( 'income_benefit_profile_id', '!=', '' )
+                            ->whereIn( 'strategy_rate_instance_id', $matches->pluck( 'instance_id' )->toArray() )
+                            ->get();
 
-                    $products = Product::whereIn( 'rule_id', $rule_ids )
-                        ->where( 'income_benefit_profile_id', '!=', '' )
-                        ->whereIn( 'strategy_rate_instance_id', $matches->pluck( 'instance_id' )->toArray() )
-                        ->get();
-
-                    error_log( 'identify_products: ' . $products->count() . ' products found' );
+                        error_log( 'identify_products: ' . $products->count() . ' products found' );
+                    }
                 }
             }
 
-            return $products;
+            error_log( 'counts = ' . print_r( $counts, true ) );
+
+            return [ 'products' => $products, 'filter_counts' => $counts ];
         }
 
         public static function compare_products( $analysis_ids, $annuitant, $parameters ) {

@@ -65,7 +65,7 @@ class Quoting extends Controller {
         } else {
             $hash = 'alpha__fia-guaranteed-products-' . crc32( $method . '|' . $premium . '|' . $offset . '|' . $chunk_size ) . crc32( serialize( $parameters ) ) . crc32( serialize( $annuitant ) ) . crc32( serialize( $inventory ) );
 
-            $matches = ProductHelper::identify_products(
+            $selections = ProductHelper::identify_products(
                 [
                     /*
                     'strategy_type' => $settings[ 'strategy_type' ],
@@ -85,6 +85,8 @@ class Quoting extends Controller {
                 $parameters,
                 $inventory
             );
+
+            $matches = $selections[ 'products' ];
         }
 
         if ( ( !$products ) && ( $matches ) && ( $matches->count() ) ) {
@@ -124,7 +126,7 @@ class Quoting extends Controller {
             error_log( 'query_fixed: ' . $products->count() . ' products (cache hits) found' );
         }
 
-        return $products;
+        return response()->json( [ 'error' => false, 'messages' => [], 'result' => $products, 'filter_counts' => ( ( isset( $matches[ 'filter_counts' ] ) ) ? $matches[ 'filter_counts' ] : false ) ] );
     }
 
     public function query_fixed_illustration( Request $request ) {

@@ -88,7 +88,7 @@ class CANNEXCacheGuaranteed extends Command {
         $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> Deferral: %d', $deferral ) );
         $this->line( sprintf( '  <fg=black;bg=green> CONFIG </> Sequence: %d', $sequence ) );
 
-        $products = ProductHelper::identify_products(
+        $selections = ProductHelper::identify_products(
             [],
             [],
             [
@@ -102,6 +102,8 @@ class CANNEXCacheGuaranteed extends Command {
                 'premium' => $premium
             ]
         );
+
+        $products = $selections[ 'products' ];
 
         if ( ( !empty( $products ) ) && ( $products->count() ) ) {
             $stack = [];
