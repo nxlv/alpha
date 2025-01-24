@@ -328,11 +328,11 @@
       <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\core" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="Q:\development\alpha.universe.local\docker" />
       <recent name="Q:\development\alpha.universe.local\docker\platform-exports\webserver" />
       <recent name="Q:\development\alpha.universe.local\docker\entrypoint-exports" />
       <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\components" />
       <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\components\dialogs\products" />
-      <recent name="Q:\development\alpha.universe.local\static\assets\scss\v2\fonts" />
     </key>
   </component>
   <component name="RunManager">
@@ -572,7 +572,7 @@
       <workItem from="1736142283413" duration="6000" />
       <workItem from="1736196012314" duration="8175000" />
       <workItem from="1736847018757" duration="29000" />
-      <workItem from="1737003518520" duration="14118000" />
+      <workItem from="1737003518520" duration="29357000" />
     </task>
     <servers />
   </component>

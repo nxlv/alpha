@@ -32,6 +32,7 @@ class Quoting extends Controller {
         $deferral = $settings[ 'deferral' ];
         $premium = preg_replace( '/[^0-9.]/', '', $settings[ 'premium' ] );
         $income = preg_replace( '/[^0-9.]/', '', $settings[ 'income' ] );
+        $filters = [];
 
         $method = $settings[ 'method' ];
         $offset = $request->get( 'offset', 0 );
@@ -87,7 +88,10 @@ class Quoting extends Controller {
             );
 
             $matches = $selections[ 'products' ];
+            $filters = $selections[ 'filter_counts' ];
         }
+
+        error_log( 'matches = ' . print_r( $matches, true ) );
 
         if ( ( !$products ) && ( $matches ) && ( $matches->count() ) ) {
             error_log( 'query_fixed: ' . $matches->count() . ' matches found' );
@@ -126,7 +130,7 @@ class Quoting extends Controller {
             error_log( 'query_fixed: ' . $products->count() . ' products (cache hits) found' );
         }
 
-        return response()->json( [ 'error' => false, 'messages' => [], 'result' => $products, 'filter_counts' => ( ( isset( $matches[ 'filter_counts' ] ) ) ? $matches[ 'filter_counts' ] : false ) ] );
+        return response()->json( [ 'error' => false, 'messages' => [], 'result' => $products, 'filter_counts' => $filters ] );
     }
 
     public function query_fixed_illustration( Request $request ) {

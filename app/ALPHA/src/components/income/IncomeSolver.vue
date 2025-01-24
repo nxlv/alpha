@@ -50,7 +50,12 @@
                 this.nonce = this.$globalUtils.generate_nonce();
                 this.error = false;
                 this.error_message = null;
+                this.filter_counts = null;
                 this.loading = true;
+                this.empty_set = false;
+
+                this.quotes = [];
+                this.parameters.records_found = 0;
 
                 this.selections.method = this.parameters.method;
                 this.selections.offset = 0;
@@ -66,6 +71,8 @@
 
                 clearTimeout( this.timers.populator );
 
+                setTimeout( function() { window.scrollTo( 0, 0 ); }, 500 );
+
                 let request = await axios.post( ( ( import.meta.env.PROD ) ? ( '//' + window.location.host ) : import.meta.env.VITE_API_BASE_URL ) + endpoint, { ...settings, signal: this.aborters.requests.signal } );
 
                 this.last_request = request;
@@ -80,18 +87,23 @@
 
                 this.parameters.searched = true;
 
-                if ( ( request ) && ( request.data ) && ( request.data.length ) ) {
-                    this.quotes = [];
+                if ( ( request ) && ( request.data ) && ( request.data.filter_counts ) ) {
+                    this.filter_counts = request.data.filter_counts;
+                }
 
-                    for ( let counter = 0; counter < request.data.length; counter++ ) {
-                        this.quotes.push( request.data[ counter ] );
+                if ( ( request ) && ( request.data ) && ( !request.data.error ) && ( request.data.result ) && ( request.data.result.length ) ) {
+                    for ( let counter = 0; counter < request.data.result.length; counter++ ) {
+                        this.quotes.push( request.data.result[ counter ] );
                     }
+
+                    this.parameters.records_found = this.quotes.length;
 
                     this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( 0, this.parameters.chunk_size ), parameters: this.parameters } );
                 } else {
+                    console.log( 'results not found' );
+
                     this.loading = false;
-                    this.error = true;
-                    this.error_message = 'No matching products were found for the search criteria specified.  You may try again, or try removing any search filters.';
+                    this.empty_set = true;
                 }
             },
 
@@ -114,11 +126,11 @@
                 }
                 */
 
-                if ( ( request ) && ( request.data ) && ( request.data.length ) ) {
-                    for ( let counter = 0; counter < request.data.length; counter++ ) {
-                        console.log( 'adding', request.data[ counter ] );
+                if ( ( request ) && ( request.data ) && ( !request.data.error ) && ( request.data.result ) && ( request.data.result.length ) ) {
+                    for ( let counter = 0; counter < request.data.result.length; counter++ ) {
+                        console.log( 'adding', request.data.result[ counter ] );
 
-                        this.quotes.push( request.data[ counter ] );
+                        this.quotes.push( request.data.result[ counter ] );
                     }
 
                     this.$emitter.emit( 'fetch_guaranteed', { products: this.quotes.slice( this.selections.offset, ( this.selections.offset + this.parameters.chunk_size ) ), parameters: this.parameters } );
@@ -151,18 +163,12 @@
                 }
                 */
 
-                if ( ( request ) && ( request.data ) && ( !request.data.error ) && (request.data.result ) && ( request.data.result.length ) ) {
+                if ( ( request ) && ( request.data ) && ( !request.data.error ) && ( request.data.result ) && ( request.data.result.length ) ) {
                     let index, index_inner;
-
-                    console.log( request );
 
                     for ( index = 0; index < request.data.result.length; index++ ) {
                         for ( index_inner = 0; index_inner < this.quotes.length; index_inner++ ) {
-                            console.log( this.quotes[ index_inner ].analysis_data_id, request.data.result[ index ].analysis_data_id );
-
                             if ( this.quotes[ index_inner ].analysis_data_id === request.data.result[ index ].analysis_data_id ) {
-                                console.log( 'found' );
-
                                 this.quotes[ index_inner ].quotes = request.data.result[ index ];
                                 break;
                             }
@@ -425,6 +431,7 @@
             return {
                 mode: 'normal',
                 loading: false,
+                empty_set: false,
 
                 error: false,
                 error_message: null,
@@ -432,6 +439,7 @@
                 last_request: null,
                 analysis_ids: null,
                 quotes: null,
+                filter_counts: null,
                 nonce: null,
 
                 timers: {
@@ -466,6 +474,7 @@
 
                 parameters: {
                     searched: false,
+                    records_found: 0,
                     chunk_size: 20,
                     chunk_prefetch: 3,
                     premium: '100000',
@@ -482,10 +491,14 @@
                     bonus: [],
                     rider_type: '',
 
-                    index_age: -1,
-                    surrender_years: -1,
-                    reset_period: -1,
-                    free_withdrawal: -1,
+                    cap: 0,
+                    spread: 0,
+                    participation: 0,
+                    free_withdrawal: 0,
+
+                    index_age: 0,
+                    surrender_years: 0,
+                    reset_period: 0,
 
                     overrides: {
                         annuitant: {
@@ -670,6 +683,7 @@
                             </div>
                         </div>
 
+                        <!--
                         <div class="form__row">
                             <div class="form__column">
                                 <label for="product">Product</label>
@@ -685,6 +699,7 @@
                                 </multiselect>
                             </div>
                         </div>
+                        -->
 
                         <div class="form__row">
                             <div class="form__column">
@@ -718,8 +733,8 @@
                             </div>
                             <div class="form__column form__column--half">
                                 <label for="surrender_years">Surrender Years</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.surrender_years == -1 ) ? 'Any' : parameters.surrender_years ) }}</div>
-                                <input type="range" name="surrender_years" min="-1" max="20" step="1" v-model="parameters.surrender_years">
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.surrender_years == 0 ) ? 'Any' : ( parameters.surrender_years + ' years' ) ) }}</div>
+                                <input type="range" name="surrender_years" min="0" max="20" step="1" v-model="parameters.surrender_years">
                             </div>
                         </div>
 
@@ -727,7 +742,7 @@
                             <div class="form__column form__column--half">
                                 <label for="bonus">Bonus</label>
                                 <multiselect v-model="parameters.bonus"
-                                             mode="multiple"
+                                             mode="single"
                                              label="label"
                                              track-by="label"
                                              :options="this.$globalUtils.get_dataset_as_kvp( 'bonus_strategy' )"
@@ -764,7 +779,7 @@
                     <div class="growth__content">
                         <div class="form__row">
                             <div class="form__column form__column--half">
-                                <label for="indexes">Spread</label>
+                                <label for="parameters__spread-yes">Spread</label>
                                 <div class="form__buttons">
                                     <div class="form__buttons-column">
                                         <input type="radio" id="parameters__spread-yes" name="spread" value="1" v-model="parameters.spread">
@@ -777,7 +792,7 @@
                                 </div>
                             </div>
                             <div class="form__column form__column--half">
-                                <label for="indexes">Cap</label>
+                                <label for="parameters__cap-yes">Cap</label>
                                 <div class="form__buttons">
                                     <div class="form__buttons-column">
                                         <input type="radio" id="parameters__cap-yes" name="cap" value="1" v-model="parameters.cap">
@@ -792,7 +807,7 @@
                         </div>
                         <div class="form__row">
                             <div class="form__column form__column--half">
-                                <label for="indexes">Participation</label>
+                                <label for="parameters__participation-yes">Participation</label>
                                 <div class="form__buttons">
                                     <div class="form__buttons-column">
                                         <input type="radio" id="parameters__participation-yes" name="participation" value="1" v-model="parameters.participation">
@@ -805,28 +820,38 @@
                                 </div>
                             </div>
                             <div class="form__column form__column--half">
-                                <label for="surrender_years">Reset Period</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.reset_period == -1 ) ? 'Any' : parameters.reset_period ) }}</div>
-                                <input type="range" name="reset_period" min="-1" max="20" step="1" v-model="parameters.reset_period">
+                                <label for="parameters__reset-period">Reset Period</label>
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.reset_period == 0 ) ? 'Any' : ( parameters.reset_period + ' years' ) ) }}</div>
+                                <input type="range" id="parameters__reset-period" name="reset_period" min="0" max="3" step="1" v-model="parameters.reset_period">
                             </div>
                         </div>
                         <div class="form__row">
                             <div class="form__column form__column--half">
-                                <label for="free_withdrawal">Free Withdrawal</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.free_withdrawal == -1 ) ? 'Any' : parameters.free_withdrawal ) }}</div>
-                                <input type="range" name="free_withdrawal" min="-1" max="20" step="1" v-model="parameters.free_withdrawal">
+                                <label for="parameters__free-withdrawals-yes">Free Withdrawals</label>
+
+                                <div class="form__buttons">
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__free-withdrawals-yes" name="free_withdrawals" value="1" v-model="parameters.free_withdrawal">
+                                        <label for="parameters__free-withdrawals-yes">Yes</label>
+                                    </div>
+                                    <div class="form__buttons-column">
+                                        <input type="radio" id="parameters__free-withdrawals-no" name="free_withdrawals" value="0" v-model="parameters.free_withdrawal" checked>
+                                        <label for="parameters__free-withdrawals-no">No</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form__column form__column--half">
-                                <label for="index_age">Index Age</label>
-                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.index_age == -1 ) ? 'Any' : parameters.index_age ) }}</div>
-                                <input type="range" name="index_age" min="-1" max="50" step="1" v-model="parameters.index_age">
+                                <label for="parameters__index-age">Index Age</label>
+                                <div style="margin: 0.25rem 0 0 0; font-weight: bold; font-size: 1.25rem; line-height: 1.25rem;">{{ ( ( parameters.index_age == 0 ) ? 'Any' : ( parameters.index_age + ' years' ) ) }}</div>
+                                <input type="range" id="parameters__index-age" name="index_age" min="0" max="50" step="1" v-model="parameters.index_age">
                             </div>
                         </div>
                         <div class="form__row">
                             <div class="form__column form__column--half">
-                                <label for="rate_guarantee_type">Rate Guarantees</label>
+                                <label for="parameters__rate-guarantee-type">Rate Guarantees</label>
                                 <multiselect v-model="parameters.rate_guarantee_type"
-                                             mode="multiple"
+                                             id="parameters__rate-guarantee-type"
+                                             mode="single"
                                              label="label"
                                              track-by="label"
                                              :options="this.$globalUtils.get_dataset_as_kvp( 'rate_guarantee_types' )"
@@ -837,9 +862,10 @@
                                 </multiselect>
                             </div>
                             <div class="form__column form__column--half">
-                                <label for="performance_trigger_type">Performance Trigger</label>
+                                <label for="parameters__performance-trigger-type">Performance Trigger</label>
                                 <multiselect v-model="parameters.performance_trigger_type"
-                                             mode="multiple"
+                                             id="parameters__performance-trigger-type"
+                                             mode="single"
                                              label="label"
                                              track-by="label"
                                              :options="this.$globalUtils.get_dataset_as_kvp( 'performance_trigger_types' )"
@@ -855,6 +881,10 @@
             </aside>
 
             <div class="income-solver__results">
+                <div class="counts" v-if="quotes && !loading && !empty_set">
+                    <h3>{{ parameters.records_found }} results found matching your search criteria.</h3>
+                </div>
+
                 <div class="strategy" v-if="selections.product_id">
                     <div class="strategy__inner">
                         <h3>Strategy Details<a href="javascript:" v-on:click="close_details"><i class="fal fa-close" aria-hidden="true"></i> <span>Close</span></a></h3>
@@ -929,6 +959,20 @@
                     </div>
                 </div>
 
+                <div class="alert alert-info" v-if="!error && parameters.searched && !loading && empty_set">
+                    <h3>No products found!</h3>
+                    <p>Try adjusting your search criteria, and try again.</p>
+
+                    <div class="filter-counts" v-if="filter_counts">
+                        <p><strong>Some of your filters may have matched products.</strong>  Use the counts for each filter to try and refine your search criteria:</p>
+                        <ul class="filter-counts__items">
+                            <li class="filter-counts__item" v-for="( count, count_index ) in filter_counts" v-bind:key="count_index">
+                                <span>{{ count }}</span> {{ count_index }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="income-solver__error" v-if="error && ( ( error_message ) || ( error_data ) )">
                     <div class="alert alert-error">
                         <h3>An error has occurred!</h3>
@@ -953,7 +997,7 @@
                     </div>
                 </div>
 
-                <div class="income-solver__results-controls" v-if="quotes && !loading">
+                <div class="income-solver__results-controls" v-bind:class="{'income-solver__results-controls--disabled': loading || empty_set }">
                     <div class="form__row">
                         <div class="form__column form__column--full">
                             <label for="deferral">Defer Income for <strong>{{ parameters.deferral_selected }} years</strong></label>
@@ -990,11 +1034,6 @@
                             Running the numbers, this might take a minute...
                         </div>
                     </div>
-                </div>
-
-                <div class="alert alert-info" v-if="parameters.searched && !loading && !quotes">
-                    <h3>No products found!</h3>
-                    <p>Try adjusting your search criteria, and try again.</p>
                 </div>
 
                 <!--
@@ -1105,10 +1144,9 @@
                             </div>
                         </template>
 
-                        <template v-if="this.quotes && this.mode !== 'comparison'">
+                        <template v-if="quotes && mode !== 'comparison' && parameters.searched && !loading && !empty_set">
                             <div class="form result__notice">
-                                <p>Load more results?</p>
-                                <button type="button" class="form__action" v-on:click="fetch_chunk">Load More</button>
+                                <button type="button" class="form__action form__action--large" v-on:click="fetch_chunk">Load More</button>
                             </div>
                         </template>
                     </div>

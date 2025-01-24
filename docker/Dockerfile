@@ -18,6 +18,8 @@ RUN echo "%$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 WORKDIR /var/www
 
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
 RUN curl -sSLf \
         -o /usr/local/bin/install-php-extensions \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \

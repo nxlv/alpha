@@ -21,7 +21,7 @@
     use Illuminate\Support\Facades\DB;
 
     class ProductHelper {
-        public static $filters = [ 'index', 'carrier', 'rating_ambest', 'surrender_years', 'rider_type', 'spread', 'cap', 'participation', 'free_withdrawal', 'index_age', 'rate_guarantee_type', 'performance_trigger_type' ];
+        public static $filters = [ 'carrier', 'rating_ambest', 'surrender_years', 'rider_type', 'spread', 'cap', 'participation', 'free_withdrawal', 'index_age', 'rate_guarantee_type', 'performance_trigger_type' ];
         public static $indexes = [];
 
         public static function find_text_id_by_keywords( $keywords ) {
@@ -51,10 +51,6 @@
             $results = [];
 
             switch ( $filter_key ) {
-                case 'index' :
-                    $results = ProductsInstancesStrategy::whereIn( 'index_id', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
-                    break;
-
                 case 'carrier' :
                     $results = ProductsInstancesStrategy::whereIn( 'product_instance_id',
                         ProductsInstance::whereIn( 'product_id',
@@ -72,8 +68,8 @@
                     break;
 
                 case 'surrender_years' :
-                    if ( intval( $filter_value ) >= 0 ) {
-                        $results = Product::where( 'surrender_period_years', '>=', intval( $filter_value ) )->get()->pluck( 'product_instance_id' )->toArray();
+                    if ( floatval( $filter_value ) > 0 ) {
+                        $results = Product::where( 'surrender_period_years', '=', floatval( $filter_value ) )->get()->pluck( 'product_instance_id' )->toArray();
                     }
                     break;
 
@@ -85,15 +81,21 @@
                     break;
 
                 case 'cap' :
-                    $results = ProductsInstancesStrategiesRate::where( 'current_cap_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    if ( floatval( $filter_value ) > 0 ) {
+                        $results = ProductsInstancesStrategiesRate::where( 'current_cap_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    }
                     break;
 
                 case 'spread' :
-                    $results = ProductsInstancesStrategiesRate::where( 'current_spread_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    if ( floatval( $filter_value ) > 0 ) {
+                        $results = ProductsInstancesStrategiesRate::where( 'current_spread_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    }
                     break;
 
                 case 'participation' :
-                    $results = ProductsInstancesStrategiesRate::where( 'current_participation_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    if ( floatval( $filter_value ) > 0 ) {
+                        $results = ProductsInstancesStrategiesRate::where( 'current_participation_rate', '>=', $filter_value )->get()->pluck( 'product_instance_id' )->toArray();
+                    }
                     break;
 
                 case 'free_withdrawal' :
@@ -129,16 +131,13 @@
                     break;
 
                 case 'index_age' :
-                    if ( intval( $filter_value ) > 0 ) {
-                        $target_date = Carbon::now();
-
-                        ProductsInstancesStrategy::whereIn( 'index_id',
-                            Index::where( 'oldest_date', '<=', Carbon::now()->subtract( '30', 'years' )->format( 'Y-m-d' ) )->get()->pluck( 'index_id' )->toArray()
+                    if ( floatval( $filter_value ) > 0 ) {
+                        $results = ProductsInstancesStrategy::whereIn( 'index_id',
+                            Index::where( 'oldest_date', '<=', Carbon::now()->subtract( floatval( $filter_value ), 'years' )->format( 'Y-m-d' ) )->get()->pluck( 'index_id' )->toArray()
                         )->get()->pluck( 'product_instance_id' )->toArray();
                     }
                     break;
             }
-
             return $results;
         }
 
@@ -185,9 +184,16 @@
             }
 
             if ( !empty( $instances ) ) {
-                $strategies = $strategies->whereIn( 'product_instance_id', $instances )->get();
+                $strategies = $strategies->whereIn( 'product_instance_id', $instances );
 
-                error_log( 'count = ' . $strategies->count() );
+                // filter indices
+                if ( !empty( $parameters[ 'index' ] ) ) {
+                    $strategies->whereIn( 'index_id', $parameters[ 'index' ] );
+
+                    $counts[ 'index' ] = ProductsInstancesStrategy::whereIn( 'index_id', $parameters[ 'index' ] )->get()->count();
+                }
+
+                $strategies = $strategies->get();
 
                 if ( $strategies->count() ) {
                     $matches = ProductsInstancesStrategiesRate::whereIn( 'product_strategy_instance_id', $strategies->pluck( 'instance_id' )->toArray() )

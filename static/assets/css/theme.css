@@ -14398,14 +14398,46 @@ readers do not read off random characters that represent icons */
     line-height: 3rem;
     margin: 0;
     color: #034787; }
-  .alert p:last-child {
-    margin-bottom: 0; }
+  .alert p {
+    margin-bottom: 0.5rem; }
+    .alert p:last-child {
+      margin-bottom: 0; }
   .alert.alert-error {
     background-color: #c20e00;
     border-color: #c20e00;
     color: #fff; }
     .alert.alert-error h3 {
       color: #fff; }
+  .alert .filter-counts__items {
+    border: none;
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .alert .filter-counts__item {
+    display: inline-flex;
+    margin: 0 1rem 0 0;
+    border: 1px #01203C solid;
+    padding: 0.25rem 0.5rem 0 0;
+    list-style: none;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: -0.5px; }
+    .alert .filter-counts__item span {
+      background-color: #034787;
+      color: #fff;
+      display: block;
+      padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+      margin: -0.25rem 0.5rem 0 0;
+      letter-spacing: normal; }
+      .alert .filter-counts__item span:after {
+        content: 'results matched';
+        font-size: 1rem;
+        line-height: 1rem;
+        padding: 0 0 0 0.25rem;
+        opacity: 0.85; }
 
 .badge {
   font-size: 0.9375rem;
@@ -14847,6 +14879,9 @@ html, body {
   .form__action:hover, .analyzer__filtering-button:hover, .income-solver__fetch-button:hover, .form__action:focus, .analyzer__filtering-button:focus, .income-solver__fetch-button:focus, .form__action:active, .analyzer__filtering-button:active, .income-solver__fetch-button:active {
     color: #01203C;
     background-color: #fff; }
+  .form__action--large {
+    font-size: 1.5rem;
+    line-height: 1.5rem; }
 
 /*
 input[type='text'],
@@ -17074,6 +17109,16 @@ main#auth {
 .income-solver__results {
   width: 100%;
   padding: 0 0 0 2rem; }
+  .income-solver__results .counts {
+    display: inline-block;
+    margin: 0 0 1rem 0;
+    border-left: 10px #034787 solid;
+    position: relative; }
+    .income-solver__results .counts h3 {
+      margin: 0;
+      font-size: 1.75rem;
+      line-height: 1.75rem;
+      padding: 0.5rem 0 0 0.5rem; }
   .income-solver__results-controls {
     margin: 0 0 1rem 0;
     padding: 1rem;
@@ -17081,6 +17126,12 @@ main#auth {
     border-radius: 6px;
     background-color: #034787;
     /* TODO: Refactor into SCSS */ }
+    .income-solver__results-controls--disabled {
+      pointer-events: none;
+      cursor: progress;
+      filter: grayscale(1); }
+      .income-solver__results-controls--disabled > * {
+        opacity: 0.75; }
     .income-solver__results-controls label[for='deferral'] {
       font-size: 2rem;
       line-height: 2rem;
